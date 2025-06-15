@@ -1,0 +1,48 @@
+# Allow all web crawlers
+User-agent: *
+Allow: /
+
+# Explícita permissão para páginas principais
+Allow: /index.html
+Allow: /equipamentos
+Allow: /equipamentos/categoria1
+Allow: /equipamentos/categoria2
+Allow: /equipamentos/categoria3
+Allow: /equipamentos/categoria4
+Allow: /unidade/unidade1
+Allow: /unidade/unidade2
+Allow: /contato
+Allow: /empresa
+Allow: /servicos
+
+# Deny access to files with extensions .json, .xml, .zip, .txt (except sitemap)
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.zip$
+Disallow: /*.txt$
+
+# Allow sitemap
+Allow: /sitemap.xml
+
+# Deny access to admin, api, and private folders
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /temp/
+
+# Disallow duplicate/admin content
+Disallow: /dashboard/
+Disallow: /profile/
+Disallow: /search/
+Disallow: /notifications/
+Disallow: /settings/
+Disallow: /bookings/
+Disallow: /budget-requests/
+Disallow: /my-reviews/
+Disallow: /owner-budgets/
+
+# Sitemap
+Sitemap: https://seusite.com.br/sitemap.xml
+
+# Crawl delay para não sobrecarregar o servidor
+Crawl-delay: 5 

@@ -1,0 +1,318 @@
+import React, { useState, useEffect } from 'react';
+import {
+  Paper,
+  TextField,
+  Box,
+  Button,
+  IconButton,
+  InputAdornment,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Slide,
+  Fab,
+  CircularProgress,
+  Typography,
+} from '@mui/material';
+import { TransitionProps } from '@mui/material/transitions';
+import { Search, Construction, FilterList, Close } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import { useTheme } from '../../theme/ThemeContext';
+import { supabase } from '../../utils/supabaseClient';
+
+// Interfaces para tipagem
+interface Categoria {
+  id: string;
+  name: string;
+  icon?: string;
+}
+
+interface FaseObra {
+  id: string;
+  name: string;
+  description?: string | null;
+  created_at?: string;
+}
+
+// Transição para o Dialog
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement;
+  },
+  ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+const MobileSearchBar: React.FC = () => {
+  const navigate = useNavigate();
+  const { themePreferences, mode } = useTheme();
+  const colors = mode === 'light' ? themePreferences.lightColors : themePreferences.darkColors;
+  
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [termo, setTermo] = useState('');
+  const [categoria, setCategoria] = useState('');
+  const [faseObra, setFaseObra] = useState('');
+  const [categorias, setCategorias] = useState<Categoria[]>([]);
+  const [fasesObra, setFasesObra] = useState<FaseObra[]>([]);
+  const [loadingCategorias, setLoadingCategorias] = useState(true);
+  const [loadingFases, setLoadingFases] = useState(true);
+  
+  useEffect(() => {
+    if (dialogOpen) {
+      const fetchCategorias = async () => {
+        try {
+          setLoadingCategorias(true);
+          const { data, error } = await (supabase as any)
+            .from('categories')
+            .select('id, name, icon')
+            .order('name');
+          
+          if (error) throw error;
+          
+          if (data) {
+            setCategorias(data);
+          }
+        } catch (error) {
+          console.error('Erro ao buscar categorias:', error);
+          setCategorias([]);
+        } finally {
+          setLoadingCategorias(false);
+        }
+      };
+      
+      const fetchFasesObra = async () => {
+        try {
+          setLoadingFases(true);
+          const { data, error } = await (supabase as any)
+            .from('construction_phases')
+            .select('id, name, description, created_at');
+          
+          if (error) throw error;
+          
+          if (data) {
+            setFasesObra(data);
+          }
+        } catch (error) {
+          console.error('Erro ao buscar fases da obra:', error);
+          setFasesObra([]);
+        } finally {
+          setLoadingFases(false);
+        }
+      };
+      
+      fetchCategorias();
+      fetchFasesObra();
+    }
+  }, [dialogOpen]);
+  
+  const handleOpenDialog = () => {
+    setDialogOpen(true);
+  };
+  
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+  };
+  
+  const handleSubmit = () => {
+    const params = new URLSearchParams();
+    if (termo) params.append('q', termo);
+    if (categoria) params.append('categoria', categoria);
+    if (faseObra) params.append('fase', faseObra);
+    
+    navigate(`/equipamentos?${params.toString()}`);
+    handleCloseDialog();
+  };
+  
+  const handleQuickSearch = () => {
+    if (termo) {
+      const params = new URLSearchParams();
+      params.append('q', termo);
+      navigate(`/equipamentos?${params.toString()}`);
+    } else {
+      handleOpenDialog();
+    }
+  };
+  
+  return (
+    <>
+      <Paper
+        elevation={4}
+        sx={{
+          borderRadius: 2,
+          p: 1.5,
+          backdropFilter: 'blur(20px)',
+          bgcolor: 'rgba(255, 255, 255, 0.95)',
+          display: 'flex',
+          boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.1)',
+        }}
+      >
+        <TextField
+          fullWidth
+          placeholder="O que você precisa?"
+          value={termo}
+          onChange={(e) => setTermo(e.target.value)}
+          variant="outlined"
+          size="small"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Search color="action" />
+              </InputAdornment>
+            ),
+          }}
+          sx={{ mr: 1 }}
+        />
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <IconButton 
+            color="primary"
+            onClick={handleOpenDialog}
+            sx={{ 
+              bgcolor: 'rgba(0, 0, 0, 0.05)',
+              '&:hover': { bgcolor: 'rgba(0, 0, 0, 0.1)' }
+            }}
+          >
+            <FilterList />
+          </IconButton>
+          
+          <Button
+            variant="contained"
+            onClick={handleQuickSearch}
+            sx={{
+              minWidth: 'auto',
+              bgcolor: colors.secondary,
+              '&:hover': {
+                bgcolor: colors.secondary,
+                opacity: 0.9,
+              }
+            }}
+          >
+            <Search />
+          </Button>
+        </Box>
+      </Paper>
+
+      {/* Dialog para filtros avançados */}
+      <Dialog
+        fullScreen
+        open={dialogOpen}
+        onClose={handleCloseDialog}
+        TransitionComponent={Transition}
+      >
+        <DialogTitle sx={{ 
+          display: 'flex', 
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          bgcolor: colors.primary,
+          color: 'white'
+        }}>
+          <Typography variant="h6">Busca Avançada</Typography>
+          <IconButton edge="end" color="inherit" onClick={handleCloseDialog}>
+            <Close />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent sx={{ pt: 3 }}>
+          <TextField
+            fullWidth
+            label="O que você procura?"
+            placeholder="Ex: betoneira, martelete, andaime..."
+            value={termo}
+            onChange={(e) => setTermo(e.target.value)}
+            variant="outlined"
+            margin="normal"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Search color="action" />
+                </InputAdornment>
+              ),
+            }}
+          />
+          
+          <FormControl fullWidth variant="outlined" margin="normal">
+            <InputLabel>Categoria</InputLabel>
+            <Select
+              value={categoria}
+              onChange={(e) => setCategoria(e.target.value)}
+              label="Categoria"
+              disabled={loadingCategorias}
+              startAdornment={
+                loadingCategorias ? (
+                  <InputAdornment position="start">
+                    <CircularProgress size={20} color="inherit" />
+                  </InputAdornment>
+                ) : null
+              }
+            >
+              <MenuItem value="">Todas as categorias</MenuItem>
+              {categorias.map((cat) => (
+                <MenuItem key={cat.id} value={cat.id}>
+                  {cat.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          
+          <FormControl fullWidth variant="outlined" margin="normal">
+            <InputLabel>Fase da Obra</InputLabel>
+            <Select
+              value={faseObra}
+              onChange={(e) => setFaseObra(e.target.value)}
+              label="Fase da Obra"
+              disabled={loadingFases}
+              startAdornment={
+                loadingFases ? (
+                  <InputAdornment position="start">
+                    <CircularProgress size={20} color="inherit" />
+                  </InputAdornment>
+                ) : null
+              }
+            >
+              <MenuItem value="">Todas as fases</MenuItem>
+              {fasesObra.map((fase) => (
+                <MenuItem 
+                  key={fase.id} 
+                  value={fase.id}
+                >
+                  {fase.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </DialogContent>
+        <DialogActions sx={{ p: 3, pt: 0 }}>
+          <Button 
+            variant="outlined" 
+            onClick={handleCloseDialog} 
+            fullWidth
+            sx={{ mr: 1 }}
+          >
+            Cancelar
+          </Button>
+          <Button 
+            variant="contained" 
+            onClick={handleSubmit} 
+            fullWidth
+            startIcon={<Search />}
+            sx={{
+              bgcolor: colors.secondary,
+              '&:hover': {
+                bgcolor: colors.secondary,
+                opacity: 0.9,
+              }
+            }}
+          >
+            Buscar Equipamentos
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+};
+
+export default MobileSearchBar; 

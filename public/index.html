@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Meta tags especiais para SEO -->    
+    <meta name="author" content="NOME DA EMPRESA" />    
+    <meta name="geo.region" content="BR-UF" />    
+    <meta name="geo.placename" content="Cidade" />    
+    <meta name="geo.position" content="0.0000;0.0000" />    
+      <meta name="ICBM" content="0.0000, 0.0000" />
+    
+    <!-- Verificações de propriedade (substitua com os códigos reais) -->
+    <meta name="google-site-verification" content="SEU_CODIGO_DE_VERIFICACAO_GOOGLE" />
+    <meta name="facebook-domain-verification" content="SEU_CODIGO_DE_VERIFICACAO_FACEBOOK" />
+    
+    <!-- PWA -->
+    <meta name="theme-color" content="#006e3b" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <title>NOME DA EMPRESA - Equipamentos para Construção Civil e Indústria</title>
+    
+    <!-- Preconnect para fontes e recursos externos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://yjdrejifhfdasaxivsew.supabase.co" crossorigin>
+    
+    <!-- Preload de fontes críticas -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    
+    <!-- Preload de assets críticos -->
+    <link rel="preload" href="/images/Logo_fundo_claro/Aluguel-de-Maquinas-9.webp" as="image" fetchpriority="high">
+    
+    <!-- Meta tags para SEO -->
+    <meta name="theme-color" content="#006e3b">
+    <meta name="google-site-verification" content="verificação-google">
+    <meta property="og:title" content="NOME DA EMPRESA - Equipamentos para Construção Civil e Indústria">    
+    <meta property="og:description" content="A NOME DA EMPRESA é uma empresa com foco na locação de equipamentos leves para construção civil e indústria, projetos mecânicos, laudos e serviços técnicos.">    
+    <meta property="og:image" content="https://seusite.com.br/favicon.png">
+<meta property="og:url" content="https://seusite.com.br">    
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon links adicionais para garantir compatibilidade -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="mask-icon" href="/favicon.png" color="#006e3b">
+    <meta name="msapplication-TileImage" content="/favicon.png">
+    <meta name="msapplication-TileColor" content="#006e3b">
+    
+    <!-- Cache policy -->
+    <meta http-equiv="Cache-Control" content="max-age=31536000, immutable">
+    
+    <style>
+      /* Estilos críticos inline para melhorar a performance */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #f8f9fa;
+      }
+      
+      /* Animação de carregamento */
+      .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+      }
+      
+      .loader::after {
+        content: '';
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #006e3b;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Loader que será substituído pelo app React -->
+      <div class="loader"></div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Registro do Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('Service Worker registrado com sucesso:', registration.scope);
+            })
+            .catch(error => {
+              console.log('Falha ao registrar o Service Worker:', error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html> 
