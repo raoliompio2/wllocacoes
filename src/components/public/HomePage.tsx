@@ -14,10 +14,11 @@ import { ChevronRight } from '@mui/icons-material';
 import { Helmet } from 'react-helmet-async';
 import { supabase } from '../../utils/supabaseClient';
 
-// Componentes novos
+// Componentes
 import HeroSection from './HeroSection';
 import FloatingCta from './FloatingCta';
 import EquipmentCard from './EquipmentCard';
+import HomePageSkeleton from './HomePageSkeleton';
 
 // Tipo para equipamentos
 interface Equipment {
@@ -44,6 +45,9 @@ const HomePage: React.FC = () => {
   const [loadingEquipment, setLoadingEquipment] = useState(true);
   const [loadingCategories, setLoadingCategories] = useState(true);
   const [categoryNames, setCategoryNames] = useState<Record<string, string>>({});
+
+  // Calcula o estado geral de carregamento
+  const isLoading = loadingEquipment || loadingCategories;
 
   useEffect(() => {
     const fetchFeaturedEquipment = async () => {
@@ -95,6 +99,11 @@ const HomePage: React.FC = () => {
     fetchCategories();
   }, []);
 
+  // Se estiver carregando, mostra APENAS o skeleton da página Home
+  if (isLoading) {
+    return <HomePageSkeleton />;
+  }
+
   return (
     <>
       <Helmet>
@@ -135,6 +144,7 @@ const HomePage: React.FC = () => {
                         available: true
                       }}
                       categoryName={categoryNames[item.category]}
+                      loading={false} // Sempre false para evitar skeleton duplicado
                     />
                   </Grid>
                 ))}

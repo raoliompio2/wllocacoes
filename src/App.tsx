@@ -15,18 +15,19 @@ import { SkeletonLoadingProvider } from './components/common/SkeletonLoadingProv
 import LoadingReplacement from './components/common/LoadingReplacement';
 
 // Componente de loading para suspense
-import { SkeletonLoader } from './components/common/SkeletonLoadingProvider';
-import { Box } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 
+// Componente de loading simples sem skeleton
 const LoadingComponent = () => (
   <Box sx={{ 
     minHeight: '100vh', 
-    display: 'flex', 
-    flexDirection: 'column', 
+    display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
     p: 3
   }}>
-    <SkeletonLoader type="details" />
+    <CircularProgress size={40} />
   </Box>
 );
 

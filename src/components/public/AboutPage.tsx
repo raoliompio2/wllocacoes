@@ -37,6 +37,7 @@ import {
 } from '@mui/icons-material';
 import { supabase } from '../../utils/supabaseClient';
 import SEOHead from '../SEO/SEOHead';
+import AboutPageSkeleton from './AboutPageSkeleton';
 
 interface AboutUsSection {
   id: string;
@@ -471,6 +472,11 @@ const AboutPage: React.FC = () => {
   
   const seoKeywords = "andaimes, montagem de andaimes, treinamento operadores, NR35, projetos técnicos, andaimes fachadeiros, andaimes suspensos, elevadores cremalheira, linhas de vida, proteções coletivas, laudos técnicos, normas de segurança, equipamentos para construção";
   
+  // Se estiver carregando, mostra o skeleton
+  if (loading) {
+    return <AboutPageSkeleton />;
+  }
+
   return (
     <>
       <SEOHead 
@@ -486,11 +492,7 @@ const AboutPage: React.FC = () => {
       />
       
       <Container maxWidth="lg" sx={{ py: 4, mt: 1 }}>
-        {loading ? (
-          <Box sx={{ display: 'flex', justifyContent: 'center', py: 10 }}>
-            <CircularProgress />
-          </Box>
-        ) : sections.length === 0 ? (
+        {sections.length === 0 ? (
           <Box sx={{ py: 8, textAlign: 'center' }}>
             <Typography variant="h6" color="text.secondary">
               Página em construção

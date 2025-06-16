@@ -32,6 +32,7 @@ import {
 } from '@mui/icons-material';
 import { supabase } from '../../utils/supabaseClient';
 import BusinessHours from '../common/BusinessHours';
+import ContactPageSkeleton from './ContactPageSkeleton';
 
 interface CompanyInfo {
   name: string;
@@ -86,7 +87,7 @@ const ContactPage: React.FC = () => {
     whatsapp: '(00) 0000-0000'
   };
   
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
@@ -101,6 +102,25 @@ const ContactPage: React.FC = () => {
   });
   
   const [formErrors, setFormErrors] = useState<FormErrors>({});
+
+  // Efeito para carregar dados e definir loading como false
+  useEffect(() => {
+    // Simulação de carregamento de dados da empresa
+    const fetchCompanyInfo = async () => {
+      try {
+        // Aqui você poderia buscar os dados da empresa do Supabase
+        // Por enquanto, apenas simulamos um delay
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
+      } catch (error) {
+        console.error('Erro ao carregar dados da empresa:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchCompanyInfo();
+  }, []);
 
   // Validação de formulário
   const validateForm = (): boolean => {
@@ -242,6 +262,11 @@ const ContactPage: React.FC = () => {
   const formatPhoneLink = (phone: string) => {
     return phone.replace(/\D/g, '');
   };
+
+  // Se estiver carregando, mostra o skeleton
+  if (loading && !submitting) {
+    return <ContactPageSkeleton />;
+  }
 
   return (
     <Container maxWidth="lg" sx={{ py: 4, mt: 1 }}>

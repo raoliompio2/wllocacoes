@@ -4,7 +4,7 @@ import SkeletonLoader from './SkeletonLoader';
 // Define o tipo do HOC
 interface WithSkeletonLoadingProps {
   loading?: boolean;
-  skeletonType?: 'cards' | 'list' | 'details' | 'form' | 'table';
+  skeletonType?: 'cards' | 'list' | 'details' | 'form' | 'table' | 'accessory' | 'review' | 'notification' | 'booking' | 'client' | 'budget';
   count?: number;
   skeletonProps?: Record<string, any>;
 }
@@ -20,7 +20,7 @@ interface WithSkeletonLoadingProps {
 const withSkeletonLoading = <P extends object>(
   WrappedComponent: React.ComponentType<P>,
   defaultOptions: {
-    type?: 'cards' | 'list' | 'details' | 'form' | 'table';
+    type?: 'cards' | 'list' | 'details' | 'form' | 'table' | 'accessory' | 'review' | 'notification' | 'booking' | 'client' | 'budget';
     count?: number;
     skeletonProps?: Record<string, any>;
   } = {}
