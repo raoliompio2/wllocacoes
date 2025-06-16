@@ -8,4 +8,8 @@ Implementação de skeletons específicos para diferentes tipos de conteúdo e c
 
 ## Melhorias de Performance
 
-Otimização dos componentes de carregamento para melhor experiência do usuário. 
+Otimização dos componentes de carregamento para melhor experiência do usuário.
+
+## Correções de Bugs
+
+Resolução de problemas relacionados ao carregamento duplicado de skeletons em todas as páginas. 
