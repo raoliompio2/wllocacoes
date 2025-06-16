@@ -12,4 +12,4 @@ Otimização dos componentes de carregamento para melhor experiência do usuári
 
 ## Correções de Bugs
 
-Resolução de problemas relacionados ao carregamento duplicado de skeletons em todas as páginas. 
+Resolução de problemas relacionados ao carregamento duplicado de skeletons em todas as páginas.
