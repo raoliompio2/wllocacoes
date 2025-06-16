@@ -74,9 +74,8 @@ const PublicNavbar: React.FC = () => {
   // Obtendo as cores do tema atual
   const colors = mode === 'light' ? themePreferences.lightColors : themePreferences.darkColors;
 
-  // Usar a logo específica para header
-  // Na home usamos a logo para fundo branco, nas outras páginas usamos a logo para fundo escuro
-  const logoUrl = isHomePage ? getLogoByBackground('light') : getHeaderFooterLogo();
+  // Sempre usar o logo Panda Locações
+  const logoUrl = '/images/Logo Panda.png';
   
   const companyInfoMemo = useMemo(() => {
     return {
@@ -156,7 +155,7 @@ const PublicNavbar: React.FC = () => {
   // Drawer para mobile
   const drawer = (
     <Box
-      sx={{ width: 250 }}
+      sx={{ width: 250, bgcolor: '#ffffff' }}
       role="presentation"
       onClick={toggleDrawer}
     >
@@ -257,7 +256,7 @@ const PublicNavbar: React.FC = () => {
               fullWidth 
               component={Link} 
               to="/signup" 
-              color={isHomePage ? "secondary" : "primary"}
+              color="primary"
               startIcon={<Person />}
               sx={{ fontWeight: 'medium', py: 1 }}
             >
@@ -295,11 +294,11 @@ const PublicNavbar: React.FC = () => {
           position="sticky" 
           elevation={0}
           sx={{ 
-            bgcolor: isHomePage ? 'white' : colors.secondary,
-            color: isHomePage ? colors.secondary : '#ffffff',
+            bgcolor: '#ffffff',
+            color: '#171717',
             borderBottomLeftRadius: themePreferences.borderRadius * 4,
             borderBottomRightRadius: themePreferences.borderRadius * 4,
-            boxShadow: isHomePage ? '0 2px 10px rgba(0,0,0,0.1)' : 'none',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
             mb: isHomePage ? -1 : 0, // Margem bottom negativa para página inicial
             mt: 0,
             zIndex: 1090, // Reduzido para ficar melhor integrado com o hero
@@ -356,14 +355,14 @@ const PublicNavbar: React.FC = () => {
                         fontWeight: 'medium',
                         fontSize: '1.05rem',
                         borderBottom: isActive(link.path) ? 3 : 0,
-                        borderColor: isHomePage ? colors.secondary : 'rgba(255,255,255,0.9)',
+                        borderColor: colors.primary,
                         borderRadius: 0,
                         '&:hover': {
-                          bgcolor: isHomePage ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.2)',
+                          bgcolor: 'rgba(0,0,0,0.05)',
                           color: 'inherit'
                         },
                         color: isActive(link.path) 
-                          ? (isHomePage ? colors.secondary : 'rgba(255,255,255,0.9)') 
+                          ? colors.primary
                           : 'inherit',
                         py: 1,
                       }}
@@ -444,7 +443,7 @@ const PublicNavbar: React.FC = () => {
                         variant="outlined" 
                         component={Link} 
                         to="/signup"
-                        color={isHomePage ? "secondary" : "primary"}
+                        color="primary"
                         startIcon={<Person />}
                         sx={{ fontWeight: 'medium' }}
                       >

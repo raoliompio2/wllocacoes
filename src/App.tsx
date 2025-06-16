@@ -1,5 +1,5 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from './theme/ThemeContext';
 import { NotificationProvider } from './context/NotificationContext';
@@ -8,7 +8,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { ptBR } from 'date-fns/locale';
 import Navbar from './components/Layout/Navbar';
 import Home from './components/Home';
-import { updateCompanyWhatsapp } from './utils/updateWhatsapp';
+// import { updateCompanyWhatsapp } from './utils/updateWhatsapp';
 import GoogleTagManager from './components/common/GoogleTagManager';
 import LcpMonitor from './components/common/LcpMonitor';
 import { SkeletonLoadingProvider } from './components/common/SkeletonLoadingProvider';
@@ -74,18 +74,31 @@ const ContactMessages = lazy(() => import('./components/Dashboard/ContactMessage
 
 function App() {
   const location = useLocation();
+  const navigate = useNavigate();
   
   // Rolar para o topo sempre que a rota mudar
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
   
-  // Executar a atualização do WhatsApp quando o aplicativo iniciar (apenas em desenvolvimento)
+  // Redirect effect for /alugar/ to /equipamento/
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      updateCompanyWhatsapp();
+    const path = location.pathname;
+    if (path.startsWith('/alugar/')) {
+      const slug = path.replace('/alugar/', '');
+      // Replace encoded forward slashes with hyphens
+      const cleanedSlug = slug.replace(/%2F/g, '-');
+      navigate(`/equipamento/${cleanedSlug}`, { replace: true });
     }
-  }, []);
+  }, [location.pathname, navigate]);
+  
+  // Executar a atualização do WhatsApp quando o aplicativo iniciar (apenas em desenvolvimento)
+  // Comentado para evitar erros de autenticação com o Supabase
+  // useEffect(() => {
+  //   if (import.meta.env.MODE === 'development') {
+  //     updateCompanyWhatsapp();
+  //   }
+  // }, []);
 
   return (
     <ThemeProvider>
@@ -116,6 +129,12 @@ function App() {
               } />
               
               <Route path="/equipamento/:id" element={
+                <PublicLayout>
+                  <EquipmentDetailPage />
+                </PublicLayout>
+              } />
+              
+              <Route path="/equipamento/:slug" element={
                 <PublicLayout>
                   <EquipmentDetailPage />
                 </PublicLayout>

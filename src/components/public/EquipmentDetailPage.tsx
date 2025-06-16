@@ -66,6 +66,11 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { CalendarIcon } from 'lucide-react';
 import SEOHead from '../SEO/SEOHead';
 import ProductSchema from '../SEO/ProductSchema';
+import * as stringSimilarityLib from 'string-similarity';
+import { sendBudgetRequestEmail } from '../../utils/emailService';
+
+// Número fixo do WhatsApp para redirecionamento
+const WHATSAPP_NUMBER = '551937030363';
 
 // Interfaces
 interface Equipment {
@@ -235,7 +240,16 @@ const EquipmentDetailPage: React.FC = () => {
 
   useEffect(() => {
     const fetchEquipmentDetails = async () => {
-      if (!id && !slug) {
+      // Determine if we're using slug or id
+      const isSlugRoute = window.location.pathname.includes('/equipamento/') || 
+                           window.location.pathname.includes('/alugar/') || 
+                           window.location.pathname.includes('/aluguel/');
+      
+      // If we're on a slug route, treat param as slug even if it came through as id
+      const paramSlug = slug || (isSlugRoute ? id : null);
+      const paramId = isSlugRoute ? null : id;
+      
+      if (!paramId && !paramSlug) {
         setError('ID ou nome do equipamento não fornecido');
         setLoading(false);
         return;
@@ -245,31 +259,75 @@ const EquipmentDetailPage: React.FC = () => {
       try {
         let equipmentData;
 
-        if (slug) {
+        if (paramSlug) {
           // Buscar por slug (nome)
-          const decodedSlug = decodeURIComponent(slug);
-          const normalizedSlug = decodedSlug.replace(/-/g, ' ');
+          const decodedSlug = decodeURIComponent(paramSlug);
+          // Converter todos os caracteres especiais e hífens para espaço, melhorando a busca
+          const normalizedSlug = decodedSlug
+            .replace(/-/g, ' ')  // Converte hífen para espaço
+            .replace(/\//g, ' '); // Converte barra para espaço
           
+          console.log(`Buscando equipamento: slug original="${paramSlug}", decodificado="${decodedSlug}", normalizado="${normalizedSlug}"`);
+          
+          // Usar %ILIKE% para uma correspondência mais flexível
           const { data, error } = await supabase
             .from('equipment')
             .select('*')
-            .ilike('name', normalizedSlug) // Converter hífens para espaços
+            .ilike('name', `%${normalizedSlug}%`) // Busca parcial para melhorar resultados
             .limit(1);
 
           if (error) throw error;
           if (!data || data.length === 0) {
-            setError('Equipamento não encontrado. Verifique se o nome está correto.');
-            setLoading(false);
-            return;
+            // Se não encontrar com correspondência parcial, tentar busca mais específica
+            console.log(`Equipamento não encontrado com slug normalizado. Tentando busca alternativa com nome exato.`);
+            
+            // Tentar outra abordagem, removendo todos caracteres especiais e buscando por similaridade
+            const cleanSlug = decodedSlug
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '') // Remove acentos
+              .replace(/[^\w\s]/g, ' ') // Remove caracteres especiais
+              .replace(/\s+/g, ' ')     // Substitui múltiplos espaços por um
+              .trim();
+            
+            console.log(`Tentando busca alternativa: "${cleanSlug}"`);
+            
+            const { data: altData, error: altError } = await supabase
+              .from('equipment')
+              .select('*')
+              .order('name')
+              .limit(10);
+              
+            if (!altError && altData && altData.length > 0) {
+              // Encontrar o equipamento com nome mais similar
+              const bestMatch = altData.reduce((best, equip) => {
+                const currentSimilarity = stringSimilarityLib.compareTwoStrings(equip.name.toLowerCase(), decodedSlug.toLowerCase());
+                const bestSimilarity = best ? stringSimilarityLib.compareTwoStrings(best.name.toLowerCase(), decodedSlug.toLowerCase()) : -1;
+                
+                return currentSimilarity > bestSimilarity ? equip : best;
+              }, null);
+              
+              if (bestMatch) {
+                console.log(`Melhor correspondência encontrada: "${bestMatch.name}" (similaridade aproximada)`);
+                equipmentData = bestMatch;
+              } else {
+                setError('Equipamento não encontrado. Verifique se o nome está correto.');
+                setLoading(false);
+                return;
+              }
+            } else {
+              setError('Equipamento não encontrado. Verifique se o nome está correto.');
+              setLoading(false);
+              return;
+            }
+          } else {
+            equipmentData = data[0];
           }
-          
-          equipmentData = data[0];
         } else {
           // Buscar por ID
           const { data, error } = await supabase
             .from('equipment')
             .select('*')
-            .eq('id', id);
+            .eq('id', paramId);
           
           if (error) {
             console.error('Erro na consulta:', error);
@@ -349,10 +407,10 @@ const EquipmentDetailPage: React.FC = () => {
         console.error('Erro ao buscar detalhes do equipamento:', error);
         
         // Registrar informações adicionais para depuração
-        if (id) {
-          console.log(`Falha ao buscar equipamento com ID: ${id}`);
-        } else if (slug) {
-          console.log(`Falha ao buscar equipamento com slug: ${slug}`);
+        if (paramId) {
+          console.log(`Falha ao buscar equipamento com ID: ${paramId}`);
+        } else if (paramSlug) {
+          console.log(`Falha ao buscar equipamento com slug: ${paramSlug}`);
         }
         
         // Verificar se há conexão com o Supabase
@@ -371,7 +429,7 @@ const EquipmentDetailPage: React.FC = () => {
     };
 
     fetchEquipmentDetails();
-  }, [id, slug]);
+  }, [id, slug, window.location.pathname]);
 
   // Carregar dados do usuário autenticado quando abrir o diálogo
   useEffect(() => {
@@ -473,312 +531,70 @@ const EquipmentDetailPage: React.FC = () => {
     setCopySnackbarOpen(true);
   };
 
-  // Abrir WhatsApp do proprietário
-  const handleWhatsAppContact = () => {
-    if (!ownerWhatsApp) return;
-    
-    const message = `Olá! Gostaria de saber mais sobre meu orçamento para o equipamento "${equipment?.name}".${deliveryAddress ? `\n\nEndereço para entrega: ${deliveryAddress}` : ''}\n\nObrigado!`;
-    const whatsappUrl = `https://wa.me/55${ownerWhatsApp.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
+  // Função que registra o clique no botão do WhatsApp
+  const handleWhatsAppClick = () => {
+    // Primeiro, abrir o WhatsApp imediatamente para melhorar a experiência do usuário
+    const message = `Olá, gostaria de solicitar um orçamento para o equipamento: ${equipment?.name}`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/551937030363?text=${encodedMessage}`;
     window.open(whatsappUrl, '_blank');
     
-    // Redirecionar para o painel do cliente após um breve delay
-    setTimeout(() => {
-      setSuccessDialogOpen(false);
-      navigate('/budget-requests');
-    }, 500);
-  };
-
-  // Ir para painel de orçamentos
-  const handleGotoDashboard = () => {
-    setSuccessDialogOpen(false);
-    navigate('/budget-requests');
-  };
-
-  const handleSubmitBudgetRequest = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!equipment) return;
-    if (!startDate || !endDate) {
-      setFormError('Por favor, informe o período de locação desejado.');
-      return;
-    }
-    
-    if (startDate >= endDate) {
-      setFormError('A data final deve ser posterior à data inicial.');
-      return;
-    }
-    
-    setFormLoading(true);
-    setFormError(null);
-    
-    try {
-      let userId = user?.id;
-      
-      // Se o usuário não estiver autenticado, criamos ou autenticamos
-      if (!userId) {
-        // Verificar se o usuário já existe pelo email
-        const { data: existingUserByEmail, error: checkEmailError } = await supabase
-          .from('profiles')
-          .select('id')
-          .eq('email', email)
-          .maybeSingle();
+    // Em seguida, registrar a solicitação em segundo plano
+    setTimeout(async () => {
+      try {
+        // Definir datas de início (hoje) e fim (7 dias depois) já que são obrigatórias
+        const startDate = new Date();
+        const endDate = new Date();
+        endDate.setDate(endDate.getDate() + 7); // Final fictício padrão: 7 dias
         
-        // Verificar se o usuário já existe pelo telefone
-        const { data: existingUserByPhone, error: checkPhoneError } = await supabase
-          .from('profiles')
-          .select('id')
-          .eq('phone', whatsapp)
-          .maybeSingle();
+        // Buscar o ID do proprietário do equipamento
+        const { data: equipData, error: equipError } = await supabase
+          .from('equipment')
+          .select('user_id')
+          .eq('id', equipment?.id)
+          .single();
           
-        // Se o usuário já existe (por email ou telefone), usamos o ID existente
-        if (existingUserByEmail || existingUserByPhone) {
-          const existingUser = existingUserByEmail || existingUserByPhone;
-          
-          // Enviar um email mágico para autenticar o usuário
-          const { error: signInError } = await supabase.auth.signInWithOtp({
-            email,
-            options: {
-              emailRedirectTo: `${window.location.origin}/budget-requests`,
-            },
-          });
-          
-          if (signInError) throw signInError;
-          
-          // Atualizar os dados básicos do perfil
-          if (existingUser) {
-            const { error: updateError } = await supabase
-              .from('profiles')
-              .update({
-                name: name,
-                phone: whatsapp,
-                updated_at: new Date().toISOString()
-              })
-              .eq('id', existingUser.id);
-              
-            if (updateError) throw updateError;
-            
-            userId = existingUser.id;
-          }
-          
-          // Prosseguir com a solicitação de orçamento, mas sem fechar a diálogo
-          // para que o usuário receba o email e possa se autenticar
-        } else {
-          // Criar novo usuário
-          const password = Math.random().toString(36).slice(2) + Math.random().toString(36).toUpperCase().slice(2);
-          
-          const { data: { user: newUser }, error: signUpError } = await supabase.auth.signUp({
-            email,
-            password,
-            options: {
-              data: {
-                name,
-                role: 'cliente'
-              }
-            }
-          });
-          
-          if (signUpError) {
-            // Se ocorrer erro de "User already registered", precisamos obter o ID de perfil existente
-            if (signUpError.message.includes('User already registered')) {
-              // Tentar fazer login
-              const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
-                email,
-                password: password // tentativa com senha aleatória provavelmente falhará
-              });
-              
-              if (signInError) {
-                // Se falhar, enviamos o email mágico
-                const { error: otpError } = await supabase.auth.signInWithOtp({
-                  email,
-                  options: {
-                    emailRedirectTo: `${window.location.origin}/budget-requests`,
-                  },
-                });
-                
-                if (otpError) throw otpError;
-                
-                // Buscar perfil existente após enviar o email
-                const { data: profileData } = await supabase
-                  .from('profiles')
-                  .select('id')
-                  .eq('email', email)
-                  .maybeSingle();
-                  
-                if (profileData) {
-                  userId = profileData.id;
-                  
-                  // Atualizar os dados do perfil
-                  await supabase
-                    .from('profiles')
-                    .update({
-                      name: name,
-                      phone: whatsapp,
-                      updated_at: new Date().toISOString()
-                    })
-                    .eq('id', userId);
-                }
-                
-                setFormError('Foi enviado um link de acesso para seu email. Por favor, verifique sua caixa de entrada para continuar.');
-                setFormLoading(false);
-                return;
-              } else if (signInData?.user) {
-                // Se conseguir fazer login, usar o ID do usuário
-                userId = signInData.user.id;
-              }
-            } else {
-              throw signUpError;
-            }
-          } else if (newUser) {
-            userId = newUser.id;
-            
-            // Verificar se já existe um perfil com este ID
-            const { data: existingProfile, error: checkProfileError } = await supabase
-              .from('profiles')
-              .select('id')
-              .eq('id', userId)
-              .maybeSingle();
-              
-            if (existingProfile) {
-              // Se o perfil já existe, atualize em vez de inserir
-              const { error: updateError } = await supabase
-                .from('profiles')
-                .update({
-                  name: name,
-                  email: email,
-                  phone: whatsapp,
-                  role: 'cliente',
-                  updated_at: new Date().toISOString()
-                })
-                .eq('id', userId);
-                
-              if (updateError) {
-                console.error('Erro ao atualizar perfil existente:', updateError);
-                throw updateError;
-              }
-            } else {
-              // Criar um novo perfil com os dados básicos
-              const { error: insertError } = await supabase
-                .from('profiles')
-                .insert({
-                  id: userId,
-                  name: name,
-                  email: email,
-                  phone: whatsapp,
-                  role: 'cliente',
-                  updated_at: new Date().toISOString()
-                });
-                
-              if (insertError) {
-                console.error('Erro ao inserir perfil:', insertError);
-                
-                // Se ainda ocorrer erro, tenta uma última verificação
-                const { data: finalCheck } = await supabase
-                  .from('profiles')
-                  .select('id')
-                  .eq('id', userId)
-                  .single();
-                  
-                if (!finalCheck) {
-                  throw insertError;
-                }
-              }
-            }
-            
-            // Autenticar o usuário automaticamente
-            const { error: signInError } = await supabase.auth.signInWithPassword({
-              email,
-              password
-            });
-            
-            if (signInError) throw signInError;
-          }
+        if (equipError) {
+          console.error('Erro ao buscar proprietário do equipamento:', equipError);
+          return;
         }
-      } else {
-        // Usuário já está autenticado, atualizar seus dados no perfil
-        const { error: updateError } = await supabase
-          .from('profiles')
-          .update({
-            name: name,
-            email: email,
-            phone: whatsapp,
-            updated_at: new Date().toISOString()
-          })
-          .eq('id', userId);
-          
-        if (updateError) throw updateError;
-      }
-      
-      // Garantir que temos um userId válido
-      if (!userId) {
-        throw new Error('Não foi possível identificar ou criar seu usuário. Por favor, tente novamente ou entre em contato conosco.');
-      }
-      
-      // Buscar o proprietário do equipamento
-      const { data: ownerData, error: ownerError } = await supabase
-        .from('equipment')
-        .select('user_id')
-        .eq('id', equipment.id)
-        .single();
         
-      if (ownerError) throw ownerError;
-      
-      // Buscar o WhatsApp do proprietário
-      const { data: ownerProfile, error: ownerProfileError } = await supabase
-        .from('profiles')
-        .select('phone')
-        .eq('id', ownerData.user_id)
-        .single();
-        
-      if (!ownerProfileError && ownerProfile) {
-        setOwnerWhatsApp(ownerProfile.phone);
-      }
-      
-      // Criar a solicitação de orçamento
-      const { data: budgetData, error: budgetError } = await supabase
-        .from('budget_requests')
-        .insert({
-          equipment_id: equipment.id,
-          client_id: userId,
-          owner_id: ownerData.user_id,
-          start_date: startDate.toISOString().split('T')[0],
-          end_date: endDate.toISOString().split('T')[0],
+        // Registrar a solicitação de orçamento no banco de dados
+        const { error } = await supabase.from('budget_requests').insert({
+          equipment_id: equipment?.id,
+          client_id: user?.id || null,
+          client_name: user?.user_metadata?.name || 'Cliente WhatsApp',
+          client_email: user?.email || null,
+          client_phone: null,
+          client_type: user ? 'user' : 'guest',
+          owner_id: equipData.user_id, // ID do proprietário do equipamento
           status: 'pending',
-          special_requirements: null,
-          delivery_address: deliveryAddress || null,
-        })
-        .select('id')
-        .single();
-        
-      if (budgetError) throw budgetError;
-      
-      if (budgetData) {
-        setBudgetRequestId(budgetData.id);
-      }
-      
-      // Fechar o diálogo de contato e abrir o diálogo de sucesso
-      setContactDialogOpen(false);
-      setSuccessDialogOpen(true);
-      
-    } catch (err: any) {
-      console.error('Erro ao solicitar orçamento:', err);
-      
-      // Tratando erros específicos com mensagens amigáveis
-      if (err.code === '23505') {
-        if (err.message.includes('profiles_pkey')) {
-          setFormError('Este usuário já está cadastrado no sistema. Por favor, tente entrar com sua conta existente.');
-        } else if (err.message.includes('profiles_email_key')) {
-          setFormError('Este email já está cadastrado. Por favor, utilize outro email ou entre com sua conta existente.');
-        } else if (err.message.includes('profiles_phone_key')) {
-          setFormError('Este número de WhatsApp já está cadastrado. Por favor, utilize outro número ou entre com sua conta existente.');
+          created_at: new Date().toISOString(),
+          contact_method: 'whatsapp',
+          // Campos obrigatórios
+          start_date: startDate.toISOString().split('T')[0], // Formato YYYY-MM-DD
+          end_date: endDate.toISOString().split('T')[0]      // Formato YYYY-MM-DD
+        });
+
+        if (error) {
+          console.error('Erro ao registrar solicitação de orçamento:', error);
         } else {
-          setFormError('Já existe um cadastro com estas informações. Por favor, tente entrar com sua conta existente.');
+          console.log('Solicitação de orçamento registrada com sucesso');
+          
+          // Obter URL da imagem do equipamento
+          const imageUrl = equipment?.image?.split('/').pop() || 'equipamento-placeholder.png';
+          
+          // Enviar email de notificação
+          await sendBudgetRequestEmail(
+            equipment?.name || 'Equipamento não especificado',
+            user?.user_metadata?.name || null,
+            imageUrl
+          );
         }
-      } else {
-        setFormError(err.message || 'Falha ao solicitar orçamento. Por favor, tente novamente.');
+      } catch (error) {
+        console.error('Erro ao registrar solicitação de orçamento:', error);
       }
-    } finally {
-      setFormLoading(false);
-    }
+    }, 0);
   };
 
   // Gerar esquema para o produto
@@ -806,7 +622,7 @@ const EquipmentDetailPage: React.FC = () => {
       price: priceValue,
       priceType: 'Diária',
       category: category?.name || '',
-      url: `/alugar/${createSlug(equipment.name)}`,
+      url: `/equipamento/${createSlug(equipment.name)}`,
       availability: equipment.available ? 'InStock' : 'OutOfStock',
       reviewCount: equipment.total_reviews || 0,
       ratingValue: 5
@@ -894,7 +710,7 @@ const EquipmentDetailPage: React.FC = () => {
 
   return (
     <>
-            <SEOHead        title={`${equipment.name} - Aluguel | NOME DA EMPRESA`}        description={equipment.description || `Alugue ${equipment.name}. Equipamento de qualidade para sua obra com as melhores condições.`}        canonicalUrl={`/alugar/${encodeURIComponent(equipment.name.toLowerCase().replace(/\s+/g, '-'))}`}        ogType="product"        ogImage={equipment.image}        keywords={`aluguel ${equipment.name}, locação ${equipment.name}, equipamentos construção, ${category?.name || ''}`}
+            <SEOHead        title={`${equipment.name} - Aluguel | NOME DA EMPRESA`}        description={equipment.description || `Alugue ${equipment.name}. Equipamento de qualidade para sua obra com as melhores condições.`}        canonicalUrl={`/equipamento/${encodeURIComponent(equipment.name.toLowerCase().replace(/\s+/g, '-'))}`}        ogType="product"        ogImage={equipment.image}        keywords={`aluguel ${equipment.name}, locação ${equipment.name}, equipamentos construção, ${category?.name || ''}`}
         schema={generateCombinedSchema()}
       />
       
@@ -1163,11 +979,11 @@ const EquipmentDetailPage: React.FC = () => {
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                   <Button 
                     variant="contained" 
-                    color="primary" 
+                    color="success" 
                     size="large" 
                     fullWidth
-                    endIcon={<ChevronRight />}
-                    onClick={() => setContactDialogOpen(true)}
+                    startIcon={<WhatsApp />}
+                    onClick={handleWhatsAppClick}
                     sx={{ 
                       py: 1.5, 
                       borderRadius: 2,
@@ -1177,7 +993,7 @@ const EquipmentDetailPage: React.FC = () => {
                       display: { xs: 'none', sm: 'flex' } // Oculto em dispositivos móveis
                     }}
                   >
-                    Solicitar orçamento
+                    Solicitar orçamento via WhatsApp
                   </Button>
                   
                   <Box sx={{ display: 'flex', gap: 2 }}>
@@ -1388,175 +1204,6 @@ const EquipmentDetailPage: React.FC = () => {
           </DialogContent>
         </Dialog>
 
-        {/* Diálogo para solicitação de orçamento */}
-        <Dialog
-          open={contactDialogOpen}
-          onClose={() => setContactDialogOpen(false)}
-          maxWidth="sm"
-          fullWidth
-        >
-          <DialogTitle>
-            Solicitar orçamento para {equipment?.name}
-            <IconButton
-              aria-label="close"
-              onClick={() => setContactDialogOpen(false)}
-              sx={{
-                position: 'absolute',
-                right: 8,
-                top: 8,
-                color: (theme) => theme.palette.grey[500],
-              }}
-            >
-              <Close />
-            </IconButton>
-          </DialogTitle>
-          <DialogContent>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-              Preencha o formulário abaixo para solicitar um orçamento. O proprietário entrará em contato com você em breve.
-            </Typography>
-
-            <Box component="form" onSubmit={handleSubmitBudgetRequest} noValidate sx={{ mt: 1 }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="name"
-                label="Nome completo"
-                name="name"
-                autoComplete="name"
-                autoFocus
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                disabled={formLoading || !!user}
-                sx={{ mb: 2 }}
-              />
-              
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email"
-                name="email"
-                autoComplete="email"
-                value={email || user?.email || ''}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={formLoading || !!user}
-                sx={{ mb: 2 }}
-              />
-              
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="whatsapp"
-                label="WhatsApp (com DDD)"
-                name="whatsapp"
-                autoComplete="tel"
-                value={whatsapp}
-                onChange={(e) => setWhatsapp(e.target.value)}
-                disabled={formLoading}
-                sx={{ mb: 2 }}
-                InputProps={{
-                  startAdornment: <InputAdornment position="start">+55</InputAdornment>,
-                }}
-              />
-              
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="deliveryAddress"
-                label="Endereço de entrega"
-                name="deliveryAddress"
-                autoComplete="street-address"
-                value={deliveryAddress}
-                onChange={(e) => setDeliveryAddress(e.target.value)}
-                disabled={formLoading}
-                sx={{ mb: 2 }}
-                placeholder="Rua, número, bairro, cidade - UF"
-              />
-              
-              <Typography variant="subtitle2" sx={{ mt: 2, mb: 1 }}>
-                Período de locação desejado
-              </Typography>
-              
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
-                  <DatePicker
-                    label="Data inicial"
-                    value={startDate}
-                    onChange={(date) => setStartDate(date)}
-                    disabled={formLoading}
-                    disablePast
-                    slotProps={{
-                      textField: {
-                        fullWidth: true,
-                        required: true,
-                        InputProps: {
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <CalendarIcon size={18} />
-                            </InputAdornment>
-                          )
-                        }
-                      }
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <DatePicker
-                    label="Data final"
-                    value={endDate}
-                    onChange={(date) => setEndDate(date)}
-                    disabled={formLoading}
-                    disablePast
-                    minDate={startDate || undefined}
-                    slotProps={{
-                      textField: {
-                        fullWidth: true,
-                        required: true,
-                        InputProps: {
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <CalendarIcon size={18} />
-                            </InputAdornment>
-                          )
-                        }
-                      }
-                    }}
-                  />
-                </Grid>
-              </Grid>
-
-              {formError && (
-                <Alert severity="error" sx={{ mt: 3 }}>
-                  {formError}
-                </Alert>
-              )}
-
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                size="large"
-                disabled={formLoading}
-                sx={{ 
-                  mt: 3, 
-                  py: 1.5, 
-                  fontWeight: 'medium',
-                }}
-              >
-                {formLoading ? (
-                  <CircularProgress size={24} color="inherit" sx={{ mr: 1 }} />
-                ) : null}
-                {formLoading ? 'Enviando...' : user ? 'Solicitar orçamento' : (userExists ? 'Entrar e solicitar orçamento' : 'Criar conta e solicitar orçamento')}
-              </Button>
-            </Box>
-          </DialogContent>
-        </Dialog>
-
         {/* Diálogo de sucesso após envio do orçamento */}
         <Dialog
           open={successDialogOpen}
@@ -1584,7 +1231,7 @@ const EquipmentDetailPage: React.FC = () => {
                 variant="contained" 
                 color="success" 
                 startIcon={<WhatsApp />} 
-                onClick={handleWhatsAppContact}
+                onClick={handleWhatsAppClick}
                 fullWidth
               >
                 Chamar no WhatsApp
@@ -1606,12 +1253,12 @@ const EquipmentDetailPage: React.FC = () => {
       {isMobile && (
         <MobileFixedButton
           variant="contained"
-          color="primary"
+          color="success"
           size="large"
-          onClick={() => setContactDialogOpen(true)}
-          endIcon={<ChevronRight />}
+          onClick={handleWhatsAppClick}
+          startIcon={<WhatsApp />}
         >
-          Solicitar orçamento
+          Solicitar orçamento via WhatsApp
         </MobileFixedButton>
       )}
     </>

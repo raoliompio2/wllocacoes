@@ -77,7 +77,7 @@ interface MaintenanceItem {
 interface BudgetRequest {
   id: string;
   equipment_id: string;
-  client_id: string;
+  client_id: string | null;
   owner_id: string;
   start_date: string;
   end_date: string;
@@ -87,9 +87,14 @@ interface BudgetRequest {
   delivery_address: string | null;
   created_at: string;
   updated_at: string;
+  client_type?: string;
+  client_name?: string | null;
+  client_email?: string | null;
+  client_phone?: string | null;
+  contact_method?: string;
   equipment?: Equipment | any;
   client?: {
-    id: string;
+    id: string | null;
     name: string | null;
     email: string | null;
     avatar_url?: string | null;

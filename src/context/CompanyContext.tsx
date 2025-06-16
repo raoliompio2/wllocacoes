@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { supabase } from '../utils/supabaseClient';
-import { updateCompanyWhatsapp } from '../utils/updateWhatsapp';
+// import { supabase } from '../utils/supabaseClient';
+// import { updateCompanyWhatsapp } from '../utils/updateWhatsapp';
 
 interface CompanyInfo {
   name: string;
@@ -19,12 +19,12 @@ interface CompanyContextType {
 
 // Valores padrão para informações da empresa
 const defaultCompanyInfo: CompanyInfo = {
-  name: 'NOME DA EMPRESA',
-  logo_url: '',
+  name: 'Panda Locações',
+  logo_url: '/images/Logo Panda.png',
   phone: '(00) 0000-0000',
   whatsapp: '0000000000',
-  email: 'contato@seudominio.com.br',
-  address: 'Endereço da empresa, Número - Bairro, Cidade - UF, 00000-000',
+  email: 'contato@pandalocacoes.com.br',
+  address: 'Endereço da Panda Locações, Número - Bairro, Cidade - UF, 00000-000',
 };
 
 const CompanyContext = createContext<CompanyContextType>({
@@ -35,66 +35,36 @@ const CompanyContext = createContext<CompanyContextType>({
 
 export const useCompany = () => useContext(CompanyContext);
 
-// Correção na definição do componente para garantir que seja um componente de função React válido
-const CompanyProvider = ({ children }: { children: React.ReactNode }) => {
+interface CompanyProviderProps {
+  children: React.ReactNode;
+}
+
+// Definição do componente como uma função de componente React adequada
+const CompanyProvider: React.FC<CompanyProviderProps> = ({ children }) => {
   const [companyInfo, setCompanyInfo] = useState<CompanyInfo>(defaultCompanyInfo);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchCompanyInfo = async () => {
+    // Versão simplificada que apenas usa os valores padrão
+    // para evitar erros de autenticação com o Supabase
+    const initializeCompanyInfo = () => {
       try {
         setLoading(true);
         setError(null);
-
-        // Tentar buscar da tabela company_info
-        const { data, error } = await supabase
-          .from('company_info')
-          .select('*')
-          .limit(1)
-          .single();
-
-        if (error) {
-          console.log('Erro ao buscar do banco, usando solução alternativa:', error);
-          
-          // Se houver erro, usar a função updateCompanyWhatsapp que retorna dados locais
-          const alternativeData = await updateCompanyWhatsapp();
-          
-          if (typeof alternativeData === 'object') {
-            setCompanyInfo({
-              ...defaultCompanyInfo,
-              ...alternativeData,
-              logo_url: defaultCompanyInfo.logo_url // Manter o logo_url do defaultCompanyInfo
-            });
-          } else {
-            // Se updateCompanyWhatsapp retornar true, usar valores padrão
-            setCompanyInfo(defaultCompanyInfo);
-          }
-        } else if (data) {
-          // Dados obtidos com sucesso do banco
-          setCompanyInfo({
-            name: data.name || defaultCompanyInfo.name,
-            phone: data.phone || defaultCompanyInfo.phone,
-            whatsapp: data.whatsapp || defaultCompanyInfo.whatsapp,
-            email: data.email || defaultCompanyInfo.email,
-            address: data.address || defaultCompanyInfo.address,
-            logo_url: data.logo_url || defaultCompanyInfo.logo_url,
-          });
-        } else {
-          // Se não houver dados, usar valores padrão
-          setCompanyInfo(defaultCompanyInfo);
-        }
+        
+        // Usar apenas os valores padrão
+        setCompanyInfo(defaultCompanyInfo);
         
         setLoading(false);
       } catch (err) {
-        console.log('Erro ao buscar informações da empresa, usando valores padrão:', err);
-        // Em caso de erro, usar os valores padrão
-        setCompanyInfo(defaultCompanyInfo);
+        console.log('Erro ao inicializar informações da empresa:', err);
+        setError('Erro ao carregar informações da empresa');
         setLoading(false);
       }
     };
 
-    fetchCompanyInfo();
+    initializeCompanyInfo();
   }, []);
 
   return (

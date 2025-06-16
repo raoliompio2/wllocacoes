@@ -37,8 +37,8 @@ interface ThemeContextType {
 }
 
 const defaultLightColors: ThemeColors = {
-  primary: '#1976d2',
-  secondary: '#757575',
+  primary: '#171717',
+  secondary: '#FC6F08',
   background: '#ffffff',
   surface: '#f5f5f5',
   text: '#1a1a1a',
@@ -46,8 +46,8 @@ const defaultLightColors: ThemeColors = {
 };
 
 const defaultDarkColors: ThemeColors = {
-  primary: '#90caf9',
-  secondary: '#9e9e9e',
+  primary: '#171717',
+  secondary: '#FC6F08',
   background: '#121212',
   surface: '#1e1e1e',
   text: '#ffffff',

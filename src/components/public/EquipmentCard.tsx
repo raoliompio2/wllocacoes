@@ -153,11 +153,11 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({
   
   // Função para navegar para a página de detalhes
   const handleCardClick = () => {
-    navigate(`/alugar/${createSlug(equipment.name)}`);
+    navigate(`/equipamento/${createSlug(equipment.name)}`);
   };
 
   // Gera URL canônica para o equipamento
-  const equipmentUrl = `/alugar/${createSlug(equipment.name)}`;
+  const equipmentUrl = `/equipamento/${createSlug(equipment.name)}`;
   
   return (
     <StyledCard 

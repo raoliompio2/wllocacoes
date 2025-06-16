@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Tabs, Tab, Box } from '@mui/material';
-import { Settings as SettingsIcon, Building2, Palette, Info } from 'lucide-react';
+import { Settings as SettingsIcon, Building2, Palette, Info, Mail } from 'lucide-react';
 import GeneralSettings from './GeneralSettings';
 import CompanySettings from './CompanySettings';
 import ThemeSettings from './ThemeSettings';
 import AboutUsSettings from './AboutUsSettings';
+import EmailSettings from './EmailSettings';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../utils/supabaseClient';
 
@@ -68,6 +69,13 @@ const Settings: React.FC = () => {
               label="Sobre Nós"
             />
           )}
+          {isOwner && (
+            <Tab
+              icon={<Mail className="h-4 w-4" />}
+              iconPosition="start"
+              label="Email"
+            />
+          )}
         </Tabs>
       </Box>
 
@@ -75,6 +83,7 @@ const Settings: React.FC = () => {
       {currentTab === 1 && isOwner && <CompanySettings />}
       {currentTab === 2 && isOwner && <ThemeSettings />}
       {currentTab === 3 && isOwner && <AboutUsSettings />}
+      {currentTab === 4 && isOwner && <EmailSettings />}
     </div>
   );
 };

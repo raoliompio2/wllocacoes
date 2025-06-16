@@ -240,7 +240,7 @@ const SitemapPage: React.FC = () => {
                           key={equipment.id}
                           button 
                           component={Link} 
-                          to={`/alugar/${createSlug(equipment.name)}`}
+                          to={`/equipamento/${createSlug(equipment.name)}`}
                         >
                           <ListItemIcon>
                             <ArrowRight fontSize="small" color="action" />

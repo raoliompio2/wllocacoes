@@ -440,6 +440,19 @@ const CSVImporter: React.FC<CSVImporterProps> = ({ open, onClose }) => {
     return preparedData;
   };
 
+  // Função para converter texto em um slug (usado para categorias)
+  const createSlugFromName = (name: string): string => {
+    return name
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') // remover acentos
+      .replace(/[^\w\s]/g, '') // remover caracteres especiais
+      .replace(/\s+/g, '_') // substituir espaços por underscores
+      .replace(/__+/g, '_') // remover duplicatas de underscore
+      .replace(/^_+|_+$/g, '') // remover underscores do início e fim
+      || 'categoria_' + Math.floor(Math.random() * 1000); // fallback caso fique vazio
+  };
+
   // Importar dados para o banco
   const importDataToDatabase = async () => {
     try {
@@ -648,8 +661,8 @@ const CSVImporter: React.FC<CSVImporterProps> = ({ open, onClose }) => {
     
     for (const categoryName of categoriesToCreate) {
       try {
-        // Gerar UUID válido para a categoria
-        const categoryId = generateValidUUID();
+        // Criar um ID baseado no nome da categoria (slug) em vez de UUID
+        const categoryId = createSlugFromName(categoryName);
         console.log(`Criando categoria "${categoryName}" com ID: ${categoryId}`);
         
         const { data, error } = await supabase

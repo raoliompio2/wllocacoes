@@ -66,9 +66,11 @@ export const getLuminance = (color: string): number => {
 };
 
 // Caminhos para as logos
-const LOGO_FUNDO_CLARO = '/images/Logo_fundo_claro/Logo mm (5).png';
-const LOGO_FUNDO_ESCURO = '/images/Logo_fundo_escuro/Aluguel-de-Maquinas-8-768x307 (1).webp';
-const LOGO_PAGINAS_SECUNDARIAS = '/images/Logo_fundo_claro/Logo mm (3).png';
+const PANDA_LOGO = '/images/Logo Panda.png';
+const PANDA_LOGO_FOOTER = '/images/Logo Panda (2).png';
+const LOGO_FUNDO_CLARO = PANDA_LOGO;
+const LOGO_FUNDO_ESCURO = PANDA_LOGO;
+const LOGO_PAGINAS_SECUNDARIAS = PANDA_LOGO;
 
 /**
  * Determina qual logo usar com base na cor de fundo
@@ -76,30 +78,8 @@ const LOGO_PAGINAS_SECUNDARIAS = '/images/Logo_fundo_claro/Logo mm (3).png';
  * @returns Caminho para a logo apropriada
  */
 export const getLogoByBackground = (backgroundColor: string): string => {
-  // Se a cor não for fornecida, usar logo para fundo escuro como padrão seguro
-  if (!backgroundColor) {
-    console.warn('Cor de fundo não fornecida para getLogoByBackground. Usando logo para fundo escuro como padrão.');
-    return LOGO_FUNDO_ESCURO;
-  }
-  
-  // Caso específico se o background for 'light', retornar logo para fundo claro
-  if (backgroundColor === 'light') {
-    return LOGO_FUNDO_CLARO;
-  }
-  
-  // Caso específico se o background for 'dark', retornar logo para fundo escuro
-  if (backgroundColor === 'dark') {
-    return LOGO_FUNDO_ESCURO;
-  }
-  
-  const luminance = getLuminance(backgroundColor);
-  
-  // Se a luminosidade for maior que 0.5, o fundo é considerado claro
-  if (luminance > 0.5) {
-    return LOGO_FUNDO_CLARO;
-  } else {
-    return LOGO_FUNDO_ESCURO;
-  }
+  // Sempre retornar a logo do Panda independente da cor de fundo
+  return PANDA_LOGO;
 };
 
 /**
@@ -107,13 +87,21 @@ export const getLogoByBackground = (backgroundColor: string): string => {
  * @returns Caminho para a logo de dashboard
  */
 export const getDashboardLogo = (): string => {
-  return LOGO_FUNDO_CLARO; // Logo para dashboard (fundo claro)
+  return PANDA_LOGO; // Logo Panda para dashboard
 };
 
 /**
- * Retorna a logo especificamente para header e footer
- * @returns Caminho para a logo de header/footer
+ * Retorna a logo especificamente para header
+ * @returns Caminho para a logo de header
  */
 export const getHeaderFooterLogo = (): string => {
-  return LOGO_PAGINAS_SECUNDARIAS; // Logo para páginas secundárias
+  return PANDA_LOGO; // Logo Panda para header
+};
+
+/**
+ * Retorna a logo especificamente para footer
+ * @returns Caminho para a logo de footer
+ */
+export const getFooterLogo = (): string => {
+  return PANDA_LOGO_FOOTER; // Logo Panda específica para o footer
 }; 

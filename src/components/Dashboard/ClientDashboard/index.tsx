@@ -121,7 +121,7 @@ const ClientDashboard: React.FC = () => {
 
   const handleEquipmentClick = (equipment: any) => {
     // Usar a rota correta com o slug do nome
-    navigate(`/alugar/${createSlug(equipment.name)}`);
+    navigate(`/equipamento/${createSlug(equipment.name)}`);
   };
 
   if (loading) {    return <DashboardSkeleton />;  }

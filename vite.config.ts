@@ -32,5 +32,9 @@ export default defineConfig({
     headers: {
       'Cache-Control': 'public, max-age=31536000',
     },
+  },
+  define: {
+    'import.meta.env.SUPABASE_URL': JSON.stringify('https://fwsqvutgtwjyjbukydsy.supabase.co'),
+    'import.meta.env.SUPABASE_KEY': JSON.stringify('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3c3F2dXRndHdqeWpidWt5ZHN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAwMTczNjgsImV4cCI6MjA2NTU5MzM2OH0.JUtKdyPA7Eh8N_mUe73yPMhehaQzkjFOA6EqD5HG9Ko')
   }
 });

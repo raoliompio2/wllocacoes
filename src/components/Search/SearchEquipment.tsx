@@ -131,7 +131,7 @@ const SearchEquipment: React.FC = () => {
 
   const handleEquipmentClick = (item: Equipment) => {
     // Usar a rota correta com o slug do nome em vez do ID
-    navigate(`/alugar/${createSlug(item.name)}`);
+    navigate(`/equipamento/${createSlug(item.name)}`);
   };
 
   return (

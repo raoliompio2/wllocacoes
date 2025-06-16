@@ -21,21 +21,21 @@ export const updateCompanyWhatsapp = async () => {
       if (tableError) {
         console.log('Tabela company_info não acessível ou não existe, usando configuração local');
         return {
-          name: 'NOME DA EMPRESA',
-          whatsapp: '0000000000',
-          phone: '(00) 0000-0000',
-          email: 'contato@seudominio.com.br',
-          address: 'Endereço da empresa, Número - Bairro, Cidade - UF, 00000-000'
+          name: 'Panda Locação',
+          whatsapp: '551937030363',
+          phone: '(19) 3703-0363',
+          email: 'contato@aluguelpanda.com.br',
+          address: 'Av. Conceição, 766, Vila Rezende, Piracicaba - SP, 13414-193'
         };
       }
     } catch (error) {
       console.log('Erro ao verificar a tabela, usando configuração local:', error);
       return {
-        name: 'NOME DA EMPRESA',
-        whatsapp: '0000000000',
-        phone: '(00) 0000-0000',
-        email: 'contato@seudominio.com.br',
-        address: 'Endereço da empresa, Número - Bairro, Cidade - UF, 00000-000'
+        name: 'Panda Locação',
+        whatsapp: '551937030363',
+        phone: '(19) 3703-0363',
+        email: 'contato@aluguelpanda.com.br',
+        address: 'Av. Conceição, 766, Vila Rezende, Piracicaba - SP, 13414-193'
       };
     }
 
@@ -48,11 +48,11 @@ export const updateCompanyWhatsapp = async () => {
     if (checkError) {
       console.log('Erro ao verificar registros, usando configuração local:', checkError);
       return {
-        name: 'NOME DA EMPRESA',
-        whatsapp: '0000000000',
-        phone: '(00) 0000-0000',
-        email: 'contato@seudominio.com.br',
-        address: 'Endereço da empresa, Número - Bairro, Cidade - UF, 00000-000'
+        name: 'Panda Locação',
+        whatsapp: '551937030363',
+        phone: '(19) 3703-0363',
+        email: 'contato@aluguelpanda.com.br',
+        address: 'Av. Conceição, 766, Vila Rezende, Piracicaba - SP, 13414-193'
       };
     }
 
@@ -60,17 +60,17 @@ export const updateCompanyWhatsapp = async () => {
       // Atualizar o número do WhatsApp no registro existente
       const { error: updateError } = await supabase
         .from('company_info')
-        .update({ whatsapp: '0000000000' })
+        .update({ whatsapp: '551937030363' })
         .eq('id', existingData[0].id);
       
       if (updateError) {
         console.log('Erro ao atualizar WhatsApp, usando configuração local:', updateError);
         return {
-          name: 'NOME DA EMPRESA',
-          whatsapp: '0000000000',
-          phone: '(00) 0000-0000',
-          email: 'contato@seudominio.com.br',
-          address: 'Endereço da empresa, Número - Bairro, Cidade - UF, 00000-000'
+          name: 'Panda Locação',
+          whatsapp: '551937030363',
+          phone: '(19) 3703-0363',
+          email: 'contato@aluguelpanda.com.br',
+          address: 'Av. Conceição, 766, Vila Rezende, Piracicaba - SP, 13414-193'
         };
       }
       
@@ -78,28 +78,28 @@ export const updateCompanyWhatsapp = async () => {
       return true;
     } else {
       // Apenas em desenvolvimento - em produção, não tente inserir se não existir
-      if (process.env.NODE_ENV === 'development') {
+      if (import.meta.env.MODE === 'development') {
         // Tentar inserir um novo registro se não existir
         const { error: insertError } = await supabase
           .from('company_info')
           .insert([
             { 
-              name: 'NOME DA EMPRESA',
-              whatsapp: '0000000000',
-              phone: '(00) 0000-0000',
-              email: 'contato@seudominio.com.br',
-              address: 'Endereço da empresa, Número - Bairro, Cidade - UF, 00000-000'
+              name: 'Panda Locação',
+              whatsapp: '551937030363',
+              phone: '(19) 3703-0363',
+              email: 'contato@aluguelpanda.com.br',
+              address: 'Av. Conceição, 766, Vila Rezende, Piracicaba - SP, 13414-193'
             }
           ]);
         
         if (insertError) {
           console.log('Erro ao inserir dados, usando configuração local:', insertError);
           return {
-            name: 'NOME DA EMPRESA',
-            whatsapp: '0000000000',
-            phone: '(00) 0000-0000',
-            email: 'contato@seudominio.com.br',
-            address: 'Endereço da empresa, Número - Bairro, Cidade - UF, 00000-000'
+            name: 'Panda Locação',
+            whatsapp: '551937030363',
+            phone: '(19) 3703-0363',
+            email: 'contato@aluguelpanda.com.br',
+            address: 'Av. Conceição, 766, Vila Rezende, Piracicaba - SP, 13414-193'
           };
         }
         
@@ -109,22 +109,22 @@ export const updateCompanyWhatsapp = async () => {
         // Em produção, apenas use os valores padrão
         console.log('Em produção, usando configuração local');
         return {
-          name: 'NOME DA EMPRESA',
-          whatsapp: '0000000000',
-          phone: '(00) 0000-0000',
-          email: 'contato@seudominio.com.br',
-          address: 'Endereço da empresa, Número - Bairro, Cidade - UF, 00000-000'
+          name: 'Panda Locação',
+          whatsapp: '551937030363',
+          phone: '(19) 3703-0363',
+          email: 'contato@aluguelpanda.com.br',
+          address: 'Av. Conceição, 766, Vila Rezende, Piracicaba - SP, 13414-193'
         };
       }
     }
   } catch (err) {
     console.log('Erro inesperado, usando configuração local:', err);
     return {
-      name: 'NOME DA EMPRESA',
-      whatsapp: '0000000000',
-      phone: '(00) 0000-0000',
-      email: 'contato@seudominio.com.br',
-      address: 'Endereço da empresa, Número - Bairro, Cidade - UF, 00000-000'
+      name: 'Panda Locação',
+      whatsapp: '551937030363',
+      phone: '(19) 3703-0363',
+      email: 'contato@aluguelpanda.com.br',
+      address: 'Av. Conceição, 766, Vila Rezende, Piracicaba - SP, 13414-193'
     };
   }
 };
@@ -132,7 +132,7 @@ export const updateCompanyWhatsapp = async () => {
 // Executar a função se este arquivo for executado diretamente
 if (typeof window !== 'undefined') {
   // Verificar se estamos no ambiente de desenvolvimento
-  if (process.env.NODE_ENV === 'development') {
+  if (import.meta.env.MODE === 'development') {
     updateCompanyWhatsapp();
   }
 } 

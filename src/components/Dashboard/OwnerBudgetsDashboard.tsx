@@ -137,12 +137,28 @@ const OwnerBudgetsDashboard: React.FC = () => {
               .eq('id', budget.equipment_id)
               .single();
             
-            // Buscar informações do cliente
-            const { data: clientData } = await supabase
-              .from('profiles')
-              .select('id, name, email, phone, avatar_url')
-              .eq('id', budget.client_id)
-              .single();
+            let clientData = null;
+            
+            // Se for orçamento via WhatsApp sem client_id, usar os dados do cliente salvos diretamente
+            if (budget.contact_method === 'whatsapp' && !budget.client_id) {
+              clientData = {
+                id: null,
+                name: budget.client_name || 'Cliente WhatsApp',
+                email: budget.client_email || null,
+                phone: budget.client_phone || null,
+                avatar_url: null
+              };
+            } 
+            // Caso contrário, buscar informações do cliente normalmente
+            else if (budget.client_id) {
+              const { data: profileData } = await supabase
+                .from('profiles')
+                .select('id, name, email, phone, avatar_url')
+                .eq('id', budget.client_id)
+                .single();
+              
+              clientData = profileData;
+            }
             
             // Retornar o orçamento processado com informações relacionadas
             return {

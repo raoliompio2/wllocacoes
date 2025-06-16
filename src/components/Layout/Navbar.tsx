@@ -15,18 +15,15 @@ const Navbar: React.FC = () => {
   const { themePreferences, mode } = useTheme();
   const colors = mode === 'light' ? themePreferences.lightColors : themePreferences.darkColors;
 
-  // Convertendo cores do tema para classes Tailwind dinamicamente
-  // Como não temos acesso direto a classes Tailwind dinâmicas, vamos usar estilos inline
+  // Manter o navbar com fundo branco fixo, independente do tema ou navegação
   const navbarStyle = {
-    backgroundColor: colors.surface,
-    color: colors.text,
+    backgroundColor: '#ffffff', // Sempre branco
+    color: '#1a1a1a',  // Cor do texto escura para contrastar com o fundo branco
     borderBottom: `1px solid ${colors.primary}20`
   };
 
-  // Determinar qual logo usar com base na cor de fundo
-  const companyLogo = useMemo(() => {
-    return getLogoByBackground(colors.surface);
-  }, [colors.surface]);
+  // Determinar qual logo usar - como o fundo agora é sempre branco, usamos o logo para fundo claro
+  const companyLogo = '/images/Logo Panda.png';
 
   const primaryButtonStyle = {
     backgroundColor: colors.primary,
@@ -141,7 +138,6 @@ const Navbar: React.FC = () => {
                 {isUserMenuOpen && (
                   <div 
                     className="absolute right-0 top-10 w-48 py-1 bg-white rounded-md shadow-lg z-50 border border-gray-200"
-                    style={{ backgroundColor: colors.surface }}
                   >
                     <Link
                       to="/dashboard"
@@ -223,7 +219,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="sm:hidden">
+        <div className="sm:hidden bg-white">
           <div className="pt-2 pb-3 space-y-1">
             <Link
               to="/"
@@ -252,7 +248,7 @@ const Navbar: React.FC = () => {
             )}
           </div>
           
-          <div className="pt-4 pb-3 border-t border-gray-200">
+          <div className="pt-4 pb-3 border-t border-gray-200 bg-white">
             {user ? (
               <div className="space-y-1">
                 <div className="px-4 py-3">

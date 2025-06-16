@@ -572,29 +572,57 @@ const BudgetDetailsDialog: React.FC<BudgetDetailsDialogProps> = ({
                   {(budget.client?.name || 'C')[0]}
                 </Avatar>
                 <Box>
-                  <Typography variant="body1" fontWeight={500}>{budget.client?.name}</Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center', mb: 0.5 }}>
-                    <MessageSquare size={14} style={{ marginRight: 6 }} />
-                    {budget.client?.email}
+                  <Typography variant="body1" fontWeight={500}>
+                    {budget.client?.name || (budget.contact_method === 'whatsapp' ? 'Cliente via WhatsApp' : 'Cliente')}
+                    {budget.contact_method === 'whatsapp' && (
+                      <Chip 
+                        label="WhatsApp" 
+                        size="small" 
+                        color="success" 
+                        icon={<MessageSquare size={12} />} 
+                        sx={{ ml: 1, height: 20, '& .MuiChip-label': { px: 1 } }} 
+                      />
+                    )}
                   </Typography>
+                  {budget.client?.email && (
+                    <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center', mb: 0.5 }}>
+                      <MessageSquare size={14} style={{ marginRight: 6 }} />
+                      {budget.client.email}
+                    </Typography>
+                  )}
                   {budget.client?.phone && (
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                       <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                         <Phone size={14} style={{ marginRight: 6 }} />
-                        {budget.client?.phone}
+                        {budget.client.phone}
                       </Typography>
                       <Button
                         variant="outlined"
                         size="small"
                         color="success"
                         startIcon={<MessageSquare size={14} />}
-                        href={`https://wa.me/55${budget.client?.phone.replace(/\D/g, '')}`}
+                        href={`https://wa.me/55${budget.client.phone.replace(/\D/g, '')}`}
                         target="_blank"
                         sx={{ fontSize: '0.75rem' }}
                       >
                         Chamar no WhatsApp
                       </Button>
                     </Box>
+                  )}
+                  
+                  {/* Botão de WhatsApp para orçamentos via WhatsApp sem telefone do cliente */}
+                  {budget.contact_method === 'whatsapp' && !budget.client?.phone && (
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      color="success"
+                      startIcon={<MessageSquare size={14} />}
+                      href="https://wa.me/551937030363"
+                      target="_blank"
+                      sx={{ fontSize: '0.75rem', mt: 1 }}
+                    >
+                      Abrir WhatsApp
+                    </Button>
                   )}
                 </Box>
               </Box>

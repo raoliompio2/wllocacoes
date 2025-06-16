@@ -74,6 +74,15 @@ const Sidebar: React.FC = () => {
 
   return (
     <div className="flex flex-col space-y-2 py-2">
+      {/* Logo do Panda no topo do menu lateral */}
+      <div className="flex justify-center mb-4 px-2">
+        <img 
+          src="/images/Logo Panda.png" 
+          alt="Panda Locações" 
+          className="h-16 w-auto" 
+        />
+      </div>
+
       {/* Menu para clientes */}
       {userRole === 'client' && (
         <>

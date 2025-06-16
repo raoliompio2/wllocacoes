@@ -34,7 +34,7 @@ import {
   AccessTime
 } from '@mui/icons-material';
 import { supabase } from '../../utils/supabaseClient';
-import { getHeaderFooterLogo } from '../../utils/colorUtils';
+import { getFooterLogo } from '../../utils/colorUtils';
 import BusinessHours from '../common/BusinessHours';
 
 interface CompanyInfo {
@@ -59,7 +59,7 @@ interface Category {
 const Footer: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const logoUrl = getHeaderFooterLogo();
+  const logoUrl = getFooterLogo();
   
   // Estado para armazenar informações da empresa
   const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
