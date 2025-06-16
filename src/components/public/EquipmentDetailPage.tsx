@@ -68,6 +68,7 @@ import SEOHead from '../SEO/SEOHead';
 import ProductSchema from '../SEO/ProductSchema';
 import * as stringSimilarityLib from 'string-similarity';
 import { sendBudgetRequestEmail } from '../../utils/emailService';
+import AccessorySkeleton from '../Accessories/AccessorySkeleton';
 
 // Número fixo do WhatsApp para redirecionamento
 const WHATSAPP_NUMBER = '551937030363';
@@ -237,6 +238,7 @@ const EquipmentDetailPage: React.FC = () => {
   const [successDialogOpen, setSuccessDialogOpen] = useState(false);
   const [ownerWhatsApp, setOwnerWhatsApp] = useState<string | null>(null);
   const [budgetRequestId, setBudgetRequestId] = useState<string | null>(null);
+  const [loadingAccessories, setLoadingAccessories] = useState(true);
 
   useEffect(() => {
     const fetchEquipmentDetails = async () => {
@@ -256,6 +258,7 @@ const EquipmentDetailPage: React.FC = () => {
       }
 
       setLoading(true);
+      setLoadingAccessories(true);
       try {
         let equipmentData;
 
@@ -385,22 +388,29 @@ const EquipmentDetailPage: React.FC = () => {
             setRelatedEquipment(relatedData);
           }
 
-          // Buscar acessórios disponíveis para este equipamento
-          const { data: accessoriesData, error: accessoriesError } = await supabase
-            .from('equipment_accessories')
-            .select(`
-              accessory_id,
-              accessories (id, name, description)
-            `)
-            .eq('equipment_id', equipmentData.id);
-
-          if (!accessoriesError && accessoriesData) {
-            const formattedAccessories = accessoriesData.map(item => ({
-              id: (item.accessories as any).id,
-              name: (item.accessories as any).name,
-              description: (item.accessories as any).description
-            }));
-            setAccessories(formattedAccessories);
+          // Carregar acessórios após um pequeno atraso para demonstrar o skeleton
+          if (equipmentData) {
+            // Busca os acessórios relacionados ao equipamento
+            setTimeout(async () => {
+              // @ts-ignore - Supabase tipo ignorado
+              const { data: accessoriesData, error: accessoriesError } = await supabase
+                .from('equipment_accessories')
+                .select(`
+                  accessory_id,
+                  accessories (id, name, description)
+                `)
+                .eq('equipment_id', equipmentData.id);
+                
+              if (!accessoriesError && accessoriesData) {
+                const formattedAccessories = accessoriesData.map(item => ({
+                  id: (item.accessories as any).id,
+                  name: (item.accessories as any).name,
+                  description: (item.accessories as any).description
+                }));
+                setAccessories(formattedAccessories);
+              }
+              setLoadingAccessories(false);
+            }, 1500); // Pequeno atraso para demonstrar o skeleton
           }
         }
       } catch (error: any) {
@@ -838,7 +848,9 @@ const EquipmentDetailPage: React.FC = () => {
                 
                 {accessories.length > 0 && (
                   <TabPanel value={tabValue} index={2}>
-                    {accessories.length > 0 ? (
+                    {loadingAccessories ? (
+                      <AccessorySkeleton count={4} gridProps={{ xs: 12, sm: 6, md: 6, lg: 6 }} />
+                    ) : accessories.length > 0 ? (
                       <Grid container spacing={2}>
                         {accessories.map((accessory) => (
                           <Grid item xs={12} sm={6} key={accessory.id}>
@@ -1093,7 +1105,9 @@ const EquipmentDetailPage: React.FC = () => {
             
             {accessories.length > 0 && (
               <TabPanel value={tabValue} index={2}>
-                {accessories.length > 0 ? (
+                {loadingAccessories ? (
+                  <AccessorySkeleton count={4} gridProps={{ xs: 12, sm: 6, md: 6, lg: 6 }} />
+                ) : accessories.length > 0 ? (
                   <Grid container spacing={2}>
                     {accessories.map((accessory) => (
                       <Grid item xs={12} sm={6} key={accessory.id}>

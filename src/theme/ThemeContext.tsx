@@ -420,7 +420,20 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
           ? defaultLightColors.text
           : defaultDarkColors.text
       }}>
-        <p>Carregando tema...</p>
+        <div style={{ 
+          width: '40px', 
+          height: '40px', 
+          border: '3px solid rgba(0,0,0,0.1)', 
+          borderTop: `3px solid ${defaultThemePreferences.mode === 'light' ? defaultLightColors.primary : defaultDarkColors.primary}`,
+          borderRadius: '50%',
+          animation: 'spin 1s linear infinite'
+        }} />
+        <style>{`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}</style>
       </div>
     );
   }
