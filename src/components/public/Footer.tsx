@@ -504,7 +504,7 @@ const Footer: React.FC = () => {
         {/* Copyright e Links Legais */}
         <Grid container spacing={2} alignItems="center" justifyContent="space-between">
           <Grid item xs={12} sm={6}>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="secondary.main">
               © {new Date().getFullYear()} Panda Locações. Todos os direitos reservados.
             </Typography>
           </Grid>
@@ -512,13 +512,13 @@ const Footer: React.FC = () => {
           <Grid item xs={12} sm={6}>
             <Stack direction="row" spacing={2} justifyContent={{ xs: 'flex-start', sm: 'flex-end' }}>
               <Link to="/politica-de-privacidade" style={{ textDecoration: 'none' }}>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="secondary.main">
                   Política de Privacidade
                 </Typography>
               </Link>
               
               <Link to="/termos-de-uso" style={{ textDecoration: 'none' }}>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="secondary.main">
                   Termos de Uso
                 </Typography>
               </Link>
