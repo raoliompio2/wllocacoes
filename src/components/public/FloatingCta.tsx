@@ -49,8 +49,8 @@ const FloatingCta: React.FC = () => {
   };
 
   const handleWhatsAppClick = () => {
-    // Usar o número oficial da empresa
-    const whatsappNumber = '00000000000'; // Número do WhatsApp da empresa
+    // Número do WhatsApp correto da Panda Locações
+    const whatsappNumber = '1937030363'; // Número correto da Panda Locações
     const message = encodeURIComponent('Olá! Gostaria de solicitar um orçamento para locação de equipamentos.');
     window.open(`https://api.whatsapp.com/send?phone=55${whatsappNumber}&text=${message}`, '_blank');
   };

@@ -46,8 +46,8 @@ const HeroSection: React.FC = () => {
   const colors = mode === 'light' ? themePreferences.lightColors : themePreferences.darkColors;
 
   const handleWhatsAppClick = () => {
-    // Usar o número do WhatsApp padrão da empresa
-    const whatsappNumber = '00000000000'; // Número do WhatsApp da empresa
+    // Número do WhatsApp correto da Panda Locações
+    const whatsappNumber = '1937030363'; // Número correto da Panda Locações
     const message = encodeURIComponent('Olá! Gostaria de saber mais sobre locação de equipamentos.');
     window.open(`https://api.whatsapp.com/send?phone=55${whatsappNumber}&text=${message}`, '_blank');
   };
@@ -122,11 +122,12 @@ const HeroSection: React.FC = () => {
               </Typography>
 
               <Stack
-                direction={{ xs: 'column', sm: 'row' }}
+                direction={{ xs: 'row', sm: 'row' }}
                 spacing={2}
                 sx={{ 
                   mb: { xs: 2, md: 3 },
-                  maxWidth: { xs: '100%', md: '400px' }
+                  maxWidth: { xs: '100%', md: '400px' },
+                  justifyContent: { xs: 'flex-start' }
                 }}
               >
                 <Button
@@ -137,7 +138,7 @@ const HeroSection: React.FC = () => {
                   startIcon={<ConstructionOutlined />}
                   sx={{
                     fontWeight: 'bold',
-                    px: { xs: 3, md: 3 },
+                    px: { xs: 2, md: 3 },
                     py: 1.5,
                     borderRadius: 2,
                     bgcolor: '#FF7700',
@@ -146,7 +147,8 @@ const HeroSection: React.FC = () => {
                       bgcolor: '#E66B00',
                       opacity: 0.95,
                     },
-                    fontSize: { xs: '0.9rem', md: '0.95rem' }
+                    fontSize: { xs: '0.85rem', md: '0.95rem' },
+                    whiteSpace: 'nowrap'
                   }}
                 >
                   Ver Equipamentos
@@ -161,14 +163,15 @@ const HeroSection: React.FC = () => {
                     borderColor: '#FF7700',
                     borderWidth: 2,
                     fontWeight: 'bold',
-                    px: { xs: 3, md: 3 },
+                    px: { xs: 2, md: 3 },
                     py: 1.5,
                     borderRadius: 2,
                     '&:hover': {
                       borderColor: '#E66B00',
                       bgcolor: 'rgba(255,119,0,0.1)',
                     },
-                    fontSize: { xs: '0.9rem', md: '0.95rem' }
+                    fontSize: { xs: '0.85rem', md: '0.95rem' },
+                    whiteSpace: 'nowrap'
                   }}
                 >
                   Fale Conosco
