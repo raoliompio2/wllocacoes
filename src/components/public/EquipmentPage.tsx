@@ -43,6 +43,7 @@ import SEOHead from '../SEO/SEOHead';
 import EquipmentFiltersFloating from './EquipmentFiltersFloating';
 import FilterPanel from '../common/FilterPanel';
 import EquipmentListSchema from '../SEO/EquipmentListSchema';
+import { fuzzySearch, sortByRelevance, correctCommonTypos, normalizeText } from '../../utils/searchUtils';
 
 // Tipos
 interface Equipment {
@@ -152,9 +153,17 @@ const EquipmentPage: React.FC = () => {
       setSelectedPhase(phaseParam);
     }
     
-    const searchParam = searchParams.get('busca');
+    // Buscar o termo de pesquisa no parâmetro 'q' (usado por ambos SearchBar e MobileSearchBar)
+    const searchParam = searchParams.get('q');
     if (searchParam) {
+      console.log('Termo de busca encontrado na URL:', searchParam);
       setSearchTerm(searchParam);
+      
+      // Verificar se há correção para o termo
+      const correctedTerm = correctCommonTypos(searchParam);
+      if (correctedTerm !== searchParam && normalizeText(correctedTerm) !== normalizeText(searchParam)) {
+        console.log(`Correção do termo: "${searchParam}" → "${correctedTerm}"`);
+      }
     }
   }, [location.search, params.categoryId]);
 
@@ -241,24 +250,58 @@ const EquipmentPage: React.FC = () => {
       try {
         console.log(`Buscando equipamentos${categoryId ? ` com categoria ${categoryId}` : ''}`);
         
-        let query = supabase
-          .from('equipment')
-          .select('*')
-          .eq('available', true);
+        // Obter o termo de busca da URL
+        const searchParams = new URLSearchParams(location.search);
+        const searchTerm = searchParams.get('q') || searchParams.get('busca') || '';
+        const phaseParam = searchParams.get('fase') || '';
         
-        // Se temos uma categoria específica, filtrar por ela na consulta
-        if (categoryId) {
-          console.log('Filtrando equipamentos pela categoria ID:', categoryId);
-          query = query.eq('category', categoryId);
+        let data, error;
+        
+        // Se temos um termo de busca, usar a função de busca com correção de erros
+        if (searchTerm) {
+          console.log('Usando busca com correção de erros comuns para:', searchTerm);
+          const result = await supabase.rpc('search_equipment_simple', {
+            search_term: searchTerm,
+            category_id: categoryId || '',
+            phase_id: phaseParam || ''
+          });
+          data = result.data;
+          error = result.error;
+          
+          // Atualizar o termo de pesquisa na interface
+          if (searchTerm) {
+            setSearchTerm(searchTerm);
+          }
+        } else {
+          // Busca normal sem termo de pesquisa
+          let query = supabase
+            .from('equipment')
+            .select('*')
+            .eq('available', true);
+          
+          // Se temos uma categoria específica, filtrar por ela na consulta
+          if (categoryId) {
+            console.log('Filtrando equipamentos pela categoria ID:', categoryId);
+            query = query.eq('category', categoryId);
+          }
+          
+          // Se temos uma fase de obra específica, filtrar por ela também
+          if (phaseParam) {
+            console.log('Filtrando equipamentos pela fase ID:', phaseParam);
+            query = query.eq('construction_phase_id', phaseParam);
+            setSelectedPhase(phaseParam);
+          }
+          
+          // @ts-ignore - Supabase tipo ignorado para equipment
+          const result = await query;
+          data = result.data;
+          error = result.error;
         }
-        
-        // @ts-ignore - Supabase tipo ignorado para equipment
-        const { data, error } = await query;
         
         if (error) throw error;
         
         if (data) {
-          console.log(`Equipamentos carregados${categoryId ? ' (filtrados por categoria)' : ''}:`, data.length);
+          console.log(`Equipamentos carregados: ${data.length}`);
           if (data.length > 0) {
             console.log('Exemplo de equipamento - categoria:', data[0].category);
             console.log('Equipamento de exemplo:', data[0].name);
@@ -283,6 +326,22 @@ const EquipmentPage: React.FC = () => {
   const sortEquipment = (equipmentList: Equipment[]) => {
     const [field, direction] = sortOrder.split('-');
     
+    // Se tiver termo de busca, ordenar por relevância primeiro
+    if (searchTerm) {
+      // Usar função de ordenação por relevância
+      const relevanceSorted = sortByRelevance(
+        equipmentList, 
+        searchTerm,
+        ['name', 'description']
+      );
+      
+      // Aplicar ordenação secundária se necessário
+      if (field !== 'relevance') {
+        return relevanceSorted;
+      }
+    }
+    
+    // Ordenação padrão
     return [...equipmentList].sort((a, b) => {
       if (field === 'name') {
         return direction === 'asc' 
@@ -301,19 +360,19 @@ const EquipmentPage: React.FC = () => {
     });
   };
 
-  // Filtrar equipamentos
+  // Filtrar equipamentos usando pesquisa avançada fuzzy
   const filteredEquipment = equipment.filter((item) => {
-    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                        (item.description && item.description.toLowerCase().includes(searchTerm.toLowerCase()));
+    // Verificar se o termo de busca corresponde ao equipamento usando busca fuzzy
+    const matchesSearch = !searchTerm || fuzzySearch(
+      item, 
+      searchTerm, 
+      ['name', 'description']
+    );
     
     // Filtro de categoria
     let matchesCategory = true;
     if (selectedCategory) {
       matchesCategory = (item.category === selectedCategory);
-      // Apenas logar alguns equipamentos para não sobrecarregar o console
-      if (Math.random() < 0.1) { // Mostrar apenas ~10% dos logs para não inundar o console
-        console.log(`Equipamento: ${item.name} - Categoria: ${item.category} - Match com ${selectedCategory}: ${matchesCategory}`);
-      }
     }
     
     const matchesPhase = selectedPhase ? item.construction_phase_id === selectedPhase : true;
@@ -321,7 +380,7 @@ const EquipmentPage: React.FC = () => {
     return matchesSearch && matchesCategory && matchesPhase;
   });
 
-  // Adicionar log para debugging
+  // Adicionar log para debugging e garantir carregamento correto quando vem da página inicial
   useEffect(() => {
     if (selectedCategory) {
       const categoryInfo = categories.find(cat => cat.id === selectedCategory);
@@ -329,6 +388,65 @@ const EquipmentPage: React.FC = () => {
       console.log(`[EquipmentPage] Número de equipamentos filtrados: ${filteredEquipment.length}`);
     }
   }, [selectedCategory, filteredEquipment.length, categories]);
+  
+  // Criar uma função para recarregar os equipamentos quando necessário
+  const reloadEquipments = () => {
+    setLoading(true);
+    
+    // Ler os parâmetros da URL para garantir valores atualizados
+    const searchParams = new URLSearchParams(location.search);
+    const searchTerm = searchParams.get('q') || '';
+    const categoryId = selectedCategory || '';
+    const phaseId = selectedPhase || '';
+    
+    console.log('Recarregando equipamentos com:', {
+      searchTerm,
+      categoryId,
+      phaseId
+    });
+    
+    // Usar a função search_equipment_simple que criamos no banco de dados
+    supabase.rpc('search_equipment_simple', {
+      search_term: searchTerm,
+      category_id: categoryId,
+      phase_id: phaseId
+    }).then(result => {
+      if (result.error) {
+        console.error('Erro ao recarregar equipamentos:', result.error);
+        // Fallback para busca simples em caso de erro
+        return supabase.from('equipment').select('*').eq('available', true);
+      }
+      return result;
+    }).then(result => {
+      if (result.data) {
+        console.log(`Recarregamento concluído: ${result.data.length} equipamentos encontrados`);
+        setEquipment(result.data as unknown as Equipment[]);
+        setTotalPages(Math.ceil(result.data.length / itemsPerPage));
+      }
+      setLoading(false);
+    }).catch(error => {
+      console.error('Erro fatal ao recarregar:', error);
+      setLoading(false);
+    });
+  };
+  
+  // Garantir que a pesquisa funcione quando vem direto do Hero com parâmetro 'q'
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const searchParam = searchParams.get('q');
+    
+    // Se temos um termo de busca na URL e não temos resultados, tentar fazer a busca novamente
+    if (searchParam && equipment.length === 0 && !loading) {
+      console.log('Detectado termo de busca na URL sem resultados, tentando buscar novamente');
+      
+      // Pequeno atraso para garantir que todos os estados estejam atualizados
+      const timer = setTimeout(() => {
+        reloadEquipments();
+      }, 300);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [location.search, equipment.length, loading]);
 
   // Ordenar e paginar equipamentos
   const sortedEquipment = sortEquipment(filteredEquipment);
@@ -379,17 +497,45 @@ const EquipmentPage: React.FC = () => {
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+    const inputTerm = event.target.value;
+    
+    // Verificar se o termo tem correção de erro comum
+    const correctedTerm = correctCommonTypos(inputTerm);
+    
+    // Se encontrou uma correção e não é muito diferente
+    if (correctedTerm !== inputTerm && normalizeText(correctedTerm) !== normalizeText(inputTerm)) {
+      console.log(`Correção de termo: "${inputTerm}" → "${correctedTerm}"`);
+    }
+    
+    // Sempre usar o termo original do usuário para manter a experiência natural
+    setSearchTerm(inputTerm);
     setPage(1);
     
-    // Se estiver filtrando por categoria, manter a URL da categoria
+    // Atualizar a URL com o termo de pesquisa
+    const searchParams = new URLSearchParams(location.search);
+    
+    if (inputTerm) {
+      searchParams.set('q', inputTerm);
+    } else {
+      searchParams.delete('q');
+    }
+    
+    // Preservar outros parâmetros
     if (selectedCategory) {
       const category = categories.find(cat => cat.id === selectedCategory);
       if (category && category.name) {
         const categorySlug = createSlug(category.name);
-        // Não atualizamos a URL para manter a categoria na URL
+        searchParams.set('categoria', selectedCategory);
       }
     }
+    
+    if (selectedPhase) {
+      searchParams.set('fase', selectedPhase);
+    }
+    
+    // Atualizar URL sem recarregar a página
+    const newUrl = `${location.pathname}${searchParams.toString() ? '?' + searchParams.toString() : ''}`;
+    window.history.replaceState({}, '', newUrl);
   };
 
   const handleSortChange = (event: SelectChangeEvent<string>) => {
@@ -800,4 +946,4 @@ const EquipmentPage: React.FC = () => {
   );
 };
 
-export default EquipmentPage; 
+export default EquipmentPage;

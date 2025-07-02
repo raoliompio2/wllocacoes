@@ -41,6 +41,7 @@ const ContactPage = lazy(() => import('./components/public/ContactPage'));
 const TermosDeUso = lazy(() => import('./components/public/TermosDeUso'));
 const PoliticaDePrivacidade = lazy(() => import('./components/public/PoliticaDePrivacidade'));
 const SitemapPage = lazy(() => import('./components/public/SitemapPage'));
+const NotFoundPage = lazy(() => import('./components/public/NotFoundPage'));
 
 // Carregamento lazy dos componentes de autenticação - carregados apenas quando necessário
 const Login = lazy(() => import('./components/Auth/Login'));
@@ -424,6 +425,16 @@ function App() {
                     </DashboardLayout>
                   </ProtectedRoute>
                 } 
+              />
+              
+              {/* Página 404 - Rota de fallback para URLs não encontradas */}
+              <Route 
+                path="*" 
+                element={
+                  <PublicLayout>
+                    <NotFoundPage />
+                  </PublicLayout>
+                }
               />
             </Routes>
           </Suspense>

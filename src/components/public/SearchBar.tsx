@@ -13,11 +13,14 @@ import {
   MenuItem,
   Grid,
   CircularProgress,
+  Tooltip,
+  Typography
 } from '@mui/material';
 import { Search, Construction } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../../theme/ThemeContext';
 import { supabase } from '../../utils/supabaseClient';
+import { correctCommonTypos, normalizeText } from '../../utils/searchUtils';
 
 // Interfaces para tipagem
 interface Categoria {
@@ -101,11 +104,37 @@ export const SearchBar = () => {
     fetchFasesObra();
   }, []);
   
+  // Estado para armazenar a sugestão de correção
+  const [suggestedTerm, setSuggestedTerm] = useState<string | null>(null);
+  
+  // Verificar correções ao digitar
+  useEffect(() => {
+    if (termo) {
+      const corrected = correctCommonTypos(termo);
+      if (corrected !== termo && normalizeText(corrected) !== normalizeText(termo)) {
+        setSuggestedTerm(corrected);
+      } else {
+        setSuggestedTerm(null);
+      }
+    } else {
+      setSuggestedTerm(null);
+    }
+  }, [termo]);
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Sempre usar o termo original do usuário para garantir que a busca fuzzy funcione
     const params = new URLSearchParams();
-    if (termo) params.append('q', termo);
+    if (termo) {
+      params.append('q', termo);
+      console.log('Pesquisando por:', termo);
+      
+      // Se há uma sugestão, mostramos no log
+      if (suggestedTerm) {
+        console.log('Termo possivelmente corrigido para:', suggestedTerm);
+      }
+    }
     if (categoria) params.append('categoria', categoria);
     if (faseObra) params.append('fase', faseObra);
     
@@ -135,21 +164,41 @@ export const SearchBar = () => {
         alignItems="center"
       >
         <Grid item xs={12} sm={4}>
-          <TextField
-            fullWidth
-            placeholder="O que você precisa?"
-            value={termo}
-            onChange={(e) => setTermo(e.target.value)}
-            variant="outlined"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Search color="action" />
-                </InputAdornment>
-              ),
-            }}
-            size={isMobile ? "small" : "medium"}
-          />
+          <Tooltip 
+            title={suggestedTerm ? `Você quis dizer: ${suggestedTerm}?` : ''}
+            open={!!suggestedTerm}
+            placement="bottom-start"
+            arrow
+          >
+            <TextField
+              fullWidth
+              placeholder="O que você precisa?"
+              value={termo}
+              onChange={(e) => setTermo(e.target.value)}
+              variant="outlined"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Search color="action" />
+                  </InputAdornment>
+                ),
+                ...(suggestedTerm && {
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <Button 
+                        size="small" 
+                        onClick={() => setTermo(suggestedTerm)}
+                        sx={{ fontSize: '0.75rem' }}
+                      >
+                        {`Você quis dizer: ${suggestedTerm}?`}
+                      </Button>
+                    </InputAdornment>
+                  )
+                })
+              }}
+              size={isMobile ? "small" : "medium"}
+            />
+          </Tooltip>
         </Grid>
         
         <Grid item xs={12} sm={3}>

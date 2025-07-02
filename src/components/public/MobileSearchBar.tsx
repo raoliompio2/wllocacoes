@@ -18,12 +18,14 @@ import {
   Fab,
   CircularProgress,
   Typography,
+  Tooltip,
 } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { Search, Construction, FilterList, Close } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../../theme/ThemeContext';
 import { supabase } from '../../utils/supabaseClient';
+import { correctCommonTypos, normalizeText } from '../../utils/searchUtils';
 
 // Interfaces para tipagem
 interface Categoria {
@@ -119,9 +121,34 @@ const MobileSearchBar: React.FC = () => {
     setDialogOpen(false);
   };
   
+  // Estado para armazenar a sugestão de correção
+  const [suggestedTerm, setSuggestedTerm] = useState<string | null>(null);
+  
+  // Verificar correções ao digitar
+  useEffect(() => {
+    if (termo) {
+      const corrected = correctCommonTypos(termo);
+      if (corrected !== termo && normalizeText(corrected) !== normalizeText(termo)) {
+        setSuggestedTerm(corrected);
+      } else {
+        setSuggestedTerm(null);
+      }
+    } else {
+      setSuggestedTerm(null);
+    }
+  }, [termo]);
+
   const handleSubmit = () => {
     const params = new URLSearchParams();
-    if (termo) params.append('q', termo);
+    if (termo) {
+      params.append('q', termo);
+      console.log('Pesquisando por:', termo);
+      
+      // Se há uma sugestão, mostramos no log
+      if (suggestedTerm) {
+        console.log('Termo possivelmente corrigido para:', suggestedTerm);
+      }
+    }
     if (categoria) params.append('categoria', categoria);
     if (faseObra) params.append('fase', faseObra);
     
@@ -133,6 +160,12 @@ const MobileSearchBar: React.FC = () => {
     if (termo) {
       const params = new URLSearchParams();
       params.append('q', termo);
+      
+      // Se há uma sugestão, mostramos no log
+      if (suggestedTerm) {
+        console.log('Termo possivelmente corrigido para:', suggestedTerm);
+      }
+      
       navigate(`/equipamentos?${params.toString()}`);
     } else {
       handleOpenDialog();

@@ -5,6 +5,7 @@ import Footer from './Footer';
 import Breadcrumbs from './Breadcrumbs';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import FloatingCta from './FloatingCta';
 
 interface PublicLayoutProps {
   children: React.ReactNode;
@@ -75,6 +76,9 @@ const PublicLayout: React.FC<PublicLayoutProps> = ({ children }) => {
         
         <Footer />
       </Box>
+      
+      {/* Adicionando o botão flutuante de WhatsApp */}
+      <FloatingCta />
     </>
   );
 };

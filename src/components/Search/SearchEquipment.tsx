@@ -109,7 +109,7 @@ const SearchEquipment: React.FC = () => {
 
   const getWhatsAppLink = (whatsapp: string | null, equipmentName: string) => {
     // Usar o número oficial da empresa, independente do valor recebido
-    const whatsappNumber = '00000000000';
+    const whatsappNumber = '1937030363'; // Número correto da Panda Locações
     
     const message = encodeURIComponent(
       `Olá! Gostaria de mais informações sobre o equipamento ${equipmentName}`

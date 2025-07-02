@@ -5,10 +5,6 @@ import { Database } from './database.types';
 export const supabaseUrl = import.meta.env.SUPABASE_URL || 'https://fwsqvutgtwjyjbukydsy.supabase.co';
 export const supabaseAnonKey = import.meta.env.SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3c3F2dXRndHdqeWpidWt5ZHN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAwMTczNjgsImV4cCI6MjA2NTU5MzM2OH0.JUtKdyPA7Eh8N_mUe73yPMhehaQzkjFOA6EqD5HG9Ko';
 
-// Log para debug
-console.log('Inicializando Supabase com URL:', supabaseUrl);
-console.log('Chave API:', supabaseAnonKey.substring(0, 15) + '...');
-
 // Inicializar o cliente Supabase com configuração simplificada
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link rel="icon" type="image/png" href="/images/pandafavicon.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Elfsight Google Reviews Widget -->
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+    
+    <!-- Meta tags especiais para SEO -->    
+    <meta name="author" content="Panda Locações" />    
+    <meta name="geo.region" content="BR-SP" />    
+    <meta name="geo.placename" content="Limeira" />    
+    <meta name="geo.position" content="-22.5908;-47.4106" />    
+    <meta name="ICBM" content="-22.5908, -47.4106" />
+    
+    <!-- Verificações de propriedade (substitua com os códigos reais) -->
+    <meta name="google-site-verification" content="SEU_CODIGO_DE_VERIFICACAO_GOOGLE" />
+    <meta name="facebook-domain-verification" content="SEU_CODIGO_DE_VERIFICACAO_FACEBOOK" />
+    
+    <!-- PWA -->
+    <meta name="theme-color" content="#FF6600" />
+    <link rel="apple-touch-icon" href="/images/pandafavicon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <title>Panda Locações - Aluguel de Equipamentos para Construção Civil em Limeira</title>
+    
+    <!-- Preconnect para fontes e recursos externos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://yjdrejifhfdasaxivsew.supabase.co" crossorigin>
+    
+    <!-- Preload de fontes críticas -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    
+    <!-- Preload de assets críticos -->
+    <link rel="preload" href="/images/Logo_fundo_claro/Aluguel-de-Maquinas-9.webp" as="image" fetchpriority="high">
+    
+    <!-- Meta tags para SEO e compartilhamento social -->
+    <meta name="description" content="A Panda Locações é especializada em locação de equipamentos para construção civil e industrial em Limeira, Americana, Piracicaba e região, oferecendo os melhores equipamentos com preços justos." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:site_name" content="Panda Locações" />
+    <meta property="og:title" content="Panda Locações - Aluguel de Equipamentos para Construção Civil em Limeira" />    
+    <meta property="og:description" content="A Panda Locações é especializada em locação de equipamentos para construção civil e industrial em Limeira, Americana, Piracicaba e região, oferecendo os melhores equipamentos com preços justos." />    
+    <meta property="og:image" content="https://pandaloc.vercel.app/images/Logo Panda.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://pandaloc.vercel.app" />    
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Panda Locações - Aluguel de Equipamentos para Construção Civil em Limeira" />
+    <meta name="twitter:description" content="A Panda Locações é especializada em locação de equipamentos para construção civil e industrial em Limeira, Americana, Piracicaba e região, oferecendo os melhores equipamentos com preços justos." />
+    <meta name="twitter:image" content="https://pandaloc.vercel.app/images/Logo Panda.png" />
+    
+    <!-- Favicon links adicionais para garantir compatibilidade -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/pandafavicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/pandafavicon.png">
+    <link rel="icon" type="image/webp" href="/images_optimized/favicon.webp">
+    <link rel="shortcut icon" href="/images/pandafavicon.png">
+    <link rel="mask-icon" href="/images/favicon.svg" color="#FF6600">
+    <meta name="msapplication-TileImage" content="/images/pandafavicon.png">
+    <meta name="msapplication-TileColor" content="#FF6600">
+    
+    <!-- Cache policy -->
+    <meta http-equiv="Cache-Control" content="max-age=31536000, immutable">
+    
+    <style>
+      /* Estilos críticos inline para melhorar a performance */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #f8f9fa;
+      }
+      
+      /* Animação de carregamento */
+      .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+      }
+      
+      .loader::after {
+        content: '';
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #FF6600;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Loader que será substituído pelo app React -->
+      <div class="loader"></div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Registro do Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('Service Worker registrado com sucesso:', registration.scope);
+            })
+            .catch(error => {
+              console.log('Falha ao registrar o Service Worker:', error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>

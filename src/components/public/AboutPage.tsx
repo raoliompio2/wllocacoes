@@ -114,62 +114,62 @@ const AboutPage: React.FC = () => {
         <Container maxWidth="xl" sx={{ py: 4, mt: 1 }}>
           {/* Seção Principal - Sobre a Empresa */}
           <Box sx={{ mb: 8 }} id="sobre-empresa">
-            <Typography 
-              variant="h5" 
-              fontWeight="bold" 
-              gutterBottom 
-              textAlign={isMobile ? 'center' : 'left'}
-            >
+                  <Typography 
+                    variant="h5" 
+                    fontWeight="bold" 
+                    gutterBottom 
+                    textAlign={isMobile ? 'center' : 'left'}
+                  >
               A Empresa
-            </Typography>
-            <Divider 
-              sx={{ 
-                width: 80, 
-                borderColor: 'primary.main', 
-                borderWidth: 2, 
-                mb: 4,
-                mx: isMobile ? 'auto' : 0
-              }} 
-            />
-            
-            <Grid container spacing={4} alignItems="center">
+                  </Typography>
+                  <Divider 
+                    sx={{ 
+                      width: 80, 
+                      borderColor: 'primary.main', 
+                      borderWidth: 2, 
+                      mb: 4,
+                      mx: isMobile ? 'auto' : 0
+                    }} 
+                  />
+                  
+                  <Grid container spacing={4} alignItems="center">
               <Grid item xs={12} md={6}>
-                <Box>
+                      <Box>
                   <Typography variant="body1" paragraph>
                     A PANDA LOCAÇÕES é uma empresa voltada para o ramo da construção civil, desde pequenas obras e consertos até grandes obras!
                   </Typography>
                   <Typography variant="body1" paragraph>
                     <strong>Você Sabia?</strong> Nosso nome fantasia é inspirado em um animal que sempre em busca da paz, não é capaz sequer de se imaginar vivendo ao lado de pessoas que se relacionam na base de tapas e berros, independente de quem seja. É sinônimo de.. CONFIABILIDADE, PERSPICÁCIA, EQUILÍBRIO E ESPÍRITO ANALÍTICO.
                   </Typography>
-                </Box>
-              </Grid>
-              
-              <Grid item xs={12} md={6}>
-                <Paper 
-                  elevation={2} 
-                  sx={{ 
-                    overflow: 'hidden', 
-                    borderRadius: 2,
-                    height: { xs: 240, sm: 300, md: 380 }
-                  }}
-                >
-                  <Box 
-                    component="img"
+                      </Box>
+                    </Grid>
+                    
+                      <Grid item xs={12} md={6}>
+                        <Paper 
+                          elevation={2} 
+                          sx={{ 
+                            overflow: 'hidden', 
+                            borderRadius: 2,
+                            height: { xs: 240, sm: 300, md: 380 }
+                          }}
+                        >
+                          <Box 
+                            component="img"
                     src="/images/Empresa/2024-08-15 (1).webp"
                     alt="Panda Locações - Equipamentos para construção civil"
-                    sx={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover'
-                    }}
-                    onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                            sx={{
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'cover'
+                            }}
+                            onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
                       e.currentTarget.src = '/images/Logo Panda.png';
-                    }}
-                  />
-                </Paper>
-              </Grid>
-            </Grid>
-          </Box>
+                            }}
+                          />
+                        </Paper>
+                      </Grid>
+                  </Grid>
+                </Box>
 
           {/* Seção de Missão, Visão e Valores */}
           <Paper elevation={0} sx={{ p: 4, mb: 8, borderRadius: 2, bgcolor: 'background.paper' }}>
@@ -448,4 +448,4 @@ const AboutPage: React.FC = () => {
   );
 };
 
-export default AboutPage;
+export default AboutPage; 
