@@ -34,13 +34,13 @@ import {
   AccessTime
 } from '@mui/icons-material';
 import { supabase } from '../../utils/supabaseClient';
-import { getFooterLogo } from '../../utils/colorUtils';
+import { getFooterLogo, LogoUrls } from '../../utils/colorUtils';
 import BusinessHours from '../common/BusinessHours';
 import { useTheme as useCustomTheme } from '../../theme/ThemeContext';
 
 interface CompanyInfo {
   name: string;
-  logo_url: string;
+  logo_url: string | LogoUrls;
   phone: string;
   email: string;
   address: string;
@@ -227,20 +227,42 @@ const Footer: React.FC = () => {
           <Grid item xs={12} md={4}>
             <Box sx={{ mb: 3 }}>
               {/* Logo com fundo escuro - usar logo para fundo escuro */}
-              <Box
-                component="img"
-                src={logoUrl}
-                alt="Panda Locações - Aluguel de Equipamentos em Limeira"
-                sx={{
-                  height: 127,
-                  maxWidth: 510,
-                  objectFit: 'contain',
-                  mb: 2,
-                  borderRadius: 2,
-                  padding: '8px',
-                  backgroundColor: 'rgba(255,255,255,0.05)',
-                }}
-              />
+              {typeof companyInfo.logo_url === 'string' ? (
+                <Box
+                  component="img"
+                  src={companyInfo.logo_url}
+                  alt="Panda Locações - Aluguel de Equipamentos em Limeira"
+                  sx={{
+                    height: 127,
+                    maxWidth: 510,
+                    objectFit: 'contain',
+                    mb: 2,
+                    borderRadius: 2,
+                  }}
+                />
+              ) : (
+                <Box
+                  sx={{
+                    height: 127,
+                    maxWidth: 510,
+                    mb: 2,
+                    borderRadius: 2,
+                  }}
+                >
+                  <picture>
+                    <source srcSet={companyInfo.logo_url.webp} type="image/webp" />
+                    <img
+                      src={companyInfo.logo_url.fallback}
+                      alt="Panda Locações - Aluguel de Equipamentos em Limeira"
+                      style={{
+                        height: '100%',
+                        maxWidth: '100%',
+                        objectFit: 'contain',
+                      }}
+                    />
+                  </picture>
+                </Box>
+              )}
               
               <Typography variant="body2" sx={{ opacity: 0.8, mb: 3 }}>
                 A Panda Locações é especializada no aluguel de equipamentos para construção civil e industrial, 

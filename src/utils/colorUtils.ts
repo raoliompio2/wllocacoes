@@ -2,6 +2,12 @@
  * Utilitário para análise de cores e escolha automática da logo
  */
 
+// Definindo o tipo para os logos
+export interface LogoUrls {
+  webp: string;
+  fallback: string;
+}
+
 /**
  * Determina a luminosidade de uma cor
  * @param color Cor em formato hexadecimal ou rgb/rgba
@@ -67,11 +73,11 @@ export const getLuminance = (color: string): number => {
 
 // Caminhos para as logos
 // Usando WebP para navegadores modernos com fallback para PNG
-const PANDA_LOGO = {
+const PANDA_LOGO: LogoUrls = {
   webp: '/images_optimized/Logo Panda.webp',
   fallback: '/images/Logo Panda.png'
 };
-const PANDA_LOGO_FOOTER = {
+const PANDA_LOGO_FOOTER: LogoUrls = {
   webp: '/images_optimized/Logo Panda (2).webp',
   fallback: '/images/Logo Panda (2).png'
 };
@@ -84,7 +90,7 @@ const LOGO_PAGINAS_SECUNDARIAS = PANDA_LOGO;
  * @param backgroundColor Cor de fundo em formato hexadecimal ou rgb/rgba
  * @returns Objeto com caminhos para as versões webp e fallback da logo apropriada
  */
-export const getLogoByBackground = (backgroundColor: string) => {
+export const getLogoByBackground = (backgroundColor: string): LogoUrls => {
   // Sempre retornar a logo do Panda independente da cor de fundo
   return PANDA_LOGO;
 };
@@ -93,7 +99,7 @@ export const getLogoByBackground = (backgroundColor: string) => {
  * Retorna a logo especificamente para área de dashboard
  * @returns Objeto com caminhos para as versões webp e fallback da logo de dashboard
  */
-export const getDashboardLogo = () => {
+export const getDashboardLogo = (): LogoUrls => {
   return PANDA_LOGO; // Logo Panda para dashboard
 };
 
@@ -101,7 +107,7 @@ export const getDashboardLogo = () => {
  * Retorna a logo especificamente para header
  * @returns Objeto com caminhos para as versões webp e fallback da logo de header
  */
-export const getHeaderFooterLogo = () => {
+export const getHeaderFooterLogo = (): LogoUrls => {
   return PANDA_LOGO; // Logo Panda para header
 };
 
@@ -109,6 +115,6 @@ export const getHeaderFooterLogo = () => {
  * Retorna a logo especificamente para footer
  * @returns Objeto com caminhos para as versões webp e fallback da logo de footer
  */
-export const getFooterLogo = () => {
+export const getFooterLogo = (): LogoUrls => {
   return PANDA_LOGO_FOOTER; // Logo Panda específica para o footer
 }; 
