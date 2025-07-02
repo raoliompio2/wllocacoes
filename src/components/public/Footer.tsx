@@ -71,8 +71,8 @@ const Footer: React.FC = () => {
     email: 'contato@pandalocacoes.com.br',
     address: 'Rua Mário Soares de Campos, Jardim Cidade Universitária I, Limeira – SP, CEP: 13484-656',
     whatsapp: '19 3703-0363',
-    facebook_url: null,
-    instagram_url: null,
+    facebook_url: 'https://www.facebook.com/people/pandalocacoes/100080716101203/',
+    instagram_url: 'https://www.instagram.com/pandalocacoes/',
     linkedin_url: null,
     youtube_url: null,
     twitter_url: null
@@ -181,8 +181,8 @@ const Footer: React.FC = () => {
     email: 'contato@pandalocacoes.com.br',
     address: 'Rua Mário Soares de Campos, Jardim Cidade Universitária I, Limeira – SP, CEP: 13484-656',
     logo_url: logoUrl,
-    facebook_url: null,
-    instagram_url: null,
+    facebook_url: 'https://www.facebook.com/people/pandalocacoes/100080716101203/',
+    instagram_url: 'https://www.instagram.com/pandalocacoes/',
     linkedin_url: null,
     youtube_url: null,
     twitter_url: null
@@ -237,7 +237,7 @@ const Footer: React.FC = () => {
                     maxWidth: 510,
                     objectFit: 'contain',
                     mb: 2,
-                    borderRadius: 2,
+                    borderRadius: 4,
                   }}
                 />
               ) : (
@@ -246,7 +246,7 @@ const Footer: React.FC = () => {
                     height: 127,
                     maxWidth: 510,
                     mb: 2,
-                    borderRadius: 2,
+                    borderRadius: 4,
                   }}
                 >
                   <picture>
@@ -258,6 +258,7 @@ const Footer: React.FC = () => {
                         height: '100%',
                         maxWidth: '100%',
                         objectFit: 'contain',
+                        borderRadius: '16px',
                       }}
                     />
                   </picture>
@@ -506,6 +507,9 @@ const Footer: React.FC = () => {
           <Grid item xs={12} sm={6}>
             <Typography variant="body2" color="secondary.main">
               © {new Date().getFullYear()} Panda Locações. Todos os direitos reservados.
+            </Typography>
+            <Typography variant="body2" color="white" sx={{ mt: 1, opacity: 0.7 }}>
+              Desenvolvido por Open Dreams
             </Typography>
           </Grid>
           
