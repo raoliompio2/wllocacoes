@@ -526,6 +526,12 @@ const Footer: React.FC = () => {
                   Termos de Uso
                 </Typography>
               </Link>
+              
+              <Link to="/mapa-do-site" style={{ textDecoration: 'none' }}>
+                <Typography variant="body2" color="secondary.main">
+                  Mapa do Site
+                </Typography>
+              </Link>
             </Stack>
           </Grid>
         </Grid>

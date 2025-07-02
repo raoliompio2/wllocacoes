@@ -109,9 +109,9 @@ const SitemapPage: React.FC = () => {
   return (
     <Container maxWidth="lg" sx={{ py: 5 }}>
       <Helmet>
-        <title>Mapa do Site - NOME DA EMPRESA</title>
-<meta name="description" content="Mapa do site completo da NOME DA EMPRESA, locadora de máquinas e equipamentos para construção." />
-        <link rel="canonical" href="https://seusite.com.br/mapa-do-site" />
+        <title>Mapa do Site - Panda Locações</title>
+<meta name="description" content="Mapa do site completo da Panda Locações, locadora de máquinas e equipamentos para construção em Limeira e região." />
+        <link rel="canonical" href="https://pandalocacoes.com.br/mapa-do-site" />
       </Helmet>
       
       <Box sx={{ mb: 4 }}>
