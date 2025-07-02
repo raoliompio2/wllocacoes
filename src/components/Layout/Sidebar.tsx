@@ -3,6 +3,7 @@ import { FileSpreadsheet, ShoppingCart, FileText, Package, MessageSquare, Home, 
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../utils/supabaseClient';
+import LogoPanda from '../../assets/Logo Panda (2).png';
 
 interface MenuItemProps {
   icon: React.ReactNode;
@@ -77,9 +78,10 @@ const Sidebar: React.FC = () => {
       {/* Logo do Panda no topo do menu lateral */}
       <div className="flex justify-center mb-4 px-2">
         <img 
-          src="/images/Logo Panda.png" 
+          src={LogoPanda}
           alt="Panda Locações" 
-          className="h-16 w-auto" 
+          className="h-20 w-auto" 
+          style={{ maxHeight: '80px', objectFit: 'contain' }}
         />
       </div>
 

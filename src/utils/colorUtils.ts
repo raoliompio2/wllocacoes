@@ -81,6 +81,10 @@ const PANDA_LOGO_FOOTER: LogoUrls = {
   webp: '/images_optimized/Logo Panda (2).webp',
   fallback: '/images/Logo Panda (2).png'
 };
+const PANDA_LOGO_SIDEBAR: LogoUrls = {
+  webp: '/images_optimized/Logo Panda (2).webp',
+  fallback: '/images/Logo Panda (2).png'
+};
 const LOGO_FUNDO_CLARO = PANDA_LOGO;
 const LOGO_FUNDO_ESCURO = PANDA_LOGO;
 const LOGO_PAGINAS_SECUNDARIAS = PANDA_LOGO;
@@ -101,6 +105,14 @@ export const getLogoByBackground = (backgroundColor: string): LogoUrls => {
  */
 export const getDashboardLogo = (): LogoUrls => {
   return PANDA_LOGO; // Logo Panda para dashboard
+};
+
+/**
+ * Retorna a logo especificamente para o sidebar
+ * @returns Objeto com caminhos para as versões webp e fallback da logo do sidebar
+ */
+export const getSidebarLogo = (): LogoUrls => {
+  return PANDA_LOGO_SIDEBAR; // Logo Panda específica para o sidebar
 };
 
 /**
