@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
   };
 
   // Determinar qual logo usar - como o fundo agora é sempre branco, usamos o logo para fundo claro
-  const companyLogo = '/images/Logo Panda.png';
+  const companyLogo = getLogoByBackground('#ffffff');
 
   const primaryButtonStyle = {
     backgroundColor: colors.primary,
@@ -67,6 +67,38 @@ const Navbar: React.FC = () => {
   // Foto padrão para avatar caso o usuário não tenha uma
   const defaultAvatar = 'https://yjdrejifhfdasaxivsew.supabase.co/storage/v1/object/public/avatars/default-avatar.png';
 
+  // Renderiza a imagem do logo com suporte a WebP
+  const renderLogo = () => {
+    if (typeof companyLogo === 'string') {
+      return (
+        <img 
+          src={companyLogo} 
+          alt="Company Logo"
+          style={{ 
+            height: '91px',  // aumentado em mais 30% (de 70px para 91px)
+            maxWidth: '364px',  // aumentado em mais 30% (de 280px para 364px)
+            objectFit: 'contain'
+          }}
+        />
+      );
+    } else if (companyLogo && typeof companyLogo === 'object') {
+      return (
+        <picture>
+          <source srcSet={companyLogo.webp} type="image/webp" />
+          <img 
+            src={companyLogo.fallback} 
+            alt="Company Logo"
+            style={{ 
+              height: '91px',  // aumentado em mais 30% (de 70px para 91px)
+              maxWidth: '364px',  // aumentado em mais 30% (de 280px para 364px)
+              objectFit: 'contain'
+            }}
+          />
+        </picture>
+      );
+    }
+  };
+
   return (
     <nav style={navbarStyle} className="shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,15 +106,7 @@ const Navbar: React.FC = () => {
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
               <Link to="/" className="text-xl font-bold flex items-center">
-                <img 
-                  src={companyLogo} 
-                  alt="Company Logo"
-                  style={{ 
-                    height: '91px',  // aumentado em mais 30% (de 70px para 91px)
-                    maxWidth: '364px',  // aumentado em mais 30% (de 280px para 364px)
-                    objectFit: 'contain'
-                  }}
-                />
+                {renderLogo()}
               </Link>
             </div>
             

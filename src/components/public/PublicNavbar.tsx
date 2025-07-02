@@ -32,7 +32,7 @@ import { getLogoByBackground, getHeaderFooterLogo } from '../../utils/colorUtils
 
 interface CompanyInfo {
   name: string;
-  logo_url: string;
+  logo_url: string | { webp: string; fallback: string };
 }
 
 interface Props {
@@ -77,8 +77,8 @@ const PublicNavbar: React.FC = () => {
   // Obtendo as cores do tema atual
   const colors = mode === 'light' ? themePreferences.lightColors : themePreferences.darkColors;
 
-  // Sempre usar o logo Panda Locações
-  const logoUrl = '/images/Logo Panda.png';
+  // Sempre usar o logo Panda Locações com suporte a WebP
+  const logoUrl = getHeaderFooterLogo();
   
   const companyInfoMemo = useMemo(() => {
     return {
@@ -333,6 +333,48 @@ const PublicNavbar: React.FC = () => {
     };
   }, []);
 
+  // Renderiza a imagem do logo com suporte a WebP
+  const renderLogo = () => {
+    const logo = companyInfo?.logo_url;
+    
+    if (typeof logo === 'string') {
+      return (
+        <img 
+          src={logo}
+          alt={companyInfo?.name || "Logo da Empresa"}
+          style={{
+            height: '104px',
+            width: 'auto',
+            objectFit: 'contain',
+            display: 'block',
+          }}
+        />
+      );
+    } else if (logo && typeof logo === 'object') {
+      return (
+        <picture>
+          <source srcSet={logo.webp} type="image/webp" />
+          <img 
+            src={logo.fallback}
+            alt={companyInfo?.name || "Logo da Empresa"}
+            style={{
+              height: '104px',
+              width: 'auto',
+              objectFit: 'contain',
+              display: 'block',
+            }}
+          />
+        </picture>
+      );
+    } else {
+      return (
+        <Typography variant="h6" fontWeight="bold">
+          {companyInfo?.name || 'Aluguel de Equipamentos'}
+        </Typography>
+      );
+    }
+  };
+
   return (
     <>
       {/* Componente do Feed do Instagram */}
@@ -380,22 +422,7 @@ const PublicNavbar: React.FC = () => {
                   mr: 2
                 }}
               >
-                {companyInfo?.logo_url ? (
-                  <img 
-                    src={companyInfo.logo_url}
-                    alt={companyInfo?.name || "Logo da Empresa"}
-                    style={{
-                      height: '104px',
-                      width: 'auto',
-                      objectFit: 'contain',
-                      display: 'block',
-                    }}
-                  />
-                ) : (
-                  <Typography variant="h6" fontWeight="bold">
-                    {companyInfo?.name || 'Aluguel de Equipamentos'}
-                  </Typography>
-                )}
+                {renderLogo()}
               </Box>
 
               {/* Links de navegação para desktop */}

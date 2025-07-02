@@ -66,8 +66,15 @@ export const getLuminance = (color: string): number => {
 };
 
 // Caminhos para as logos
-const PANDA_LOGO = '/images/Logo Panda.png';
-const PANDA_LOGO_FOOTER = '/images/Logo Panda (2).png';
+// Usando WebP para navegadores modernos com fallback para PNG
+const PANDA_LOGO = {
+  webp: '/images_optimized/Logo Panda.webp',
+  fallback: '/images/Logo Panda.png'
+};
+const PANDA_LOGO_FOOTER = {
+  webp: '/images_optimized/Logo Panda (2).webp',
+  fallback: '/images/Logo Panda (2).png'
+};
 const LOGO_FUNDO_CLARO = PANDA_LOGO;
 const LOGO_FUNDO_ESCURO = PANDA_LOGO;
 const LOGO_PAGINAS_SECUNDARIAS = PANDA_LOGO;
@@ -75,33 +82,33 @@ const LOGO_PAGINAS_SECUNDARIAS = PANDA_LOGO;
 /**
  * Determina qual logo usar com base na cor de fundo
  * @param backgroundColor Cor de fundo em formato hexadecimal ou rgb/rgba
- * @returns Caminho para a logo apropriada
+ * @returns Objeto com caminhos para as versões webp e fallback da logo apropriada
  */
-export const getLogoByBackground = (backgroundColor: string): string => {
+export const getLogoByBackground = (backgroundColor: string) => {
   // Sempre retornar a logo do Panda independente da cor de fundo
   return PANDA_LOGO;
 };
 
 /**
  * Retorna a logo especificamente para área de dashboard
- * @returns Caminho para a logo de dashboard
+ * @returns Objeto com caminhos para as versões webp e fallback da logo de dashboard
  */
-export const getDashboardLogo = (): string => {
+export const getDashboardLogo = () => {
   return PANDA_LOGO; // Logo Panda para dashboard
 };
 
 /**
  * Retorna a logo especificamente para header
- * @returns Caminho para a logo de header
+ * @returns Objeto com caminhos para as versões webp e fallback da logo de header
  */
-export const getHeaderFooterLogo = (): string => {
+export const getHeaderFooterLogo = () => {
   return PANDA_LOGO; // Logo Panda para header
 };
 
 /**
  * Retorna a logo especificamente para footer
- * @returns Caminho para a logo de footer
+ * @returns Objeto com caminhos para as versões webp e fallback da logo de footer
  */
-export const getFooterLogo = (): string => {
+export const getFooterLogo = () => {
   return PANDA_LOGO_FOOTER; // Logo Panda específica para o footer
 }; 
