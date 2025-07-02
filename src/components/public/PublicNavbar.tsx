@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import InstagramFeed from './InstagramFeed';
 import {
   AppBar,
   Toolbar,
@@ -22,7 +23,7 @@ import {
   MenuItem,
   Grid
 } from '@mui/material';
-import { Menu as MenuIcon, Close as CloseIcon, Construction, Phone, Info, Person, Login, AccountCircle, Dashboard, Settings, Logout } from '@mui/icons-material';
+import { Menu as MenuIcon, Close as CloseIcon, Construction, Phone, Info, Person, Login, AccountCircle, Dashboard, Settings, Logout, Instagram } from '@mui/icons-material';
 import { supabase } from '../../utils/supabaseClient';
 import { useAuth } from '../../context/AuthContext';
 import { useCompany } from '../../context/CompanyContext';
@@ -67,6 +68,8 @@ const PublicNavbar: React.FC = () => {
   const [companyInfo, setCompanyInfo] = useState<CompanyInfo | null>(null);
   const [loading, setLoading] = useState(true);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const [instagramDrawerOpen, setInstagramDrawerOpen] = useState(false);
   
   // Verificar se estamos na página inicial
   const isHomePage = location.pathname === '/';
@@ -86,6 +89,23 @@ const PublicNavbar: React.FC = () => {
 
   // Avatar padrão caso o usuário não tenha um
   const defaultAvatar = 'https://yjdrejifhfdasaxivsew.supabase.co/storage/v1/object/public/avatars/default-avatar.png';
+
+  // Detectar scroll para aplicar efeito de vidro
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setHasScrolled(scrollPosition > 20);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    // Verifica imediatamente ao montar o componente
+    handleScroll();
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   // Função para determinar a saudação baseada no horário
   const getSaudacao = () => {
@@ -194,6 +214,26 @@ const PublicNavbar: React.FC = () => {
             <ListItemText primary={link.text} />
           </ListItem>
         ))}
+        
+        {/* Instagram Link no Menu Mobile */}
+        <ListItem
+          button
+          onClick={() => {
+            setDrawerOpen(false);
+            setInstagramDrawerOpen(true);
+          }}
+          sx={{
+            color: 'text.primary',
+            '&:hover': {
+              bgcolor: 'action.hover',
+            },
+          }}
+        >
+          <Box component="span" sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
+            <Instagram sx={{ color: '#E1306C' }} />
+          </Box>
+          <ListItemText primary="Siga-nos no Instagram" />
+        </ListItem>
       </List>
       
       <Divider />
@@ -277,7 +317,13 @@ const PublicNavbar: React.FC = () => {
         transform: none !important;
         visibility: visible !important;
         opacity: 1 !important;
-        transition: background-color 0.3s ease, box-shadow 0.3s ease !important;
+        transition: all 0.3s ease !important;
+      }
+      
+      @supports (backdrop-filter: blur(10px)) {
+        .navbar-glassmorphism {
+          backdrop-filter: blur(10px);
+        }
       }
     `;
     document.head.appendChild(style);
@@ -289,21 +335,36 @@ const PublicNavbar: React.FC = () => {
 
   return (
     <>
+      {/* Componente do Feed do Instagram */}
+      <InstagramFeed
+        open={instagramDrawerOpen}
+        onClose={() => setInstagramDrawerOpen(false)}
+        username="pandalocacoes"
+        widgetId="554885df-4999-4e82-b39d-68999e3432dc"
+      />
+      
       <HideOnScroll>
         <AppBar 
           position="sticky" 
           elevation={0}
+          className={hasScrolled ? 'navbar-glassmorphism' : ''}
           sx={{ 
-            bgcolor: '#ffffff',
+            bgcolor: hasScrolled ? 'rgba(255, 255, 255, 0.7)' : '#ffffff',
             color: '#171717',
             borderBottomLeftRadius: themePreferences.borderRadius * 4,
             borderBottomRightRadius: themePreferences.borderRadius * 4,
-            boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+            boxShadow: hasScrolled 
+              ? '0 4px 30px rgba(0, 0, 0, 0.1)'
+              : '0 2px 10px rgba(0,0,0,0.1)',
             mb: isHomePage ? -1 : 0, // Margem bottom negativa para página inicial
             mt: 0,
             zIndex: 1090, // Reduzido para ficar melhor integrado com o hero
             overflow: 'visible',
-            clipPath: 'inset(0px -40px -40px -40px)' // Isso impede que as bordas arredondadas criem espaços vazios
+            clipPath: 'inset(0px -40px -40px -40px)', // Isso impede que as bordas arredondadas criem espaços vazios
+            backdropFilter: hasScrolled ? 'blur(10px)' : 'none',
+            WebkitBackdropFilter: hasScrolled ? 'blur(10px)' : 'none', // Para Safari
+            border: hasScrolled ? '1px solid rgba(255, 255, 255, 0.3)' : 'none',
+            transition: 'all 0.3s ease'
           }}
         >
           <Container maxWidth="xl">
@@ -355,14 +416,14 @@ const PublicNavbar: React.FC = () => {
                         fontWeight: 'medium',
                         fontSize: '1.05rem',
                         borderBottom: isActive(link.path) ? 3 : 0,
-                        borderColor: colors.primary,
+                        borderColor: isActive(link.path) ? colors.secondary : 'transparent',
                         borderRadius: 0,
                         '&:hover': {
                           bgcolor: 'rgba(0,0,0,0.05)',
-                          color: 'inherit'
+                          color: colors.secondary
                         },
                         color: isActive(link.path) 
-                          ? colors.primary
+                          ? colors.secondary
                           : 'inherit',
                         py: 1,
                       }}
@@ -370,6 +431,26 @@ const PublicNavbar: React.FC = () => {
                       {link.text}
                     </Button>
                   ))}
+                  
+                  {/* Botão do Instagram */}
+                  <Button
+                    color="inherit"
+                    startIcon={<Instagram sx={{ color: '#E1306C' }} />}
+                    onClick={() => setInstagramDrawerOpen(true)}
+                    sx={{
+                      mx: 2,
+                      fontWeight: 'medium',
+                      fontSize: '1.05rem',
+                      borderRadius: 0,
+                      '&:hover': {
+                        bgcolor: 'rgba(0,0,0,0.05)',
+                        color: '#E1306C'
+                      },
+                      py: 1,
+                    }}
+                  >
+                    Siga-nos
+                  </Button>
                 </Box>
               )}
 
@@ -453,7 +534,7 @@ const PublicNavbar: React.FC = () => {
                         variant="contained" 
                         component={Link} 
                         to="/login" 
-                        color={isHomePage ? "secondary" : "primary"}
+                        color="secondary"
                         startIcon={<Login />}
                         sx={{ fontWeight: 'medium' }}
                       >

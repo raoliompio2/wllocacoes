@@ -105,7 +105,7 @@ const Testimonials: React.FC = () => {
 
   return (
     <Box sx={{ py: { xs: 6, md: 8 }, bgcolor: 'background.default' }}>
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Box sx={{ mb: 6, textAlign: 'center' }}>
           <Typography variant="h4" component="h2" gutterBottom fontWeight="bold">
             O que nossos clientes dizem

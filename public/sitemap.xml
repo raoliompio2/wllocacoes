@@ -11,191 +11,215 @@
 
   <!-- Páginas principais -->
   <url>
-    <loc>https://seusite.com.br/</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://pandalocacoes.com.br/images/Logo Panda.png</image:loc>
+      <image:title>Panda Locações - Aluguel de equipamentos em Limeira</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://seusite.com.br/equipamentos</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/equipamentos</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://seusite.com.br/empresa</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/empresa</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://seusite.com.br/contato</loc>
-    <lastmod>2023-08-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <!-- Páginas de unidades -->
-  <url>
-    <loc>https://seusite.com.br/unidade/unidade1</loc>
-    <lastmod>2023-08-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://seusite.com.br/unidade/unidade2</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/contato</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <!-- Páginas de produtos por categoria -->
+  <!-- Páginas de categorias principais -->
   <url>
-    <loc>https://seusite.com.br/equipamentos/categoria1</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/equipamentos/betoneiras</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://seusite.com.br/equipamentos/categoria2</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/equipamentos/andaimes</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://seusite.com.br/equipamentos/categoria3</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/equipamentos/compactadores</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://seusite.com.br/equipamentos/categoria4</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/equipamentos/cortadores</loc>
+    <lastmod>2023-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pandalocacoes.com.br/equipamentos/demolidores</loc>
+    <lastmod>2023-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pandalocacoes.com.br/equipamentos/geradores</loc>
+    <lastmod>2023-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pandalocacoes.com.br/equipamentos/placas-vibratorias</loc>
+    <lastmod>2023-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pandalocacoes.com.br/equipamentos/serra-marmore</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <!-- Páginas de produtos específicos -->
+  <!-- Páginas de equipamentos específicos -->
   <url>
-    <loc>https://seusite.com.br/equipamento/produto1</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/equipamento/betoneira-400-litros</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://pandalocacoes.com.br/images_optimized/betoneira-400-litros.webp</image:loc>
+      <image:title>Betoneira 400 Litros - Panda Locações</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://seusite.com.br/equipamento/produto2</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/equipamento/andaime-fachadeiro</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://pandalocacoes.com.br/images_optimized/andaime-fachadeiro.webp</image:loc>
+      <image:title>Andaime Fachadeiro - Panda Locações</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://seusite.com.br/equipamento/produto3</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/equipamento/compactador-de-solo</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://pandalocacoes.com.br/images_optimized/compactador-de-solo.webp</image:loc>
+      <image:title>Compactador de Solo - Panda Locações</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://seusite.com.br/equipamento/produto4</loc>
-    <lastmod>2023-08-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <!-- Páginas de produtos em local específico -->
-  <url>
-    <loc>https://seusite.com.br/equipamentos/categoria1/local1</loc>
-    <lastmod>2023-08-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://seusite.com.br/equipamentos/categoria2/local1</loc>
-    <lastmod>2023-08-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://seusite.com.br/equipamentos/categoria3/local1</loc>
-    <lastmod>2023-08-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://seusite.com.br/equipamentos/categoria4/local1</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/equipamento/martelete-demolidor</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
-  <!-- Páginas de produtos em outro local -->
+  <!-- Páginas de busca por cidades -->
   <url>
-    <loc>https://seusite.com.br/equipamentos/categoria1/local2</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/equipamentos/limeira</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://seusite.com.br/equipamentos/categoria2/local2</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/equipamentos/americana</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://seusite.com.br/equipamentos/categoria3/local2</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/equipamentos/piracicaba</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://seusite.com.br/equipamentos/categoria4/local2</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/equipamentos/campinas</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
-  <!-- Páginas de serviços -->
+  <!-- Páginas de equipamentos por cidades -->
   <url>
-    <loc>https://seusite.com.br/servicos</loc>
-    <lastmod>2023-08-01</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://pandalocacoes.com.br/equipamentos/betoneiras/limeira</loc>
+    <lastmod>2023-12-20</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://seusite.com.br/servicos/servico1</loc>
-    <lastmod>2023-08-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://pandalocacoes.com.br/equipamentos/andaimes/limeira</loc>
+    <lastmod>2023-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://seusite.com.br/servicos/servico2</loc>
-    <lastmod>2023-08-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://pandalocacoes.com.br/equipamentos/compactadores/limeira</loc>
+    <lastmod>2023-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://seusite.com.br/servicos/servico3</loc>
-    <lastmod>2023-08-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://pandalocacoes.com.br/equipamentos/betoneiras/americana</loc>
+    <lastmod>2023-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pandalocacoes.com.br/equipamentos/andaimes/americana</loc>
+    <lastmod>2023-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pandalocacoes.com.br/equipamentos/compactadores/americana</loc>
+    <lastmod>2023-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pandalocacoes.com.br/equipamentos/betoneiras/piracicaba</loc>
+    <lastmod>2023-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pandalocacoes.com.br/equipamentos/andaimes/piracicaba</loc>
+    <lastmod>2023-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pandalocacoes.com.br/equipamentos/compactadores/piracicaba</loc>
+    <lastmod>2023-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   
-  <!-- Páginas de informações -->
+  <!-- Páginas legais e de informações -->
   <url>
-    <loc>https://seusite.com.br/termos-de-uso</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/termos-de-uso</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://seusite.com.br/politica-de-privacidade</loc>
-    <lastmod>2023-08-01</lastmod>
+    <loc>https://pandalocacoes.com.br/politica-de-privacidade</loc>
+    <lastmod>2023-12-20</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://seusite.com.br/mapa-do-site</loc>
-    <lastmod>2023-08-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.5</priority>
   </url>
 </urlset> 

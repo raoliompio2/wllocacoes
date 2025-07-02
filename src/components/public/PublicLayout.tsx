@@ -45,6 +45,8 @@ const PublicLayout: React.FC<PublicLayoutProps> = ({ children }) => {
           display: 'flex',
           flexDirection: 'column',
           minHeight: '100vh',
+          position: 'relative',
+          zIndex: 1,
         }}
       >
         <PublicNavbar />
@@ -59,11 +61,16 @@ const PublicLayout: React.FC<PublicLayoutProps> = ({ children }) => {
           }}
         >
           {!isHomePage && (
-            <Container maxWidth="lg" sx={{ mt: 2, mb: 1 }}>
+            <Container maxWidth="xl" sx={{ mt: 2, mb: 1 }}>
               <Breadcrumbs />
             </Container>
           )}
-          {children}
+          {!isHomePage && (
+            <Container maxWidth="xl">
+              {children}
+            </Container>
+          )}
+          {isHomePage && children}
         </Box>
         
         <Footer />

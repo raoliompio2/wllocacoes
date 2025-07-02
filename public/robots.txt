@@ -1,36 +1,42 @@
+# Panda Locações - Arquivo Robots.txt
+# https://pandalocacoes.com.br
+
 # Allow all web crawlers
 User-agent: *
 Allow: /
 
-# Explícita permissão para páginas principais
+# Páginas principais
 Allow: /index.html
 Allow: /equipamentos
-Allow: /equipamentos/categoria1
-Allow: /equipamentos/categoria2
-Allow: /equipamentos/categoria3
-Allow: /equipamentos/categoria4
-Allow: /unidade/unidade1
-Allow: /unidade/unidade2
-Allow: /contato
 Allow: /empresa
-Allow: /servicos
+Allow: /contato
 
-# Deny access to files with extensions .json, .xml, .zip, .txt (except sitemap)
+# Permissão explícita para categorias de equipamentos
+Allow: /equipamentos/betoneiras
+Allow: /equipamentos/andaimes
+Allow: /equipamentos/compactadores
+Allow: /equipamentos/cortadores
+Allow: /equipamentos/demolidores
+Allow: /equipamentos/geradores
+Allow: /equipamentos/placas-vibratorias
+Allow: /equipamentos/serra-marmore
+
+# Bloqueio de arquivos de sistema
 Disallow: /*.json$
-Disallow: /*.xml$
 Disallow: /*.zip$
 Disallow: /*.txt$
 
-# Allow sitemap
+# Permitir sitemap e arquivos XML importantes
 Allow: /sitemap.xml
+Allow: /manifest.json
 
-# Deny access to admin, api, and private folders
+# Bloquear áreas administrativas e privadas
 Disallow: /admin/
 Disallow: /api/
 Disallow: /private/
 Disallow: /temp/
 
-# Disallow duplicate/admin content
+# Bloquear áreas de painel administrativo e conteúdo duplicado
 Disallow: /dashboard/
 Disallow: /profile/
 Disallow: /search/
@@ -41,8 +47,24 @@ Disallow: /budget-requests/
 Disallow: /my-reviews/
 Disallow: /owner-budgets/
 
-# Sitemap
-Sitemap: https://seusite.com.br/sitemap.xml
+# Configurações específicas para Googlebot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
 
-# Crawl delay para não sobrecarregar o servidor
-Crawl-delay: 5 
+# Configurações para Googlebot-Image
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /images_optimized/
+
+# Sitemap
+Sitemap: https://pandalocacoes.com.br/sitemap.xml
+
+# Crawl delay para não sobrecarregar o servidor - outros bots
+User-agent: *
+Crawl-delay: 5
+
+# Diretivas específicas para Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1 

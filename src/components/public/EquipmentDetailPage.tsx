@@ -38,6 +38,7 @@ import {
   Fab,
   AlertTitle
 } from '@mui/material';
+import { GoogleReviewsWidget } from '../common';
 import {
   Star,
   CalendarMonth,
@@ -69,6 +70,7 @@ import ProductSchema from '../SEO/ProductSchema';
 import * as stringSimilarityLib from 'string-similarity';
 import { sendBudgetRequestEmail } from '../../utils/emailService';
 import AccessorySkeleton from '../Accessories/AccessorySkeleton';
+import { Helmet } from 'react-helmet-async';
 
 // Número fixo do WhatsApp para redirecionamento
 const WHATSAPP_NUMBER = '551937030363';
@@ -607,36 +609,34 @@ const EquipmentDetailPage: React.FC = () => {
     }, 0);
   };
 
-  // Gerar esquema para o produto
+  // Criar slug preservando acentos e caracteres especiais
+  const createSlug = (name: string) => {
+    return encodeURIComponent(
+      name
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/--+/g, '-')
+        .trim()
+    );
+  };
+
+  // Função para gerar o schema do produto para SEO
   const generateProductSchema = () => {
     if (!equipment) return null;
     
-    // Garantir que o preço seja uma string
-    const priceValue = equipment.daily_rate ? String(equipment.daily_rate) : '';
-    
-    // Criar slug preservando acentos e caracteres especiais
-    const createSlug = (name: string) => {
-      return encodeURIComponent(
-        name
-          .toLowerCase()
-          .replace(/\s+/g, '-')
-          .replace(/--+/g, '-')
-          .trim()
-      );
-    };
-    
-    return ProductSchema({
-      name: equipment.name,
-      description: equipment.description || `Aluguel de ${equipment.name} em Porto Alegre e região`,
-      imageUrl: equipment.image || '',
-      price: priceValue,
-      priceType: 'Diária',
-      category: category?.name || '',
-      url: `/equipamento/${createSlug(equipment.name)}`,
-      availability: equipment.available ? 'InStock' : 'OutOfStock',
-      reviewCount: equipment.total_reviews || 0,
-      ratingValue: 5
-    });
+    return (
+      <ProductSchema
+        name={equipment.name}
+        description={equipment.description || `Aluguel de ${equipment.name} em Limeira e região. Entre em contato com a Panda Locações para melhores condições.`}
+        imageUrl={equipment.image || ''}
+        category={category?.name || ''}
+        price={equipment.daily_rate ? parseFloat(equipment.daily_rate.replace(/[^\d.,]/g, '').replace(',', '.')) : undefined}
+        availability={equipment.available ? 'InStock' : 'OutOfStock'}
+        productId={equipment.id}
+        ratingValue={equipment.average_rating || 4.8}
+        reviewCount={equipment.total_reviews || 12}
+      />
+    );
   };
   
   // Gerar esquema local business para a empresa
@@ -671,7 +671,7 @@ const EquipmentDetailPage: React.FC = () => {
 
   if (loading) {
     return (
-      <Container maxWidth="lg" sx={{ py: 8 }}>
+      <Container maxWidth="xl" sx={{ py: 8 }}>
         <Box sx={{ display: 'flex', justifyContent: 'center', my: 8 }}>
           <CircularProgress />
         </Box>
@@ -681,7 +681,7 @@ const EquipmentDetailPage: React.FC = () => {
 
   if (error || !equipment) {
     return (
-      <Container maxWidth="lg" sx={{ py: 8 }}>
+      <Container maxWidth="xl" sx={{ py: 8 }}>
         <Paper elevation={2} sx={{ p: 4, borderRadius: 2, textAlign: 'center', maxWidth: 600, mx: 'auto' }}>
           <Alert severity="error" sx={{ mb: 4 }}>
             <AlertTitle>Erro ao carregar equipamento</AlertTitle>
@@ -720,11 +720,30 @@ const EquipmentDetailPage: React.FC = () => {
 
   return (
     <>
-            <SEOHead        title={`${equipment.name} - Aluguel | NOME DA EMPRESA`}        description={equipment.description || `Alugue ${equipment.name}. Equipamento de qualidade para sua obra com as melhores condições.`}        canonicalUrl={`/equipamento/${encodeURIComponent(equipment.name.toLowerCase().replace(/\s+/g, '-'))}`}        ogType="product"        ogImage={equipment.image}        keywords={`aluguel ${equipment.name}, locação ${equipment.name}, equipamentos construção, ${category?.name || ''}`}
-        schema={generateCombinedSchema()}
-      />
+      <Helmet>
+        <title>{`${equipment.name} - Aluguel em Limeira e Região | Panda Locações`}</title>
+        <meta name="description" content={`Alugue ${equipment.name} em Limeira, Americana, Piracicaba e região. ${equipment.description?.substring(0, 120)}... Solicite um orçamento sem compromisso.`} />
+        <meta name="keywords" content={`aluguel ${equipment.name}, locação ${equipment.name}, ${equipment.name} para alugar Limeira, ${category?.name}, equipamento construção, Limeira, Americana, Piracicaba`} />
+        <link rel="canonical" href={`https://pandalocacoes.com.br/equipamento/${equipment.id}/${createSlug(equipment.name)}`} />
+        
+        {/* Meta tags Open Graph para compartilhamento em redes sociais */}
+        <meta property="og:title" content={`${equipment.name} - Aluguel de Equipamentos | Panda Locações`} />
+        <meta property="og:description" content={`Alugue ${equipment.name} em Limeira e região. Solicite um orçamento sem compromisso.`} />
+        <meta property="og:image" content={equipment.image ? `https://pandalocacoes.com.br${equipment.image}` : 'https://pandalocacoes.com.br/images/Logo Panda.png'} />
+        <meta property="og:type" content="product" />
+        <meta property="og:url" content={`https://pandalocacoes.com.br/equipamento/${equipment.id}/${createSlug(equipment.name)}`} />
+        
+        {/* Meta tags Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${equipment.name} - Aluguel de Equipamentos | Panda Locações`} />
+        <meta name="twitter:description" content={`Alugue ${equipment.name} em Limeira e região.`} />
+        <meta name="twitter:image" content={equipment.image ? `https://pandalocacoes.com.br${equipment.image}` : 'https://pandalocacoes.com.br/images/Logo Panda.png'} />
+      </Helmet>
+
+      {/* Schema.org para produto */}
+      {generateProductSchema()}
       
-      <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
+      <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 } }}>
         <Grid container spacing={4}>
           {/* Imagem principal e tags */}
           <Grid item xs={12} md={7}>
@@ -1133,6 +1152,15 @@ const EquipmentDetailPage: React.FC = () => {
             )}
           </Paper>
         </Box>
+
+        {/* Avaliações do Google - Social Proof */}
+        <GoogleReviewsWidget 
+          widgetId="3631a20c-7427-485c-994a-79b07d57b855"
+          title="O Que Nossos Clientes Dizem"
+          subtitle="Confira as avaliações dos nossos clientes no Google"
+          minHeight={{ xs: 400, md: 500 }}
+          showHeader={true}
+        />
 
         {/* Equipamentos relacionados */}
         {relatedEquipment.length > 0 && (

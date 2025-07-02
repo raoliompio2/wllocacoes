@@ -1,80 +1,92 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 interface ProductSchemaProps {
   name: string;
   description: string;
-  imageUrl: string;
-  price?: string;
-  priceType?: string;
+  imageUrl?: string;
   category?: string;
+  price?: number;
+  availability?: 'InStock' | 'OutOfStock' | 'PreOrder';
+  sku?: string;
   brand?: string;
-  url: string;
-  availability?: 'InStock' | 'OutOfStock';
-  reviewCount?: number;
+  productId?: string;
   ratingValue?: number;
+  reviewCount?: number;
 }
 
-const ProductSchema = ({
+const ProductSchema: React.FC<ProductSchemaProps> = ({
   name,
   description,
   imageUrl,
-  price,
-  priceType = 'Diária',
   category,
-  brand = 'NOME DA EMPRESA',
-  url,
+  price,
   availability = 'InStock',
-  reviewCount,
+  sku,
+  brand = 'Panda Locações',
+  productId,
   ratingValue,
-}: ProductSchemaProps) => {
-  const baseUrl = 'https://seusite.com.br';
-  const fullImageUrl = imageUrl.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`;
-  const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
+  reviewCount
+}) => {
+  const baseUrl = 'https://pandalocacoes.com.br';
+  const fullImageUrl = imageUrl ? (imageUrl.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`) : undefined;
 
-  const schema = {
+  // Construir o objeto Schema.org para produto
+  const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name,
-    description,
-    image: fullImageUrl,
-    url: fullUrl,
-    brand: {
-      '@type': 'Brand',
-      name: brand,
-    },
-    ...(category && {
-      category,
-    }),
+    name: name,
+    description: description,
+    ...(fullImageUrl && { image: fullImageUrl }),
+    ...(brand && { brand: { '@type': 'Brand', name: brand } }),
+    ...(sku && { sku }),
+    ...(productId && { productId }),
+    ...(category && { category }),
     offers: {
       '@type': 'Offer',
-      price: price ? (typeof price === 'string' ? price.replace(/[^\d.,]/g, '') : String(price)) : '',
-      priceCurrency: 'BRL',
-      priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
-      itemCondition: 'https://schema.org/UsedCondition',
-      availability: availability === 'InStock' 
-        ? 'https://schema.org/InStock' 
-        : 'https://schema.org/OutOfStock',
-      seller: {
-        '@type': 'Organization',
-        name: 'NOME DA EMPRESA',
-        url: baseUrl
-      },
-      ...(priceType && {
-        unitText: priceType
-      })
-    },
-    ...(ratingValue && {
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue,
-        reviewCount: reviewCount || 0,
-        bestRating: '5',
-        worstRating: '1'
+      availability: `https://schema.org/${availability}`,
+      ...(price && { 
+        price: price,
+        priceCurrency: 'BRL'
+      }),
+      // Adiciona detalhes sobre locação
+      itemOffered: {
+        '@type': 'RentalOffer',
+        description: `Aluguel de ${name} em Limeira e região`,
+        areaServed: [
+          { '@type': 'City', name: 'Limeira' },
+          { '@type': 'City', name: 'Americana' },
+          { '@type': 'City', name: 'Piracicaba' },
+          { '@type': 'City', name: 'Campinas' }
+        ],
+        seller: {
+          '@type': 'LocalBusiness',
+          name: 'Panda Locações',
+          telephone: '(19) 3703-0363',
+          email: 'contato@pandalocacoes.com.br'
+        }
       }
-    })
+    }
   };
 
-  return schema;
+  // Adicionar avaliações se disponíveis
+  if (ratingValue && reviewCount) {
+    Object.assign(productSchema, {
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: ratingValue,
+        reviewCount: reviewCount
+      }
+    });
+  }
+
+  return (
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify(productSchema)}
+      </script>
+    </Helmet>
+  );
 };
 
 export default ProductSchema; 

@@ -96,7 +96,7 @@ const FeaturedCategories: React.FC = () => {
 
   return (
     <Box sx={{ py: { xs: 6, md: 8 } }}>
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Box sx={{ mb: 6, textAlign: 'center' }}>
           <Typography 
             variant={isMobile ? "h5" : "h4"} 

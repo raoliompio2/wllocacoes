@@ -36,6 +36,7 @@ import {
 import { supabase } from '../../utils/supabaseClient';
 import { getFooterLogo } from '../../utils/colorUtils';
 import BusinessHours from '../common/BusinessHours';
+import { useTheme as useCustomTheme } from '../../theme/ThemeContext';
 
 interface CompanyInfo {
   name: string;
@@ -58,17 +59,18 @@ interface Category {
 
 const Footer: React.FC = () => {
   const theme = useTheme();
+  const { themePreferences } = useCustomTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const logoUrl = getFooterLogo();
   
   // Estado para armazenar informações da empresa
   const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
-    name: 'NOME DA EMPRESA',
+    name: 'Panda Locações',
     logo_url: logoUrl,
-    phone: '(00) 0000-0000',
-    email: 'contato@seudominio.com.br',
-    address: 'Endereço da Empresa, Número - Bairro\nCidade - UF, 00000-000',
-    whatsapp: '0000000000',
+    phone: '(19) 3703-0363',
+    email: 'contato@pandalocacoes.com.br',
+    address: 'Rua Mário Soares de Campos, Jardim Cidade Universitária I, Limeira – SP, CEP: 13484-656',
+    whatsapp: '19 3703-0363',
     facebook_url: null,
     instagram_url: null,
     linkedin_url: null,
@@ -76,11 +78,11 @@ const Footer: React.FC = () => {
     twitter_url: null
   });
   
-  // Segunda unidade
-  const secondBranch = {
-    address: 'Endereço da Segunda Unidade, Número - Bairro\nCidade – UF, 00000-000',
-    phone: '(00) 0000-0000',
-    whatsapp: '0000000000'
+  // Horário de funcionamento
+  const businessHours = {
+    weekdays: "Segunda-feira a Sexta-feira: 7:00 às 17:00",
+    saturday: "Sábado: Fechado",
+    sunday: "Domingo: Fechado"
   };
   
   const [loading, setLoading] = useState(false);
@@ -173,11 +175,11 @@ const Footer: React.FC = () => {
 
   // Dados estáticos caso não consiga carregar do banco
   const fallbackCompanyData: CompanyInfo = {
-    name: 'NOME DA EMPRESA',
-    phone: '(00) 0000-0000',
-    whatsapp: '0000000000',
-    email: 'contato@seudominio.com.br',
-    address: 'Endereço da Empresa, Número - Bairro, Cidade - UF, 00000-000',
+    name: 'Panda Locações',
+    phone: '(19) 3703-0363',
+    whatsapp: '19 3703-0363',
+    email: 'contato@pandalocacoes.com.br',
+    address: 'Rua Mário Soares de Campos, Jardim Cidade Universitária I, Limeira – SP, CEP: 13484-656',
     logo_url: logoUrl,
     facebook_url: null,
     instagram_url: null,
@@ -190,15 +192,36 @@ const Footer: React.FC = () => {
     <Box 
       component="footer" 
       sx={{ 
-        bgcolor: 'secondary.main', 
+        bgcolor: '#121212',
         color: 'white',
         pt: 6,
         pb: 4,
-        mt: 'auto'
+        mt: 'auto',
+        borderTopLeftRadius: themePreferences?.borderRadius * 4 || 16,
+        borderTopRightRadius: themePreferences?.borderRadius * 4 || 16,
+        boxShadow: '0 -2px 10px rgba(0,0,0,0.1)',
+        overflow: 'visible',
+        clipPath: 'inset(-40px -40px 0px -40px)'
       }}
+      itemScope
+      itemType="http://schema.org/LocalBusiness"
     >
+      {/* Metadados ocultos para SEO */}
+      <meta itemProp="name" content="Panda Locações - Aluguel de Equipamentos em Limeira e Região" />
+      <meta itemProp="description" content="A Panda Locações oferece serviços de aluguel de equipamentos para construção civil e industrial em Limeira, Americana, Piracicaba, Campinas e toda região." />
+      <meta itemProp="telephone" content="(19) 3703-0363" />
+      <meta itemProp="email" content="contato@pandalocacoes.com.br" />
+      <div itemProp="address" itemScope itemType="http://schema.org/PostalAddress">
+        <meta itemProp="streetAddress" content="Rua Mário Soares de Campos" />
+        <meta itemProp="addressLocality" content="Limeira" />
+        <meta itemProp="addressRegion" content="SP" />
+        <meta itemProp="postalCode" content="13484-656" />
+        <meta itemProp="addressCountry" content="BR" />
+      </div>
+      <meta itemProp="openingHours" content="Mo-Fr 07:00-17:00" />
+      
       {/* Conteúdo principal do footer */}
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Grid container spacing={4}>
           {/* Coluna 1 - Informações da empresa */}
           <Grid item xs={12} md={4}>
@@ -207,428 +230,290 @@ const Footer: React.FC = () => {
               <Box
                 component="img"
                 src={logoUrl}
-                alt={companyInfo?.name || "Aluguel de Equipamentos"}
+                alt="Panda Locações - Aluguel de Equipamentos em Limeira"
                 sx={{
                   height: 127,
                   maxWidth: 510,
                   objectFit: 'contain',
-                  mb: 2
+                  mb: 2,
+                  borderRadius: 2,
+                  padding: '8px',
+                  backgroundColor: 'rgba(255,255,255,0.05)',
                 }}
               />
               
               <Typography variant="body2" sx={{ opacity: 0.8, mb: 3 }}>
-                A NOME DA EMPRESA é uma empresa especializada com foco em seus produtos/serviços
-                para seus clientes, com múltiplas unidades em diferentes locais.
+                A Panda Locações é especializada no aluguel de equipamentos para construção civil e industrial, 
+                atendendo Limeira, Americana, Piracicaba, Campinas e toda região com excelência e qualidade.
               </Typography>
             </Box>
             
             <Stack spacing={2}>
               <Typography variant="subtitle2" fontWeight="bold" sx={{ opacity: 0.9 }}>
-                Unidade 1:
+                Endereço:
               </Typography>
               <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
-                <LocationOn sx={{ mr: 1, fontSize: 20, color: 'secondary.light', mt: 0.5 }} />
+                <LocationOn sx={{ mr: 1, fontSize: 20, color: 'secondary.main', mt: 0.5 }} />
                 <Typography variant="body2">
-                  {companyInfo?.address}
+                  Rua Mário Soares de Campos, Jardim Cidade Universitária I, Limeira – SP, CEP: 13484-656
                 </Typography>
               </Box>
               
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Phone sx={{ mr: 1, fontSize: 20, color: 'secondary.light' }} />
+                <Phone sx={{ mr: 1, fontSize: 20, color: 'secondary.main' }} />
                 <Typography variant="body2">
-                  {companyInfo?.phone}
-                </Typography>
-              </Box>
-              
-              <Typography variant="subtitle2" fontWeight="bold" sx={{ opacity: 0.9, mt: 1 }}>
-                Unidade 2:
-              </Typography>
-              <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
-                <LocationOn sx={{ mr: 1, fontSize: 20, color: 'secondary.light', mt: 0.5 }} />
-                <Typography variant="body2">
-                  {secondBranch?.address}
+                  (19) 3703-0363
                 </Typography>
               </Box>
               
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Phone sx={{ mr: 1, fontSize: 20, color: 'secondary.light' }} />
+                <Email sx={{ mr: 1, fontSize: 20, color: 'secondary.main' }} />
                 <Typography variant="body2">
-                  {secondBranch?.phone}
+                  contato@pandalocacoes.com.br
                 </Typography>
               </Box>
               
-              <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-                <Email sx={{ mr: 1, fontSize: 20, color: 'secondary.light' }} />
-                <Typography variant="body2">
-                  {companyInfo?.email}
-                </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
+                <AccessTime sx={{ mr: 1, fontSize: 20, color: 'secondary.main', mt: 0.5 }} />
+                <Box>
+                  <Typography variant="body2">
+                    Segunda-feira a Sexta-feira
+                  </Typography>
+                  <Typography variant="body2">
+                    7:00 às 17:00
+                  </Typography>
+                </Box>
               </Box>
             </Stack>
+          </Grid>
+          
+          {/* Coluna 2 - Links Rápidos */}
+          <Grid item xs={12} sm={6} md={3}>
+            <Typography variant="h6" sx={{ mb: 3, fontWeight: 'bold' }}>
+              Links Rápidos
+            </Typography>
             
-            <Box sx={{ mt: 3 }}>
-              <Typography variant="subtitle2" gutterBottom sx={{ opacity: 0.9 }}>
-                Siga-nos nas redes sociais
-              </Typography>
-              <Box sx={{ display: 'flex', gap: 1 }}>
-                {companyInfo?.facebook_url && (
-                  <IconButton 
-                    size="small" 
-                    component="a"
-                    href={companyInfo.facebook_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{ 
-                      color: 'white',
-                      '&:hover': { 
-                        bgcolor: 'rgba(255,255,255,0.1)' 
-                      }
-                    }}
-                  >
-                    <Facebook />
-                  </IconButton>
-                )}
-                
-                {companyInfo?.instagram_url && (
-                  <IconButton 
-                    size="small" 
-                    component="a"
-                    href={companyInfo.instagram_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{ 
-                      color: 'white',
-                      '&:hover': { 
-                        bgcolor: 'rgba(255,255,255,0.1)' 
-                      }
-                    }}
-                  >
-                    <Instagram />
-                  </IconButton>
-                )}
-                
-                {companyInfo?.whatsapp && (
-                  <IconButton 
-                    size="small" 
-                    component="a"
-                    href={`https://wa.me/55${companyInfo.whatsapp.replace(/\D/g, '')}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{ 
-                      color: 'white',
-                      '&:hover': { 
-                        bgcolor: 'rgba(255,255,255,0.1)' 
-                      }
-                    }}
-                  >
-                    <WhatsApp />
-                  </IconButton>
-                )}
-                
-                {companyInfo?.linkedin_url && (
-                  <IconButton 
-                    size="small" 
-                    component="a"
-                    href={companyInfo.linkedin_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{ 
-                      color: 'white',
-                      '&:hover': { 
-                        bgcolor: 'rgba(255,255,255,0.1)' 
-                      }
-                    }}
-                  >
-                    <LinkedIn />
-                  </IconButton>
-                )}
-                
-                {companyInfo?.youtube_url && (
-                  <IconButton 
-                    size="small" 
-                    component="a"
-                    href={companyInfo.youtube_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{ 
-                      color: 'white',
-                      '&:hover': { 
-                        bgcolor: 'rgba(255,255,255,0.1)' 
-                      }
-                    }}
-                  >
-                    <YouTube />
-                  </IconButton>
-                )}
-                
-                {companyInfo?.twitter_url && (
-                  <IconButton 
-                    size="small" 
-                    component="a"
-                    href={companyInfo.twitter_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{ 
-                      color: 'white',
-                      '&:hover': { 
-                        bgcolor: 'rgba(255,255,255,0.1)' 
-                      }
-                    }}
-                  >
-                    <Twitter />
-                  </IconButton>
-                )}
-              </Box>
-            </Box>
+            <List dense disablePadding>
+              {quickLinks.map((link, index) => (
+                <ListItem 
+                  key={index} 
+                  disablePadding 
+                  sx={{ mb: 1 }}
+                  component={Link} 
+                  to={link.path}
+                >
+                  <ListItemIcon sx={{ minWidth: 30 }}>
+                    <ChevronRight sx={{ color: 'secondary.main' }} />
+                  </ListItemIcon>
+                  <ListItemText primary={link.text} />
+                </ListItem>
+              ))}
+            </List>
           </Grid>
-
-          {/* Coluna 2 - Links rápidos e categorias */}
-          <Grid item xs={12} md={5}>
-            <Grid container spacing={2}>
-              {/* Links rápidos */}
-              <Grid item xs={6}>
-                <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-                  Links Rápidos
-                </Typography>
-                <List dense disablePadding>
-                  {quickLinks.map((link, index) => (
-                    <ListItem 
-                      key={index} 
-                      disablePadding 
-                      sx={{ py: 0.5 }}
-                      component={Link}
-                      to={link.path}
-                      style={{ textDecoration: 'none', color: 'inherit' }}
-                    >
-                      <ListItemIcon sx={{ minWidth: 30 }}>
-                        <ChevronRight sx={{ fontSize: 18, color: 'secondary.light' }} />
-                      </ListItemIcon>
-                      <ListItemText 
-                        primary={
-                          <Typography 
-                            variant="body2" 
-                            sx={{ 
-                              transition: 'all 0.2s',
-                              '&:hover': { 
-                                pl: 0.5,
-                                color: 'secondary.light' 
-                              }
-                            }}
-                          >
-                            {link.text}
-                          </Typography>
-                        } 
-                      />
-                    </ListItem>
-                  ))}
-                </List>
-              </Grid>
-              
-              {/* Categorias de equipamentos */}
-              <Grid item xs={6}>
-                <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-                  Categorias
-                </Typography>
-                {categories.length === 0 ? (
-                  <Box sx={{ py: 1 }}>
-                    <Typography variant="body2" color="text.secondary">
-                      {loading ? "Carregando..." : "Nenhuma categoria disponível"}
-                    </Typography>
-                  </Box>
-                ) : (
-                  <List dense disablePadding>
-                    {equipmentCategories.map((category, index) => (
-                      <ListItem 
-                        key={index} 
-                        disablePadding 
-                        sx={{ py: 0.5 }}
-                        component={Link}
-                        to={category.path}
-                        style={{ textDecoration: 'none', color: 'inherit' }}
-                      >
-                        <ListItemIcon sx={{ minWidth: 30 }}>
-                          <ChevronRight sx={{ fontSize: 18, color: 'secondary.light' }} />
-                        </ListItemIcon>
-                        <ListItemText 
-                          primary={
-                            <Typography 
-                              variant="body2" 
-                              sx={{ 
-                                transition: 'all 0.2s',
-                                '&:hover': { 
-                                  pl: 0.5,
-                                  color: 'secondary.light' 
-                                }
-                              }}
-                            >
-                              {category.text}
-                            </Typography>
-                          } 
-                        />
-                      </ListItem>
-                    ))}
-                  </List>
-                )}
-              </Grid>
-            </Grid>
+          
+          {/* Coluna 3 - Categorias */}
+          <Grid item xs={12} sm={6} md={2}>
+            <Typography variant="h6" sx={{ mb: 3, fontWeight: 'bold' }}>
+              Categorias
+            </Typography>
+            
+            <List dense disablePadding>
+              {equipmentCategories.map((category, index) => (
+                <ListItem 
+                  key={index} 
+                  disablePadding 
+                  sx={{ mb: 1 }}
+                  component={Link} 
+                  to={category.path}
+                >
+                  <ListItemIcon sx={{ minWidth: 30 }}>
+                    <ChevronRight sx={{ color: 'secondary.main' }} />
+                  </ListItemIcon>
+                  <ListItemText primary={category.text} />
+                </ListItem>
+              ))}
+            </List>
           </Grid>
-
-          {/* Coluna 3 - Newsletter */}
+          
+          {/* Coluna 4 - Newsletter */}
           <Grid item xs={12} md={3}>
-            <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-              Receba Novidades
-            </Typography>
-            <Typography variant="body2" sx={{ opacity: 0.8, mb: 2 }}>
-              Cadastre-se para receber nossas ofertas e novidades
+            <Typography variant="h6" sx={{ mb: 3, fontWeight: 'bold' }}>
+              Newsletter
             </Typography>
             
-            <Box component="form" onSubmit={handleSubscribe}>
+            <Typography variant="body2" sx={{ mb: 2, opacity: 0.8 }}>
+              Assine nossa newsletter para receber ofertas exclusivas e novidades sobre equipamentos para locação em Limeira e região.
+            </Typography>
+            
+            <Box component="form" onSubmit={handleSubscribe} sx={{ mb: 3 }}>
               <TextField
                 fullWidth
                 variant="outlined"
-                placeholder="Seu email"
+                placeholder="Seu e-mail"
                 size="small"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 error={!!emailError}
                 helperText={emailError}
                 sx={{
-                  mb: 1,
+                  mb: 2,
                   '& .MuiOutlinedInput-root': {
-                    bgcolor: 'rgba(255,255,255,0.1)',
+                    bgcolor: 'rgba(255,255,255,0.05)',
                     color: 'white',
-                    '& fieldset': {
-                      borderColor: 'rgba(255,255,255,0.3)',
-                    },
-                    '&:hover fieldset': {
-                      borderColor: 'rgba(255,255,255,0.5)',
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: 'secondary.light',
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: 'secondary.main',
                     },
                   },
-                  '& .MuiInputLabel-root': {
-                    color: 'rgba(255,255,255,0.7)',
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'rgba(255,255,255,0.2)',
                   },
-                  '& .MuiFormHelperText-root': {
-                    color: 'error.light',
-                  },
-                }}
-                InputProps={{
-                  endAdornment: (
-                    <Button
-                      type="submit"
-                      sx={{
-                        minWidth: 'auto',
-                        p: 0.5,
-                        mr: -0.5,
-                        color: 'white',
-                      }}
-                    >
-                      <Send />
-                    </Button>
-                  ),
+                  '& input::placeholder': {
+                    color: 'rgba(255,255,255,0.5)',
+                  }
                 }}
               />
+              
+              <Button
+                type="submit"
+                variant="contained"
+                color="secondary"
+                endIcon={<Send />}
+                fullWidth
+              >
+                Assinar
+              </Button>
             </Box>
             
-            <Box sx={{ mt: 4 }}>
-              <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-                Horário de Atendimento
-              </Typography>
-              <BusinessHours variant="compact" color="white" iconColor="secondary.light" />
+            <Typography variant="subtitle2" fontWeight="bold" sx={{ mb: 1 }}>
+              Redes Sociais
+            </Typography>
+            
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              {companyInfo.facebook_url && (
+                <IconButton 
+                  href={companyInfo.facebook_url} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook da Panda Locações"
+                  sx={{ 
+                    color: 'white',
+                    bgcolor: 'rgba(255,255,255,0.05)',
+                    '&:hover': { bgcolor: 'primary.main' }
+                  }}
+                  size="small"
+                >
+                  <Facebook fontSize="small" />
+                </IconButton>
+              )}
+              
+              {companyInfo.instagram_url && (
+                <IconButton 
+                  href={companyInfo.instagram_url} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram da Panda Locações"
+                  sx={{ 
+                    color: 'white',
+                    bgcolor: 'rgba(255,255,255,0.05)',
+                    '&:hover': { bgcolor: 'primary.main' }
+                  }}
+                  size="small"
+                >
+                  <Instagram fontSize="small" />
+                </IconButton>
+              )}
+              
+              {companyInfo.linkedin_url && (
+                <IconButton 
+                  href={companyInfo.linkedin_url} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn da Panda Locações"
+                  sx={{ 
+                    color: 'white',
+                    bgcolor: 'rgba(255,255,255,0.05)',
+                    '&:hover': { bgcolor: 'primary.main' }
+                  }}
+                  size="small"
+                >
+                  <LinkedIn fontSize="small" />
+                </IconButton>
+              )}
+              
+              {companyInfo.youtube_url && (
+                <IconButton 
+                  href={companyInfo.youtube_url} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Canal do YouTube da Panda Locações"
+                  sx={{ 
+                    color: 'white',
+                    bgcolor: 'rgba(255,255,255,0.05)',
+                    '&:hover': { bgcolor: 'primary.main' }
+                  }}
+                  size="small"
+                >
+                  <YouTube fontSize="small" />
+                </IconButton>
+              )}
+              
+              {companyInfo.whatsapp && (
+                <IconButton 
+                  href={`https://wa.me/55${companyInfo.whatsapp.replace(/\D/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="WhatsApp da Panda Locações"
+                  sx={{ 
+                    color: 'white',
+                    bgcolor: 'rgba(255,255,255,0.05)',
+                    '&:hover': { bgcolor: 'primary.main' }
+                  }}
+                  size="small"
+                >
+                  <WhatsApp fontSize="small" />
+                </IconButton>
+              )}
             </Box>
           </Grid>
         </Grid>
-      </Container>
-
-      {/* Separador */}
-      <Divider sx={{ my: 4, borderColor: 'rgba(255,255,255,0.1)' }} />
-
-      {/* Copyright e infos legais */}
-      <Container maxWidth="lg">
-        <Grid container spacing={2} alignItems="center">
-          <Grid item xs={12} md={6}>
-            <Typography variant="body2" sx={{ opacity: 0.7, textAlign: { xs: 'center', md: 'left' } }}>
-              &copy; {new Date().getFullYear()} {companyInfo?.name || 'Aluguel de Equipamentos'}. Todos os direitos reservados.
-            </Typography>
-            <Typography variant="body2" sx={{ opacity: 0.7, textAlign: { xs: 'center', md: 'left' }, mt: 1 }}>
-              Desenvolvido por Open Dreams
+        
+        <Divider sx={{ my: 4, borderColor: 'rgba(255,255,255,0.1)' }} />
+        
+        {/* Copyright e Links Legais */}
+        <Grid container spacing={2} alignItems="center" justifyContent="space-between">
+          <Grid item xs={12} sm={6}>
+            <Typography variant="body2" color="text.secondary">
+              © {new Date().getFullYear()} Panda Locações. Todos os direitos reservados.
             </Typography>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <Box 
-              sx={{ 
-                display: 'flex', 
-                gap: 2, 
-                justifyContent: { xs: 'center', md: 'flex-end' } 
-              }}
-            >
-              <Typography 
-                variant="body2" 
-                component={Link} 
-                to="/termos-de-uso"
-                sx={{ 
-                  opacity: 0.7, 
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  '&:hover': { 
-                    opacity: 1,
-                    textDecoration: 'underline' 
-                  }
-                }}
-              >
-                Termos de Uso
-              </Typography>
-              <Typography 
-                variant="body2" 
-                component={Link} 
-                to="/politica-de-privacidade"
-                sx={{ 
-                  opacity: 0.7, 
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  '&:hover': { 
-                    opacity: 1,
-                    textDecoration: 'underline' 
-                  }
-                }}
-              >
-                Política de Privacidade
-              </Typography>
-              <Typography 
-                variant="body2" 
-                component={Link} 
-                to="/mapa-do-site"
-                sx={{ 
-                  opacity: 0.7, 
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  '&:hover': { 
-                    opacity: 1,
-                    textDecoration: 'underline' 
-                  }
-                }}
-              >
-                Mapa do Site
-              </Typography>
-            </Box>
+          
+          <Grid item xs={12} sm={6}>
+            <Stack direction="row" spacing={2} justifyContent={{ xs: 'flex-start', sm: 'flex-end' }}>
+              <Link to="/politica-de-privacidade" style={{ textDecoration: 'none' }}>
+                <Typography variant="body2" color="text.secondary">
+                  Política de Privacidade
+                </Typography>
+              </Link>
+              
+              <Link to="/termos-de-uso" style={{ textDecoration: 'none' }}>
+                <Typography variant="body2" color="text.secondary">
+                  Termos de Uso
+                </Typography>
+              </Link>
+            </Stack>
           </Grid>
         </Grid>
       </Container>
-
-      {/* Snackbar para newsletter */}
-      <Snackbar
-        open={subscribeSuccess}
-        autoHideDuration={5000}
+      
+      {/* Alerta de sucesso na inscrição do newsletter */}
+      <Snackbar 
+        open={subscribeSuccess} 
+        autoHideDuration={5000} 
         onClose={() => setSubscribeSuccess(false)}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       >
-        <Alert 
-          onClose={() => setSubscribeSuccess(false)} 
-          severity="success" 
-          variant="filled"
-        >
-          Obrigado! Você foi inscrito em nossa newsletter.
+        <Alert onClose={() => setSubscribeSuccess(false)} severity="success" sx={{ width: '100%' }}>
+          Inscrição realizada com sucesso!
         </Alert>
       </Snackbar>
     </Box>

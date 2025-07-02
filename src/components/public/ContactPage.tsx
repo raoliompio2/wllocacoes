@@ -18,7 +18,8 @@ import {
   MenuItem,
   CircularProgress,
   useTheme,
-  useMediaQuery
+  useMediaQuery,
+  Stack
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import {
@@ -33,6 +34,8 @@ import {
 import { supabase } from '../../utils/supabaseClient';
 import BusinessHours from '../common/BusinessHours';
 import ContactPageSkeleton from './ContactPageSkeleton';
+import SEOHead from '../SEO/SEOHead';
+import { useTheme as useCustomTheme } from '../../theme/ThemeContext';
 
 interface CompanyInfo {
   name: string;
@@ -69,23 +72,17 @@ const subjectOptions = [
 
 const ContactPage: React.FC = () => {
   const theme = useTheme();
+  const { themePreferences } = useCustomTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   
   // Dados da empresa
   const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
-    name: 'NOME DA EMPRESA',
-    address: 'Endereço da Empresa, Número - Bairro\nCidade - UF, 00000-000',
-    phone: '(00) 0000-0000',
-    whatsapp: '(00) 0000-0000',
-    email: 'contato@seudominio.com.br'
+    name: 'Panda Locações',
+    address: 'Rua Mário Soares de Campos, Jardim Cidade Universitária I, Limeira – SP, CEP: 13484-656',
+    phone: '(19) 3703-0363',
+    whatsapp: '(19) 3703-0363',
+    email: 'contato@pandalocacoes.com.br'
   });
-
-  // Segunda unidade
-  const secondBranch = {
-    address: 'Endereço da Segunda Unidade, Número - Bairro\nCidade – UF, 00000-000',
-    phone: '(00) 0000-0000',
-    whatsapp: '(00) 0000-0000'
-  };
   
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -248,7 +245,7 @@ const ContactPage: React.FC = () => {
       });
     } catch (error) {
       console.error('Erro ao enviar formulário:', error);
-      setError('Ocorreu um erro ao enviar sua mensagem. Tente novamente ou entre em contato por telefone.');
+      setError('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.');
     } finally {
       setSubmitting(false);
     }
@@ -256,373 +253,579 @@ const ContactPage: React.FC = () => {
 
   const handleCloseSnackbar = () => {
     setSuccess(false);
+    setError('');
   };
 
-  // Formatação de telefone para exibição
+  // Formata número de telefone para link
   const formatPhoneLink = (phone: string) => {
-    return phone.replace(/\D/g, '');
+    return `tel:${phone.replace(/\D/g, '')}`;
+  };
+  
+  // Formata número de WhatsApp para link
+  const formatWhatsAppLink = (phone: string) => {
+    return `https://wa.me/55${phone.replace(/\D/g, '')}`;
   };
 
-  // Se estiver carregando, mostra o skeleton
-  if (loading && !submitting) {
+  if (loading) {
     return <ContactPageSkeleton />;
   }
 
-  return (
-    <Container maxWidth="lg" sx={{ py: 4, mt: 1 }}>
-      {/* Header */}
-      <Box sx={{ mb: 4 }}>
-        <Typography variant="h4" component="h1" fontWeight="bold" gutterBottom>
-          Entre em Contato
-        </Typography>
-        <Divider sx={{ width: 100, borderColor: 'primary.main', borderWidth: 2, mb: 2 }} />
-        <Typography variant="body1" color="text.secondary">
-          Estamos prontos para atender suas necessidades
-        </Typography>
-      </Box>
+  // Usar diretamente as cores do tema para evitar problemas com a tipagem do ThemePreferences
+  const primaryColor = theme.palette.primary.main;
+  const secondaryColor = theme.palette.secondary.main;
 
-      <Grid container spacing={4}>
-        {/* Informações de Contato */}
-        <Grid item xs={12} md={5} lg={4}>
-          <Paper 
-            elevation={3} 
-            sx={{ 
-              p: 3, 
-              height: '100%',
-              borderRadius: 2,
-              bgcolor: 'secondary.main',
-              color: 'white'
-            }}
-          >
-            <Typography variant="h6" fontWeight="bold" gutterBottom>
-              Informações de Contato
+  // Schema para a página de contato
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Entre em Contato - Panda Locações",
+    "description": "Entre em contato com a Panda Locações para aluguel de equipamentos em Limeira, Americana, Piracicaba e Campinas. Atendemos toda a região com equipamentos de qualidade para construção civil e industrial.",
+    "url": "https://pandalocacoes.com.br/contato",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "Panda Locações",
+      "description": "Aluguel de equipamentos para construção civil e industrial em Limeira e região.",
+      "telephone": "(19) 3703-0363",
+      "email": "contato@pandalocacoes.com.br",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "07:00",
+          "closes": "17:00"
+        }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Mário Soares de Campos",
+        "addressLocality": "Limeira",
+        "addressRegion": "SP",
+        "postalCode": "13484-656",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -22.5936,
+        "longitude": -47.4141
+      }
+    }
+  };
+
+  return (
+    <>
+      <SEOHead 
+        title="Entre em Contato | Panda Locações | Aluguel de Equipamentos em Limeira e Região"
+        description="Entre em contato com a Panda Locações para aluguel de equipamentos em Limeira, Americana, Piracicaba e Campinas. Atendemos toda a região com equipamentos de qualidade para sua obra ou evento."
+        canonicalUrl="/contato"
+        schema={contactPageSchema}
+        keywords="contato Panda Locações, aluguel equipamentos Limeira, locação equipamentos construção, andaimes Limeira, betoneira aluguel Limeira, compactadores Americana, martelete Piracicaba, locadora equipamentos SP"
+      />
+      
+      <Box 
+        sx={{ 
+          py: { xs: 4, md: 8 },
+          backgroundColor: theme.palette.background.default
+        }}
+        itemScope
+        itemType="http://schema.org/LocalBusiness"
+      >
+        {/* Metadados ocultos para SEO */}
+        <meta itemProp="name" content="Panda Locações - Aluguel de Equipamentos em Limeira e Região" />
+        <meta itemProp="description" content="Entre em contato com a Panda Locações para aluguel de equipamentos em Limeira, Americana, Piracicaba, Campinas e toda região." />
+        <meta itemProp="telephone" content="(19) 3703-0363" />
+        <meta itemProp="email" content="contato@pandalocacoes.com.br" />
+        <div itemProp="address" itemScope itemType="http://schema.org/PostalAddress">
+          <meta itemProp="streetAddress" content="Rua Mário Soares de Campos" />
+          <meta itemProp="addressLocality" content="Limeira" />
+          <meta itemProp="addressRegion" content="SP" />
+          <meta itemProp="postalCode" content="13484-656" />
+          <meta itemProp="addressCountry" content="BR" />
+        </div>
+        <meta itemProp="openingHours" content="Mo-Fr 07:00-17:00" />
+      
+        <Container maxWidth="xl">
+          {/* Cabeçalho da página */}
+          <Box sx={{ mb: 6, textAlign: 'center' }}>
+            <Typography 
+              variant="h1" 
+              component="h1"
+              sx={{ 
+                fontSize: { xs: '2rem', md: '3rem' },
+                fontWeight: 'bold',
+                mb: 2,
+                color: primaryColor
+              }}
+            >
+              Entre em Contato
             </Typography>
             
-            <Divider sx={{ borderColor: 'rgba(255,255,255,0.2)', my: 2 }} />
+            <Typography variant="subtitle1" sx={{ maxWidth: '800px', mx: 'auto', color: 'text.secondary' }}>
+              Estamos à disposição para ajudar com aluguel de equipamentos em Limeira e região. 
+              Envie uma mensagem, ligue ou visite nossa loja.
+            </Typography>
             
-            {loading ? (
-              <Box sx={{ display: 'flex', justifyContent: 'center', my: 4 }}>
-                <CircularProgress color="inherit" size={30} />
-              </Box>
-            ) : (
-              <Box sx={{ mt: 4 }}>
-                <Typography variant="h5" fontWeight="bold" gutterBottom>
-                  {companyInfo.name}
+            {/* Navegação breadcrumb */}
+            <Box 
+              sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                gap: 1,
+                mt: 3
+              }}
+            >
+              <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: primaryColor }}>
+                <HomeIcon sx={{ fontSize: 16, mr: 0.5 }} />
+                <Typography variant="body2">Home</Typography>
+              </Link>
+              <Typography variant="body2" sx={{ color: 'text.secondary' }}>/</Typography>
+              <Typography variant="body2" sx={{ color: 'text.primary' }}>Contato</Typography>
+            </Box>
+          </Box>
+          
+          <Grid container spacing={4}>
+            {/* Coluna de informações */}
+            <Grid item xs={12} md={5} lg={4} order={{ xs: 2, md: 1 }}>
+              <Paper 
+                elevation={3} 
+                sx={{ 
+                  p: 3,
+                  height: '100%',
+                  borderRadius: themePreferences?.borderRadius || 1,
+                  backgroundColor: theme.palette.background.paper,
+                  borderTop: `4px solid ${primaryColor}`
+                }}
+              >
+                <Typography variant="h5" fontWeight="bold" gutterBottom sx={{ color: primaryColor }}>
+                  Informações de Contato
                 </Typography>
                 
-                <Box sx={{ mt: 4 }}>
-                  <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-                    Unidade Cidade 1
-                  </Typography>
-                  <Box sx={{ display: 'flex', mb: 3 }}>
-                    <LocationOn sx={{ fontSize: 24, mr: 2 }} />
-                    <Typography variant="body1">
-                      {companyInfo.address}
-                    </Typography>
+                <Divider sx={{ mb: 3, borderColor: `${primaryColor}30` }} />
+                
+                <Stack spacing={3}>
+                  {/* Endereço */}
+                  <Box sx={{ display: 'flex' }}>
+                    <LocationOn sx={{ color: primaryColor, fontSize: 28, mr: 2, mt: 0.5 }} />
+                    <Box>
+                      <Typography variant="subtitle1" fontWeight="bold" sx={{ color: primaryColor }}>
+                        Endereço
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ whiteSpace: 'pre-line' }}>
+                        Rua Mário Soares de Campos,<br />
+                        Jardim Cidade Universitária I,<br />
+                        Limeira – SP<br />
+                        CEP: 13484-656
+                      </Typography>
+                      
+                      <Button 
+                        variant="outlined" 
+                        size="small" 
+                        color="primary" 
+                        sx={{ mt: 1 }}
+                        href="https://maps.google.com/?q=Rua Mário Soares de Campos, Limeira, SP"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Ver no mapa
+                      </Button>
+                    </Box>
                   </Box>
                   
-                  <Box sx={{ display: 'flex', mb: 3 }}>
-                    <Phone sx={{ fontSize: 24, mr: 2 }} />
+                  {/* Telefone */}
+                  <Box sx={{ display: 'flex' }}>
+                    <Phone sx={{ color: primaryColor, fontSize: 28, mr: 2, mt: 0.5 }} />
                     <Box>
-                      <Typography variant="body1" gutterBottom>
+                      <Typography variant="subtitle1" fontWeight="bold" sx={{ color: primaryColor }}>
+                        Telefone
+                      </Typography>
+                      <Typography 
+                        variant="body2" 
+                        component="a"
+                        href={formatPhoneLink(companyInfo.phone)}
+                        sx={{ textDecoration: 'none', color: 'text.secondary', '&:hover': { color: primaryColor } }}
+                      >
                         {companyInfo.phone}
                       </Typography>
-                      <Button 
-                        variant="outlined" 
-                        size="small"
-                        sx={{ 
-                          color: 'white', 
-                          borderColor: 'white',
-                          '&:hover': {
-                            borderColor: 'white',
-                            bgcolor: 'rgba(255,255,255,0.1)'
-                          }
-                        }}
-                        href={`tel:${formatPhoneLink(companyInfo.phone || '')}`}
-                      >
-                        Ligar agora
-                      </Button>
                     </Box>
                   </Box>
                   
-                  <Box sx={{ display: 'flex', mb: 3 }}>
-                    <WhatsApp sx={{ fontSize: 24, mr: 2 }} />
-                    <Box>
-                      <Typography variant="body1" gutterBottom>
-                        {companyInfo.whatsapp}
+                  {/* WhatsApp */}
+                  <Box sx={{ display: 'flex' }}>
+                    <WhatsApp sx={{ color: primaryColor, fontSize: 28, mr: 2, mt: 0.5 }} />
+                    <Box sx={{ width: '100%' }}>
+                      <Typography variant="subtitle1" fontWeight="bold" sx={{ color: primaryColor }}>
+                        WhatsApp
                       </Typography>
-                      <Button 
-                        variant="outlined" 
-                        size="small"
-                        sx={{ 
-                          color: 'white', 
-                          borderColor: 'white',
-                          '&:hover': {
-                            borderColor: 'white',
-                            bgcolor: 'rgba(255,255,255,0.1)'
-                          }
-                        }}
-                        href={`https://api.whatsapp.com/send?phone=55${formatPhoneLink(companyInfo.whatsapp || '')}`}
-                        target="_blank"
-                      >
-                        Enviar mensagem
-                      </Button>
+                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <Typography 
+                          variant="body2" 
+                          component="a"
+                          href={formatWhatsAppLink(companyInfo.whatsapp)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          sx={{ textDecoration: 'none', color: 'text.secondary', '&:hover': { color: primaryColor } }}
+                        >
+                          {companyInfo.whatsapp}
+                        </Typography>
+                        
+                        <Button 
+                          variant="contained" 
+                          size="small"
+                          startIcon={<WhatsApp />}
+                          sx={{ 
+                            bgcolor: '#25D366',
+                            '&:hover': { bgcolor: '#128C7E' },
+                            ml: 2,
+                            borderRadius: 0.5,
+                            textTransform: 'none',
+                            boxShadow: 1
+                          }}
+                          href={formatWhatsAppLink(companyInfo.whatsapp)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Conversar
+                        </Button>
+                      </Box>
                     </Box>
                   </Box>
                   
-                  <Divider sx={{ borderColor: 'rgba(255,255,255,0.2)', my: 4 }} />
-
-                  <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-                    Unidade Cidade 2
-                  </Typography>
-                  <Box sx={{ display: 'flex', mb: 3 }}>
-                    <LocationOn sx={{ fontSize: 24, mr: 2 }} />
-                    <Typography variant="body1">
-                      {secondBranch.address}
-                    </Typography>
-                  </Box>
-                  
-                  <Box sx={{ display: 'flex', mb: 3 }}>
-                    <Phone sx={{ fontSize: 24, mr: 2 }} />
+                  {/* Email */}
+                  <Box sx={{ display: 'flex' }}>
+                    <Email sx={{ color: primaryColor, fontSize: 28, mr: 2, mt: 0.5 }} />
                     <Box>
-                      <Typography variant="body1" gutterBottom>
-                        {secondBranch.phone}
+                      <Typography variant="subtitle1" fontWeight="bold" sx={{ color: primaryColor }}>
+                        E-mail
                       </Typography>
-                      <Button 
-                        variant="outlined" 
-                        size="small"
-                        sx={{ 
-                          color: 'white', 
-                          borderColor: 'white',
-                          '&:hover': {
-                            borderColor: 'white',
-                            bgcolor: 'rgba(255,255,255,0.1)'
-                          }
-                        }}
-                        href={`tel:${formatPhoneLink(secondBranch.phone || '')}`}
+                      <Typography 
+                        variant="body2" 
+                        component="a"
+                        href={`mailto:${companyInfo.email}`}
+                        sx={{ textDecoration: 'none', color: 'text.secondary', '&:hover': { color: primaryColor } }}
                       >
-                        Ligar agora
-                      </Button>
-                    </Box>
-                  </Box>
-                  
-                  <Box sx={{ display: 'flex', mb: 3 }}>
-                    <WhatsApp sx={{ fontSize: 24, mr: 2 }} />
-                    <Box>
-                      <Typography variant="body1" gutterBottom>
-                        {secondBranch.whatsapp}
-                      </Typography>
-                      <Button 
-                        variant="outlined" 
-                        size="small"
-                        sx={{ 
-                          color: 'white', 
-                          borderColor: 'white',
-                          '&:hover': {
-                            borderColor: 'white',
-                            bgcolor: 'rgba(255,255,255,0.1)'
-                          }
-                        }}
-                        href={`https://api.whatsapp.com/send?phone=55${formatPhoneLink(secondBranch.whatsapp || '')}`}
-                        target="_blank"
-                      >
-                        Enviar mensagem
-                      </Button>
-                    </Box>
-                  </Box>
-
-                  <Divider sx={{ borderColor: 'rgba(255,255,255,0.2)', my: 4 }} />
-                  
-                  <Box sx={{ display: 'flex', mb: 3 }}>
-                    <Email sx={{ fontSize: 24, mr: 2 }} />
-                    <Box>
-                      <Typography variant="body1" gutterBottom>
                         {companyInfo.email}
                       </Typography>
-                      <Button 
-                        variant="outlined" 
-                        size="small"
-                        sx={{ 
-                          color: 'white', 
-                          borderColor: 'white',
-                          '&:hover': {
-                            borderColor: 'white',
-                            bgcolor: 'rgba(255,255,255,0.1)'
-                          }
-                        }}
-                        href={`mailto:${companyInfo.email}`}
-                      >
-                        Enviar email
-                      </Button>
                     </Box>
                   </Box>
                   
-                  {/* Componente de horário de atendimento */}
-                  <BusinessHours color="white" iconColor="white" />
-                </Box>
-              </Box>
-            )}
-          </Paper>
-        </Grid>
-
-        {/* Formulário de Contato */}
-        <Grid item xs={12} md={7} lg={8}>
-          <Paper 
-            elevation={3} 
-            sx={{ 
-              p: 3,
-              borderRadius: 2
-            }}
-          >
-            <Typography variant="h6" fontWeight="bold" gutterBottom>
-              Envie sua Mensagem
-            </Typography>
+                  {/* Horário de Funcionamento */}
+                  <Box sx={{ display: 'flex' }}>
+                    <AccessTime sx={{ color: primaryColor, fontSize: 28, mr: 2, mt: 0.5 }} />
+                    <Box>
+                      <Typography variant="subtitle1" fontWeight="bold" sx={{ color: primaryColor }}>
+                        Horário de Atendimento
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Segunda-feira a Sexta-feira
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" fontWeight="medium">
+                        7:00 às 17:00
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Stack>
+              </Paper>
+            </Grid>
             
-            <Typography variant="body2" color="text.secondary" paragraph>
-              Preencha o formulário abaixo e entraremos em contato o mais breve possível.
-            </Typography>
-            
-            <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    name="name"
-                    label="Nome completo"
-                    value={formValues.name}
-                    onChange={handleInputChange}
-                    error={!!formErrors.name}
-                    helperText={formErrors.name}
-                    fullWidth
-                    required
-                    variant="outlined"
-                    margin="normal"
-                  />
-                </Grid>
+            {/* Formulário de contato */}
+            <Grid item xs={12} md={7} lg={8} order={{ xs: 1, md: 2 }}>
+              <Paper 
+                elevation={3} 
+                sx={{ 
+                  p: { xs: 3, md: 4 },
+                  borderRadius: themePreferences?.borderRadius || 1,
+                  backgroundColor: theme.palette.background.paper,
+                  borderTop: `4px solid ${secondaryColor}`
+                }}
+              >
+                <Typography variant="h5" fontWeight="bold" gutterBottom sx={{ color: secondaryColor }}>
+                  Envie uma Mensagem
+                </Typography>
                 
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    name="email"
-                    label="Email"
-                    type="email"
-                    value={formValues.email}
-                    onChange={handleInputChange}
-                    error={!!formErrors.email}
-                    helperText={formErrors.email}
-                    fullWidth
-                    required
-                    variant="outlined"
-                    margin="normal"
-                  />
-                </Grid>
+                <Typography variant="body2" color="text.secondary" paragraph>
+                  Preencha o formulário abaixo para solicitar um orçamento ou tirar suas dúvidas sobre aluguel de equipamentos em Limeira e região.
+                </Typography>
                 
-                <Grid item xs={12}>
-                  <TextField
-                    name="phone"
-                    label="Telefone / WhatsApp"
-                    value={formValues.phone}
-                    onChange={handlePhoneInput}
-                    error={!!formErrors.phone}
-                    helperText={formErrors.phone || "Formato: (xx) xxxxx-xxxx"}
-                    fullWidth
-                    variant="outlined"
-                    margin="normal"
-                  />
-                </Grid>
-                
-                <Grid item xs={12}>
-                  <TextField
-                    name="subject"
-                    label="Assunto"
-                    select
-                    value={formValues.subject}
-                    onChange={handleInputChange}
-                    error={!!formErrors.subject}
-                    helperText={formErrors.subject}
-                    fullWidth
-                    required
-                    variant="outlined"
-                    margin="normal"
-                  >
-                    {subjectOptions.map((option) => (
-                      <MenuItem key={option} value={option}>
-                        {option}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-                
-                <Grid item xs={12}>
-                  <TextField
-                    name="message"
-                    label="Mensagem"
-                    value={formValues.message}
-                    onChange={handleInputChange}
-                    error={!!formErrors.message}
-                    helperText={formErrors.message}
-                    fullWidth
-                    required
-                    variant="outlined"
-                    margin="normal"
-                    multiline
-                    rows={6}
-                  />
-                </Grid>
-                
-                <Grid item xs={12}>
-                  <FormControl component="fieldset" sx={{ mt: 1 }}>
-                    <FormLabel component="legend">Como prefere ser contatado?</FormLabel>
-                    <RadioGroup
-                      row
-                      name="contactPreference"
-                      value={formValues.contactPreference}
-                      onChange={handleInputChange}
-                    >
-                      <FormControlLabel value="email" control={<Radio />} label="Email" />
-                      <FormControlLabel value="phone" control={<Radio />} label="Telefone" />
-                      <FormControlLabel value="whatsapp" control={<Radio />} label="WhatsApp" />
-                    </RadioGroup>
-                  </FormControl>
-                </Grid>
-                
-                {error && (
-                  <Grid item xs={12}>
-                    <Alert severity="error" sx={{ mt: 2 }}>
-                      {error}
+                {success ? (
+                  <Box sx={{ textAlign: 'center', py: 4 }}>
+                    <Alert severity="success" sx={{ mb: 2 }}>
+                      Mensagem enviada com sucesso!
                     </Alert>
-                  </Grid>
+                    <Typography variant="body1" paragraph>
+                      Obrigado por entrar em contato. Retornaremos o mais breve possível.
+                    </Typography>
+                    <Button 
+                      variant="contained" 
+                      color="primary"
+                      onClick={() => setSuccess(false)}
+                    >
+                      Enviar outra mensagem
+                    </Button>
+                  </Box>
+                ) : (
+                  <Box component="form" onSubmit={handleSubmit} noValidate>
+                    <Grid container spacing={2}>
+                      {/* Nome */}
+                      <Grid item xs={12} sm={6}>
+                        <TextField
+                          fullWidth
+                          required
+                          label="Nome"
+                          name="name"
+                          value={formValues.name}
+                          onChange={handleInputChange}
+                          error={!!formErrors.name}
+                          helperText={formErrors.name}
+                          disabled={submitting}
+                          sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                              borderColor: primaryColor,
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                              borderColor: primaryColor,
+                            },
+                            '& .MuiInputLabel-root.Mui-focused': {
+                              color: primaryColor,
+                            }
+                          }}
+                        />
+                      </Grid>
+                      
+                      {/* Email */}
+                      <Grid item xs={12} sm={6}>
+                        <TextField
+                          fullWidth
+                          required
+                          type="email"
+                          label="Email"
+                          name="email"
+                          value={formValues.email}
+                          onChange={handleInputChange}
+                          error={!!formErrors.email}
+                          helperText={formErrors.email}
+                          disabled={submitting}
+                          sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                              borderColor: primaryColor,
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                              borderColor: primaryColor,
+                            },
+                            '& .MuiInputLabel-root.Mui-focused': {
+                              color: primaryColor,
+                            }
+                          }}
+                        />
+                      </Grid>
+                      
+                      {/* Telefone */}
+                      <Grid item xs={12} sm={6}>
+                        <TextField
+                          fullWidth
+                          label="Telefone"
+                          name="phone"
+                          value={formValues.phone}
+                          onChange={handlePhoneInput}
+                          error={!!formErrors.phone}
+                          helperText={formErrors.phone || '(xx) xxxxx-xxxx'}
+                          disabled={submitting}
+                          sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                              borderColor: primaryColor,
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                              borderColor: primaryColor,
+                            },
+                            '& .MuiInputLabel-root.Mui-focused': {
+                              color: primaryColor,
+                            }
+                          }}
+                        />
+                      </Grid>
+                      
+                      {/* Assunto */}
+                      <Grid item xs={12} sm={6}>
+                        <TextField
+                          select
+                          fullWidth
+                          required
+                          label="Assunto"
+                          name="subject"
+                          value={formValues.subject}
+                          onChange={handleInputChange}
+                          error={!!formErrors.subject}
+                          helperText={formErrors.subject}
+                          disabled={submitting}
+                          sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                              borderColor: primaryColor,
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                              borderColor: primaryColor,
+                            },
+                            '& .MuiInputLabel-root.Mui-focused': {
+                              color: primaryColor,
+                            }
+                          }}
+                        >
+                          {subjectOptions.map((option) => (
+                            <MenuItem key={option} value={option}>
+                              {option}
+                            </MenuItem>
+                          ))}
+                        </TextField>
+                      </Grid>
+                      
+                      {/* Mensagem */}
+                      <Grid item xs={12}>
+                        <TextField
+                          fullWidth
+                          required
+                          multiline
+                          rows={4}
+                          label="Mensagem"
+                          name="message"
+                          value={formValues.message}
+                          onChange={handleInputChange}
+                          error={!!formErrors.message}
+                          helperText={formErrors.message || 'Mínimo 20 caracteres'}
+                          disabled={submitting}
+                          sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                              borderColor: primaryColor,
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                              borderColor: primaryColor,
+                            },
+                            '& .MuiInputLabel-root.Mui-focused': {
+                              color: primaryColor,
+                            }
+                          }}
+                        />
+                      </Grid>
+                      
+                      {/* Preferência de contato */}
+                      <Grid item xs={12}>
+                        <FormControl component="fieldset">
+                          <FormLabel component="legend" sx={{ color: primaryColor }}>Como prefere ser contactado?</FormLabel>
+                          <RadioGroup
+                            row
+                            name="contactPreference"
+                            value={formValues.contactPreference}
+                            onChange={handleInputChange}
+                          >
+                            <FormControlLabel
+                              value="email"
+                              control={<Radio sx={{ color: primaryColor, '&.Mui-checked': { color: primaryColor } }} />}
+                              label="Email"
+                              disabled={submitting}
+                            />
+                            <FormControlLabel
+                              value="phone"
+                              control={<Radio sx={{ color: primaryColor, '&.Mui-checked': { color: primaryColor } }} />}
+                              label="Telefone"
+                              disabled={submitting}
+                            />
+                            <FormControlLabel
+                              value="whatsapp"
+                              control={<Radio sx={{ color: primaryColor, '&.Mui-checked': { color: primaryColor } }} />}
+                              label="WhatsApp"
+                              disabled={submitting}
+                            />
+                          </RadioGroup>
+                        </FormControl>
+                      </Grid>
+                      
+                      {/* Botão de envio */}
+                      <Grid item xs={12}>
+                        <Button
+                          type="submit"
+                          variant="contained"
+                          color="primary"
+                          size="large"
+                          fullWidth
+                          disabled={submitting}
+                          startIcon={submitting ? <CircularProgress size={20} color="inherit" /> : <Send />}
+                          sx={{ 
+                            mt: 2,
+                            bgcolor: primaryColor,
+                            '&:hover': { bgcolor: `${primaryColor}CC` },
+                            borderRadius: 0.5,
+                            py: 1.2
+                          }}
+                        >
+                          {submitting ? 'Enviando...' : 'Enviar Mensagem'}
+                        </Button>
+                      </Grid>
+                    </Grid>
+                    
+                    {error && (
+                      <Alert severity="error" sx={{ mt: 2 }}>
+                        {error}
+                      </Alert>
+                    )}
+                  </Box>
                 )}
-                
-                <Grid item xs={12}>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    disabled={submitting}
-                    startIcon={submitting ? <CircularProgress size={20} color="inherit" /> : <Send />}
-                    sx={{ mt: 2, py: 1.5, px: 4 }}
-                  >
-                    {submitting ? 'Enviando...' : 'Enviar Mensagem'}
-                  </Button>
-                </Grid>
-              </Grid>
-            </Box>
-          </Paper>
-        </Grid>
-      </Grid>
-
-      {/* Snackbar de sucesso */}
+              </Paper>
+            </Grid>
+          </Grid>
+          
+          {/* Mapa do Google (opcional) */}
+          <Box sx={{ mt: 6 }}>
+            <Typography variant="h5" fontWeight="bold" gutterBottom align="center" sx={{ color: primaryColor }}>
+              Nossa Localização
+            </Typography>
+            
+            <Paper 
+              elevation={3} 
+              sx={{ 
+                p: 2, 
+                mt: 3,
+                borderRadius: themePreferences?.borderRadius || 1,
+                height: 400,
+                overflow: 'hidden',
+                backgroundColor: theme.palette.background.paper,
+                borderTop: `4px solid ${primaryColor}`
+              }}
+            >
+              <Box
+                component="iframe"
+                sx={{
+                  border: 0,
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: 0
+                }}
+                src="https://maps.google.com/maps?q=Rua Mário Soares de Campos, Limeira, SP&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                title="Localização da Panda Locações"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </Paper>
+          </Box>
+        </Container>
+      </Box>
+      
+      {/* Alertas de sucesso/erro */}
       <Snackbar
-        open={success}
+        open={!!error || success}
         autoHideDuration={6000}
         onClose={handleCloseSnackbar}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
-        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
-          Mensagem enviada com sucesso! Entraremos em contato em breve.
+        <Alert 
+          onClose={handleCloseSnackbar} 
+          severity={error ? "error" : "success"}
+          variant="filled"
+          sx={{ 
+            bgcolor: error ? '#d32f2f' : primaryColor
+          }}
+        >
+          {error || "Mensagem enviada com sucesso!"}
         </Alert>
       </Snackbar>
-    </Container>
+    </>
   );
 };
 

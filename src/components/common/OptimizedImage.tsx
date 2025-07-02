@@ -8,6 +8,7 @@ interface OptimizedImageProps extends BoxProps {
   height?: number | string;
   lazy?: boolean;
   priority?: boolean;
+  objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
 }
 
 /**
@@ -21,6 +22,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   height,
   lazy = true,
   priority = false,
+  objectFit = 'contain',
   sx,
   ...props
 }) => {
@@ -41,7 +43,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
       fetchpriority={priority ? "high" : "auto"}
       sx={{
         display: 'block',
-        objectFit: 'contain',
+        objectFit,
         aspectRatio: width && height ? `${width} / ${height}` : undefined,
         ...sx
       }}

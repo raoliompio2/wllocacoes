@@ -13,6 +13,8 @@ import {
 import { ChevronRight } from '@mui/icons-material';
 import { Helmet } from 'react-helmet-async';
 import { supabase } from '../../utils/supabaseClient';
+import { GoogleReviewsWidget } from '../common';
+import HomePageSchema from '../SEO/HomePageSchema';
 
 // Componentes
 import HeroSection from './HeroSection';
@@ -107,10 +109,32 @@ const HomePage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>NOME DA EMPRESA - Descrição Principal do Negócio</title>
-        <meta name="description" content="Descrição completa da empresa com palavras-chave relevantes para SEO. Inclua aqui os principais serviços e áreas de atuação da empresa." />
-        <link rel="canonical" href="https://seusite.com.br/" />
+        <title>Panda Locações - Aluguel de Equipamentos para Construção em Limeira</title>
+        <meta name="description" content="Aluguel de equipamentos para construção civil e industrial em Limeira, Americana, Piracicaba e região. Compactadores, betoneiras, andaimes, geradores e muito mais." />
+        <meta name="keywords" content="aluguel de equipamentos, locação de máquinas, construção civil, equipamentos para construção, Limeira, Americana, Piracicaba, betoneira, compactador, gerador" />
+        <link rel="canonical" href="https://pandalocacoes.com.br/" />
+        
+        {/* Meta tags para compartilhamento em redes sociais */}
+        <meta property="og:title" content="Panda Locações - Aluguel de Equipamentos para Construção" />
+        <meta property="og:description" content="Aluguel de equipamentos para construção civil e industrial em Limeira, Americana, Piracicaba e região. Os melhores equipamentos com os melhores preços." />
+        <meta property="og:image" content="https://pandalocacoes.com.br/images/Logo Panda.png" />
+        <meta property="og:url" content="https://pandalocacoes.com.br/" />
+        <meta property="og:type" content="website" />
+        
+        {/* Meta tags específicas para Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Panda Locações - Aluguel de Equipamentos para Construção" />
+        <meta name="twitter:description" content="Aluguel de equipamentos para construção civil e industrial em Limeira e região." />
+        <meta name="twitter:image" content="https://pandalocacoes.com.br/images/Logo Panda.png" />
       </Helmet>
+      
+      {/* Adiciona o Schema.org para a página inicial */}
+      <HomePageSchema 
+        companyName="Panda Locações"
+        logo="/images/Logo Panda.png"
+        coverImage="/images/Imagehero.png"
+        description="Locação de equipamentos para construção civil e industrial em Limeira, Americana, Piracicaba e região. Compactadores, betoneiras, andaimes, geradores e muito mais com preços justos."
+      />
       
       <main>
         {/* Seção Hero */}
@@ -119,7 +143,7 @@ const HomePage: React.FC = () => {
         {/* Equipamentos em Destaque */}
         <section aria-labelledby="featured-equipment-title">
           <Box sx={{ bgcolor: 'background.default', py: { xs: 6, md: 8 } }}>
-            <Container maxWidth="lg">
+            <Container maxWidth="xl">
               <Box sx={{ mb: 6, textAlign: 'center' }}>
                 <Typography variant="h4" component="h2" id="featured-equipment-title" gutterBottom fontWeight="bold">
                   Equipamentos em Destaque
@@ -164,6 +188,21 @@ const HomePage: React.FC = () => {
                   Ver Todos os Equipamentos
                 </Button>
               </Box>
+            </Container>
+          </Box>
+        </section>
+        
+        {/* Avaliações do Google - Social Proof */}
+        <section aria-labelledby="customer-reviews-title">
+          <Box sx={{ bgcolor: 'background.paper', py: { xs: 6, md: 8 } }}>
+            <Container maxWidth="xl">
+              <GoogleReviewsWidget 
+                widgetId="3631a20c-7427-485c-994a-79b07d57b855"
+                title="O Que Nossos Clientes Dizem"
+                subtitle="Valorizamos a opinião de nossos clientes e trabalhamos constantemente para oferecer o melhor serviço"
+                minHeight={{ xs: 450, md: 550 }}
+                showHeader={true}
+              />
             </Container>
           </Box>
         </section>

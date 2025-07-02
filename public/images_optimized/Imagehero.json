@@ -1,0 +1,15 @@
+{
+  "original": {
+    "width": 1920,
+    "height": 1080,
+    "format": "png"
+  },
+  "variants": [
+    {
+      "file": "Imagehero.webp",
+      "width": 1600,
+      "height": 900,
+      "format": "webp"
+    }
+  ]
+} 

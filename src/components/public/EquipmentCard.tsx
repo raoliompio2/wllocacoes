@@ -43,11 +43,13 @@ const StyledCardMedia = styled(Box)(({ theme }) => ({
   transformOrigin: 'center',
   position: 'relative',
   overflow: 'hidden',
+  backgroundColor: '#ffffff',
   '& img': {
     width: '100%',
     height: '100%',
-    objectFit: 'cover',
+    objectFit: 'contain',
     transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+    padding: '10px',
   },
   '&:hover img': {
     transform: 'scale(1.05)',
@@ -168,7 +170,7 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({
       {equipment.available !== undefined && (
         <AvailabilityChip 
           label={equipment.available ? "Disponível" : "Indisponível"}
-          color={equipment.available ? "success" : "error"}
+          color={equipment.available ? "secondary" : "error"}
           size="small"
           variant="filled"
           aria-label={`Status: ${equipment.available ? "Disponível para locação" : "Indisponível para locação"}`}
@@ -190,6 +192,7 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({
           alt={`Imagem do equipamento ${equipment.name}`}
           width="100%"
           height={220}
+          objectFit="contain"
           lazy={true}
         />
       </StyledCardMedia>
@@ -227,7 +230,7 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({
           
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2 }}>
             <Tooltip title="Valor diário de locação" arrow placement="top">
-              <Typography variant="subtitle1" fontWeight="bold" color="primary" component="span">
+              <Typography variant="subtitle1" fontWeight="bold" color="secondary" component="span">
                 {formatCurrency(equipment.daily_rate) 
                   ? <>{formatCurrency(equipment.daily_rate)}<span style={{ fontSize: '0.75rem' }}>/dia</span></>
                   : "Sob consulta"}
@@ -237,7 +240,7 @@ const EquipmentCard: React.FC<EquipmentCardProps> = ({
             <Button 
               size="small" 
               variant="contained"
-              color="primary"
+              color="secondary"
               endIcon={<Bolt />}
               onClick={(e) => {
                 e.stopPropagation(); // Evita que o clique do botão também acione o clique do card

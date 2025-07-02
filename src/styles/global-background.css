@@ -1,0 +1,14 @@
+/* Estilos para o fundo do site */
+body {
+  background-image: url('/images/Fundo_Site_panda.png');
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+/* Estilo para cards e boxes para garantir destaque */
+.MuiPaper-root {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+} 

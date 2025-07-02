@@ -31,3 +31,6 @@ export { default as ImageProcessor } from './ImageProcessor';
 // Componentes legados mantidos para compatibilidade
 export { default as CSVReader } from './FileUploader'; // Compatibilidade com código anterior
 export { default as FileReader } from './FileUploader'; // Compatibilidade com código anterior
+
+// Componentes de integração com serviços externos
+export { default as GoogleReviewsWidget } from './GoogleReviewsWidget';

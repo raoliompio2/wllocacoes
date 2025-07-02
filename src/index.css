@@ -4,3 +4,6 @@
 
 /* Importar estilos de skeleton */
 @import './styles/skeleton-global.css';
+
+/* Importar estilos para o fundo global */
+@import './styles/global-background.css';

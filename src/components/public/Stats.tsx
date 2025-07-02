@@ -88,7 +88,7 @@ const Stats: React.FC = () => {
         color: 'white'
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Typography 
           variant="h4" 
           component="h2" 
