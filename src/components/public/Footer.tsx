@@ -17,7 +17,8 @@ import {
   useTheme,
   useMediaQuery,
   Snackbar,
-  Alert
+  Alert,
+  Link as MuiLink
 } from '@mui/material';
 import {
   Facebook,
@@ -104,7 +105,6 @@ const Footer: React.FC = () => {
         if (error) throw error;
         
         if (data && data.length > 0) {
-          console.log('Categorias carregadas no footer:', data);
           setCategories(data as Category[]);
         }
       } catch (error) {
@@ -116,7 +116,7 @@ const Footer: React.FC = () => {
   }, []);
 
   // Função para criar slug a partir do nome da categoria
-  const createSlug = (name: string) => {
+  const createSlug = useMemo(() => (name: string) => {
     return encodeURIComponent(
       name
         .toLowerCase()
@@ -124,7 +124,7 @@ const Footer: React.FC = () => {
         .replace(/--+/g, '-')
         .trim()
     );
-  };
+  }, []);
 
   // Handler para inscrição no newsletter
   const handleSubscribe = (e: React.FormEvent) => {
@@ -161,17 +161,18 @@ const Footer: React.FC = () => {
   ];
 
   // Links de categorias de equipamentos do banco de dados
-  const equipmentCategories = categories.map(category => {
-    // Usar o nome da categoria para criar o slug
-    const categoryName = category.name || '';
-    const categorySlug = createSlug(categoryName);
-    console.log(`[Footer] Criando link para categoria: ID=${category.id}, nome="${categoryName}", slug="${categorySlug}"`);
-    
-    return {
-      text: categoryName,
-      path: `/equipamentos/${categorySlug}`
-    };
-  }).slice(0, 5); // Limitar a 5 categorias para o footer
+  const equipmentCategories = useMemo(() => {
+    return categories.map(category => {
+      // Usar o nome da categoria para criar o slug
+      const categoryName = category.name || '';
+      const categorySlug = createSlug(categoryName);
+      
+      return {
+        text: categoryName,
+        path: `/equipamentos/${categorySlug}`
+      };
+    }).slice(0, 5); // Limitar a 5 categorias para o footer
+  }, [categories, createSlug]);
 
   // Dados estáticos caso não consiga carregar do banco
   const fallbackCompanyData: CompanyInfo = {
@@ -509,11 +510,11 @@ const Footer: React.FC = () => {
               © {new Date().getFullYear()} Panda Locações. Todos os direitos reservados.
             </Typography>
             <Typography variant="body2" color="white" sx={{ mt: 1, opacity: 0.7 }}>
-              <a 
+              <MuiLink 
                 href="https://wa.me/5514982135008" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                style={{ 
+                sx={{ 
                   color: 'inherit', 
                   textDecoration: 'none',
                   '&:hover': {
@@ -523,7 +524,7 @@ const Footer: React.FC = () => {
                 }}
               >
                 Desenvolvido por Open Dreams
-              </a>
+              </MuiLink>
             </Typography>
           </Grid>
           
