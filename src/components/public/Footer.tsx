@@ -509,7 +509,21 @@ const Footer: React.FC = () => {
               © {new Date().getFullYear()} Panda Locações. Todos os direitos reservados.
             </Typography>
             <Typography variant="body2" color="white" sx={{ mt: 1, opacity: 0.7 }}>
-              Desenvolvido por Open Dreams
+              <a 
+                href="https://wa.me/5514982135008" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                style={{ 
+                  color: 'inherit', 
+                  textDecoration: 'none',
+                  '&:hover': {
+                    textDecoration: 'underline',
+                    color: theme.palette.secondary.main
+                  }
+                }}
+              >
+                Desenvolvido por Open Dreams
+              </a>
             </Typography>
           </Grid>
           
