@@ -84,7 +84,7 @@ const Navbar: React.FC = () => {
     } else if (companyLogo && typeof companyLogo === 'object') {
       return (
         <picture>
-          <source srcSet={companyLogo.webp} type="image/webp" />
+          <source srcSet={`${companyLogo.webp} 364w`} type="image/webp" />
           <img 
             src={companyLogo.fallback} 
             alt="Company Logo"

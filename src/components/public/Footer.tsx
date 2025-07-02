@@ -251,7 +251,7 @@ const Footer: React.FC = () => {
                   }}
                 >
                   <picture>
-                    <source srcSet={companyInfo.logo_url.webp} type="image/webp" />
+                    <source srcSet={`${companyInfo.logo_url.webp} 510w`} type="image/webp" />
                     <img
                       src={companyInfo.logo_url.fallback}
                       alt="Panda Locações - Aluguel de Equipamentos em Limeira"

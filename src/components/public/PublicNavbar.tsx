@@ -353,7 +353,7 @@ const PublicNavbar: React.FC = () => {
     } else if (logo && typeof logo === 'object') {
       return (
         <picture>
-          <source srcSet={logo.webp} type="image/webp" />
+          <source srcSet={`${logo.webp} 300w`} type="image/webp" />
           <img 
             src={logo.fallback}
             alt={companyInfo?.name || "Logo da Empresa"}
