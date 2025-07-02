@@ -58,8 +58,8 @@ const HeroSection: React.FC = () => {
         position: 'relative',
         background: 'linear-gradient(135deg, #121212 0%, #1e1e1e 50%, #252525 100%)',
         color: 'white',
-        mt: -2,
-        pt: { xs: 0, sm: 0, md: 0 },
+        mt: { xs: 0, sm: -2 },
+        pt: { xs: 8, sm: 0, md: 0 },
         pb: { xs: 16, sm: 20, md: 6 },
         minHeight: { xs: 'auto', md: '80vh' },
         overflow: 'hidden',
@@ -81,10 +81,10 @@ const HeroSection: React.FC = () => {
         sx={{ 
           position: 'relative', 
           zIndex: 2,
-          pt: 0,
+          pt: { xs: 4, md: 0 },
           width: '100%'
         }}>
-        <Grid container spacing={0} alignItems="center" sx={{ pt: { xs: '8%', md: '4%' } }}>
+        <Grid container spacing={0} alignItems="center" sx={{ pt: { xs: 2, md: '4%' } }}>
           {/* Texto e call-to-action */}
           <Grid item xs={12} md={5} sx={{ px: 0 }}>
             <Box sx={{ 
