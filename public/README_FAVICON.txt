@@ -1,2 +1,2 @@
-Favicon da Panda Locações
+Favicon da Rental Company
 Ícone atualizado em formato PNG e WebP para melhor compatibilidade com navegadores modernos. 

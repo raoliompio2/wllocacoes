@@ -19,12 +19,12 @@ interface CompanyContextType {
 
 // Valores padrão para informações da empresa
 const defaultCompanyInfo: CompanyInfo = {
-  name: 'Panda Locações',
-  logo_url: '/images/Logo Panda.png',
-  phone: '(00) 0000-0000',
-  whatsapp: '0000000000',
-  email: 'contato@pandalocacoes.com.br',
-  address: 'Endereço da Panda Locações, Número - Bairro, Cidade - UF, 00000-000',
+  name: 'Lokajá Locadora de Equipamentos Para Construção',
+  logo_url: '/images/Logo_fundo_claro/Logo_Locaja.png',
+  phone: '(67) 99338-1010',
+  whatsapp: '67993381010',
+  email: 'contato@lokaja.com.br',
+  address: 'Av. da Flora, 374 - Jardim das Flores, Ponta Porã - MS, 79901-128',
 };
 
 const CompanyContext = createContext<CompanyContextType>({
@@ -58,7 +58,7 @@ const CompanyProvider: React.FC<CompanyProviderProps> = ({ children }) => {
         
         setLoading(false);
       } catch (err) {
-        console.log('Erro ao inicializar informações da empresa:', err);
+        console.error('Erro ao inicializar informações da empresa:', err);
         setError('Erro ao carregar informações da empresa');
         setLoading(false);
       }
@@ -74,4 +74,4 @@ const CompanyProvider: React.FC<CompanyProviderProps> = ({ children }) => {
   );
 };
 
-export { CompanyProvider }; 
+export { CompanyProvider };

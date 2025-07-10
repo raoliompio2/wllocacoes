@@ -1,0 +1,1 @@
+Pasta temporária para processamento de imagens.

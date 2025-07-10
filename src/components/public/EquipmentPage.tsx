@@ -528,7 +528,7 @@ const EquipmentPage: React.FC = () => {
     return equipment.map(item => ({
       id: item.id,
       name: item.name,
-      description: item.description || `Aluguel de ${item.name} em Limeira e região`,
+      description: item.description || `Aluguel de ${item.name} para sua obra ou evento`,
       imageUrl: item.image || '',
       url: `/equipamento/${item.id}/${createSlug(item.name)}`,
       category: getCategoryName(item.category)
@@ -539,18 +539,18 @@ const EquipmentPage: React.FC = () => {
   const generatePageTitle = () => {
     if (selectedCategory) {
       const categoryName = getCategoryName(selectedCategory);
-      return `Aluguel de ${categoryName} em Limeira e Região | Panda Locações`;
+      return `Aluguel de ${categoryName} | Rental Company`;
     }
-    return 'Equipamentos para Locação | Aluguel em Limeira, Americana e Região | Panda Locações';
+    return 'Equipamentos para Locação | Aluguel de Equipamentos | Rental Company';
   };
 
   // Função para gerar descrição da página baseado nos filtros
   const generatePageDescription = () => {
     if (selectedCategory) {
       const categoryName = getCategoryName(selectedCategory);
-      return `Locação de ${categoryName} em Limeira, Americana, Piracicaba e região. A Panda Locações oferece os melhores ${categoryName} para sua obra ou evento com preços justos e equipamentos de qualidade.`;
+      return `Locação de ${categoryName} para sua obra ou evento. A Rental Company oferece os melhores ${categoryName} com preços justos e equipamentos de qualidade.`;
     }
-    return 'Aluguel de equipamentos para construção civil e industrial em Limeira e região. Compactadores, betoneiras, andaimes, geradores e muito mais com os melhores preços e qualidade.';
+    return 'Aluguel de equipamentos para construção civil e industrial. Compactadores, betoneiras, andaimes, geradores e muito mais com os melhores preços e qualidade.';
   };
 
   // Gerar schema para a página de categorias
@@ -584,7 +584,8 @@ const EquipmentPage: React.FC = () => {
               'priceCurrency': 'BRL',
               'availability': 'https://schema.org/InStock'
             }
-          })
+          }),
+          'description': item.description || `Aluguel de ${item.name} para sua obra ou evento`
         }
       }))
     };
@@ -609,21 +610,21 @@ const EquipmentPage: React.FC = () => {
       <Helmet>
         <title>{generatePageTitle()}</title>
         <meta name="description" content={generatePageDescription()} />
-        <meta name="keywords" content={`aluguel de equipamentos, locação de máquinas, ${selectedCategory ? getCategoryName(selectedCategory) + ',' : ''} Limeira, Americana, Piracicaba, construção civil, betoneira, compactador, andaimes`} />
-        <link rel="canonical" href={`https://pandalocacoes.com.br/equipamentos${selectedCategory ? `/${createSlug(getCategoryName(selectedCategory))}` : ''}`} />
+        <meta name="keywords" content={`aluguel de equipamentos, locação de máquinas, ${selectedCategory ? getCategoryName(selectedCategory) + ',' : ''} construção civil, betoneira, compactador, andaimes`} />
+        <link rel="canonical" href={`https://rentalcompany.com.br/equipamentos${selectedCategory ? `/${createSlug(getCategoryName(selectedCategory))}` : ''}`} />
         
         {/* Meta tags para redes sociais */}
         <meta property="og:title" content={generatePageTitle()} />
         <meta property="og:description" content={generatePageDescription()} />
-        <meta property="og:url" content={`https://pandalocacoes.com.br/equipamentos${selectedCategory ? `/${createSlug(getCategoryName(selectedCategory))}` : ''}`} />
+        <meta property="og:url" content={`https://rentalcompany.com.br/equipamentos${selectedCategory ? `/${createSlug(getCategoryName(selectedCategory))}` : ''}`} />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://pandalocacoes.com.br/images/Logo Panda.png" />
+        <meta property="og:image" content="https://rentalcompany.com.br/images/logo.png" />
         
         {/* Meta tags Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={generatePageTitle()} />
         <meta name="twitter:description" content={generatePageDescription()} />
-        <meta name="twitter:image" content="https://pandalocacoes.com.br/images/Logo Panda.png" />
+        <meta name="twitter:image" content="https://rentalcompany.com.br/images/logo.png" />
       </Helmet>
       
       {/* Schema.org para listagem de equipamentos */}

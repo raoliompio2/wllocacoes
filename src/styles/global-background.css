@@ -1,6 +1,6 @@
 /* Estilos para o fundo do site */
 body {
-  background-image: url('/images/Fundo_Site_panda.png');
+  background-image: url('/images/fundo_site.png');
   background-repeat: repeat;
   background-attachment: fixed;
   background-size: cover;

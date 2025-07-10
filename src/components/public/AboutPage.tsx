@@ -9,14 +9,9 @@ import {
   Card,
   CardContent,
   Avatar,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   useTheme,
   useMediaQuery,
-  Breadcrumbs,
-  Link as MuiLink,
+  Button,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import {
@@ -25,9 +20,11 @@ import {
   CheckCircle,
   Timeline,
   Groups,
-  Home as HomeIcon,
   Architecture,
-  Build,
+  Handyman,
+  LocalShipping,
+  Support,
+  StarRate,
 } from '@mui/icons-material';
 import { Helmet } from 'react-helmet-async';
 import AboutPageSchema from '../SEO/AboutPageSchema';
@@ -40,54 +37,54 @@ const AboutPage: React.FC = () => {
   const advantages = [
     {
       icon: <CheckCircle color="primary" />,
-      title: 'Confiabilidade',
-      description: 'Comprometimento com a qualidade e pontualidade em todos os serviços'
+      title: 'Compromisso',
+      description: 'Cumprimento de prazos e responsabilidade em cada projeto'
     },
     {
-      icon: <Engineering color="primary" />,
-      title: 'Perspicácia',
-      description: 'Olhar atento e estratégico para encontrar as melhores soluções'
+      icon: <StarRate color="primary" />,
+      title: 'Qualidade',
+      description: 'Equipamentos certificados e em excelente estado de conservação'
     },
     {
-      icon: <Timeline color="primary" />,
-      title: 'Equilíbrio',
-      description: 'Relações harmoniosas com clientes, fornecedores e colaboradores'
+      icon: <Support color="primary" />,
+      title: 'Atendimento',
+      description: 'Suporte técnico especializado durante todo o período de locação'
     },
     {
-      icon: <Construction color="primary" />,
-      title: 'Espírito Analítico',
-      description: 'Análise criteriosa de cada projeto para garantir os melhores resultados'
+      icon: <LocalShipping color="primary" />,
+      title: 'Logística',
+      description: 'Entrega e retirada em toda região de Ponta Porã e cidades vizinhas'
     }
   ];
 
   return (
     <>
       <Helmet>
-        <title>Sobre a Panda Locações | Locação de Equipamentos em Limeira</title>
-        <meta name="description" content="Conheça a Panda Locações, empresa especializada em locação de equipamentos para construção civil em Limeira e região. Atendemos desde pequenas obras até grandes construções com eficiência e qualidade." />
-        <meta name="keywords" content="sobre panda locações, história panda locações, empresa de locação de equipamentos, locadora de equipamentos Limeira, quem somos panda locações" />
-        <link rel="canonical" href="https://pandalocacoes.com.br/empresa" />
+        <title>Sobre a Lokajá | Locação de Equipamentos Para Construção em Ponta Porã</title>
+        <meta name="description" content="Conheça a Lokajá, especializada em locação de equipamentos para construção civil e industrial em Ponta Porã e região. Atendemos desde pequenas obras até grandes construções com eficiência e qualidade." />
+        <meta name="keywords" content="sobre lokajá, história lokajá, empresa de locação de equipamentos, locadora de equipamentos Ponta Porã, quem somos lokajá, aluguel de equipamentos MS, locação de betoneiras, andaimes para aluguel Mato Grosso do Sul" />
+        <link rel="canonical" href="https://lokaja.com.br/empresa" />
         
         {/* Meta tags para redes sociais */}
-        <meta property="og:title" content="Sobre a Panda Locações | Empresa de Aluguel de Equipamentos" />
-        <meta property="og:description" content="Conheça a história da Panda Locações, especializada em aluguel de equipamentos para construção civil e industrial em Limeira e região." />
-        <meta property="og:url" content="https://pandalocacoes.com.br/empresa" />
+        <meta property="og:title" content="Sobre a Lokajá | Locação de Equipamentos Para Construção em Ponta Porã" />
+        <meta property="og:description" content="Conheça a história da Lokajá, especializada em aluguel de equipamentos para construção civil e industrial em Ponta Porã e região." />
+        <meta property="og:url" content="https://lokaja.com.br/empresa" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://pandalocacoes.com.br/images/Logo Panda.png" />
+        <meta property="og:image" content="https://lokaja.com.br/images/Logo_fundo_claro/Logo_Locaja.png" />
         
         {/* Meta tags Twitter */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Sobre a Panda Locações | Empresa de Aluguel de Equipamentos" />
-        <meta name="twitter:description" content="Conheça a história da Panda Locações, especializada em aluguel de equipamentos para construção em Limeira e região." />
-        <meta name="twitter:image" content="https://pandalocacoes.com.br/images/Logo Panda.png" />
+        <meta name="twitter:title" content="Sobre a Lokajá | Locação de Equipamentos Para Construção em Ponta Porã" />
+        <meta name="twitter:description" content="Conheça a história da Lokajá, especializada em aluguel de equipamentos para construção civil e industrial em Ponta Porã e região." />
+        <meta name="twitter:image" content="https://lokaja.com.br/images/Logo_fundo_claro/Logo_Locaja.png" />
       </Helmet>
 
       {/* Adiciona Schema.org para About Page */}
       <AboutPageSchema 
-        companyName="Panda Locações"
-        foundingDate="2015-01-01" 
-        description="Especializada em aluguel de equipamentos para construção civil e industrial em Limeira e região, a Panda Locações atende com excelência empresas e pessoas físicas, oferecendo os melhores equipamentos com preços justos."
-        imageUrl="/images/Logo Panda.png"
+        companyName="Lokajá"
+        foundingDate="2020-01-01" 
+        description="Especializada em aluguel de equipamentos para construção civil e industrial, a Lokajá atende com excelência empresas e pessoas físicas em Ponta Porã e região, oferecendo os melhores equipamentos com preços justos."
+        imageUrl="/images/Logo_fundo_claro/Logo_Locaja.png"
       />
       
       <main>
@@ -103,10 +100,10 @@ const AboutPage: React.FC = () => {
         >
           <Container maxWidth="xl">
             <Typography variant="h3" component="h1" fontWeight="bold" gutterBottom>
-              Sobre a Panda Locações
+              Sobre a Lokajá
             </Typography>
             <Typography variant="h6" sx={{ maxWidth: 800 }}>
-              Especialistas em locação de equipamentos para construção civil em Limeira e região
+              Especialistas em locação de equipamentos para construção civil em Ponta Porã e região
             </Typography>
           </Container>
         </Box>
@@ -114,64 +111,64 @@ const AboutPage: React.FC = () => {
         <Container maxWidth="xl" sx={{ py: 4, mt: 1 }}>
           {/* Seção Principal - Sobre a Empresa */}
           <Box sx={{ mb: 8 }} id="sobre-empresa">
-                  <Typography 
-                    variant="h5" 
-                    fontWeight="bold" 
-                    gutterBottom 
-                    textAlign={isMobile ? 'center' : 'left'}
-                  >
+            <Typography 
+              variant="h5" 
+              fontWeight="bold" 
+              gutterBottom 
+              textAlign={isMobile ? 'center' : 'left'}
+            >
               A Empresa
-                  </Typography>
-                  <Divider 
-                    sx={{ 
-                      width: 80, 
-                      borderColor: 'primary.main', 
-                      borderWidth: 2, 
-                      mb: 4,
-                      mx: isMobile ? 'auto' : 0
-                    }} 
-                  />
-                  
-                  <Grid container spacing={4} alignItems="center">
+            </Typography>
+            <Divider 
+              sx={{ 
+                width: 80, 
+                borderColor: 'primary.main', 
+                borderWidth: 2, 
+                mb: 4,
+                mx: isMobile ? 'auto' : 0
+              }} 
+            />
+            
+            <Grid container spacing={4} alignItems="center">
               <Grid item xs={12} md={6}>
-                      <Box>
+                <Box>
                   <Typography variant="body1" paragraph>
-                    A PANDA LOCAÇÕES é uma empresa voltada para o ramo da construção civil, desde pequenas obras e consertos até grandes obras!
+                    A Lokajá é uma empresa sul-mato-grossense especializada no setor de locação de equipamentos para construção civil, atendendo Ponta Porã e toda a região fronteiriça com o Paraguai. Nosso foco é proporcionar soluções completas que tornam os projetos de nossos clientes mais eficientes e econômicos.
                   </Typography>
                   <Typography variant="body1" paragraph>
-                    <strong>Você Sabia?</strong> Nosso nome fantasia é inspirado em um animal que sempre em busca da paz, não é capaz sequer de se imaginar vivendo ao lado de pessoas que se relacionam na base de tapas e berros, independente de quem seja. É sinônimo de.. CONFIABILIDADE, PERSPICÁCIA, EQUILÍBRIO E ESPÍRITO ANALÍTICO.
+                    Com um estoque variado de equipamentos de alta qualidade e manutenção rigorosa, a Lokajá se destaca pelo atendimento personalizado, entrega pontual e assistência técnica durante todo o período de locação, garantindo que sua obra seja concluída dentro do prazo e com a qualidade esperada.
                   </Typography>
-                      </Box>
-                    </Grid>
-                    
-                      <Grid item xs={12} md={6}>
-                        <Paper 
-                          elevation={2} 
-                          sx={{ 
-                            overflow: 'hidden', 
-                            borderRadius: 2,
-                            height: { xs: 240, sm: 300, md: 380 }
-                          }}
-                        >
-                          <Box 
-                            component="img"
-                    src="/images/Empresa/2024-08-15 (1).webp"
-                    alt="Panda Locações - Equipamentos para construção civil"
-                            sx={{
-                              width: '100%',
-                              height: '100%',
-                              objectFit: 'cover'
-                            }}
-                            onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-                      e.currentTarget.src = '/images/Logo Panda.png';
-                            }}
-                          />
-                        </Paper>
-                      </Grid>
-                  </Grid>
                 </Box>
+              </Grid>
+              
+              <Grid item xs={12} md={6}>
+                <Paper 
+                  elevation={2} 
+                  sx={{ 
+                    overflow: 'hidden', 
+                    borderRadius: 2,
+                    height: { xs: 240, sm: 300, md: 380 }
+                  }}
+                >
+                  <Box 
+                    component="img"
+                    src="/images/Empresa/2023-11-21.webp"
+                    alt="Lokajá - Equipamentos para construção civil em Ponta Porã"
+                    sx={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover'
+                    }}
+                    onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                      e.currentTarget.src = '/images/logo.png';
+                    }}
+                  />
+                </Paper>
+              </Grid>
+            </Grid>
+          </Box>
 
-          {/* Seção de Missão, Visão e Valores */}
+          {/* Seção de Nossa Essência */}
           <Paper elevation={0} sx={{ p: 4, mb: 8, borderRadius: 2, bgcolor: 'background.paper' }}>
             <Box sx={{ mb: 4, textAlign: 'center' }}>
               <Typography variant="h5" fontWeight="bold" gutterBottom>
@@ -201,7 +198,7 @@ const AboutPage: React.FC = () => {
                       Missão
                     </Typography>
                     <Typography variant="body1">
-                      A panda locações tem como missão realizar os sonhos de seus clientes! Sejam sua primeira moradia, sua melhor moradia, seja a construção de sua empresa ou para seus investimentos!
+                      Fornecer soluções de qualidade em equipamentos para construção civil, contribuindo para o sucesso dos projetos de nossos clientes com eficiência, segurança e preço justo.
                     </Typography>
                   </CardContent>
                 </Card>
@@ -227,7 +224,7 @@ const AboutPage: React.FC = () => {
                       Visão
                     </Typography>
                     <Typography variant="body1">
-                      A panda locações tem como visão ser a melhor empresa de locações de Limeira, sendo referencia em seu ramo!
+                      Ser reconhecida como a melhor empresa de locação de equipamentos para construção do estado de Mato Grosso do Sul, referência em qualidade de serviços e satisfação dos clientes.
                     </Typography>
                   </CardContent>
                 </Card>
@@ -253,7 +250,7 @@ const AboutPage: React.FC = () => {
                       Valores
                     </Typography>
                     <Typography variant="body1">
-                      A Panda locações tem como seu maior valor o atendimento ao cliente, com rapidez, eficácia e com preços justos! Assim com seus fornecedores e parceiros ter um relacionamento estreito e transparente!
+                      Integridade, excelência, comprometimento, inovação e foco no cliente são os pilares que sustentam todas as nossas ações e relacionamentos com clientes, colaboradores e fornecedores.
                     </Typography>
                   </CardContent>
                 </Card>
@@ -293,15 +290,15 @@ const AboutPage: React.FC = () => {
                 >
                   <Box 
                     component="img"
-                    src="/images/Empresa/2024-08-15 (2).webp"
-                    alt="Equipe Panda Locações"
+                    src="/images/Empresa/2023-11-21 (1).webp"
+                    alt="Equipe Lokajá"
                     sx={{
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover'
                     }}
                     onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-                      e.currentTarget.src = '/images/Logo Panda.png';
+                      e.currentTarget.src = '/images/logo.png';
                     }}
                   />
                 </Paper>
@@ -332,7 +329,7 @@ const AboutPage: React.FC = () => {
                 
                 <Box sx={{ mt: 4 }}>
                   <Typography variant="body1" paragraph>
-                    Nossa equipe é altamente qualificada e comprometida com a excelência no atendimento. Trabalhamos diariamente para oferecer as melhores soluções em locação de equipamentos para construção civil, com preços competitivos e um serviço de alta qualidade.
+                    Nossa equipe é altamente qualificada e treinada para oferecer as melhores soluções em equipamentos para sua obra. Trabalhamos com as melhores marcas do mercado e realizamos manutenção preventiva constante, garantindo segurança e eficiência para todos os nossos clientes em Ponta Porã, Dourados, Maracaju e toda região sul do Mato Grosso do Sul.
                   </Typography>
                 </Box>
               </Grid>
@@ -371,8 +368,8 @@ const AboutPage: React.FC = () => {
                 >
                   <Box 
                     component="img"
-                    src="/images/Empresa/images (9).jpeg"
-                    alt="Equipamentos Panda Locações"
+                    src="/images/Empresa/unnamed.webp"
+                    alt="Equipamentos Lokajá em Ponta Porã"
                     sx={{
                       width: '100%',
                       height: '100%',
@@ -392,8 +389,8 @@ const AboutPage: React.FC = () => {
                 >
                   <Box 
                     component="img"
-                    src="/images/Empresa/images (10).jpeg"
-                    alt="Serviços Panda Locações"
+                    src="/images/Empresa/2023-11-21 (1).webp"
+                    alt="Serviços Lokajá em Mato Grosso do Sul"
                     sx={{
                       width: '100%',
                       height: '100%',
@@ -417,29 +414,24 @@ const AboutPage: React.FC = () => {
             }}
           >
             <Typography variant="h5" fontWeight="bold" gutterBottom>
-              Pronto para realizar seu projeto?
+              Pronto para iniciar seu projeto?
             </Typography>
             <Typography variant="body1" paragraph sx={{ maxWidth: 800, mx: 'auto', mb: 4 }}>
-              A Panda Locações está pronta para fornecer todos os equipamentos necessários para sua obra. Entre em contato conosco e solicite um orçamento sem compromisso!
+              A Lokajá está à disposição para fornecer todos os equipamentos necessários para sua obra em Ponta Porã e região. Entre em contato conosco e solicite um orçamento personalizado!
             </Typography>
             <Link to="/contato" style={{ textDecoration: 'none' }}>
-              <MuiLink
-                component="button"
+              <Button
                 variant="contained"
+                color="secondary"
                 sx={{
-                  bgcolor: 'secondary.main',
-                  color: 'white',
                   fontWeight: 'bold',
                   px: 4,
                   py: 1.5,
                   borderRadius: 2,
-                  '&:hover': {
-                    bgcolor: 'secondary.dark'
-                  }
                 }}
               >
                 Entre em Contato
-              </MuiLink>
+              </Button>
             </Link>
           </Paper>
         </Container>

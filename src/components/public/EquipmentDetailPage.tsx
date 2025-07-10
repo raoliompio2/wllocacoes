@@ -38,7 +38,7 @@ import {
   Fab,
   AlertTitle
 } from '@mui/material';
-import { GoogleReviewsWidget } from '../common';
+// import { GoogleReviewsWidget } from '../common';
 import {
   Star,
   CalendarMonth,
@@ -72,8 +72,8 @@ import { sendBudgetRequestEmail } from '../../utils/emailService';
 import AccessorySkeleton from '../Accessories/AccessorySkeleton';
 import { Helmet } from 'react-helmet-async';
 
-// Número fixo do WhatsApp para redirecionamento
-const WHATSAPP_NUMBER = '551937030363';
+// Número do WhatsApp da Lokajá para redirecionamento
+const WHATSAPP_NUMBER = '5567993381010';
 
 // Interfaces
 interface Equipment {
@@ -548,7 +548,7 @@ const EquipmentDetailPage: React.FC = () => {
     // Primeiro, abrir o WhatsApp imediatamente para melhorar a experiência do usuário
     const message = `Olá, gostaria de solicitar um orçamento para o equipamento: ${equipment?.name}`;
     const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/551937030363?text=${encodedMessage}`;
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
     window.open(whatsappUrl, '_blank');
     
     // Em seguida, registrar a solicitação em segundo plano
@@ -627,7 +627,7 @@ const EquipmentDetailPage: React.FC = () => {
     return (
       <ProductSchema
         name={equipment.name}
-        description={equipment.description || `Aluguel de ${equipment.name} em Limeira e região. Entre em contato com a Panda Locações para melhores condições.`}
+        description={equipment.description || `Aluguel de ${equipment.name}. Entre em contato com a Rental Company para melhores condições.`}
         imageUrl={equipment.image || ''}
         category={category?.name || ''}
         price={equipment.daily_rate ? parseFloat(equipment.daily_rate.replace(/[^\d.,]/g, '').replace(',', '.')) : undefined}
@@ -644,8 +644,23 @@ const EquipmentDetailPage: React.FC = () => {
     return {
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
-      'name': 'NOME DA EMPRESA', 'image': 'https://seusite.com.br/logo.png', 'url': 'https://seusite.com.br',
-      'telephone': '+55-00-0000-0000',        'address': {          '@type': 'PostalAddress',          'streetAddress': 'Endereço da Empresa, Número',          'addressLocality': 'Cidade',          'addressRegion': 'UF',          'postalCode': '00000-000',          'addressCountry': 'BR'        },        'geo': {          '@type': 'GeoCoordinates',          'latitude': -0.0000,          'longitude': -0.0000        },
+      'name': 'Lokajá Locadora de Equipamentos Para Construção',
+      'image': 'https://lokaja.com.br/images/Logo_fundo_claro/Logo_Locaja.png',
+      'url': 'https://lokaja.com.br',
+      'telephone': '+556793381010',
+      'address': {
+        '@type': 'PostalAddress',
+        'streetAddress': 'Av. da Flora, 374 - Jardim das Flores',
+        'addressLocality': 'Ponta Porã',
+        'addressRegion': 'MS',
+        'postalCode': '79901-128',
+        'addressCountry': 'BR'
+      },
+      'geo': {
+        '@type': 'GeoCoordinates',
+        'latitude': -22.5361,
+        'longitude': -55.7225
+      },
       'openingHoursSpecification': [
         {
           '@type': 'OpeningHoursSpecification',
@@ -653,7 +668,21 @@ const EquipmentDetailPage: React.FC = () => {
             'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'
           ],
           'opens': '07:00',
+          'closes': '11:00'
+        },
+        {
+          '@type': 'OpeningHoursSpecification',
+          'dayOfWeek': [
+            'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'
+          ],
+          'opens': '13:00',
           'closes': '17:00'
+        },
+        {
+          '@type': 'OpeningHoursSpecification',
+          'dayOfWeek': 'Saturday',
+          'opens': '07:00',
+          'closes': '11:30'
         }
       ],
       'priceRange': '$$'
@@ -721,23 +750,23 @@ const EquipmentDetailPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>{`${equipment.name} - Aluguel em Limeira e Região | Panda Locações`}</title>
-        <meta name="description" content={`Alugue ${equipment.name} em Limeira, Americana, Piracicaba e região. ${equipment.description?.substring(0, 120)}... Solicite um orçamento sem compromisso.`} />
-        <meta name="keywords" content={`aluguel ${equipment.name}, locação ${equipment.name}, ${equipment.name} para alugar Limeira, ${category?.name}, equipamento construção, Limeira, Americana, Piracicaba`} />
-        <link rel="canonical" href={`https://pandalocacoes.com.br/equipamento/${equipment.id}/${createSlug(equipment.name)}`} />
+        <title>{`${equipment.name} - Aluguel | Rental Company`}</title>
+        <meta name="description" content={`Alugue ${equipment.name}. ${equipment.description?.substring(0, 120)}... Solicite um orçamento sem compromisso.`} />
+        <meta name="keywords" content={`aluguel ${equipment.name}, locação ${equipment.name}, ${equipment.name} para alugar, ${category?.name}, equipamento construção`} />
+        <link rel="canonical" href={`https://rentalcompany.com.br/equipamento/${equipment.id}/${createSlug(equipment.name)}`} />
         
         {/* Meta tags Open Graph para compartilhamento em redes sociais */}
-        <meta property="og:title" content={`${equipment.name} - Aluguel de Equipamentos | Panda Locações`} />
-        <meta property="og:description" content={`Alugue ${equipment.name} em Limeira e região. Solicite um orçamento sem compromisso.`} />
-        <meta property="og:image" content={equipment.image ? `https://pandalocacoes.com.br${equipment.image}` : 'https://pandalocacoes.com.br/images/Logo Panda.png'} />
+        <meta property="og:title" content={`${equipment.name} - Aluguel de Equipamentos | Rental Company`} />
+        <meta property="og:description" content={`Alugue ${equipment.name}. Solicite um orçamento sem compromisso.`} />
+        <meta property="og:image" content={equipment.image ? `https://rentalcompany.com.br${equipment.image}` : 'https://rentalcompany.com.br/images/logo.png'} />
         <meta property="og:type" content="product" />
-        <meta property="og:url" content={`https://pandalocacoes.com.br/equipamento/${equipment.id}/${createSlug(equipment.name)}`} />
+        <meta property="og:url" content={`https://rentalcompany.com.br/equipamento/${equipment.id}/${createSlug(equipment.name)}`} />
         
         {/* Meta tags Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${equipment.name} - Aluguel de Equipamentos | Panda Locações`} />
-        <meta name="twitter:description" content={`Alugue ${equipment.name} em Limeira e região.`} />
-        <meta name="twitter:image" content={equipment.image ? `https://pandalocacoes.com.br${equipment.image}` : 'https://pandalocacoes.com.br/images/Logo Panda.png'} />
+        <meta name="twitter:title" content={`${equipment.name} - Aluguel de Equipamentos | Rental Company`} />
+        <meta name="twitter:description" content={`Alugue ${equipment.name}.`} />
+        <meta name="twitter:image" content={equipment.image ? `https://rentalcompany.com.br${equipment.image}` : 'https://rentalcompany.com.br/images/logo.png'} />
       </Helmet>
 
       {/* Schema.org para produto */}
@@ -1153,7 +1182,8 @@ const EquipmentDetailPage: React.FC = () => {
           </Paper>
         </Box>
 
-        {/* Avaliações do Google - Social Proof */}
+        {/* Comentado temporariamente - Avaliações removidas conforme solicitado */}
+        {/* 
         <GoogleReviewsWidget 
           widgetId="3631a20c-7427-485c-994a-79b07d57b855"
           title="O Que Nossos Clientes Dizem"
@@ -1161,6 +1191,7 @@ const EquipmentDetailPage: React.FC = () => {
           minHeight={{ xs: 400, md: 500 }}
           showHeader={true}
         />
+        */}
 
         {/* Equipamentos relacionados */}
         {relatedEquipment.length > 0 && (

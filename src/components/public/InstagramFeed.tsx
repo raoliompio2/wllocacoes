@@ -113,9 +113,9 @@ const InstagramFeed: React.FC<InstagramFeedProps> = ({
             display: 'flex',
             justifyContent: 'center'
           }}>
-            {/* Widget do Elfsight Instagram Feed - Exatamente como fornecido */}
+            {/* Widget do Elfsight Instagram Feed - ID atualizado */}
             <div 
-              className="elfsight-app-554885df-4999-4e82-b39d-68999e3432dc" 
+              className="elfsight-app-456cd860-6522-42de-81c3-ce3d892ec785" 
               data-elfsight-app-lazy
               style={{ width: '100%', maxWidth: '370px' }}
             ></div>

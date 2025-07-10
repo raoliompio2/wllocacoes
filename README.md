@@ -1,6 +1,18 @@
-# Panda Loc
+# Rental Company
 
-Sistema de locação de equipamentos
+Sistema de locação de equipamentos para construção civil e industrial.
+
+## Documentação
+
+Para configurar este template para uma nova empresa, consulte os seguintes documentos:
+
+- [Guia de Configuração](configuracao_template.md) - Instruções completas para configurar o template
+- [Estrutura de Imagens](estrutura_imagens.md) - Detalhes sobre a estrutura de imagens e como substituí-las
+
+## Scripts Úteis
+
+- `node scripts/prepare_images.js` - Prepara a estrutura de pastas para as imagens da nova empresa
+- `node scripts/optimize-images.js` - Otimiza as imagens para melhor performance web
 
 ## Atualização de Skeletons
 

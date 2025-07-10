@@ -19,11 +19,11 @@ interface EquipmentListSchemaProps {
 
 const EquipmentListSchema: React.FC<EquipmentListSchemaProps> = ({
   equipmentList,
-  title = 'Equipamentos para Locação - Panda Locações',
-  description = 'Locação de equipamentos para construção civil e industrial em Limeira e região. Betoneiras, andaimes, compactadores, geradores e muito mais com preços justos.',
+  title = 'Equipamentos para Locação - Rental Company',
+  description = 'Locação de equipamentos para construção civil e industrial em sua região. Betoneiras, andaimes, compactadores, geradores e muito mais com preços justos.',
   currentCategory
 }) => {
-  const baseUrl = 'https://pandalocacoes.com.br';
+  const baseUrl = 'https://rentalcompany.com.br';
   
   // Schema da página de listagem de equipamentos
   const equipmentListSchema = {
@@ -39,7 +39,7 @@ const EquipmentListSchema: React.FC<EquipmentListSchemaProps> = ({
       'item': {
         '@type': 'Product',
         'name': equipment.name,
-        'description': equipment.description || `Aluguel de ${equipment.name} em Limeira e região`,
+        'description': equipment.description || `Aluguel de ${equipment.name} em sua região`,
         'url': equipment.url.startsWith('http') ? equipment.url : `${baseUrl}${equipment.url}`,
         ...(equipment.imageUrl && { 
           'image': equipment.imageUrl.startsWith('http') 
@@ -52,22 +52,22 @@ const EquipmentListSchema: React.FC<EquipmentListSchemaProps> = ({
           'availability': 'https://schema.org/InStock',
           'priceCurrency': 'BRL',
           'areaServed': [
-            { '@type': 'City', 'name': 'Limeira' },
-            { '@type': 'City', 'name': 'Americana' },
-            { '@type': 'City', 'name': 'Piracicaba' },
-            { '@type': 'City', 'name': 'Campinas' }
+            { '@type': 'City', 'name': 'Cidade Principal' },
+            { '@type': 'City', 'name': 'Cidade Vizinha 1' },
+            { '@type': 'City', 'name': 'Cidade Vizinha 2' },
+            { '@type': 'City', 'name': 'Cidade Vizinha 3' }
           ],
           'seller': {
             '@type': 'LocalBusiness',
-            'name': 'Panda Locações',
-            'telephone': '(19) 3703-0363',
-            'email': 'contato@pandalocacoes.com.br',
+            'name': 'Rental Company',
+            'telephone': '(00) 0000-0000',
+            'email': 'contato@rentalcompany.com.br',
             'address': {
               '@type': 'PostalAddress',
-              'streetAddress': 'Rua Mário Soares de Campos',
-              'addressLocality': 'Limeira',
-              'addressRegion': 'SP',
-              'postalCode': '13484-656',
+              'streetAddress': 'Endereço da Empresa',
+              'addressLocality': 'Cidade',
+              'addressRegion': 'UF',
+              'postalCode': '00000-000',
               'addressCountry': 'BR'
             }
           }
@@ -81,8 +81,8 @@ const EquipmentListSchema: React.FC<EquipmentListSchemaProps> = ({
     const categorySchema = {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      'name': `${currentCategory} - Equipamentos para Locação - Panda Locações`,
-      'description': `Aluguel de ${currentCategory} em Limeira, Americana, Piracicaba e região. A Panda Locações oferece os melhores ${currentCategory} para sua obra ou evento.`,
+      'name': `${currentCategory} - Equipamentos para Locação - Rental Company`,
+      'description': `Aluguel de ${currentCategory} em sua região. A Rental Company oferece os melhores ${currentCategory} para sua obra ou evento.`,
       'url': `${baseUrl}/equipamentos/${currentCategory}`,
       'mainEntity': equipmentListSchema
     };

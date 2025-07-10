@@ -7,3 +7,105 @@
 
 /* Importar estilos para o fundo global */
 @import './styles/global-background.css';
+
+/* Estilos para Swiper */
+.hero-text-swiper {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.hero-image-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+/* Novo estilo para o carrossel em tela cheia */
+.hero-fullscreen-swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-fullscreen-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-fullscreen-swiper .swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-fullscreen-swiper .swiper-pagination {
+  bottom: 10px !important;
+}
+
+.hero-fullscreen-swiper .swiper-button-next,
+.hero-fullscreen-swiper .swiper-button-prev {
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.hero-fullscreen-swiper .swiper-button-next:after,
+.hero-fullscreen-swiper .swiper-button-prev:after {
+  font-size: 18px !important;
+}
+
+.hero-fullscreen-swiper .swiper-button-next:hover,
+.hero-fullscreen-swiper .swiper-button-prev:hover {
+  background: rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 16px !important;
+}
+
+.swiper-pagination-bullet {
+  width: 10px !important;
+  height: 10px !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  opacity: 0.6 !important;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  background: white !important;
+}
+
+/* Efeito de fade para o Swiper */
+.swiper-fade .swiper-slide {
+  pointer-events: none;
+  transition-property: opacity;
+  opacity: 0;
+}
+
+.swiper-fade .swiper-slide-active {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* Ajuste para dispositivos móveis */
+@media (max-width: 600px) {
+  .hero-text-swiper .swiper-button-next,
+  .hero-text-swiper .swiper-button-prev {
+    display: none;
+  }
+  
+  .hero-text-swiper .swiper-pagination {
+    bottom: -10px;
+  }
+  
+  .hero-fullscreen-swiper .swiper-pagination {
+    bottom: 5px !important;
+  }
+  
+  .hero-fullscreen-swiper .swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+  }
+}

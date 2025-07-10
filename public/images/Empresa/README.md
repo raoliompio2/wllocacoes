@@ -1,0 +1,1 @@
+Coloque aqui as fotos da empresa, equipe, instalações, etc.

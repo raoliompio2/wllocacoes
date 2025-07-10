@@ -1,0 +1,1 @@
+Imagens usadas diretamente no código React.

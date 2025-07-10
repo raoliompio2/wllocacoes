@@ -1,0 +1,7 @@
+{
+  "name": "rental-company-scripts",
+  "version": "1.0.0",
+  "description": "Scripts para o template Rental Company",
+  "type": "module",
+  "private": true
+}

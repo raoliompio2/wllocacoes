@@ -3,7 +3,7 @@ import { FileSpreadsheet, ShoppingCart, FileText, Package, MessageSquare, Home, 
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../utils/supabaseClient';
-import LogoPanda from '../../assets/Logo Panda (2).png';
+import { getSidebarLogo } from '../../utils/colorUtils';
 
 interface MenuItemProps {
   icon: React.ReactNode;
@@ -33,6 +33,7 @@ const Sidebar: React.FC = () => {
   const { user } = useAuth();
   const [userRole, setUserRole] = useState<string | null>('client'); // Default to client
   const [isOwner, setIsOwner] = useState(false);
+  const logoUrls = getSidebarLogo();
 
   useEffect(() => {
     const fetchUserRole = async () => {
@@ -75,14 +76,17 @@ const Sidebar: React.FC = () => {
 
   return (
     <div className="flex flex-col space-y-2 py-2">
-      {/* Logo do Panda no topo do menu lateral */}
+      {/* Logo no topo do menu lateral */}
       <div className="flex justify-center mb-4 px-2">
-        <img 
-          src={LogoPanda}
-          alt="Panda Locações" 
-          className="h-20 w-auto" 
-          style={{ maxHeight: '80px', objectFit: 'contain' }}
-        />
+        <picture>
+          <source srcSet={logoUrls.webp} type="image/webp" />
+          <img 
+            src={logoUrls.fallback}
+            alt="Rental Company" 
+            className="h-20 w-auto" 
+            style={{ maxHeight: '80px', objectFit: 'contain' }}
+          />
+        </picture>
       </div>
 
       {/* Menu para clientes */}

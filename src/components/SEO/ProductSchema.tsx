@@ -23,12 +23,12 @@ const ProductSchema: React.FC<ProductSchemaProps> = ({
   price,
   availability = 'InStock',
   sku,
-  brand = 'Panda Locações',
+  brand = 'Rental Company',
   productId,
   ratingValue,
   reviewCount
 }) => {
-  const baseUrl = 'https://pandalocacoes.com.br';
+  const baseUrl = 'https://rentalcompany.com.br';
   const fullImageUrl = imageUrl ? (imageUrl.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`) : undefined;
 
   // Construir o objeto Schema.org para produto
@@ -52,18 +52,18 @@ const ProductSchema: React.FC<ProductSchemaProps> = ({
       // Adiciona detalhes sobre locação
       itemOffered: {
         '@type': 'RentalOffer',
-        description: `Aluguel de ${name} em Limeira e região`,
+        description: `Aluguel de ${name} em sua região`,
         areaServed: [
-          { '@type': 'City', name: 'Limeira' },
-          { '@type': 'City', name: 'Americana' },
-          { '@type': 'City', name: 'Piracicaba' },
-          { '@type': 'City', name: 'Campinas' }
+          { '@type': 'City', name: 'Cidade Principal' },
+          { '@type': 'City', name: 'Cidade Vizinha 1' },
+          { '@type': 'City', name: 'Cidade Vizinha 2' },
+          { '@type': 'City', name: 'Cidade Vizinha 3' }
         ],
         seller: {
           '@type': 'LocalBusiness',
-          name: 'Panda Locações',
-          telephone: '(19) 3703-0363',
-          email: 'contato@pandalocacoes.com.br'
+          name: 'Rental Company',
+          telephone: '(00) 0000-0000',
+          email: 'contato@rentalcompany.com.br'
         }
       }
     }

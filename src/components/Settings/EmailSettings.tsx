@@ -426,7 +426,7 @@ const EmailSettings: React.FC = () => {
                   onChange={handleSMTPChange}
                   fullWidth
                   required
-                  placeholder="Panda Locação"
+                  placeholder="Nome da Empresa"
                   margin="normal"
                 />
               </Grid>

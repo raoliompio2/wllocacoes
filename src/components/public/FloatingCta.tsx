@@ -70,9 +70,9 @@ const FloatingCta: React.FC = () => {
     localStorage.setItem('ctaClosed', Date.now().toString());
   };
 
-  const handleWhatsAppClick = () => {
-    // Número do WhatsApp correto da Panda Locações
-    const whatsappNumber = '1937030363';
+      const handleWhatsAppClick = () => {
+    // Número do WhatsApp da Lokajá
+    const whatsappNumber = '67993381010';
     const currentPage = window.location.href;
     const pageName = document.title;
     

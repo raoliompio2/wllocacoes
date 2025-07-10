@@ -13,7 +13,7 @@ import {
 import { ChevronRight } from '@mui/icons-material';
 import { Helmet } from 'react-helmet-async';
 import { supabase } from '../../utils/supabaseClient';
-import { GoogleReviewsWidget } from '../common';
+// import { GoogleReviewsWidget } from '../common';
 import HomePageSchema from '../SEO/HomePageSchema';
 
 // Componentes
@@ -109,31 +109,31 @@ const HomePage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Panda Locações - Aluguel de Equipamentos para Construção em Limeira</title>
-        <meta name="description" content="Aluguel de equipamentos para construção civil e industrial em Limeira, Americana, Piracicaba e região. Compactadores, betoneiras, andaimes, geradores e muito mais." />
-        <meta name="keywords" content="aluguel de equipamentos, locação de máquinas, construção civil, equipamentos para construção, Limeira, Americana, Piracicaba, betoneira, compactador, gerador" />
-        <link rel="canonical" href="https://pandalocacoes.com.br/" />
+        <title>Lokajá - Aluguel de Equipamentos para Construção em Ponta Porã</title>
+        <meta name="description" content="Aluguel de equipamentos para construção civil e industrial em Ponta Porã e região. Compactadores, betoneiras, andaimes, geradores e muito mais com entrega em toda região." />
+        <meta name="keywords" content="aluguel de equipamentos Ponta Porã, locação de máquinas MS, construção civil, equipamentos para construção Mato Grosso do Sul, betoneira Ponta Porã, compactador aluguel, gerador Dourados" />
+        <link rel="canonical" href="https://lokaja.com.br/" />
         
         {/* Meta tags para compartilhamento em redes sociais */}
-        <meta property="og:title" content="Panda Locações - Aluguel de Equipamentos para Construção" />
-        <meta property="og:description" content="Aluguel de equipamentos para construção civil e industrial em Limeira, Americana, Piracicaba e região. Os melhores equipamentos com os melhores preços." />
-        <meta property="og:image" content="https://pandalocacoes.com.br/images/Logo Panda.png" />
-        <meta property="og:url" content="https://pandalocacoes.com.br/" />
+        <meta property="og:title" content="Lokajá - Aluguel de Equipamentos para Construção em Ponta Porã" />
+        <meta property="og:description" content="Aluguel de equipamentos para construção civil e industrial em Ponta Porã e região do MS. Os melhores equipamentos com os melhores preços." />
+        <meta property="og:image" content="https://lokaja.com.br/images/Logo_fundo_claro/Logo_Locaja.png" />
+        <meta property="og:url" content="https://lokaja.com.br/" />
         <meta property="og:type" content="website" />
         
         {/* Meta tags específicas para Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Panda Locações - Aluguel de Equipamentos para Construção" />
-        <meta name="twitter:description" content="Aluguel de equipamentos para construção civil e industrial em Limeira e região." />
-        <meta name="twitter:image" content="https://pandalocacoes.com.br/images/Logo Panda.png" />
+        <meta name="twitter:title" content="Lokajá - Aluguel de Equipamentos para Construção em Ponta Porã" />
+        <meta name="twitter:description" content="Aluguel de equipamentos para construção civil e industrial em Ponta Porã e região do MS." />
+        <meta name="twitter:image" content="https://lokaja.com.br/images/Logo_fundo_claro/Logo_Locaja.png" />
       </Helmet>
       
       {/* Adiciona o Schema.org para a página inicial */}
       <HomePageSchema 
-        companyName="Panda Locações"
-        logo="/images/Logo Panda.png"
+        companyName="Lokajá Locadora de Equipamentos Para Construção"
+        logo="/images/Logo_fundo_claro/Logo_Locaja.png"
         coverImage="/images/Imagehero.png"
-        description="Locação de equipamentos para construção civil e industrial em Limeira, Americana, Piracicaba e região. Compactadores, betoneiras, andaimes, geradores e muito mais com preços justos."
+        description="Locação de equipamentos para construção civil e industrial em Ponta Porã e região. Compactadores, betoneiras, andaimes, geradores e muito mais com preços justos e entrega em toda região."
       />
       
       <main>
@@ -142,7 +142,12 @@ const HomePage: React.FC = () => {
         
         {/* Equipamentos em Destaque */}
         <section aria-labelledby="featured-equipment-title">
-          <Box sx={{ bgcolor: 'background.default', py: { xs: 6, md: 8 } }}>
+          <Box sx={{ 
+            bgcolor: 'background.default', 
+            // Adicionando padding-top maior para acomodar o filtro flutuante
+            pt: { xs: 10, sm: 12, md: 14 },
+            pb: { xs: 6, md: 8 }
+          }}>
             <Container maxWidth="xl">
               <Box sx={{ mb: 6, textAlign: 'center' }}>
                 <Typography variant="h4" component="h2" id="featured-equipment-title" gutterBottom fontWeight="bold">
@@ -192,7 +197,8 @@ const HomePage: React.FC = () => {
           </Box>
         </section>
         
-        {/* Avaliações do Google - Social Proof */}
+        {/* Avaliações do Google - Social Proof (Removido conforme solicitado) */}
+        {/*
         <section aria-labelledby="customer-reviews-title">
           <Box sx={{ bgcolor: 'background.paper', py: { xs: 6, md: 8 } }}>
             <Container maxWidth="xl">
@@ -206,6 +212,7 @@ const HomePage: React.FC = () => {
             </Container>
           </Box>
         </section>
+        */}
         
         {/* CTA Flutuante */}
         <FloatingCta />

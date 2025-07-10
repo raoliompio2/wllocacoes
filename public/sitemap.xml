@@ -11,29 +11,29 @@
 
   <!-- Páginas principais -->
   <url>
-    <loc>https://pandalocacoes.com.br/</loc>
+    <loc>https://lokaja.com.br/</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://pandalocacoes.com.br/images/Logo Panda.png</image:loc>
-      <image:title>Panda Locações - Aluguel de equipamentos em Limeira</image:title>
+      <image:loc>https://lokaja.com.br/images/logo.png</image:loc>
+      <image:title>Lokajá - Locadora de Equipamentos para Construção</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos</loc>
+    <loc>https://lokaja.com.br/equipamentos</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/empresa</loc>
+    <loc>https://lokaja.com.br/empresa</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/contato</loc>
+    <loc>https://lokaja.com.br/contato</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -41,49 +41,49 @@
   
   <!-- Páginas de categorias principais -->
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/betoneiras</loc>
+    <loc>https://lokaja.com.br/equipamentos/betoneiras</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/andaimes</loc>
+    <loc>https://lokaja.com.br/equipamentos/andaimes</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/compactadores</loc>
+    <loc>https://lokaja.com.br/equipamentos/compactadores</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/cortadores</loc>
+    <loc>https://lokaja.com.br/equipamentos/cortadores</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/demolidores</loc>
+    <loc>https://lokaja.com.br/equipamentos/demolidores</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/geradores</loc>
+    <loc>https://lokaja.com.br/equipamentos/geradores</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/placas-vibratorias</loc>
+    <loc>https://lokaja.com.br/equipamentos/placas-vibratorias</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/serra-marmore</loc>
+    <loc>https://lokaja.com.br/equipamentos/serra-marmore</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -91,37 +91,37 @@
   
   <!-- Páginas de equipamentos específicos -->
   <url>
-    <loc>https://pandalocacoes.com.br/equipamento/betoneira-400-litros</loc>
+    <loc>https://lokaja.com.br/equipamento/betoneira-400-litros</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://pandalocacoes.com.br/images_optimized/betoneira-400-litros.webp</image:loc>
-      <image:title>Betoneira 400 Litros - Panda Locações</image:title>
+      <image:loc>https://lokaja.com.br/images_optimized/betoneira-400-litros.webp</image:loc>
+      <image:title>Betoneira 400 Litros - Lokajá</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamento/andaime-fachadeiro</loc>
+    <loc>https://lokaja.com.br/equipamento/andaime-fachadeiro</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://pandalocacoes.com.br/images_optimized/andaime-fachadeiro.webp</image:loc>
-      <image:title>Andaime Fachadeiro - Panda Locações</image:title>
+      <image:loc>https://lokaja.com.br/images_optimized/andaime-fachadeiro.webp</image:loc>
+      <image:title>Andaime Fachadeiro - Lokajá</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamento/compactador-de-solo</loc>
+    <loc>https://lokaja.com.br/equipamento/compactador-de-solo</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://pandalocacoes.com.br/images_optimized/compactador-de-solo.webp</image:loc>
-      <image:title>Compactador de Solo - Panda Locações</image:title>
+      <image:loc>https://lokaja.com.br/images_optimized/compactador-de-solo.webp</image:loc>
+      <image:title>Compactador de Solo - Lokajá</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamento/martelete-demolidor</loc>
+    <loc>https://lokaja.com.br/equipamento/martelete-demolidor</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -129,25 +129,25 @@
   
   <!-- Páginas de busca por cidades -->
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/limeira</loc>
+    <loc>https://lokaja.com.br/equipamentos/ponta-pora</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/americana</loc>
+    <loc>https://lokaja.com.br/equipamentos/dourados</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/piracicaba</loc>
+    <loc>https://lokaja.com.br/equipamentos/maracaju</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/campinas</loc>
+    <loc>https://lokaja.com.br/equipamentos/sidrolandia</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -155,55 +155,55 @@
   
   <!-- Páginas de equipamentos por cidades -->
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/betoneiras/limeira</loc>
+    <loc>https://lokaja.com.br/equipamentos/betoneiras/ponta-pora</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/andaimes/limeira</loc>
+    <loc>https://lokaja.com.br/equipamentos/andaimes/ponta-pora</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/compactadores/limeira</loc>
+    <loc>https://lokaja.com.br/equipamentos/compactadores/ponta-pora</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/betoneiras/americana</loc>
+    <loc>https://lokaja.com.br/equipamentos/betoneiras/dourados</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/andaimes/americana</loc>
+    <loc>https://lokaja.com.br/equipamentos/andaimes/dourados</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/compactadores/americana</loc>
+    <loc>https://lokaja.com.br/equipamentos/compactadores/dourados</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/betoneiras/piracicaba</loc>
+    <loc>https://lokaja.com.br/equipamentos/betoneiras/maracaju</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/andaimes/piracicaba</loc>
+    <loc>https://lokaja.com.br/equipamentos/andaimes/maracaju</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/equipamentos/compactadores/piracicaba</loc>
+    <loc>https://lokaja.com.br/equipamentos/compactadores/maracaju</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -211,13 +211,13 @@
   
   <!-- Páginas legais e de informações -->
   <url>
-    <loc>https://pandalocacoes.com.br/termos-de-uso</loc>
+    <loc>https://lokaja.com.br/termos-de-uso</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://pandalocacoes.com.br/politica-de-privacidade</loc>
+    <loc>https://lokaja.com.br/politica-de-privacidade</loc>
     <lastmod>2023-12-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>

@@ -125,7 +125,7 @@ const SMTPSettingsForm: React.FC<SMTPSettingsFormProps> = ({
             onChange={onChange}
             fullWidth
             required
-            placeholder="Panda Locação"
+            placeholder="Nome da Empresa"
             margin="normal"
           />
         </Grid>

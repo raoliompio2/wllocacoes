@@ -1,12 +1,12 @@
 // Nome do cache
-const CACHE_NAME = 'pandaloc-cache-v1';
+const CACHE_NAME = 'rental-cache-v1';
 
 // Lista de URLs para serem cacheadas
 const urlsToCache = [
   '/',
   '/index.html',
   '/src/main.tsx',
-  '/images/Logo_fundo_claro/Aluguel-de-Maquinas-9.webp',
+  '/images/Logo_fundo_claro/logo.webp',
   '/images/Design sem nome (92).webp',
   '/images/Design sem nome (92).png',
   '/images/Design sem nome (98).webp',

@@ -1,5 +1,5 @@
-# Panda Locações - Arquivo Robots.txt
-# https://pandalocacoes.com.br
+# Lokajá Locadora de Equipamentos Para Construção - Arquivo Robots.txt
+# https://lokaja.com.br
 
 # Allow all web crawlers
 User-agent: *
@@ -58,7 +58,7 @@ Allow: /images/
 Allow: /images_optimized/
 
 # Sitemap
-Sitemap: https://pandalocacoes.com.br/sitemap.xml
+Sitemap: https://lokaja.com.br/sitemap.xml
 
 # Crawl delay para não sobrecarregar o servidor - outros bots
 User-agent: *

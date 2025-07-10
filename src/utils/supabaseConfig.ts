@@ -1,11 +1,11 @@
 import { createClient, Session } from '@supabase/supabase-js';
 import { Database } from './database.types';
 
-// Configurações do Supabase usando variáveis de ambiente
-export const supabaseUrl = import.meta.env.SUPABASE_URL || 'https://fwsqvutgtwjyjbukydsy.supabase.co';
-export const supabaseAnonKey = import.meta.env.SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3c3F2dXRndHdqeWpidWt5ZHN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAwMTczNjgsImV4cCI6MjA2NTU5MzM2OH0.JUtKdyPA7Eh8N_mUe73yPMhehaQzkjFOA6EqD5HG9Ko';
+// Configurações do Supabase com valores explícitos
+export const supabaseUrl = 'https://wsfrxepazeetaavditbm.supabase.co';
+export const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzZnJ4ZXBhemVldGFhdmRpdGJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIxNjU1MDAsImV4cCI6MjA2Nzc0MTUwMH0.ntguiPGC7k4yH1fj0TabHTeaedG38HOnbM4kBJOGdt4';
 
-// Inicializar o cliente Supabase com configuração simplificada
+// Inicializar o cliente Supabase com as credenciais fixas
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Função para verificar e renovar a sessão atual

@@ -66,14 +66,14 @@ const Footer: React.FC = () => {
   
   // Estado para armazenar informações da empresa
   const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
-    name: 'Panda Locações',
+    name: 'Lokajá Locadora de Equipamentos Para Construção',
     logo_url: logoUrl,
-    phone: '(19) 3703-0363',
-    email: 'contato@pandalocacoes.com.br',
-    address: 'Rua Mário Soares de Campos, Jardim Cidade Universitária I, Limeira – SP, CEP: 13484-656',
-    whatsapp: '19 3703-0363',
-    facebook_url: 'https://www.facebook.com/people/pandalocacoes/100080716101203/',
-    instagram_url: 'https://www.instagram.com/pandalocacoes/',
+    phone: '(67) 99338-1010',
+    email: 'contato@lokaja.com.br',
+    address: 'Av. da Flora, 374 - Jardim das Flores, Ponta Porã - MS, 79901-128',
+    whatsapp: '67 99338-1010',
+    facebook_url: 'https://www.facebook.com/lokaja',
+    instagram_url: 'https://www.instagram.com/lokaja',
     linkedin_url: null,
     youtube_url: null,
     twitter_url: null
@@ -81,8 +81,8 @@ const Footer: React.FC = () => {
   
   // Horário de funcionamento
   const businessHours = {
-    weekdays: "Segunda-feira a Sexta-feira: 7:00 às 17:00",
-    saturday: "Sábado: Fechado",
+    weekdays: "Segunda a Sexta: 07:00 às 11:00, 13:00 às 17:00",
+    saturday: "Sábado: 07:00 às 11:30",
     sunday: "Domingo: Fechado"
   };
   
@@ -176,14 +176,14 @@ const Footer: React.FC = () => {
 
   // Dados estáticos caso não consiga carregar do banco
   const fallbackCompanyData: CompanyInfo = {
-    name: 'Panda Locações',
-    phone: '(19) 3703-0363',
-    whatsapp: '19 3703-0363',
-    email: 'contato@pandalocacoes.com.br',
-    address: 'Rua Mário Soares de Campos, Jardim Cidade Universitária I, Limeira – SP, CEP: 13484-656',
+    name: 'Rental Company',
+    phone: '(00) 0000-0000',
+    whatsapp: '00 0000-0000',
+    email: 'contato@rentalcompany.com.br',
+    address: 'Endereço da Empresa, Número - Bairro, Cidade – UF, CEP: 00000-000',
     logo_url: logoUrl,
-    facebook_url: 'https://www.facebook.com/people/pandalocacoes/100080716101203/',
-    instagram_url: 'https://www.instagram.com/pandalocacoes/',
+    facebook_url: 'https://www.facebook.com/rentalcompany',
+    instagram_url: 'https://www.instagram.com/rentalcompany',
     linkedin_url: null,
     youtube_url: null,
     twitter_url: null
@@ -193,7 +193,7 @@ const Footer: React.FC = () => {
     <Box 
       component="footer" 
       sx={{ 
-        bgcolor: '#121212',
+        bgcolor: themePreferences.lightColors.primary, // Usar cor primária do tema
         color: 'white',
         pt: 6,
         pb: 4,
@@ -208,18 +208,18 @@ const Footer: React.FC = () => {
       itemType="http://schema.org/LocalBusiness"
     >
       {/* Metadados ocultos para SEO */}
-      <meta itemProp="name" content="Panda Locações - Aluguel de Equipamentos em Limeira e Região" />
-      <meta itemProp="description" content="A Panda Locações oferece serviços de aluguel de equipamentos para construção civil e industrial em Limeira, Americana, Piracicaba, Campinas e toda região." />
-      <meta itemProp="telephone" content="(19) 3703-0363" />
-      <meta itemProp="email" content="contato@pandalocacoes.com.br" />
+      <meta itemProp="name" content="Lokajá Locadora de Equipamentos Para Construção" />
+      <meta itemProp="description" content="A Lokajá oferece serviços de aluguel de equipamentos para construção civil e industrial em Ponta Porã e região." />
+      <meta itemProp="telephone" content="(67) 99338-1010" />
+      <meta itemProp="email" content="contato@lokaja.com.br" />
       <div itemProp="address" itemScope itemType="http://schema.org/PostalAddress">
-        <meta itemProp="streetAddress" content="Rua Mário Soares de Campos" />
-        <meta itemProp="addressLocality" content="Limeira" />
-        <meta itemProp="addressRegion" content="SP" />
-        <meta itemProp="postalCode" content="13484-656" />
+        <meta itemProp="streetAddress" content="Av. da Flora, 374" />
+        <meta itemProp="addressLocality" content="Ponta Porã" />
+        <meta itemProp="addressRegion" content="MS" />
+        <meta itemProp="postalCode" content="79901-128" />
         <meta itemProp="addressCountry" content="BR" />
       </div>
-      <meta itemProp="openingHours" content="Mo-Fr 07:00-17:00" />
+      <meta itemProp="openingHours" content="Mo-Fr 07:00-11:00, 13:00-17:00" />
       
       {/* Conteúdo principal do footer */}
       <Container maxWidth="xl">
@@ -232,7 +232,7 @@ const Footer: React.FC = () => {
                 <Box
                   component="img"
                   src={companyInfo.logo_url}
-                  alt="Panda Locações - Aluguel de Equipamentos em Limeira"
+                  alt="Rental Company - Aluguel de Equipamentos"
                   sx={{
                     height: 127,
                     maxWidth: 510,
@@ -254,7 +254,7 @@ const Footer: React.FC = () => {
                     <source srcSet={`${companyInfo.logo_url.webp} 510w`} type="image/webp" />
                     <img
                       src={companyInfo.logo_url.fallback}
-                      alt="Panda Locações - Aluguel de Equipamentos em Limeira"
+                      alt="Rental Company - Aluguel de Equipamentos"
                       style={{
                         height: '100%',
                         maxWidth: '100%',
@@ -267,8 +267,8 @@ const Footer: React.FC = () => {
               )}
               
               <Typography variant="body2" sx={{ opacity: 0.8, mb: 3 }}>
-                A Panda Locações é especializada no aluguel de equipamentos para construção civil e industrial, 
-                atendendo Limeira, Americana, Piracicaba, Campinas e toda região com excelência e qualidade.
+                A Lokajá é especializada no aluguel de equipamentos para construção civil e industrial, 
+                atendendo Ponta Porã e região com excelência e qualidade.
               </Typography>
             </Box>
             
@@ -279,21 +279,21 @@ const Footer: React.FC = () => {
               <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
                 <LocationOn sx={{ mr: 1, fontSize: 20, color: 'secondary.main', mt: 0.5 }} />
                 <Typography variant="body2">
-                  Rua Mário Soares de Campos, Jardim Cidade Universitária I, Limeira – SP, CEP: 13484-656
+                  Av. da Flora, 374 - Jardim das Flores, Ponta Porã - MS, 79901-128
                 </Typography>
               </Box>
               
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Phone sx={{ mr: 1, fontSize: 20, color: 'secondary.main' }} />
                 <Typography variant="body2">
-                  (19) 3703-0363
+                  (67) 99338-1010
                 </Typography>
               </Box>
               
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Email sx={{ mr: 1, fontSize: 20, color: 'secondary.main' }} />
                 <Typography variant="body2">
-                  contato@pandalocacoes.com.br
+                  contato@lokaja.com.br
                 </Typography>
               </Box>
               
@@ -301,10 +301,13 @@ const Footer: React.FC = () => {
                 <AccessTime sx={{ mr: 1, fontSize: 20, color: 'secondary.main', mt: 0.5 }} />
                 <Box>
                   <Typography variant="body2">
-                    Segunda-feira a Sexta-feira
+                    Segunda a Sexta: 07:00 às 11:00, 13:00 às 17:00
                   </Typography>
                   <Typography variant="body2">
-                    7:00 às 17:00
+                    Sábado: 07:00 às 11:30
+                  </Typography>
+                  <Typography variant="body2">
+                    Domingo: Fechado
                   </Typography>
                 </Box>
               </Box>
@@ -366,7 +369,7 @@ const Footer: React.FC = () => {
             </Typography>
             
             <Typography variant="body2" sx={{ mb: 2, opacity: 0.8 }}>
-              Assine nossa newsletter para receber ofertas exclusivas e novidades sobre equipamentos para locação em Limeira e região.
+              Assine nossa newsletter para receber ofertas exclusivas e novidades sobre equipamentos para locação em sua região.
             </Typography>
             
             <Box component="form" onSubmit={handleSubscribe} sx={{ mb: 3 }}>
@@ -418,7 +421,7 @@ const Footer: React.FC = () => {
                   href={companyInfo.facebook_url} 
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Facebook da Panda Locações"
+                  aria-label="Facebook da Rental Company"
                   sx={{ 
                     color: 'white',
                     bgcolor: 'rgba(255,255,255,0.05)',
@@ -435,7 +438,7 @@ const Footer: React.FC = () => {
                   href={companyInfo.instagram_url} 
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Instagram da Panda Locações"
+                  aria-label="Instagram da Rental Company"
                   sx={{ 
                     color: 'white',
                     bgcolor: 'rgba(255,255,255,0.05)',
@@ -452,7 +455,7 @@ const Footer: React.FC = () => {
                   href={companyInfo.linkedin_url} 
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="LinkedIn da Panda Locações"
+                  aria-label="LinkedIn da Rental Company"
                   sx={{ 
                     color: 'white',
                     bgcolor: 'rgba(255,255,255,0.05)',
@@ -469,7 +472,7 @@ const Footer: React.FC = () => {
                   href={companyInfo.youtube_url} 
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Canal do YouTube da Panda Locações"
+                  aria-label="Canal do YouTube da Rental Company"
                   sx={{ 
                     color: 'white',
                     bgcolor: 'rgba(255,255,255,0.05)',
@@ -486,7 +489,7 @@ const Footer: React.FC = () => {
                   href={`https://wa.me/55${companyInfo.whatsapp.replace(/\D/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="WhatsApp da Panda Locações"
+                  aria-label="WhatsApp da Rental Company"
                   sx={{ 
                     color: 'white',
                     bgcolor: 'rgba(255,255,255,0.05)',
@@ -503,63 +506,41 @@ const Footer: React.FC = () => {
         
         <Divider sx={{ my: 4, borderColor: 'rgba(255,255,255,0.1)' }} />
         
-        {/* Copyright e Links Legais */}
-        <Grid container spacing={2} alignItems="center" justifyContent="space-between">
-          <Grid item xs={12} sm={6}>
-            <Typography variant="body2" color="secondary.main">
-              © {new Date().getFullYear()} Panda Locações. Todos os direitos reservados.
-            </Typography>
-            <Typography variant="body2" color="white" sx={{ mt: 1, opacity: 0.7 }}>
-              <MuiLink 
-                href="https://wa.me/5514982135008" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                sx={{ 
-                  color: 'inherit', 
-                  textDecoration: 'none',
-                  '&:hover': {
-                    textDecoration: 'underline',
-                    color: theme.palette.secondary.main
-                  }
-                }}
-              >
-                Desenvolvido por Open Dreams
-              </MuiLink>
+        {/* Copyright e links de políticas */}
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={12} md={6}>
+            <Typography variant="body2" color="text.secondary" align={isMobile ? 'center' : 'left'}>
+              © {new Date().getFullYear()} Lokajá. Todos os direitos reservados.
             </Typography>
           </Grid>
           
-          <Grid item xs={12} sm={6}>
-            <Stack direction="row" spacing={2} justifyContent={{ xs: 'flex-start', sm: 'flex-end' }}>
-              <Link to="/politica-de-privacidade" style={{ textDecoration: 'none' }}>
-                <Typography variant="body2" color="secondary.main">
-                  Política de Privacidade
-                </Typography>
-              </Link>
-              
-              <Link to="/termos-de-uso" style={{ textDecoration: 'none' }}>
-                <Typography variant="body2" color="secondary.main">
-                  Termos de Uso
-                </Typography>
-              </Link>
-              
-              <Link to="/mapa-do-site" style={{ textDecoration: 'none' }}>
-                <Typography variant="body2" color="secondary.main">
-                  Mapa do Site
-                </Typography>
-              </Link>
+          <Grid item xs={12} md={6}>
+            <Stack 
+              direction="row" 
+              spacing={2} 
+              justifyContent={isMobile ? 'center' : 'flex-end'}
+            >
+              <MuiLink component={Link} to="/politica-de-privacidade" color="text.secondary" underline="hover">
+                Política de Privacidade
+              </MuiLink>
+              <MuiLink component={Link} to="/termos-de-uso" color="text.secondary" underline="hover">
+                Termos de Uso
+              </MuiLink>
+              <MuiLink component={Link} to="/sitemap" color="text.secondary" underline="hover">
+                Sitemap
+              </MuiLink>
             </Stack>
           </Grid>
         </Grid>
       </Container>
       
-      {/* Alerta de sucesso na inscrição do newsletter */}
+      {/* Alerta de sucesso */}
       <Snackbar 
         open={subscribeSuccess} 
-        autoHideDuration={5000} 
-        onClose={() => setSubscribeSuccess(false)}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        autoHideDuration={5000}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
-        <Alert onClose={() => setSubscribeSuccess(false)} severity="success" sx={{ width: '100%' }}>
+        <Alert severity="success">
           Inscrição realizada com sucesso!
         </Alert>
       </Snackbar>

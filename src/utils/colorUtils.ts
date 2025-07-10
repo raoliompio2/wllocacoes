@@ -73,21 +73,27 @@ export const getLuminance = (color: string): number => {
 
 // Caminhos para as logos
 // Usando WebP para navegadores modernos com fallback para PNG
-const PANDA_LOGO: LogoUrls = {
-  webp: '/images_optimized/Logo Panda.webp',
-  fallback: '/images/Logo Panda.png'
+const MAIN_LOGO: LogoUrls = {
+  webp: '/images_optimized/Logo_fundo_claro/Logo_Locaja.webp',
+  fallback: '/images/Logo_fundo_claro/Logo_Locaja.png'
 };
-const PANDA_LOGO_FOOTER: LogoUrls = {
-  webp: '/images_optimized/Logo Panda (2).webp',
-  fallback: '/images/Logo Panda (2).png'
+const FOOTER_LOGO: LogoUrls = {
+  webp: '/images_optimized/Logo_fundo_claro/Logo_Locaja.webp',
+  fallback: '/images/Logo_fundo_claro/Logo_Locaja.png'
 };
-const PANDA_LOGO_SIDEBAR: LogoUrls = {
-  webp: '/images_optimized/Logo Panda (2).webp',
-  fallback: '/images/Logo Panda (2).png'
+const SIDEBAR_LOGO: LogoUrls = {
+  webp: '/images_optimized/Logo_fundo_escuro/Logo_Locaja (1).webp',
+  fallback: '/images/Logo_fundo_escuro/Logo_Locaja (1).png'
 };
-const LOGO_FUNDO_CLARO = PANDA_LOGO;
-const LOGO_FUNDO_ESCURO = PANDA_LOGO;
-const LOGO_PAGINAS_SECUNDARIAS = PANDA_LOGO;
+const LOGO_FUNDO_CLARO: LogoUrls = {
+  webp: '/images_optimized/Logo_fundo_claro/Logo_Locaja.webp',
+  fallback: '/images/Logo_fundo_claro/Logo_Locaja.png'
+};
+const LOGO_FUNDO_ESCURO: LogoUrls = {
+  webp: '/images_optimized/Logo_fundo_escuro/Logo_Locaja (1).webp',
+  fallback: '/images/Logo_fundo_escuro/Logo_Locaja (1).png'
+};
+const LOGO_PAGINAS_SECUNDARIAS = MAIN_LOGO;
 
 /**
  * Determina qual logo usar com base na cor de fundo
@@ -95,8 +101,11 @@ const LOGO_PAGINAS_SECUNDARIAS = PANDA_LOGO;
  * @returns Objeto com caminhos para as versões webp e fallback da logo apropriada
  */
 export const getLogoByBackground = (backgroundColor: string): LogoUrls => {
-  // Sempre retornar a logo do Panda independente da cor de fundo
-  return PANDA_LOGO;
+  const luminance = getLuminance(backgroundColor);
+  
+  // Se o fundo for escuro (luminance < 0.5), usar logo para fundo escuro
+  // Se o fundo for claro (luminance >= 0.5), usar logo para fundo claro
+  return luminance < 0.5 ? LOGO_FUNDO_ESCURO : LOGO_FUNDO_CLARO;
 };
 
 /**
@@ -104,7 +113,7 @@ export const getLogoByBackground = (backgroundColor: string): LogoUrls => {
  * @returns Objeto com caminhos para as versões webp e fallback da logo de dashboard
  */
 export const getDashboardLogo = (): LogoUrls => {
-  return PANDA_LOGO; // Logo Panda para dashboard
+  return LOGO_FUNDO_CLARO; // Logo para fundo claro no dashboard
 };
 
 /**
@@ -112,7 +121,7 @@ export const getDashboardLogo = (): LogoUrls => {
  * @returns Objeto com caminhos para as versões webp e fallback da logo do sidebar
  */
 export const getSidebarLogo = (): LogoUrls => {
-  return PANDA_LOGO_SIDEBAR; // Logo Panda específica para o sidebar
+  return SIDEBAR_LOGO; // Logo específica para o sidebar (geralmente fundo escuro)
 };
 
 /**
@@ -120,7 +129,7 @@ export const getSidebarLogo = (): LogoUrls => {
  * @returns Objeto com caminhos para as versões webp e fallback da logo de header
  */
 export const getHeaderFooterLogo = (): LogoUrls => {
-  return PANDA_LOGO; // Logo Panda para header
+  return LOGO_FUNDO_CLARO; // Logo para fundo claro no header
 };
 
 /**
@@ -128,5 +137,5 @@ export const getHeaderFooterLogo = (): LogoUrls => {
  * @returns Objeto com caminhos para as versões webp e fallback da logo de footer
  */
 export const getFooterLogo = (): LogoUrls => {
-  return PANDA_LOGO_FOOTER; // Logo Panda específica para o footer
+  return LOGO_FUNDO_ESCURO; // Logo para fundo escuro no footer
 }; 

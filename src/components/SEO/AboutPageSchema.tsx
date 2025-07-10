@@ -9,12 +9,12 @@ interface AboutPageSchemaProps {
 }
 
 const AboutPageSchema: React.FC<AboutPageSchemaProps> = ({
-  companyName = 'Panda Locações',
+  companyName = 'Rental Company',
   foundingDate = '2020-01-01', // Substitua pela data real de fundação
-  description = 'Especializada em aluguel de equipamentos para construção civil e industrial em Limeira e região, a Panda Locações atende com excelência empresas e pessoas físicas, oferecendo os melhores equipamentos com preços justos.',
-  imageUrl = '/images/Logo Panda.png'
+  description = 'Especializada em aluguel de equipamentos para construção civil e industrial, a Rental Company atende com excelência empresas e pessoas físicas, oferecendo os melhores equipamentos com preços justos.',
+  imageUrl = '/images/Logo_fundo_claro/Logo_Locaja.png'
 }) => {
-  const baseUrl = 'https://pandalocacoes.com.br';
+  const baseUrl = 'https://rentalcompany.com.br';
   const fullImageUrl = imageUrl.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`;
 
   // Schema da página Sobre Nós
@@ -30,24 +30,23 @@ const AboutPageSchema: React.FC<AboutPageSchemaProps> = ({
       'url': `${baseUrl}/empresa`,
       'address': {
         '@type': 'PostalAddress',
-        'streetAddress': 'Rua Mário Soares de Campos',
-        'addressLocality': 'Limeira',
-        'addressRegion': 'SP',
-        'postalCode': '13484-656',
+        'streetAddress': 'Endereço da Empresa',
+        'addressLocality': 'Cidade',
+        'addressRegion': 'UF',
+        'postalCode': '00000-000',
         'addressCountry': 'BR'
       },
       'contactPoint': {
         '@type': 'ContactPoint',
-        'telephone': '+551937030363',
+        'telephone': '+5500000000000',
         'contactType': 'customer service',
-        'email': 'contato@pandalocacoes.com.br',
-        'areaServed': ['Limeira', 'Americana', 'Piracicaba', 'Campinas', 'Santa Bárbara d\'Oeste'],
+        'email': 'contato@rentalcompany.com.br',
+        'areaServed': ['Cidade Principal', 'Cidade Vizinha 1', 'Cidade Vizinha 2', 'Cidade Vizinha 3', 'Cidade Vizinha 4'],
         'availableLanguage': ['Portuguese']
       },
       'sameAs': [
-        // Substitua pelos links reais das redes sociais, se existirem
-        'https://facebook.com/pandalocacoes',
-        'https://instagram.com/pandalocacoes'
+        'https://facebook.com/rentalcompany',
+        'https://instagram.com/rentalcompany'
       ]
     }
   };

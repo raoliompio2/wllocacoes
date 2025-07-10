@@ -77,7 +77,7 @@ const PublicNavbar: React.FC = () => {
   // Obtendo as cores do tema atual
   const colors = mode === 'light' ? themePreferences.lightColors : themePreferences.darkColors;
 
-  // Sempre usar o logo Panda Locações com suporte a WebP
+  // Logo da empresa com suporte a WebP
   const logoUrl = getHeaderFooterLogo();
   
   const companyInfoMemo = useMemo(() => {
@@ -381,8 +381,8 @@ const PublicNavbar: React.FC = () => {
       <InstagramFeed
         open={instagramDrawerOpen}
         onClose={() => setInstagramDrawerOpen(false)}
-        username="pandalocacoes"
-        widgetId="554885df-4999-4e82-b39d-68999e3432dc"
+        username="lokajaloc"
+        widgetId="456cd860-6522-42de-81c3-ce3d892ec785"
       />
       
       <HideOnScroll>

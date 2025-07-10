@@ -145,16 +145,22 @@ export const SearchBar = () => {
     <Paper
       component="form"
       onSubmit={handleSubmit}
-      elevation={3}
+      elevation={6} // Aumentado para dar mais destaque
       sx={{
-        borderRadius: 2,
-        p: { xs: 1.5, sm: 2 },
+        borderRadius: '12px',
+        p: { xs: 2, sm: 2.5 }, // Padding aumentado
         backdropFilter: 'blur(20px)',
-        bgcolor: 'rgba(255, 255, 255, 0.95)',
+        bgcolor: 'rgba(255, 255, 255, 0.98)', // Branco mais sólido
         maxWidth: '100%',
         overflow: 'hidden',
         mb: { xs: 4, sm: 6, md: 8 },
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+        boxShadow: '0 12px 35px rgba(0, 0, 0, 0.18), 0 2px 5px rgba(0,0,0,0.08)', // Sombra melhorada
+        border: '1px solid rgba(255,255,255,0.8)', // Borda sutil
+        transition: 'all 0.3s ease',
+        '&:hover': {
+          boxShadow: '0 18px 45px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0,0,0,0.12)', // Efeito hover
+          transform: 'translateY(-3px)'
+        }
       }}
     >
       <Grid 
@@ -179,7 +185,7 @@ export const SearchBar = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <Search color="action" />
+                    <Search color="primary" />
                   </InputAdornment>
                 ),
                 ...(suggestedTerm && {
@@ -194,7 +200,16 @@ export const SearchBar = () => {
                       </Button>
                     </InputAdornment>
                   )
-                })
+                }),
+                sx: {
+                  borderRadius: '8px',
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'rgba(0, 0, 0, 0.1)',
+                  },
+                  '&:hover .MuiOutlinedInput-notchedOutline': {
+                    borderColor: colors.primary,
+                  }
+                }
               }}
               size={isMobile ? "small" : "medium"}
             />
@@ -216,6 +231,15 @@ export const SearchBar = () => {
                   </InputAdornment>
                 ) : null
               }
+              sx={{
+                borderRadius: '8px',
+                '& .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'rgba(0, 0, 0, 0.1)',
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  borderColor: colors.primary,
+                }
+              }}
             >
               <MenuItem value="">Todas as categorias</MenuItem>
               {categorias.map((cat) => (
@@ -242,12 +266,22 @@ export const SearchBar = () => {
                   </InputAdornment>
                 ) : null
               }
+              sx={{
+                borderRadius: '8px',
+                '& .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'rgba(0, 0, 0, 0.1)',
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  borderColor: colors.primary,
+                }
+              }}
             >
               <MenuItem value="">Todas as fases</MenuItem>
               {fasesObra.map((fase) => (
                 <MenuItem 
                   key={fase.id} 
                   value={fase.id}
+                  title={fase.description || undefined}
                 >
                   {fase.name}
                 </MenuItem>
@@ -258,24 +292,27 @@ export const SearchBar = () => {
         
         <Grid item xs={12} sm={2}>
           <Button
-            fullWidth
             type="submit"
             variant="contained"
-            size={isMobile ? "medium" : "large"}
+            color="primary"
+            fullWidth
             startIcon={<Construction />}
             sx={{
-              height: isMobile ? 'auto' : '100%',
-              minHeight: { xs: '40px', sm: '56px' },
-              bgcolor: colors.secondary,
-              '&:hover': {
-                bgcolor: colors.secondary,
-                opacity: 0.9,
-              },
+              py: { xs: 1, sm: 1.5 },
+              borderRadius: '8px',
+              textTransform: 'none',
               fontWeight: 'bold',
-              boxShadow: 2
+              fontSize: '1rem',
+              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+              '&:hover': {
+                boxShadow: '0 6px 15px rgba(0, 0, 0, 0.2)',
+                transform: 'translateY(-2px)'
+              },
+              transition: 'all 0.3s ease'
             }}
+            size={isMobile ? "medium" : "large"}
           >
-            {isMobile ? 'Buscar' : 'Pesquisar'}
+            Pesquisar
           </Button>
         </Grid>
       </Grid>
