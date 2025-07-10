@@ -1,27 +1,35 @@
-# Rental Company
+# Lokajá
 
-Sistema de locação de equipamentos para construção civil e industrial.
+Site de locação de equipamentos para construção civil com sistema de gerenciamento.
 
-## Documentação
+## Visão Geral
 
-Para configurar este template para uma nova empresa, consulte os seguintes documentos:
+Este projeto é um sistema completo para locação de equipamentos para construção civil, incluindo um site público para visualização dos equipamentos disponíveis e um painel administrativo para gerenciamento de equipamentos, orçamentos e reservas.
 
-- [Guia de Configuração](configuracao_template.md) - Instruções completas para configurar o template
-- [Estrutura de Imagens](estrutura_imagens.md) - Detalhes sobre a estrutura de imagens e como substituí-las
+## Principais Funcionalidades
 
-## Scripts Úteis
+- Catálogo de equipamentos para locação
+- Sistema de orçamentos e agendamento
+- Painel administrativo para gerenciamento de equipamentos
+- Gestão de clientes e relatórios
+- Integração com WhatsApp e e-mail
 
-- `node scripts/prepare_images.js` - Prepara a estrutura de pastas para as imagens da nova empresa
-- `node scripts/optimize-images.js` - Otimiza as imagens para melhor performance web
+## Tecnologias Utilizadas
 
-## Atualização de Skeletons
+- React
+- TypeScript
+- Material UI
+- Supabase (Backend e Autenticação)
+- Tailwind CSS
+- Vite
 
-Implementação de skeletons específicos para diferentes tipos de conteúdo e correção de problemas de carregamento em todas as páginas.
+## Configuração Local
 
-## Melhorias de Performance
+1. Clone o repositório
+2. Instale as dependências com `npm install`
+3. Configure as variáveis de ambiente (consulte o arquivo `.env.example`)
+4. Execute o projeto em modo de desenvolvimento com `npm run dev`
 
-Otimização dos componentes de carregamento para melhor experiência do usuário.
+## Personalização
 
-## Correções de Bugs
-
-Resolução de problemas relacionados ao carregamento duplicado de skeletons em todas as páginas.
+Para personalizar o sistema para sua empresa, consulte o arquivo `configuracao_template.md`.

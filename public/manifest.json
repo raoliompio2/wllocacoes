@@ -1,11 +1,11 @@
 {
-  "name": "Lokaja",
-  "short_name": "Lokaja",
+  "name": "Lokajá",
+  "short_name": "Lokajá",
   "description": "Aluguel de equipamentos para construção civil e industrial",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#001745",
+  "background_color": "#f8f8f8",
+  "theme_color": "#1976d2",
   "orientation": "portrait",
   "categories": ["business", "shopping", "utilities"],
   "lang": "pt-BR",
@@ -17,42 +17,43 @@
     {
       "name": "Ver Equipamentos",
       "short_name": "Equipamentos",
-      "description": "Veja todos os equipamentos disponíveis para locação",
+      "description": "Navegue pelos equipamentos disponíveis para locação",
       "url": "/equipamentos",
-      "icons": [{ "src": "/images/favicon.png", "sizes": "192x192" }]
+      "icons": [{ "src": "images/favicon.png", "sizes": "192x192" }]
     },
     {
       "name": "Contato",
       "short_name": "Contato",
-      "description": "Entre em contato com a Rental Company",
+      "description": "Entre em contato com a Lokajá",
       "url": "/contato",
-      "icons": [{ "src": "/images/favicon.png", "sizes": "192x192" }]
+      "icons": [{ "src": "images/favicon.png", "sizes": "192x192" }]
     }
   ],
   "icons": [
     {
-      "src": "/images/favicon.png",
+      "src": "images/favicon.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/images/favicon.png",
+      "src": "images/favicon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/images_optimized/favicon.webp",
+      "src": "images_optimized/favicon.webp",
       "sizes": "192x192",
       "type": "image/webp",
       "purpose": "any maskable"
     },
     {
-      "src": "/images_optimized/favicon.webp",
+      "src": "images_optimized/favicon.webp",
       "sizes": "512x512",
       "type": "image/webp",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "splash_pages": null
 } 

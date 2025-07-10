@@ -21,21 +21,21 @@ export const updateCompanyWhatsapp = async () => {
       if (tableError) {
         console.log('Tabela company_info não acessível ou não existe, usando configuração local');
         return {
-          name: 'Rental Company',
-          whatsapp: '5500000000000',
-          phone: '(00) 0000-0000',
-          email: 'contato@rentalcompany.com.br',
-          address: 'Endereço da Empresa, Número - Bairro, Cidade - UF, 00000-000'
+          name: 'Lokajá',
+          whatsapp: '5567993381010',
+          phone: '(67) 99338-1010',
+          email: 'contato@lokaja.com.br',
+          address: 'Av. da Flora, 374 - Jardim das Flores, Ponta Porã - MS, 79901-128'
         };
       }
     } catch (error) {
       console.log('Erro ao verificar a tabela, usando configuração local:', error);
       return {
-        name: 'Rental Company',
-        whatsapp: '5500000000000',
-        phone: '(00) 0000-0000',
-        email: 'contato@rentalcompany.com.br',
-        address: 'Endereço da Empresa, Número - Bairro, Cidade - UF, 00000-000'
+        name: 'Lokajá',
+        whatsapp: '5567993381010',
+        phone: '(67) 99338-1010',
+        email: 'contato@lokaja.com.br',
+        address: 'Av. da Flora, 374 - Jardim das Flores, Ponta Porã - MS, 79901-128'
       };
     }
 
@@ -48,11 +48,11 @@ export const updateCompanyWhatsapp = async () => {
     if (checkError) {
       console.log('Erro ao verificar registros, usando configuração local:', checkError);
       return {
-        name: 'Rental Company',
-        whatsapp: '5500000000000',
-        phone: '(00) 0000-0000',
-        email: 'contato@rentalcompany.com.br',
-        address: 'Endereço da Empresa, Número - Bairro, Cidade - UF, 00000-000'
+        name: 'Lokajá',
+        whatsapp: '5567993381010',
+        phone: '(67) 99338-1010',
+        email: 'contato@lokaja.com.br',
+        address: 'Av. da Flora, 374 - Jardim das Flores, Ponta Porã - MS, 79901-128'
       };
     }
 
@@ -60,17 +60,17 @@ export const updateCompanyWhatsapp = async () => {
       // Atualizar o número do WhatsApp no registro existente
       const { error: updateError } = await supabase
         .from('company_info')
-        .update({ whatsapp: '5500000000000' })
+        .update({ whatsapp: '5567993381010' })
         .eq('id', existingData[0].id);
       
       if (updateError) {
         console.log('Erro ao atualizar WhatsApp, usando configuração local:', updateError);
         return {
-          name: 'Rental Company',
-          whatsapp: '5500000000000',
-          phone: '(00) 0000-0000',
-          email: 'contato@rentalcompany.com.br',
-          address: 'Endereço da Empresa, Número - Bairro, Cidade - UF, 00000-000'
+          name: 'Lokajá',
+          whatsapp: '5567993381010',
+          phone: '(67) 99338-1010',
+          email: 'contato@lokaja.com.br',
+          address: 'Av. da Flora, 374 - Jardim das Flores, Ponta Porã - MS, 79901-128'
         };
       }
       
@@ -84,22 +84,22 @@ export const updateCompanyWhatsapp = async () => {
           .from('company_info')
           .insert([
             { 
-              name: 'Rental Company',
-              whatsapp: '5500000000000',
-              phone: '(00) 0000-0000',
-              email: 'contato@rentalcompany.com.br',
-              address: 'Endereço da Empresa, Número - Bairro, Cidade - UF, 00000-000'
+              name: 'Lokajá',
+              whatsapp: '5567993381010',
+              phone: '(67) 99338-1010',
+              email: 'contato@lokaja.com.br',
+              address: 'Av. da Flora, 374 - Jardim das Flores, Ponta Porã - MS, 79901-128'
             }
           ]);
         
         if (insertError) {
           console.log('Erro ao inserir dados, usando configuração local:', insertError);
           return {
-            name: 'Rental Company',
-            whatsapp: '5500000000000',
-            phone: '(00) 0000-0000',
-            email: 'contato@rentalcompany.com.br',
-            address: 'Endereço da Empresa, Número - Bairro, Cidade - UF, 00000-000'
+            name: 'Lokajá',
+            whatsapp: '5567993381010',
+            phone: '(67) 99338-1010',
+            email: 'contato@lokaja.com.br',
+            address: 'Av. da Flora, 374 - Jardim das Flores, Ponta Porã - MS, 79901-128'
           };
         }
         
@@ -109,22 +109,22 @@ export const updateCompanyWhatsapp = async () => {
         // Em produção, apenas use os valores padrão
         console.log('Em produção, usando configuração local');
         return {
-          name: 'Rental Company',
-          whatsapp: '5500000000000',
-          phone: '(00) 0000-0000',
-          email: 'contato@rentalcompany.com.br',
-          address: 'Endereço da Empresa, Número - Bairro, Cidade - UF, 00000-000'
+          name: 'Lokajá',
+          whatsapp: '5567993381010',
+          phone: '(67) 99338-1010',
+          email: 'contato@lokaja.com.br',
+          address: 'Av. da Flora, 374 - Jardim das Flores, Ponta Porã - MS, 79901-128'
         };
       }
     }
   } catch (err) {
     console.log('Erro inesperado, usando configuração local:', err);
     return {
-      name: 'Rental Company',
-      whatsapp: '5500000000000',
-      phone: '(00) 0000-0000',
-      email: 'contato@rentalcompany.com.br',
-      address: 'Endereço da Empresa, Número - Bairro, Cidade - UF, 00000-000'
+      name: 'Lokajá',
+      whatsapp: '5567993381010',
+      phone: '(67) 99338-1010',
+      email: 'contato@lokaja.com.br',
+      address: 'Av. da Flora, 374 - Jardim das Flores, Ponta Porã - MS, 79901-128'
     };
   }
 };
