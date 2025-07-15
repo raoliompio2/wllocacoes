@@ -508,25 +508,45 @@ const Footer: React.FC = () => {
         
         {/* Copyright e links de políticas */}
         <Grid container spacing={2} alignItems="center">
-          <Grid item xs={12} md={6}>
-            <Typography variant="body2" color="text.secondary" align={isMobile ? 'center' : 'left'}>
+          <Grid item xs={12} md={4}>
+            <Typography variant="body2" color="white" align={isMobile ? 'center' : 'left'}>
               © {new Date().getFullYear()} Lokajá. Todos os direitos reservados.
             </Typography>
           </Grid>
           
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={4} sx={{ display: 'flex', justifyContent: isMobile ? 'center' : 'center' }}>
+            <Typography variant="body2" color="white" sx={{ display: 'flex', alignItems: 'center' }}>
+              Desenvolvido por <MuiLink href="https://opendreams.com.br" target="_blank" rel="noopener" sx={{ ml: 0.5, color: 'white', '&:hover': { color: 'secondary.main' } }}>Open Dreams</MuiLink>
+            </Typography>
+            <IconButton 
+              href={`https://wa.me/5514982135008`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp Open Dreams"
+              sx={{ 
+                color: 'white',
+                ml: 1,
+                '&:hover': { color: 'secondary.main' }
+              }}
+              size="small"
+            >
+              <WhatsApp fontSize="small" />
+            </IconButton>
+          </Grid>
+          
+          <Grid item xs={12} md={4}>
             <Stack 
               direction="row" 
               spacing={2} 
               justifyContent={isMobile ? 'center' : 'flex-end'}
             >
-              <MuiLink component={Link} to="/politica-de-privacidade" color="text.secondary" underline="hover">
+              <MuiLink component={Link} to="/politica-de-privacidade" color="white" underline="hover" sx={{ '&:hover': { color: 'secondary.main' } }}>
                 Política de Privacidade
               </MuiLink>
-              <MuiLink component={Link} to="/termos-de-uso" color="text.secondary" underline="hover">
+              <MuiLink component={Link} to="/termos-de-uso" color="white" underline="hover" sx={{ '&:hover': { color: 'secondary.main' } }}>
                 Termos de Uso
               </MuiLink>
-              <MuiLink component={Link} to="/sitemap" color="text.secondary" underline="hover">
+              <MuiLink component={Link} to="/sitemap" color="white" underline="hover" sx={{ '&:hover': { color: 'secondary.main' } }}>
                 Sitemap
               </MuiLink>
             </Stack>
