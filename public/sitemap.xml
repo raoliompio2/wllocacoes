@@ -8,130 +8,766 @@
         xmlns:pagemap="http://www.google.com/schemas/sitemap-pagemap/1.0"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
-  <!-- Páginas principais -->
   <url>
     <loc>https://lokaja.com.br/</loc>
-    <lastmod>2023-12-01T12:00:00+00:00</lastmod>
+    <lastmod>2025-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://lokaja.com.br/sobre</loc>
-    <lastmod>2023-12-01T12:00:00+00:00</lastmod>
+    <lastmod>2025-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://lokaja.com.br/contato</loc>
-    <lastmod>2023-12-01T12:00:00+00:00</lastmod>
+    <lastmod>2025-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Página de equipamentos principal (listagem) -->
   <url>
     <loc>https://lokaja.com.br/equipamentos</loc>
-    <lastmod>2023-12-01T12:00:00+00:00</lastmod>
+    <lastmod>2025-07-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
-
-  <!-- Páginas de categorias - importante para anúncios dinâmicos -->
-  <url>
-    <loc>https://lokaja.com.br/equipamentos/categoria/escavadeiras</loc>
-    <lastmod>2023-12-01T12:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://lokaja.com.br/images_optimized/categories/excavator.webp</image:loc>
-      <image:caption>Escavadeiras para aluguel</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://lokaja.com.br/equipamentos/categoria/betoneiras</loc>
-    <lastmod>2023-12-01T12:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://lokaja.com.br/images_optimized/categories/concrete-mixer.webp</image:loc>
-      <image:caption>Betoneiras para aluguel</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://lokaja.com.br/equipamentos/categoria/carregadeiras</loc>
-    <lastmod>2023-12-01T12:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://lokaja.com.br/images_optimized/categories/loader.webp</image:loc>
-      <image:caption>Carregadeiras para aluguel</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://lokaja.com.br/equipamentos/categoria/andaimes</loc>
-    <lastmod>2023-12-01T12:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://lokaja.com.br/images_optimized/categories/scaffolding.webp</image:loc>
-      <image:caption>Andaimes para aluguel</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://lokaja.com.br/equipamentos/categoria/compactadores</loc>
-    <lastmod>2023-12-01T12:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://lokaja.com.br/images_optimized/categories/compactor.webp</image:loc>
-      <image:caption>Compactadores para aluguel</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://lokaja.com.br/equipamentos/categoria/geradores</loc>
-    <lastmod>2023-12-01T12:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://lokaja.com.br/images_optimized/categories/generator.webp</image:loc>
-      <image:caption>Geradores para aluguel</image:caption>
-    </image:image>
-  </url>
-
-  <!-- Exemplos de páginas de produtos individuais -->
-  <url>
-    <loc>https://lokaja.com.br/equipamento/escavadeira-hidraulica-12ton</loc>
-    <lastmod>2023-12-01T12:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://lokaja.com.br/images_optimized/equipment/escavadeira-hidraulica.webp</image:loc>
-      <image:caption>Escavadeira Hidráulica 12 Toneladas</image:caption>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://lokaja.com.br/equipamento/betoneira-400-litros</loc>
-    <lastmod>2023-12-01T12:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://lokaja.com.br/images_optimized/equipment/betoneira-400l.webp</image:loc>
-      <image:caption>Betoneira 400 Litros</image:caption>
-    </image:image>
-  </url>
-  
-  <!-- Páginas de políticas e informações complementares -->
   <url>
     <loc>https://lokaja.com.br/politica-de-privacidade</loc>
-    <lastmod>2023-12-01T12:00:00+00:00</lastmod>
+    <lastmod>2025-07-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://lokaja.com.br/termos-de-uso</loc>
-    <lastmod>2023-12-01T12:00:00+00:00</lastmod>
+    <lastmod>2025-07-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-</urlset> 
+  <url>
+    <loc>https://lokaja.com.br/equipamentos/categoria/acessorios</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lokaja.com.br/images_optimized/categories/acessorios.webp</image:loc>
+      <image:caption>Acessórios para aluguel</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamentos/categoria/andaimes-e-elevacao</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lokaja.com.br/images_optimized/categories/andaimes-e-elevacao.webp</image:loc>
+      <image:caption>Andaimes e Elevação para aluguel</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamentos/categoria/compactacao-de-solo</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lokaja.com.br/images_optimized/categories/compactacao-de-solo.webp</image:loc>
+      <image:caption>Compactação de Solo para aluguel</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamentos/categoria/concretagem</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lokaja.com.br/images_optimized/categories/concretagem.webp</image:loc>
+      <image:caption>Concretagem para aluguel</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamentos/categoria/demolicao</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lokaja.com.br/images_optimized/categories/demolicao.webp</image:loc>
+      <image:caption>Demolição para aluguel</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamentos/categoria/drenagem</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lokaja.com.br/images_optimized/categories/drenagem.webp</image:loc>
+      <image:caption>Drenagem para aluguel</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamentos/categoria/ferramentas-eletricas</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lokaja.com.br/images_optimized/categories/ferramentas-eletricas.webp</image:loc>
+      <image:caption>Ferramentas Elétricas para aluguel</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamentos/categoria/geradores-de-energia</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lokaja.com.br/images_optimized/categories/geradores-de-energia.webp</image:loc>
+      <image:caption>Geradores de Energia para aluguel</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamentos/categoria/jardinagem</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lokaja.com.br/images_optimized/categories/jardinagem.webp</image:loc>
+      <image:caption>Jardinagem para aluguel</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamentos/categoria/limpeza-e-pos-obra</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lokaja.com.br/images_optimized/categories/limpeza-e-pos-obra.webp</image:loc>
+      <image:caption>Limpeza e Pós Obra para aluguel</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamentos/categoria/piso-e-concreto</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lokaja.com.br/images_optimized/categories/piso-e-concreto.webp</image:loc>
+      <image:caption>Piso e Concreto para aluguel</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamentos/categoria/transporte</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lokaja.com.br/images_optimized/categories/transporte.webp</image:loc>
+      <image:caption>Transporte para aluguel</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/alisadora-de-piso</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/04c5c576-114b-423e-b28c-efb5825c75fb/main-1752606862219</image:loc>
+      <image:caption>Alisadora de Piso - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/andaime-tubular</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/f37e59a9-e613-443e-a9e9-af7360da976b/main-1752610313757</image:loc>
+      <image:caption>Andaime Tubular - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/aspirador-de-po-profissional</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/4f2866c6-d4fe-4445-aa4c-bca43e6bad45/main-1752606924203</image:loc>
+      <image:caption>Aspirador de Pó Profissional - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/betoneira-400l-rental-2cv-220v</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/d5b90bbf-029f-435a-9dbb-30fe5144792b/main-1752606993792</image:loc>
+      <image:caption>BETONEIRA 400L-RENTAL 2CV 220V - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/bomba-de-mangote-submersivel-5m</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/a8aa3474-1d2b-41f4-8177-b2c82b3dc2b7/main-1752607039478</image:loc>
+      <image:caption>BOMBA DE MANGOTE SUBMERSÍVEL 5M - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/compactador-de-solo-</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/e56d6562-8e2f-4202-9bfa-5ef03dae976f/main-1752610150986</image:loc>
+      <image:caption>COMPACTADOR DE SOLO  - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/cortador-de-grama</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/72bea1bd-67b4-4b09-b99b-d4cbec7cbd15/main-1752607103198</image:loc>
+      <image:caption>CORTADOR DE GRAMA - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/cortadora-de-piso-e-asfalto-120mm</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/47c391fb-83bc-4dca-ba5d-0739cf539b39/main-1752607214760</image:loc>
+      <image:caption>CORTADORA DE PISO E ASFALTO 120MM - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/cortadora-de-piso-e-asfalto-160mm</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/e2d44952-bc9e-4f00-8937-28c7961bdb44/main-1752607345009</image:loc>
+      <image:caption>CORTADORA DE PISO E ASFALTO 160MM - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/enceradeira-industrial-400mm-110v</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/23e12d29-536a-407f-88a3-df1b5d162c85/main-1752607318605</image:loc>
+      <image:caption>ENCERADEIRA INDUSTRIAL 400MM 110V - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/escada-de-9-degraus</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/6306da52-5f13-4a2e-9282-09f30b93e4bf/main-1752607388979</image:loc>
+      <image:caption>ESCADA DE 9 DEGRAUS - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/escada-extensiva-5-8m</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/5c8a8cd8-42f1-44a7-8f95-9fb89734292b/main-1752607415418</image:loc>
+      <image:caption>ESCADA EXTENSIVA 5-8M - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/escada-extensiva-de-fibra-4-72m</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/8a7bdc18-792c-4ab9-acc8-7e26b02636a9/main-1752607440573</image:loc>
+      <image:caption>ESCADA EXTENSIVA DE FIBRA 4-7,2M - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/esmerilhadeira-angular-4-p</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/3208ad5a-2170-4a06-a629-7caa90fa55e5/main-1752607508353</image:loc>
+      <image:caption>ESMERILHADEIRA ANGULAR 4 p - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/esmerilhadeira-angular-7</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/701a2d7c-2618-4119-8a81-129afc468542/main-1752607530237</image:loc>
+      <image:caption>ESMERILHADEIRA ANGULAR 7 - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/esmerilhadeira-angular-9</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/ed153a15-ede7-4b25-a933-a8a5c09c966b/main-1752607560026</image:loc>
+      <image:caption>ESMERILHADEIRA ANGULAR 9 - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/extensao-20m-cabo-pp</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/f713be39-d046-46a4-baa9-251812d1b9a7/main-1752607616541</image:loc>
+      <image:caption>EXTENSÃO 20M CABO PP - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/extensao-30m-cabo-pp</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/49d86abc-3368-46b0-a5a8-05fc6ebfbf50/main-1752607653189</image:loc>
+      <image:caption>EXTENSAO 30M CABO PP - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/extensao-8m-cabo-pp</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/51d47594-4aa3-416b-91c7-c242c3b63d1a/main-1752607592178</image:loc>
+      <image:caption>EXTENSÃO 8M CABO PP - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/furadeira-de-impacto-1100w-220v</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/6e3f6a82-7b0c-46c5-b29e-3d5ad178f163/main-1752607740271</image:loc>
+      <image:caption>FURADEIRA DE IMPACTO 1100W 220V - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/furadeira-de-impacto-800w</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/08b54c45-c269-4026-840c-2db23bc27fde/main-1752607704985</image:loc>
+      <image:caption>FURADEIRA DE IMPACTO 800W - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/gerador-a-gasolina-3kva</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/8d5574ba-9a6d-4548-b8c8-5a80ed7ecd3b/main-1752607783143</image:loc>
+      <image:caption>GERADOR Á GASOLINA 3KVA - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/gerador-a-gasolina-6kva</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/71d5a73f-6263-4fce-946e-a89aaa88674a/main-1752607822308</image:loc>
+      <image:caption>GERADOR À GASOLINA 6KVA - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/gerador-a-gasolina-8kva</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/8b7fc79d-4940-4f84-b266-f314a55c30ef/main-1752607854471</image:loc>
+      <image:caption>GERADOR À GASOLINA 8KVA - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/lavadora-de-alta-pressao</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/ad8e5267-e0fc-4544-9c86-421d5c70c166/main-1752607908046</image:loc>
+      <image:caption>LAVADORA DE ALTA PRESSAO - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/limpadora-extratora-de-estofados</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/c7f73c4b-fcd0-4f74-b127-698326e31099/main-1752607972732</image:loc>
+      <image:caption>LIMPADORA EXTRATORA DE ESTOFADOS - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/lixadeira-de-parede-e-teto</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/7a3bbd8c-99a3-410f-8d16-f3bcaadcbbb8/main-1752608033610</image:loc>
+      <image:caption>LIXADEIRA DE PAREDE E TETO - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/martelete-demolidor-16kg</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/73038668-5c0c-406f-bd4c-eafa566b7688/main-1752608149715</image:loc>
+      <image:caption>MARTELETE DEMOLIDOR 16KG - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/martelete-perfurador-sds-plus-a-bateria</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/6143b7f9-3c49-4003-8e34-9841de058504/main-1752608204438</image:loc>
+      <image:caption>MARTELETE PERFURADOR SDS PLUS A BATERIA - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/martelete-perfurador-sds-plus-c-fio</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/4feb0f9a-f422-42ac-8d3a-690f6cfd661f/main-1752608264571</image:loc>
+      <image:caption>MARTELETE PERFURADOR SDS PLUS C/ FIO - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/martelete-rompedor-11kg</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/99ac9297-1d4e-45ee-8f49-7c09f65eab3f/main-1752608310693</image:loc>
+      <image:caption>MARTELETE ROMPEDOR 11KG - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/martelete-rompedor-ate-75kg</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/b0bcaf7d-4696-4ea6-9b6b-c34924538ee4/main-1752608382044</image:loc>
+      <image:caption>MARTELETE ROMPEDOR ATÉ 7,5KG - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/martelete-sds-max</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/12f5b6ca-c122-4bc5-8ffb-beda25ab5060/main-1752608410838</image:loc>
+      <image:caption>MARTELETE SDS MAX - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/moto-bomba-autoescorvante</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/a47b3185-c15c-495f-817c-ea43eab1902a/main-1752608494207</image:loc>
+      <image:caption>MOTO BOMBA (AUTOESCORVANTE) - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/motopoda-podador-de-galhos</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/8b23d921-f7b9-48ee-97ae-78f04444cc7b/main-1752608528843</image:loc>
+      <image:caption>MOTOPODA (PODADOR DE GALHOS) - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/motor-de-acionamento-</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/8f5bc412-f7bd-4754-98ab-19902511eeff/main-1752608559358</image:loc>
+      <image:caption>MOTOR DE ACIONAMENTO  - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/motor-de-acionamento-eletrico</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/891d59bc-c20f-454f-bd97-3fcc95c7dba6/main-1752608598563</image:loc>
+      <image:caption>MOTOR DE ACIONAMENTO ELÉTRICO - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/motosserra-husqvarna-modelo-sabre-</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/b1a16d98-f0f5-4a05-8804-ef75ceffe3b2/main-1752608705569</image:loc>
+      <image:caption>MOTOSSERRA HUSQVARNA MODELO SABRE  - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/parafusadeira-a-bateria</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/e2d47dd0-8cf2-4117-9ddd-cb7a56a5354c/main-1752608745846</image:loc>
+      <image:caption>PARAFUSADEIRA A BATERIA - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/placa-vibratoria</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/6b1fe01a-667e-4ab8-8b40-b6aaca06fc8f/main-1752608877574</image:loc>
+      <image:caption>PLACA VIBRATÓRIA - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/plaina-eletrica-220v</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/7cca3207-486c-4b58-99a9-efb350b69217/main-1752608923085</image:loc>
+      <image:caption>PLAINA ELÉTRICA 220V - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/pulverizador-costal-bomba-costal</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/0c27c361-2003-42c3-97a9-a4d4c825c181/main-1752608961868</image:loc>
+      <image:caption>PULVERIZADOR COSTAL (BOMBA COSTAL) - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/rocadeira-a-gasolina-costal</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/58e38037-3d6a-41c1-8452-52c65b87447b/main-1752609055031</image:loc>
+      <image:caption>ROÇADEIRA A GASOLINA COSTAL - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/serra-circular</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/4a26eb3b-c741-4dfd-aff2-3c56c55379e8/main-1752609128738</image:loc>
+      <image:caption>SERRA CIRCULAR - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/serra-de-bancada</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/e4bb2a0c-17c8-4324-acb5-f74cd830a723/main-1752609169662</image:loc>
+      <image:caption>SERRA DE BANCADA - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/serra-marmore</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/68f6709b-3fda-418d-8683-b43c2e24c069/main-1752609203247</image:loc>
+      <image:caption>SERRA MÁRMORE - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/serra-tico-tico</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/b6991494-3ffb-4be6-b30f-e8bc0dbbc957/main-1752609538229</image:loc>
+      <image:caption>SERRA TICO TICO - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/solda-inversora</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/f13470e3-1b00-4a99-b0fe-26ecb2fb7840/main-1752609574453</image:loc>
+      <image:caption>SOLDA INVERSORA - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/soprador-de-ar</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/7b94e04a-de2c-451a-840e-691bfaed4cd2/main-1752609611690</image:loc>
+      <image:caption>SOPRADOR DE AR - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/transpallet-2ton</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/f884d582-cc7c-4f9f-af1a-fc1f98086a35/main-1752609680511</image:loc>
+      <image:caption>TRANSPALLET 2TON - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/tufao-ar-direto</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/8e056384-24aa-410f-9f48-269d81be5754/main-1752609838496</image:loc>
+      <image:caption>TUFAO AR DIRETO - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/vibrador-motor-3cv</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/e8b2f6d3-b50e-493a-8a66-52bde4deb428/main-1752609996144</image:loc>
+      <image:caption>VIBRADOR (MOTOR) 3CV - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/vibrador-de-concreto-35mm-de-35m</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/a3d95675-91c5-41e9-9cc3-68ce9c53f2df/main-1752608072612</image:loc>
+      <image:caption>VIBRADOR DE CONCRETO 35MM DE 3,5M - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+  <url>
+    <loc>https://lokaja.com.br/equipamento/vibrador-de-imersao-pendular-mangote-5m</loc>
+    <lastmod>2025-07-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://wsfrxepazeetaavditbm.supabase.co/storage/v1/object/public/images/equipment/e3949fae-c975-4beb-b874-0b4f0cccc6d1/main-1752610050182</image:loc>
+      <image:caption>VIBRADOR DE IMERSÃO PENDULAR MANGOTE 5M - Aluguel de equipamentos para construção</image:caption>
+    </image:image>
+  
+  </url>
+</urlset>

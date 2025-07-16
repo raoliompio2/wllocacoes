@@ -5,9 +5,15 @@ import dotenv from 'dotenv';
 // Configurar dotenv
 dotenv.config();
 
-// Configuração do Supabase
-const supabaseUrl = process.env.VITE_SUPABASE_URL;
-const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
+// Configuração do Supabase com fallback hardcoded
+const supabaseUrl = process.env.VITE_SUPABASE_URL || 
+                   process.env.SUPABASE_URL || 
+                   'https://fwsqvutgtwjyjbukydsy.supabase.co';
+
+const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY || 
+                   process.env.SUPABASE_KEY || 
+                   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3c3F2dXRndHdqeWpidWt5ZHN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAwMTczNjgsImV4cCI6MjA2NTU5MzM2OH0.JUtKdyPA7Eh8N_mUe73yPMhehaQzkjFOA6EqD5HG9Ko';
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Função para criar slug a partir do nome
