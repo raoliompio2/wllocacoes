@@ -1,6 +1,9 @@
 // API handler para gerar feed de produtos para anúncios dinâmicos do Google
-const { createClient } = require('@supabase/supabase-js');
-require('dotenv').config();
+import { createClient } from '@supabase/supabase-js';
+import dotenv from 'dotenv';
+
+// Configurar dotenv
+dotenv.config();
 
 // Configuração do Supabase
 const supabaseUrl = process.env.VITE_SUPABASE_URL;

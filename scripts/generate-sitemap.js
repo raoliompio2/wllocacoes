@@ -1,6 +1,9 @@
-const fs = require('fs');
-const { createClient } = require('@supabase/supabase-js');
-require('dotenv').config();
+import fs from 'fs';
+import { createClient } from '@supabase/supabase-js';
+import dotenv from 'dotenv';
+
+// Configurar dotenv
+dotenv.config();
 
 // Configuração do Supabase
 const supabaseUrl = process.env.VITE_SUPABASE_URL;
