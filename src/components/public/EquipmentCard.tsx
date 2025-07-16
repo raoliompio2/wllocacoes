@@ -93,6 +93,7 @@ interface EquipmentCardProps {
   categoryName?: string;
   constructionPhaseName?: string;
   loading?: boolean;
+  viewMode?: 'grid' | 'list'; // Adicionando suporte à prop viewMode
 }
 
 const EquipmentCard: React.FC<EquipmentCardProps> = ({ 

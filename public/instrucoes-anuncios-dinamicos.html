@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instruções para Anúncios Dinâmicos - Lokajá</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2a6bb0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2a6bb0;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #444;
+            margin-top: 25px;
+        }
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            border-left: 4px solid #2a6bb0;
+        }
+        .url-display {
+            background-color: #e9f1fb;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #c8d9ed;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+        .note {
+            background-color: #fff8e1;
+            padding: 15px;
+            border-left: 4px solid #ffca28;
+            margin: 20px 0;
+        }
+        .warning {
+            background-color: #ffebee;
+            padding: 15px;
+            border-left: 4px solid #f44336;
+            margin: 20px 0;
+        }
+        .success {
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-left: 4px solid #4caf50;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        .logo {
+            max-width: 200px;
+            margin: 20px 0;
+            border: none;
+            padding: 0;
+        }
+        a {
+            color: #2a6bb0;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="/images_optimized/Logo_fundo_claro/Logo_Locaja.webp" alt="Logo Lokajá" class="logo">
+    </header>
+    
+    <h1>Instruções para Anúncios Dinâmicos do Google</h1>
+    
+    <div class="note">
+        <strong>Nota:</strong> Este documento fornece instruções detalhadas para configurar anúncios dinâmicos de pesquisa no Google Ads para o site Lokajá.
+    </div>
+    
+    <h2>1. Feeds de Produtos Disponíveis</h2>
+    
+    <p>Fornecemos três formatos de feeds de produtos que podem ser usados no Google Ads:</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Formato</th>
+                <th>URL</th>
+                <th>Uso Recomendado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>XML/RSS</td>
+                <td><code>https://lokaja.com.br/api/product-feed?token=lokaja-feed-token&format=xml</code></td>
+                <td>Configuração principal de anúncios dinâmicos</td>
+            </tr>
+            <tr>
+                <td>CSV</td>
+                <td><code>https://lokaja.com.br/api/product-feed?token=lokaja-feed-token&format=csv</code></td>
+                <td>Importação para planilhas ou outros sistemas</td>
+            </tr>
+            <tr>
+                <td>JSON</td>
+                <td><code>https://lokaja.com.br/api/product-feed?token=lokaja-feed-token&format=json</code></td>
+                <td>Integração com aplicativos personalizados</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="success">
+        <p><strong>Links diretos para os feeds:</strong></p>
+        <p><a href="https://lokaja.com.br/api/product-feed?token=lokaja-feed-token&format=xml" target="_blank">Baixar feed XML</a></p>
+        <p><a href="https://lokaja.com.br/api/product-feed?token=lokaja-feed-token&format=csv" target="_blank">Baixar feed CSV</a></p>
+        <p><a href="https://lokaja.com.br/api/product-feed?token=lokaja-feed-token&format=json" target="_blank">Baixar feed JSON</a></p>
+    </div>
+    
+    <h2>2. Configurando Anúncios Dinâmicos no Google Ads</h2>
+    
+    <h3>Passo 1: Criar uma Nova Campanha</h3>
+    <ol>
+        <li>Faça login na sua conta Google Ads</li>
+        <li>Clique em "Campanhas" e depois em "+ Nova campanha"</li>
+        <li>Selecione "Gerar vendas", "Gerar leads" ou "Tráfego para o site" como objetivo da campanha</li>
+        <li>Selecione "Pesquisa" como tipo de campanha</li>
+        <li>Marque "Anúncios dinâmicos de pesquisa" como subtipo da campanha</li>
+        <li>Configure as outras opções da campanha (orçamento, ofertas, segmentação geográfica, etc.)</li>
+    </ol>
+    
+    <h3>Passo 2: Configurar o Feed de Produtos</h3>
+    <ol>
+        <li>Na seção "Configurações dinâmicas", selecione "Use um feed"</li>
+        <li>Clique em "Novo feed"</li>
+        <li>Insira as seguintes informações:
+            <ul>
+                <li>Nome do feed: "Feed Lokajá"</li>
+                <li>Plano de atualização: "Diariamente" ou "Semanalmente"</li>
+                <li>Tipo de feed: "URL do feed"</li>
+                <li>URL do feed: <code>https://lokaja.com.br/api/product-feed?token=lokaja-feed-token&format=xml</code></li>
+                <li>Formato do feed: "XML"</li>
+            </ul>
+        </li>
+        <li>Clique em "Salvar e continuar"</li>
+    </ol>
+    
+    <div class="warning">
+        <strong>Importante:</strong> Certifique-se de que a URL do feed esteja correta e que o token de acesso seja válido.
+    </div>
+    
+    <h3>Passo 3: Configurar Segmentação de Anúncios</h3>
+    <ol>
+        <li>Na seção "Segmentações de anúncios dinâmicos", selecione "Usar categorias recomendadas pelo Google"</li>
+        <li>Opcional: Adicione segmentações adicionais como "Categorias personalizadas" baseadas no atributo <code>custom_label_0</code> do feed</li>
+    </ol>
+    
+    <h3>Passo 4: Criar Grupo de Anúncios e Anúncios</h3>
+    <ol>
+        <li>Crie um novo grupo de anúncios</li>
+        <li>Adicione um anúncio dinâmico de pesquisa no formato que preferir</li>
+        <li>Configure as descrições do anúncio</li>
+        <li>Salve o anúncio</li>
+    </ol>
+    
+    <h3>Passo 5: Otimizações Adicionais</h3>
+    <ol>
+        <li>Configure extensões de anúncios (sitelinks, callouts, estruturados, etc.)</li>
+        <li>Configure ajustes de lance por dispositivo, localização ou horário</li>
+        <li>Defina exclusões de pesquisa para termos irrelevantes</li>
+    </ol>
+    
+    <h2>3. Categorias Disponíveis para Segmentação</h2>
+    
+    <p>As seguintes categorias de equipamentos estão disponíveis no feed e podem ser usadas para segmentação:</p>
+    
+    <ul>
+        <li>Escavadeiras</li>
+        <li>Betoneiras</li>
+        <li>Carregadeiras</li>
+        <li>Andaimes</li>
+        <li>Compactadores</li>
+        <li>Geradores</li>
+        <li>E outras categorias conforme disponíveis no site</li>
+    </ul>
+    
+    <h2>4. Manutenção e Atualização</h2>
+    
+    <p>O feed de produtos é atualizado automaticamente quando novos produtos são adicionados, modificados ou removidos do site. Algumas dicas para manutenção:</p>
+    
+    <ul>
+        <li>Verifique regularmente se o Google Ads está conseguindo acessar o feed sem erros</li>
+        <li>Monitore o desempenho dos anúncios dinâmicos por categoria</li>
+        <li>Ajuste as descrições dos anúncios conforme necessário para melhorar o CTR</li>
+        <li>Adicione palavras-chave negativas para evitar exibições em pesquisas irrelevantes</li>
+    </ul>
+    
+    <div class="note">
+        <p><strong>Atualização do Feed:</strong> O feed é atualizado diariamente às 3:00 da manhã. Quaisquer alterações nos produtos serão refletidas no feed após esse horário.</p>
+    </div>
+    
+    <h2>5. Solução de Problemas</h2>
+    
+    <h3>O feed não está sendo importado corretamente</h3>
+    <ul>
+        <li>Verifique se a URL do feed está correta</li>
+        <li>Confirme se o token de acesso é válido</li>
+        <li>Verifique se o Google Ads tem permissão para acessar o feed</li>
+    </ul>
+    
+    <h3>Os anúncios não estão sendo exibidos</h3>
+    <ul>
+        <li>Certifique-se de que o site esteja indexado corretamente pelo Google</li>
+        <li>Verifique se as segmentações de anúncios estão configuradas corretamente</li>
+        <li>Confirme se o orçamento diário é suficiente</li>
+    </ul>
+    
+    <h3>Categorias não estão sendo reconhecidas</h3>
+    <ul>
+        <li>Verifique se as categorias no feed correspondem às categorias segmentadas no Google Ads</li>
+        <li>Certifique-se de que os produtos têm categorias atribuídas corretamente no sistema</li>
+    </ul>
+    
+    <h2>6. Contato para Suporte</h2>
+    
+    <p>Se precisar de assistência adicional com a configuração ou otimização dos anúncios dinâmicos, entre em contato:</p>
+    
+    <ul>
+        <li>Email: <a href="mailto:suporte@lokaja.com.br">suporte@lokaja.com.br</a></li>
+        <li>Telefone: (00) 0000-0000</li>
+    </ul>
+    
+    <div class="success">
+        <p><strong>Dica profissional:</strong> Para melhores resultados, combine anúncios dinâmicos com campanhas tradicionais de pesquisa baseadas em palavras-chave. Isso permite capturar tanto o tráfego específico quanto o tráfego de cauda longa.</p>
+    </div>
+    
+    <footer style="margin-top: 50px; border-top: 1px solid #eee; padding-top: 20px;">
+        <p>© 2023 Lokajá - Locadora de Equipamentos para Construção</p>
+    </footer>
+</body>
+</html> 

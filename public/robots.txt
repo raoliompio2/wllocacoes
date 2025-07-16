@@ -5,6 +5,22 @@
 User-agent: *
 Allow: /
 
+# Permitir Google Ads acessar o feed de produtos
+User-agent: Mediapartners-Google
+Allow: /api/product-feed
+
+# Permitir Google AdSense
+User-agent: Mediapartners-Google*
+Allow: /
+
+# Permitir Google Bot
+User-agent: Googlebot
+Allow: /
+
+# Permitir Google Image
+User-agent: Googlebot-Image
+Allow: /
+
 # Páginas principais
 Allow: /index.html
 Allow: /equipamentos

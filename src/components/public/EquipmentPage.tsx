@@ -41,8 +41,10 @@ import { supabase } from '../../utils/supabaseClient';
 import EquipmentCard from './EquipmentCard';
 import SEOHead from '../SEO/SEOHead';
 import EquipmentFiltersFloating from './EquipmentFiltersFloating';
-import FilterPanel from '../common/FilterPanel';
+// Removendo a importação do FilterPanel que não está sendo usada corretamente
+// import FilterPanel from '../common/FilterPanel';
 import EquipmentListSchema from '../SEO/EquipmentListSchema';
+import EquipmentCategorySchema from '../SEO/EquipmentCategorySchema';
 import { fuzzySearch, sortByRelevance, correctCommonTypos, normalizeText } from '../../utils/searchUtils';
 
 // Tipos
@@ -85,13 +87,14 @@ const EquipmentPage: React.FC = () => {
   
   // Função para criar slug a partir do nome do equipamento
   const createSlug = (name: string) => {
-    return encodeURIComponent(
-      name
-        .toLowerCase()
-        .replace(/\s+/g, '-')
-        .replace(/--+/g, '-')
-        .trim()
-    );
+    return name
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') // Remove acentos
+      .replace(/[^\w\s-]/g, '') // Remove caracteres especiais
+      .replace(/\s+/g, '-')
+      .replace(/--+/g, '-')
+      .trim();
   };
   
   // Estados
@@ -109,6 +112,34 @@ const EquipmentPage: React.FC = () => {
   const [showFilters, setShowFilters] = useState(false);
   
   const itemsPerPage = 12;
+
+  // Função de pesquisa - definida como useCallback para evitar problemas
+  const handleSearch = useCallback((event: React.FormEvent) => {
+    event.preventDefault();
+    // Resetar página quando fizer uma nova pesquisa
+    setPage(1);
+    
+    // Atualizar URL com parâmetros de pesquisa
+    const queryParams = new URLSearchParams();
+    
+    if (searchTerm) {
+      queryParams.set('q', searchTerm);
+    }
+    
+    if (selectedCategory) {
+      queryParams.set('categoria', selectedCategory);
+    }
+    
+    if (selectedPhase) {
+      queryParams.set('fase', selectedPhase);
+    }
+    
+    const queryString = queryParams.toString();
+    navigate({
+      pathname: '/equipamentos',
+      search: queryString ? `?${queryString}` : ''
+    });
+  }, [searchTerm, selectedCategory, selectedPhase, navigate]);
 
   // Obter parâmetros da URL
   useEffect(() => {
@@ -130,7 +161,7 @@ const EquipmentPage: React.FC = () => {
     } else {
       // Se não tiver na rota, verificar nos parâmetros de consulta
       const searchParams = new URLSearchParams(location.search);
-      const categoryParam = searchParams.get('categoria');
+      const categoryParam = searchParams.get('categoria') || searchParams.get('category');
       if (categoryParam) {
         setSelectedCategory(categoryParam);
         setShowFilters(true);
@@ -139,13 +170,13 @@ const EquipmentPage: React.FC = () => {
     
     // Verificar se há outros parâmetros que você queira usar
     const searchParams = new URLSearchParams(location.search);
-    const phaseParam = searchParams.get('fase');
+    const phaseParam = searchParams.get('fase') || searchParams.get('phase');
     if (phaseParam) {
       setSelectedPhase(phaseParam);
     }
     
     // Buscar o termo de pesquisa no parâmetro 'q' (usado por ambos SearchBar e MobileSearchBar)
-    const searchParam = searchParams.get('q');
+    const searchParam = searchParams.get('q') || searchParams.get('busca') || searchParams.get('search');
     if (searchParam) {
       setSearchTerm(searchParam);
       
@@ -230,7 +261,7 @@ const EquipmentPage: React.FC = () => {
         // Obter o termo de busca da URL
         const searchParams = new URLSearchParams(location.search);
         const searchTerm = searchParams.get('q') || searchParams.get('busca') || '';
-        const phaseParam = searchParams.get('fase') || '';
+        const phaseParam = searchParams.get('fase') || searchParams.get('phase');
         
         let data, error;
         
@@ -448,7 +479,7 @@ const EquipmentPage: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const inputTerm = event.target.value;
     
     // Verificar se o termo tem correção de erro comum
@@ -474,11 +505,7 @@ const EquipmentPage: React.FC = () => {
     
     // Preservar outros parâmetros
     if (selectedCategory) {
-      const category = categories.find(cat => cat.id === selectedCategory);
-      if (category && category.name) {
-        const categorySlug = createSlug(category.name);
-        searchParams.set('categoria', selectedCategory);
-      }
+      searchParams.set('categoria', selectedCategory);
     }
     
     if (selectedPhase) {
@@ -488,7 +515,7 @@ const EquipmentPage: React.FC = () => {
     // Atualizar URL sem recarregar a página
     const newUrl = `${location.pathname}${searchParams.toString() ? '?' + searchParams.toString() : ''}`;
     window.history.replaceState({}, '', newUrl);
-  };
+  }, [location.pathname, location.search, selectedCategory, selectedPhase]);
 
   const handleSortChange = (event: SelectChangeEvent<string>) => {
     setSortOrder(event.target.value);
@@ -525,7 +552,7 @@ const EquipmentPage: React.FC = () => {
 
   // Função para preparar dados para o schema da listagem de equipamentos
   const prepareEquipmentForSchema = () => {
-    return equipment.map(item => ({
+    return paginatedEquipment.map(item => ({
       id: item.id,
       name: item.name,
       description: item.description || `Aluguel de ${item.name} para sua obra ou evento`,
@@ -605,91 +632,289 @@ const EquipmentPage: React.FC = () => {
   // Schema combinado para a página
   const combinedSchema = [generateCategoriesSchema(), generateOrganizationSchema()];
 
+  // Função para atualizar a URL com parâmetros de filtro
+  const updateUrlWithFilters = useCallback(() => {
+    const searchParams = new URLSearchParams();
+    
+    if (searchTerm) searchParams.set('q', searchTerm);
+    if (selectedCategory && !params.categoryId) searchParams.set('categoria', selectedCategory);
+    if (selectedPhase) searchParams.set('fase', selectedPhase);
+    
+    const queryString = searchParams.toString();
+    
+    // Atualizar a URL do navegador sem recarregar a página
+    const newUrl = queryString ? 
+      `${window.location.pathname}?${queryString}` : 
+      window.location.pathname;
+      
+    window.history.replaceState(null, '', newUrl);
+  }, [searchTerm, selectedCategory, selectedPhase, params.categoryId]);
+  
+  // Atualizar URL quando os filtros mudam
+  useEffect(() => {
+    updateUrlWithFilters();
+  }, [updateUrlWithFilters]);
+
+  // Renderizar página
   return (
     <>
-      <Helmet>
-        <title>{generatePageTitle()}</title>
-        <meta name="description" content={generatePageDescription()} />
-        <meta name="keywords" content={`aluguel de equipamentos, locação de máquinas, ${selectedCategory ? getCategoryName(selectedCategory) + ',' : ''} construção civil, betoneira, compactador, andaimes`} />
-        <link rel="canonical" href={`https://rentalcompany.com.br/equipamentos${selectedCategory ? `/${createSlug(getCategoryName(selectedCategory))}` : ''}`} />
-        
-        {/* Meta tags para redes sociais */}
-        <meta property="og:title" content={generatePageTitle()} />
-        <meta property="og:description" content={generatePageDescription()} />
-        <meta property="og:url" content={`https://rentalcompany.com.br/equipamentos${selectedCategory ? `/${createSlug(getCategoryName(selectedCategory))}` : ''}`} />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://rentalcompany.com.br/images/logo.png" />
-        
-        {/* Meta tags Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={generatePageTitle()} />
-        <meta name="twitter:description" content={generatePageDescription()} />
-        <meta name="twitter:image" content="https://rentalcompany.com.br/images/logo.png" />
-      </Helmet>
-      
-      {/* Schema.org para listagem de equipamentos */}
-      <EquipmentListSchema 
-        equipmentList={prepareEquipmentForSchema()}
+      <SEOHead
         title={generatePageTitle()}
         description={generatePageDescription()}
-        currentCategory={selectedCategory ? getCategoryName(selectedCategory) : undefined}
+        canonicalUrl={`${window.location.origin}${window.location.pathname}`}
       />
+      
+      {/* Esquema estruturado para página de listagem de equipamentos */}
+      {selectedCategory && (
+        <EquipmentCategorySchema 
+          categoryName={getCategoryName(selectedCategory)} 
+          categoryId={selectedCategory}
+          categoryDescription={`Aluguel de ${getCategoryName(selectedCategory).toLowerCase()} em Ponta Porã e região. Equipamentos de alta qualidade com preços justos e entrega em toda região.`}
+          equipmentCount={filteredEquipment.length}
+        />
+      )}
+      
+      {!selectedCategory && (
+        <EquipmentListSchema
+          equipmentList={filteredEquipment.map(item => ({
+            id: item.id,
+            name: item.name,
+            description: item.description || '',
+            imageUrl: item.image || '',
+            url: `/equipamento/${createSlug(item.name)}`,
+            category: getCategoryName(item.category)
+          }))}
+          title={generatePageTitle()}
+          description={generatePageDescription()}
+          currentCategory={selectedCategory ? getCategoryName(selectedCategory) : undefined}
+        />
+      )}
 
-      <main>
+      {/* Conteúdo principal */}
+      <Container maxWidth="xl" sx={{ pt: 2, pb: 8 }}>
         {/* Cabeçalho da Página */}
         <Box 
-          sx={{ 
-            bgcolor: 'background.paper', 
-            py: { xs: 4, md: 6 },
-            position: 'relative'
+          sx={{
+            backgroundImage: `linear-gradient(to bottom, ${alpha(theme.palette.primary.main, 0.7)}, ${alpha(theme.palette.primary.dark, 0.8)})`,
+            borderRadius: 2,
+            color: 'white',
+            mb: 4,
+            py: 4,
+            px: 2
           }}
         >
-          <Container maxWidth="xl" sx={{ py: 4, mt: 1 }}>
-            {/* Cabeçalho */}
-            <Box sx={{ mb: 4 }}>
-              <Typography variant="h4" component="h1" fontWeight="bold" gutterBottom>
-                Equipamentos para Locação
+          {/* Cabeçalho */}
+          <Box sx={{ mb: 4 }}>
+            <Typography 
+              variant={isMobile ? "h5" : "h4"} 
+              component="h1" 
+              align="center" 
+              gutterBottom
+            >
+              {selectedCategory 
+                ? `${getCategoryName(selectedCategory)} para Locação` 
+                : searchTerm 
+                  ? `Resultados para "${searchTerm}"` 
+                  : 'Todos os Equipamentos'
+              }
+            </Typography>
+            
+            {selectedCategory && (
+              <Typography 
+                variant="body1" 
+                align="center"
+                sx={{ 
+                  maxWidth: 800, 
+                  mx: 'auto',
+                  opacity: 0.9
+                }}
+              >
+                Aluguel de {getCategoryName(selectedCategory).toLowerCase()} em Ponta Porã e região. 
+                Equipamentos de alta qualidade com os melhores preços do mercado.
               </Typography>
-              <Divider sx={{ maxWidth: 100, borderColor: 'primary.main', borderWidth: 2, mb: 2 }} />
-              <Typography variant="body1" color="text.secondary">
-                Encontre o equipamento ideal para sua obra
-              </Typography>
-            </Box>
+            )}
 
-            {/* Barra de pesquisa e controles */}
-            <Paper 
-              elevation={1} 
+            {!selectedCategory && !searchTerm && (
+              <Typography 
+                variant="body1" 
+                align="center"
+                sx={{ 
+                  maxWidth: 800, 
+                  mx: 'auto',
+                  opacity: 0.9
+                }}
+              >
+                Conheça nossa ampla variedade de equipamentos para aluguel. Temos as melhores opções para sua obra com preços justos e entrega em toda região.
+              </Typography>
+            )}
+          </Box>
+
+          {/* Barra de pesquisa */}
+          <Box 
+            component="form" 
+            onSubmit={handleSearch}
+            sx={{ 
+              display: 'flex', 
+              width: '100%', 
+              maxWidth: 600, 
+              mx: 'auto',
+              mb: 2
+            }}
+          >
+            <TextField
+              variant="outlined"
+              fullWidth
+              value={searchTerm}
+              onChange={handleSearchChange}
+              placeholder="Buscar equipamentos..."
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Search sx={{ color: 'white' }} />
+                  </InputAdornment>
+                ),
+                sx: {
+                  color: 'white',
+                  bgcolor: 'rgba(255,255,255,0.1)',
+                  borderRadius: 2,
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'rgba(255,255,255,0.3)',
+                  },
+                  '&:hover .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'rgba(255,255,255,0.5)',
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'primary.main',
+                  }
+                }
+              }}
+              sx={{
+                '& .MuiInputLabel-root': {
+                  color: 'rgba(255,255,255,0.7)',
+                },
+                '& .MuiInputBase-input::placeholder': {
+                  color: 'rgba(255,255,255,0.7)',
+                  opacity: 1,
+                },
+              }}
+            />
+            <Button 
+              type="submit"
+              variant="contained"
+              color="primary"
+              sx={{ ml: 1, px: 3, borderRadius: 2 }}
+            >
+              Buscar
+            </Button>
+          </Box>
+        </Box>
+            
+        {/* Container dos filtros e resultados */}
+        <Grid container spacing={3}>
+          {/* Coluna de filtros */}
+          <Grid item xs={12} md={3} sx={{ display: { xs: 'none', md: 'block' } }}>
+            <Paper
               sx={{ 
-                p: 2, 
-                mb: 3, 
-                display: { xs: 'none', sm: 'flex' }, 
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                flexWrap: 'wrap',
-                gap: 2,
+                p: 3, 
                 borderRadius: 2,
-                bgcolor: alpha(theme.palette.background.paper, 0.8),
-                backdropFilter: 'blur(20px)'
+                position: 'sticky',
+                top: 100, // Compensar a altura do header + um espaço extra
+                maxHeight: 'calc(100vh - 120px)', // Ajustado para considerar o header
+                overflowY: 'auto',
+                zIndex: 10 // Garantir que fique acima de outros elementos
               }}
             >
-              <TextField
-                placeholder="Buscar equipamentos..."
-                variant="outlined"
-                size="small"
-                value={searchTerm}
-                onChange={handleSearchChange}
-                sx={{ flexGrow: 1, minWidth: { xs: '100%', sm: '200px' } }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Search />
-                    </InputAdornment>
-                  ),
-                }}
-              />
+              <Typography variant="h6" sx={{ mb: 3 }}>Filtros</Typography>
               
-              <Box sx={{ display: 'flex', gap: 2, width: { xs: '100%', sm: 'auto' } }}>
-                <FormControl size="small" sx={{ minWidth: 150 }}>
+              {/* Filtro por categoria */}
+              <Box sx={{ mb: 3 }}>
+                <FormControl fullWidth variant="outlined" size="small">
+                  <InputLabel id="category-filter-label">Categoria</InputLabel>
+                  <Select
+                    labelId="category-filter-label"
+                    id="category-filter"
+                    value={selectedCategory}
+                    onChange={handleCategoryChange}
+                    label="Categoria"
+                  >
+                    <MenuItem value="">Todas as Categorias</MenuItem>
+                    {categories.map((category) => (
+                      <MenuItem key={category.id} value={category.id}>
+                        {category.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Box>
+
+              {/* Filtro por fase de construção */}
+              <Box sx={{ mb: 3 }}>
+                <FormControl fullWidth variant="outlined" size="small">
+                  <InputLabel id="phase-filter-label">Fase de Construção</InputLabel>
+                  <Select
+                    labelId="phase-filter-label"
+                    id="phase-filter"
+                    value={selectedPhase}
+                    onChange={handlePhaseChange}
+                    label="Fase de Construção"
+                  >
+                    <MenuItem value="">Todas as Fases</MenuItem>
+                    {constructionPhases.map((phase) => (
+                      <MenuItem key={phase.id} value={phase.id}>
+                        {phase.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Box>
+              
+              <Button 
+                variant="outlined"
+                fullWidth
+                onClick={clearFilters}
+                sx={{ mt: 1 }}
+              >
+                Limpar Filtros
+              </Button>
+            </Paper>
+          </Grid>
+          
+          {/* Coluna principal com resultados */}
+          <Grid item xs={12} md={9}>
+            {/* Cabeçalho da seção de resultados */}
+            <Box 
+              sx={{ 
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                alignItems: 'center', 
+                mb: 2,
+                flexWrap: 'wrap',
+                gap: 1
+              }}
+            >
+              {/* Contador de resultados */}
+              <Typography variant="subtitle1" component="div" sx={{ fontWeight: 'medium' }}>
+                {loading ? (
+                  <Skeleton width={150} />
+                ) : (
+                  `${filteredEquipment.length} equipamento${filteredEquipment.length === 1 ? '' : 's'} encontrado${filteredEquipment.length === 1 ? '' : 's'}`
+                )}
+              </Typography>
+              
+              {/* Controles de visualização e ordenação */}
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                {/* Botão para mostrar filtros em mobile */}
+                <IconButton 
+                  color="primary" 
+                  sx={{ display: { xs: 'flex', md: 'none' } }}
+                  onClick={() => setShowFilters(!showFilters)}
+                  aria-label="Mostrar filtros"
+                >
+                  <FilterList />
+                </IconButton>
+                
+                {/* Ordenação */}
+                <FormControl variant="outlined" size="small" sx={{ minWidth: 200 }}>
                   <InputLabel id="sort-order-label">Ordenar por</InputLabel>
                   <Select
                     labelId="sort-order-label"
@@ -697,204 +922,200 @@ const EquipmentPage: React.FC = () => {
                     value={sortOrder}
                     onChange={handleSortChange}
                     label="Ordenar por"
+                    startAdornment={<Sort sx={{ mr: 1, color: 'action.active' }} />}
                   >
                     <MenuItem value="name-asc">Nome (A-Z)</MenuItem>
                     <MenuItem value="name-desc">Nome (Z-A)</MenuItem>
                     <MenuItem value="price-asc">Preço (menor-maior)</MenuItem>
                     <MenuItem value="price-desc">Preço (maior-menor)</MenuItem>
-                    <MenuItem value="rating-desc">Melhor avaliação</MenuItem>
+                    {searchTerm && <MenuItem value="relevance">Relevância</MenuItem>}
                   </Select>
                 </FormControl>
                 
-                <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
+                {/* Alternador de visão: grade ou lista */}
+                <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', bgcolor: 'background.paper', borderRadius: 1 }}>
                   <IconButton 
-                    color={viewMode === 'grid' ? 'primary' : 'default'} 
+                    color={viewMode === 'grid' ? 'primary' : 'default'}
                     onClick={() => setViewMode('grid')}
+                    aria-label="Visualização em grade"
                     size="small"
                   >
                     <GridView />
                   </IconButton>
                   <IconButton 
-                    color={viewMode === 'list' ? 'primary' : 'default'} 
+                    color={viewMode === 'list' ? 'primary' : 'default'}
                     onClick={() => setViewMode('list')}
+                    aria-label="Visualização em lista"
                     size="small"
                   >
                     <ViewList />
                   </IconButton>
                 </Box>
+              </Box>
+            </Box>
+            
+            {/* Drawer de filtros para mobile */}
+            <Drawer
+              anchor="bottom"
+              open={showFilters && isMobile}
+              onClose={() => setShowFilters(false)}
+              PaperProps={{
+                sx: { 
+                  borderTopLeftRadius: 16,
+                  borderTopRightRadius: 16,
+                  pb: 2
+                }
+              }}
+            >
+              <Box sx={{ p: 2 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                  <Typography variant="h6" component="h3">Filtros</Typography>
+                  <IconButton onClick={() => setShowFilters(false)}>
+                    <Close />
+                  </IconButton>
+                </Box>
+                
+                {/* Filtros Mobile */}
+                <Box sx={{ mb: 3 }}>
+                  <FormControl fullWidth variant="outlined" size="small">
+                    <InputLabel id="mobile-category-filter-label">Categoria</InputLabel>
+                    <Select
+                      labelId="mobile-category-filter-label"
+                      id="mobile-category-filter"
+                      value={selectedCategory}
+                      onChange={handleCategoryChange}
+                      label="Categoria"
+                    >
+                      <MenuItem value="">Todas as Categorias</MenuItem>
+                      {categories.map((category) => (
+                        <MenuItem key={`mobile-${category.id}`} value={category.id}>
+                          {category.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Box>
+                
+                <Box sx={{ mb: 3 }}>
+                  <FormControl fullWidth variant="outlined" size="small">
+                    <InputLabel id="mobile-phase-filter-label">Fase de Construção</InputLabel>
+                    <Select
+                      labelId="mobile-phase-filter-label"
+                      id="mobile-phase-filter"
+                      value={selectedPhase}
+                      onChange={handlePhaseChange}
+                      label="Fase de Construção"
+                    >
+                      <MenuItem value="">Todas as Fases</MenuItem>
+                      {constructionPhases.map((phase) => (
+                        <MenuItem key={`mobile-${phase.id}`} value={phase.id}>
+                          {phase.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Box>
                 
                 <Button 
-                  variant={showFilters ? "contained" : "outlined"}
-                  color="primary"
-                  startIcon={<FilterList />}
-                  onClick={() => setShowFilters(!showFilters)}
-                  size="small"
-                  sx={{ display: { xs: 'none', sm: 'flex' } }}
+                  variant="contained"
+                  fullWidth
+                  onClick={() => setShowFilters(false)}
                 >
-                  Filtros
+                  Aplicar Filtros
+                </Button>
+                
+                <Button 
+                  variant="outlined"
+                  fullWidth
+                  onClick={clearFilters}
+                  sx={{ mt: 1 }}
+                >
+                  Limpar Filtros
                 </Button>
               </Box>
-            </Paper>
-
-            {/* Filtros integrados */}
-            <FilterPanel 
-              showFilters={showFilters && !isMobile}
-              filters={[
-                {
-                  id: 'category-select',
-                  label: 'Categoria',
-                  value: selectedCategory,
-                  items: categories,
-                  onChange: handleCategoryChange
-                },
-                {
-                  id: 'phase-select',
-                  label: 'Fase da Obra',
-                  value: selectedPhase,
-                  items: constructionPhases,
-                  onChange: handlePhaseChange
-                }
-              ]}
-            />
-
-            {/* Chips de filtros ativos */}
-            {(selectedCategory || selectedPhase) && !isMobile && (
-              <Box sx={{ mb: 3 }}>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                  Filtros ativos:
-                </Typography>
-                <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-                  {selectedCategory && (
-                    <Chip 
-                      label={`Categoria: ${getCategoryName(selectedCategory)}`}
-                      onDelete={() => {
-                        setSelectedCategory('');
-                        // Atualizar URL ao remover o filtro de categoria
-                        navigate('/equipamentos');
-                      }}
-                      color="primary"
-                      variant="outlined"
-                      size="small"
-                      sx={{ mb: 1 }}
-                    />
-                  )}
-                  
-                  {selectedPhase && (
-                    <Chip 
-                      label={`Fase: ${getPhaseName(selectedPhase)}`}
-                      onDelete={() => setSelectedPhase('')}
-                      color="primary"
-                      variant="outlined"
-                      size="small"
-                      sx={{ mb: 1 }}
-                    />
-                  )}
-                  
-                  <Button 
-                    size="small" 
-                    onClick={clearFilters}
-                    sx={{ mb: 1 }}
-                  >
-                    Limpar todos
-                  </Button>
-                </Stack>
-              </Box>
-            )}
-
-            <Grid container spacing={3} sx={{ pb: { xs: 10, sm: 0 } }}>
-              {/* Lista de equipamentos (agora ocupa toda a largura) */}
-              <Grid item xs={12}>
-                {loading ? (
-                  <>
-                    <Box sx={{ mb: 2 }}>
-                      <Skeleton variant="text" width="200px" height={24} />
+            </Drawer>
+            
+            {/* Resultados */}
+            {loading ? (
+              // Esqueletos de carregamento
+              <Grid container spacing={viewMode === 'grid' ? 3 : 2}>
+                {Array.from(new Array(6)).map((_, index) => (
+                  <Grid item xs={12} sm={viewMode === 'grid' ? 6 : 12} md={viewMode === 'grid' ? 4 : 12} key={index}>
+                    <Skeleton variant="rectangular" width="100%" height={viewMode === 'grid' ? 200 : 160} sx={{ borderRadius: 2 }} />
+                    <Box sx={{ pt: 1 }}>
+                      <Skeleton width="60%" height={28} />
+                      <Skeleton width="40%" height={20} />
+                      <Skeleton width="20%" height={20} />
                     </Box>
-                    
-                    <Grid container spacing={3}>
-                      {Array.from(new Array(6)).map((_, index) => (
-                        <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-                          {/* @ts-ignore */}
-                          <EquipmentCard loading={true} equipment={{} as Equipment} />
-                        </Grid>
-                      ))}
-                    </Grid>
-                  </>
-                ) : filteredEquipment.length === 0 ? (
-                  <Paper sx={{ p: 4, textAlign: 'center', borderRadius: 2 }}>
-                    <Typography variant="h6" gutterBottom>
-                      Nenhum equipamento encontrado
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-                      Tente ajustar seus filtros ou faça uma nova busca
-                    </Typography>
-                    <Button variant="contained" color="primary" onClick={clearFilters}>
-                      Limpar Filtros
-                    </Button>
-                  </Paper>
-                ) : (
-                  <>
-                    <Box sx={{ mb: 2 }}>
-                      <Typography variant="body2" color="text.secondary">
-                        Mostrando {filteredEquipment.length} equipamentos
-                      </Typography>
-                    </Box>
-                    
-                    <Grid container spacing={3}>
-                      {paginatedEquipment.map((item) => (
-                        <Grid 
-                          item 
-                          xs={12} 
-                          sm={viewMode === 'list' ? 12 : 6} 
-                          md={viewMode === 'list' ? 12 : 4} 
-                          lg={viewMode === 'list' ? 12 : 3} 
-                          key={item.id}
-                        >
-                          <EquipmentCard 
-                            // @ts-ignore - Propriedades compatíveis com o componente
-                            equipment={item} 
-                            categoryName={getCategoryName(item.category)}
-                            constructionPhaseName={getPhaseName(item.construction_phase_id)}
-                          />
-                        </Grid>
-                      ))}
-                    </Grid>
-                    
-                    {/* Paginação */}
-                    {totalPages > 1 && (
-                      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}>
-                        <Pagination 
-                          count={Math.ceil(filteredEquipment.length / itemsPerPage)} 
-                          page={page} 
-                          onChange={handlePageChange}
-                          color="primary"
-                          size={isMobile ? 'small' : 'medium'}
-                          showFirstButton
-                          showLastButton
-                        />
-                      </Box>
-                    )}
-                  </>
-                )}
+                  </Grid>
+                ))}
               </Grid>
-            </Grid>
-          </Container>
-
-          {/* Filtros flutuantes para mobile */}
-          <EquipmentFiltersFloating 
-            searchTerm={searchTerm}
-            selectedCategory={selectedCategory}
-            selectedPhase={selectedPhase}
-            categories={categories}
-            constructionPhases={constructionPhases}
-            onSearchChange={handleSearchChange}
-            onCategoryChange={handleCategoryChange}
-            onPhaseChange={handlePhaseChange}
-            onToggleFilters={() => setShowFilters(!showFilters)}
-            showFilters={showFilters}
-            onClearFilters={clearFilters}
-          />
-        </Box>
-      </main>
+            ) : (
+              // Resultados reais
+              filteredEquipment.length > 0 ? (
+                <>
+                  <Grid container spacing={viewMode === 'grid' ? 3 : 2}>
+                    {paginatedEquipment.map((item) => (
+                      <Grid item xs={12} sm={viewMode === 'grid' ? 6 : 12} md={viewMode === 'grid' ? 4 : 12} key={item.id}>
+                        <EquipmentCard 
+                          equipment={{
+                            id: item.id,
+                            name: item.name,
+                            image: item.image || '', // Garantindo que image seja sempre string, nunca null
+                            category: item.category,
+                            daily_rate: item.daily_rate || '',
+                            description: item.description || '',
+                            available: item.available,
+                            average_rating: item.average_rating,
+                            total_reviews: item.total_reviews,
+                            construction_phase_id: item.construction_phase_id,
+                          }}
+                          categoryName={getCategoryName(item.category)} 
+                          loading={false}
+                        />
+                      </Grid>
+                    ))}
+                  </Grid>
+                  
+                  {/* Paginação */}
+                  {totalPages > 1 && (
+                    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+                      <Pagination 
+                        count={totalPages} 
+                        page={page} 
+                        onChange={handlePageChange} 
+                        color="primary"
+                        size={isMobile ? "small" : "medium"}
+                      />
+                    </Box>
+                  )}
+                </>
+              ) : (
+                // Mensagem de nenhum resultado
+                <Paper 
+                  elevation={0} 
+                  sx={{ 
+                    p: 4, 
+                    textAlign: 'center',
+                    borderRadius: 2,
+                    bgcolor: 'background.paper' 
+                  }}
+                >
+                  <Typography variant="h6" gutterBottom>
+                    Nenhum equipamento encontrado
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" paragraph>
+                    Não encontramos equipamentos com os filtros selecionados. Tente outras opções de busca.
+                  </Typography>
+                  <Button variant="outlined" onClick={clearFilters}>
+                    Limpar filtros
+                  </Button>
+                </Paper>
+              )
+            )}
+          </Grid>
+        </Grid>
+      </Container>
     </>
   );
 };

@@ -11,7 +11,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "download-db": "node scripts/download_database.js",
-    "backup-db": "powershell -ExecutionPolicy Bypass -File scripts/supabase_dump.ps1"
+    "backup-db": "powershell -ExecutionPolicy Bypass -File scripts/supabase_dump.ps1",
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "prebuild": "npm run generate-sitemap"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
