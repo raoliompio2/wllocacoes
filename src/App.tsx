@@ -9,7 +9,6 @@ import { ptBR } from 'date-fns/locale';
 import Navbar from './components/Layout/Navbar';
 import Home from './components/Home';
 // import { updateCompanyWhatsapp } from './utils/updateWhatsapp';
-import GoogleTagManager from './components/common/GoogleTagManager';
 import LcpMonitor from './components/common/LcpMonitor';
 import { SkeletonLoadingProvider } from './components/common/SkeletonLoadingProvider';
 import LoadingReplacement from './components/common/LoadingReplacement';
@@ -438,7 +437,6 @@ function App() {
               />
             </Routes>
           </Suspense>
-          <GoogleTagManager id="GTM-XXXXXXX" />
           <LcpMonitor />
                   </LocalizationProvider>
         </SkeletonLoadingProvider>
