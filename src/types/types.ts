@@ -53,6 +53,14 @@ interface Equipment {
     url: string;
     is_primary: boolean;
   }>;
+  profiles?: {
+    id: string;
+    name: string;
+    phone: string | null;
+    whatsapp: string | null;
+    email: string | null;
+    address: string | null;
+  };
 }
 
 interface DashboardSummary {

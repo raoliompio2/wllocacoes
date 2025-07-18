@@ -18,6 +18,7 @@ import { useCompany } from '../../context/CompanyContext';
 import { useAuth } from '../../context/AuthContext';
 import { supabase } from '../../utils/supabaseClient';
 import { sendBudgetRequestEmail } from '../../utils/emailService';
+import { trackWhatsAppClick, trackBudgetRequest } from '../../utils/analytics';
 
 const FloatingCta: React.FC = () => {
   const theme = useTheme();
@@ -81,6 +82,9 @@ const FloatingCta: React.FC = () => {
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/55${whatsappNumber}?text=${encodedMessage}`;
     
+    // Rastrear clique no WhatsApp
+    trackWhatsAppClick(undefined, `Solicitação geral da página: ${pageName}`);
+    
     // Abrir o WhatsApp imediatamente para melhorar a experiência do usuário
     window.open(whatsappUrl, '_blank');
     
@@ -137,6 +141,21 @@ const FloatingCta: React.FC = () => {
           });
         } else {
           console.log('Solicitação de orçamento registrada com sucesso');
+          
+          // Rastrear solicitação de orçamento
+          trackBudgetRequest({
+            id: `floating-cta-${Date.now()}`,
+            equipment: {
+              id: 'general-request',
+              name: 'Solicitação Geral',
+              category: 'Geral',
+              price: 0
+            },
+            startDate: startDate.toISOString().split('T')[0],
+            endDate: endDate.toISOString().split('T')[0],
+            totalValue: 0,
+            clientName: user?.user_metadata?.name || 'Cliente WhatsApp'
+          });
           
           // Enviar email de notificação
           await sendBudgetRequestEmail(

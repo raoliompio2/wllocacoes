@@ -4,6 +4,7 @@ import { supabase } from '../../utils/supabaseClient';
 import { Search, MapPin, Star, Filter, SlidersHorizontal, Package2, Calendar, PenTool as Tool, Info, Clock, Phone, Mail, User } from 'lucide-react';
 import { Equipment } from '../../types/types';
 import { formatCurrency } from '../../utils/formatters';
+import { trackSearch, trackEquipmentView, trackWhatsAppClick } from '../../utils/analytics';
 
 const SearchEquipment: React.FC = () => {
   const navigate = useNavigate();
