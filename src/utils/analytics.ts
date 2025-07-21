@@ -290,4 +290,70 @@ export const Analytics = {
   trackError,
   trackLoadTime,
   setUserProperties
-}; 
+};
+
+// ===================================================================
+// GOOGLE ADS CONVERSION TRACKING
+// ===================================================================
+
+// Evento de conversão: Solicitação de Orçamento
+export const trackGoogleAdsConversion = (conversionLabel: string, value?: number) => {
+  if (!isGtagAvailable()) return;
+  
+  try {
+    window.gtag!('event', 'conversion', {
+      'send_to': `AW-17362713475/${conversionLabel}`,
+      'value': value || 0,
+      'currency': 'BRL'
+    });
+    
+    console.log('🎯 Google Ads - Conversão rastreada:', conversionLabel, value);
+  } catch (error) {
+    console.error('❌ Erro ao rastrear conversão Google Ads:', error);
+  }
+};
+
+// Evento de conversão: WhatsApp Contact
+export const trackWhatsAppConversion = (equipmentName?: string, value?: number) => {
+  trackGoogleAdsConversion('WhatsApp_Contact', value);
+  
+  // Também manter o evento do GA4
+  trackWhatsAppClick('conversion', equipmentName);
+};
+
+// Evento de conversão: Budget Request
+export const trackBudgetConversion = (budgetValue: number, equipmentName?: string) => {
+  trackGoogleAdsConversion('Budget_Request', budgetValue);
+  
+  // Também manter o evento do GA4 
+  trackBudgetRequest({
+    id: Date.now().toString(),
+    equipment: {
+      id: 'conversion',
+      name: equipmentName || 'Não especificado',
+      category: 'conversion',
+      price: budgetValue
+    },
+    startDate: new Date().toISOString(),
+    endDate: new Date().toISOString(),
+    totalValue: budgetValue
+  });
+};
+
+// Evento de conversão: Phone Call
+export const trackPhoneConversion = () => {
+  trackGoogleAdsConversion('Phone_Call');
+  
+  // Também rastrear no GA4
+  trackContact({
+    method: 'phone',
+    page: window.location.pathname
+  });
+};
+
+// Evento de conversão: Form Submission
+export const trackFormConversion = (formType: string, value?: number) => {
+  trackGoogleAdsConversion('Form_Submission', value);
+  
+  console.log('📋 Google Ads - Formulário enviado:', formType);
+};
