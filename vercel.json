@@ -1,4 +1,81 @@
 {
+  "redirects": [
+    {
+      "source": "/produto/:slug*",
+      "destination": "/equipamento/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/produtos",
+      "destination": "/equipamentos", 
+      "permanent": true
+    },
+    {
+      "source": "/produtos/:slug*",
+      "destination": "/equipamentos/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/maquina/:slug*",
+      "destination": "/equipamento/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/maquinas",
+      "destination": "/equipamentos",
+      "permanent": true
+    },
+    {
+      "source": "/maquinas/:slug*",
+      "destination": "/equipamentos/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/item/:slug*",
+      "destination": "/equipamento/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/itens",
+      "destination": "/equipamentos",
+      "permanent": true
+    },
+    {
+      "source": "/itens/:slug*",
+      "destination": "/equipamentos/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/ferramenta/:slug*",
+      "destination": "/equipamento/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/ferramentas",
+      "destination": "/equipamentos",
+      "permanent": true
+    },
+    {
+      "source": "/ferramentas/:slug*",
+      "destination": "/equipamentos/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/locacao/:slug*",
+      "destination": "/equipamento/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/aluga/:slug*",
+      "destination": "/equipamento/:slug*", 
+      "permanent": true
+    },
+    {
+      "source": "/rent/:slug*",
+      "destination": "/equipamento/:slug*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { 
       "source": "/wp-content/uploads/:year/:month/:file",

@@ -82,14 +82,41 @@ function App() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
   
-  // Redirect effect for /alugar/ to /equipamento/
+  // Redirect effects for old URLs to new URLs
   useEffect(() => {
     const path = location.pathname;
-    if (path.startsWith('/alugar/')) {
-      const slug = path.replace('/alugar/', '');
-      // Replace encoded forward slashes with hyphens
-      const cleanedSlug = slug.replace(/%2F/g, '-');
-      navigate(`/equipamento/${cleanedSlug}`, { replace: true });
+    
+    // Redirecionamentos de URLs antigas para /equipamento/
+    const redirectMappings = [
+      { from: '/alugar/', to: '/equipamento/' },
+      { from: '/produto/', to: '/equipamento/' },
+      { from: '/produtos/', to: '/equipamentos' },  // Lista de produtos -> lista de equipamentos
+      { from: '/maquina/', to: '/equipamento/' },
+      { from: '/maquinas/', to: '/equipamentos' },
+      { from: '/item/', to: '/equipamento/' },
+      { from: '/itens/', to: '/equipamentos' },
+      { from: '/ferramenta/', to: '/equipamento/' },
+      { from: '/ferramentas/', to: '/equipamentos' }
+    ];
+
+    for (const mapping of redirectMappings) {
+      if (path.startsWith(mapping.from)) {
+        const slug = path.replace(mapping.from, '');
+        
+        // Se é redirecionamento para lista (sem slug)
+        if (mapping.to.endsWith('/equipamentos') && !slug) {
+          navigate(mapping.to, { replace: true });
+          return;
+        }
+        
+        // Se é redirecionamento para item específico (com slug)
+        if (slug && mapping.to.endsWith('/')) {
+          // Replace encoded forward slashes with hyphens
+          const cleanedSlug = slug.replace(/%2F/g, '-');
+          navigate(`${mapping.to}${cleanedSlug}`, { replace: true });
+          return;
+        }
+      }
     }
   }, [location.pathname, navigate]);
   
