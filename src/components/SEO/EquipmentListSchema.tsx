@@ -19,11 +19,11 @@ interface EquipmentListSchemaProps {
 
 const EquipmentListSchema: React.FC<EquipmentListSchemaProps> = ({
   equipmentList,
-  title = 'Equipamentos para Locação - Rental Company',
-  description = 'Locação de equipamentos para construção civil e industrial em sua região. Betoneiras, andaimes, compactadores, geradores e muito mais com preços justos.',
+  title = 'Equipamentos para Locação - Lokajá',
+  description = 'Locação de equipamentos para construção civil e industrial em Ponta Porã e região. Betoneiras, andaimes, compactadores, geradores e muito mais com preços justos.',
   currentCategory
 }) => {
-  const baseUrl = 'https://rentalcompany.com.br';
+  const baseUrl = 'https://lokaja.com.br';
   
   // Schema da página de listagem de equipamentos
   const equipmentListSchema = {
@@ -59,9 +59,9 @@ const EquipmentListSchema: React.FC<EquipmentListSchemaProps> = ({
           ],
           'seller': {
             '@type': 'LocalBusiness',
-            'name': 'Rental Company',
-            'telephone': '(00) 0000-0000',
-            'email': 'contato@rentalcompany.com.br',
+            'name': 'Lokajá',
+            'telephone': '(67) 99338-1010',
+            'email': 'contato@lokaja.com.br',
             'address': {
               '@type': 'PostalAddress',
               'streetAddress': 'Endereço da Empresa',
@@ -81,8 +81,8 @@ const EquipmentListSchema: React.FC<EquipmentListSchemaProps> = ({
     const categorySchema = {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      'name': `${currentCategory} - Equipamentos para Locação - Rental Company`,
-      'description': `Aluguel de ${currentCategory} em sua região. A Rental Company oferece os melhores ${currentCategory} para sua obra ou evento.`,
+      'name': `${currentCategory} - Equipamentos para Locação - Lokajá`,
+      'description': `Aluguel de ${currentCategory} em Ponta Porã e região. A Lokajá oferece os melhores ${currentCategory} para sua obra ou evento.`,
       'url': `${baseUrl}/equipamentos/${currentCategory}`,
       'mainEntity': equipmentListSchema
     };

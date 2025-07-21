@@ -278,15 +278,15 @@ const ContactPage: React.FC = () => {
   const contactPageSchema = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    "name": "Entre em Contato - Rental Company",
-    "description": "Entre em contato com a Rental Company para aluguel de equipamentos para construção civil e industrial. Atendemos toda a região com equipamentos de qualidade.",
-    "url": "https://rentalcompany.com.br/contato",
+    "name": "Entre em Contato - Lokajá",
+    "description": "Entre em contato com a Lokajá para aluguel de equipamentos para construção civil e industrial. Atendemos Ponta Porã e toda região com equipamentos de qualidade.",
+    "url": "https://lokaja.com.br/contato",
     "mainEntity": {
       "@type": "LocalBusiness",
-      "name": "Rental Company",
-      "description": "Aluguel de equipamentos para construção civil e industrial em sua região.",
-      "telephone": "(00) 0000-0000",
-      "email": "contato@rentalcompany.com.br",
+      "name": "Lokajá",
+      "description": "Aluguel de equipamentos para construção civil e industrial em Ponta Porã e região.",
+      "telephone": "(67) 99338-1010",
+      "email": "contato@lokaja.com.br",
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",

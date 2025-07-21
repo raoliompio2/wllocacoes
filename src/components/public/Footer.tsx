@@ -176,14 +176,14 @@ const Footer: React.FC = () => {
 
   // Dados estáticos caso não consiga carregar do banco
   const fallbackCompanyData: CompanyInfo = {
-    name: 'Rental Company',
-    phone: '(00) 0000-0000',
-    whatsapp: '00 0000-0000',
-    email: 'contato@rentalcompany.com.br',
-    address: 'Endereço da Empresa, Número - Bairro, Cidade – UF, CEP: 00000-000',
+    name: 'Lokajá',
+    phone: '(67) 99338-1010',
+    whatsapp: '67 99338-1010',
+    email: 'contato@lokaja.com.br',
+    address: 'Av. da Flora, 374 - Jardim das Flores, Ponta Porã – MS, CEP: 79901-128',
     logo_url: logoUrl,
-    facebook_url: 'https://www.facebook.com/rentalcompany',
-    instagram_url: 'https://www.instagram.com/rentalcompany',
+    facebook_url: 'https://www.facebook.com/lokaja',
+    instagram_url: 'https://www.instagram.com/lokaja',
     linkedin_url: null,
     youtube_url: null,
     twitter_url: null
@@ -229,10 +229,10 @@ const Footer: React.FC = () => {
             <Box sx={{ mb: 3 }}>
               {/* Logo com fundo escuro - usar logo para fundo escuro */}
               {typeof companyInfo.logo_url === 'string' ? (
-                <Box
-                  component="img"
-                  src={companyInfo.logo_url}
-                  alt="Rental Company - Aluguel de Equipamentos"
+                                  <Box
+                    component="img"
+                    src={companyInfo.logo_url}
+                    alt="Lokajá - Aluguel de Equipamentos para Construção"
                   sx={{
                     height: 127,
                     maxWidth: 510,
@@ -254,7 +254,7 @@ const Footer: React.FC = () => {
                     <source srcSet={`${companyInfo.logo_url.webp} 510w`} type="image/webp" />
                     <img
                       src={companyInfo.logo_url.fallback}
-                      alt="Rental Company - Aluguel de Equipamentos"
+                      alt="Lokajá - Aluguel de Equipamentos para Construção"
                       style={{
                         height: '100%',
                         maxWidth: '100%',
@@ -421,7 +421,7 @@ const Footer: React.FC = () => {
                   href={companyInfo.facebook_url} 
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Facebook da Rental Company"
+                                            aria-label="Facebook da Lokajá"
                   sx={{ 
                     color: 'white',
                     bgcolor: 'rgba(255,255,255,0.05)',
@@ -438,7 +438,7 @@ const Footer: React.FC = () => {
                   href={companyInfo.instagram_url} 
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Instagram da Rental Company"
+                                            aria-label="Instagram da Lokajá"
                   sx={{ 
                     color: 'white',
                     bgcolor: 'rgba(255,255,255,0.05)',
@@ -455,7 +455,7 @@ const Footer: React.FC = () => {
                   href={companyInfo.linkedin_url} 
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="LinkedIn da Rental Company"
+                                            aria-label="LinkedIn da Lokajá"
                   sx={{ 
                     color: 'white',
                     bgcolor: 'rgba(255,255,255,0.05)',
@@ -472,7 +472,7 @@ const Footer: React.FC = () => {
                   href={companyInfo.youtube_url} 
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Canal do YouTube da Rental Company"
+                                            aria-label="Canal do YouTube da Lokajá"
                   sx={{ 
                     color: 'white',
                     bgcolor: 'rgba(255,255,255,0.05)',
@@ -489,7 +489,7 @@ const Footer: React.FC = () => {
                   href={`https://wa.me/55${companyInfo.whatsapp.replace(/\D/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="WhatsApp da Rental Company"
+                                            aria-label="WhatsApp da Lokajá"
                   sx={{ 
                     color: 'white',
                     bgcolor: 'rgba(255,255,255,0.05)',

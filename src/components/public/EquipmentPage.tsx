@@ -566,18 +566,18 @@ const EquipmentPage: React.FC = () => {
   const generatePageTitle = () => {
     if (selectedCategory) {
       const categoryName = getCategoryName(selectedCategory);
-      return `Aluguel de ${categoryName} | Rental Company`;
+      return `Aluguel de ${categoryName} | Lokajá`;
     }
-    return 'Equipamentos para Locação | Aluguel de Equipamentos | Rental Company';
+    return 'Equipamentos para Locação | Aluguel de Equipamentos | Lokajá';
   };
 
   // Função para gerar descrição da página baseado nos filtros
   const generatePageDescription = () => {
     if (selectedCategory) {
       const categoryName = getCategoryName(selectedCategory);
-      return `Locação de ${categoryName} para sua obra ou evento. A Rental Company oferece os melhores ${categoryName} com preços justos e equipamentos de qualidade.`;
+      return `Locação de ${categoryName} para sua obra ou evento em Ponta Porã e região. A Lokajá oferece os melhores ${categoryName} com preços justos e equipamentos de qualidade.`;
     }
-    return 'Aluguel de equipamentos para construção civil e industrial. Compactadores, betoneiras, andaimes, geradores e muito mais com os melhores preços e qualidade.';
+    return 'Aluguel de equipamentos para construção civil e industrial em Ponta Porã e região. Compactadores, betoneiras, andaimes, geradores e muito mais com os melhores preços e qualidade.';
   };
 
   // Gerar schema para a página de categorias

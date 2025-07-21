@@ -627,7 +627,7 @@ const EquipmentDetailPage: React.FC = () => {
     return (
       <ProductSchema
         name={equipment.name}
-        description={equipment.description || `Aluguel de ${equipment.name}. Entre em contato com a Rental Company para melhores condições.`}
+        description={equipment.description || `Aluguel de ${equipment.name}. Entre em contato com a Lokajá para melhores condições.`}
         imageUrl={equipment.image || ''}
         category={category?.name || ''}
         price={equipment.daily_rate ? parseFloat(equipment.daily_rate.replace(/[^\d.,]/g, '').replace(',', '.')) : undefined}
@@ -750,23 +750,23 @@ const EquipmentDetailPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>{`${equipment.name} - Aluguel | Rental Company`}</title>
+        <title>{`${equipment.name} - Aluguel | Lokajá`}</title>
         <meta name="description" content={`Alugue ${equipment.name}. ${equipment.description?.substring(0, 120)}... Solicite um orçamento sem compromisso.`} />
         <meta name="keywords" content={`aluguel ${equipment.name}, locação ${equipment.name}, ${equipment.name} para alugar, ${category?.name}, equipamento construção`} />
-        <link rel="canonical" href={`https://rentalcompany.com.br/equipamento/${equipment.id}/${createSlug(equipment.name)}`} />
+        <link rel="canonical" href={`https://lokaja.com.br/equipamento/${equipment.id}/${createSlug(equipment.name)}`} />
         
         {/* Meta tags Open Graph para compartilhamento em redes sociais */}
-        <meta property="og:title" content={`${equipment.name} - Aluguel de Equipamentos | Rental Company`} />
+        <meta property="og:title" content={`${equipment.name} - Aluguel de Equipamentos | Lokajá`} />
         <meta property="og:description" content={`Alugue ${equipment.name}. Solicite um orçamento sem compromisso.`} />
-        <meta property="og:image" content={equipment.image ? `https://rentalcompany.com.br${equipment.image}` : 'https://rentalcompany.com.br/images/logo.png'} />
+        <meta property="og:image" content={equipment.image ? `https://lokaja.com.br${equipment.image}` : 'https://lokaja.com.br/images/Logo_fundo_claro/Logo_Locaja.png'} />
         <meta property="og:type" content="product" />
-        <meta property="og:url" content={`https://rentalcompany.com.br/equipamento/${equipment.id}/${createSlug(equipment.name)}`} />
+        <meta property="og:url" content={`https://lokaja.com.br/equipamento/${equipment.id}/${createSlug(equipment.name)}`} />
         
         {/* Meta tags Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${equipment.name} - Aluguel de Equipamentos | Rental Company`} />
+        <meta name="twitter:title" content={`${equipment.name} - Aluguel de Equipamentos | Lokajá`} />
         <meta name="twitter:description" content={`Alugue ${equipment.name}.`} />
-        <meta name="twitter:image" content={equipment.image ? `https://rentalcompany.com.br${equipment.image}` : 'https://rentalcompany.com.br/images/logo.png'} />
+        <meta name="twitter:image" content={equipment.image ? `https://lokaja.com.br${equipment.image}` : 'https://lokaja.com.br/images/Logo_fundo_claro/Logo_Locaja.png'} />
       </Helmet>
 
       {/* Schema.org para produto */}

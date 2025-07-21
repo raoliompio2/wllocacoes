@@ -23,12 +23,12 @@ const ProductSchema: React.FC<ProductSchemaProps> = ({
   price,
   availability = 'InStock',
   sku,
-  brand = 'Rental Company',
+  brand = 'Lokajá',
   productId,
   ratingValue,
   reviewCount
 }) => {
-  const baseUrl = 'https://rentalcompany.com.br';
+  const baseUrl = 'https://lokaja.com.br';
   const fullImageUrl = imageUrl ? (imageUrl.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`) : undefined;
 
   // Construir o objeto Schema.org para produto
@@ -61,9 +61,9 @@ const ProductSchema: React.FC<ProductSchemaProps> = ({
         ],
         seller: {
           '@type': 'LocalBusiness',
-          name: 'Rental Company',
-          telephone: '(00) 0000-0000',
-          email: 'contato@rentalcompany.com.br'
+          name: 'Lokajá',
+          telephone: '(67) 99338-1010',
+          email: 'contato@lokaja.com.br'
         }
       }
     }

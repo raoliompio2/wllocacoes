@@ -82,7 +82,7 @@ const Sidebar: React.FC = () => {
           <source srcSet={logoUrls.webp} type="image/webp" />
           <img 
             src={logoUrls.fallback}
-            alt="Rental Company" 
+            alt="Lokajá - Aluguel de Equipamentos" 
             className="h-20 w-auto" 
             style={{ maxHeight: '80px', objectFit: 'contain' }}
           />
