@@ -625,7 +625,7 @@ const EquipmentPage: React.FC = () => {
       '@type': 'Organization',
                           'name': 'NOME DA EMPRESA',      'url': 'https://seusite.com.br',      'logo': 'https://seusite.com.br/logo.png',
               'description': 'Locação de equipamentos leves para construção civil e indústria. Projetos mecânicos, laudos e responsabilidade técnica.',        'address': {          '@type': 'PostalAddress',          'streetAddress': 'Endereço da Empresa, Número',          'addressLocality': 'Cidade',          'addressRegion': 'UF',          'postalCode': '00000-000',          'addressCountry': 'BR'        },
-              'contactPoint': {          '@type': 'ContactPoint',          'telephone': '+55-00-0000-0000',          'contactType': 'customer service'        }
+              'contactPoint': {          '@type': 'ContactPoint',          'telephone': '+5585986101415',          'contactType': 'customer service'        }
     };
   };
 

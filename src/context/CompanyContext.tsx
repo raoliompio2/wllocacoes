@@ -22,7 +22,7 @@ const defaultCompanyInfo: CompanyInfo = {
   name: 'WL Locações de Equipamentos',
   logo_url: '/images/Logo_fundo_claro/WL_fundo_claro.png',
   phone: '(85) 98610-1415',
-  whatsapp: '8598610-1415',
+  whatsapp: '85986101415',
   email: 'contato@wllocacoes.com.br',
   address: 'Av. Dep. Paulino Rocha, 1881 - Cajazeiras, Fortaleza - CE, 60864-311',
 };

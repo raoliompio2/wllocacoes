@@ -617,7 +617,7 @@ const BudgetDetailsDialog: React.FC<BudgetDetailsDialogProps> = ({
                       size="small"
                       color="success"
                       startIcon={<MessageSquare size={14} />}
-                      href="https://wa.me/5500000000000"
+                      href="https://wa.me/5585986101415"
                       target="_blank"
                       sx={{ fontSize: '0.75rem', mt: 1 }}
                     >

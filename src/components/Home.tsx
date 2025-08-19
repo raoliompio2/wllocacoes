@@ -89,14 +89,14 @@ const Home: React.FC = () => {
                   <div className="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-orange-100">
                     <Building className="h-6 w-6 text-orange-600" />
                   </div>
-                  <h3 className="mt-6 text-xl font-medium text-gray-900">Cidade 1</h3>
+                  <h3 className="mt-6 text-xl font-medium text-gray-900">Fortaleza</h3>
                   <p className="mt-2 text-base text-gray-500">
-                    Endereço da Empresa, Número - Bairro<br />
-                    Cidade - UF, 00000-000
+                    Av. Dep. Paulino Rocha, 1881 - Cajazeiras<br />
+                    Fortaleza - CE, 60864-311
                   </p>
                   <p className="mt-4 font-medium">
-                    <a href="tel:+5500000000000" className="text-orange-600 hover:text-orange-800">
-                      (00) 0000-0000
+                    <a href="tel:+5585986101415" className="text-orange-600 hover:text-orange-800">
+                      (85) 98610-1415
                     </a>
                   </p>
                 </div>
@@ -105,14 +105,14 @@ const Home: React.FC = () => {
                   <div className="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-orange-100">
                     <Building className="h-6 w-6 text-orange-600" />
                   </div>
-                  <h3 className="mt-6 text-xl font-medium text-gray-900">Cidade 2</h3>
+                  <h3 className="mt-6 text-xl font-medium text-gray-900">Região Metropolitana</h3>
                   <p className="mt-2 text-base text-gray-500">
-                    Endereço da Filial, Número - Bairro<br />
-                    Cidade - UF, 00000-000
+                    Atendemos toda a região metropolitana de Fortaleza<br />
+                    Caucaia, Maracanaú, Aquiraz e demais cidades
                   </p>
                   <p className="mt-4 font-medium">
-                    <a href="tel:+5500000000000" className="text-orange-600 hover:text-orange-800">
-                      (00) 0000-0000
+                    <a href="tel:+5585986101415" className="text-orange-600 hover:text-orange-800">
+                      (85) 98610-1415
                     </a>
                   </p>
                 </div>
@@ -262,7 +262,7 @@ const Home: React.FC = () => {
               </div>
               <div className="ml-3 inline-flex rounded-md shadow">
                 <a
-                  href="tel:+5500000000000"
+                  href="tel:+5585986101415"
                   className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-700 hover:bg-orange-800"
                 >
                   <Phone className="mr-2 h-5 w-5" />

@@ -519,7 +519,7 @@ const Footer: React.FC = () => {
               Desenvolvido por <MuiLink href="https://opendreams.com.br" target="_blank" rel="noopener" sx={{ ml: 0.5, color: 'white', '&:hover': { color: 'secondary.main' } }}>Open Dreams</MuiLink>
             </Typography>
             <IconButton 
-              href={`https://wa.me/5514982135008`}
+              href={`https://wa.me/5585986101415`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp Open Dreams"
