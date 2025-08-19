@@ -523,8 +523,8 @@ const ContactPage: React.FC = () => {
                         Horário de Funcionamento
                       </Typography>
                       <BusinessHours 
-                        weekdays="Segunda a Sexta: 07:00 às 11:00, 13:00 às 17:00" 
-                        saturday="Sábado: 07:00 às 11:30"
+                        weekdays="Segunda a Sexta: 07:00 às 17:00" 
+                        saturday="Sábado: Fechado"
                         sunday="Domingo: Fechado"
                       />
                     </Box>

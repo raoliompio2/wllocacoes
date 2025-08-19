@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import InstagramFeed from './InstagramFeed';
+
 import {
   AppBar,
   Toolbar,
@@ -69,7 +69,7 @@ const PublicNavbar: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  const [instagramDrawerOpen, setInstagramDrawerOpen] = useState(false);
+
   
   // Verificar se estamos na página inicial
   const isHomePage = location.pathname === '/';
@@ -200,25 +200,7 @@ const PublicNavbar: React.FC = () => {
           </ListItem>
         ))}
         
-        {/* Instagram Link no Menu Mobile */}
-        <ListItem
-          button
-          onClick={() => {
-            setDrawerOpen(false);
-            setInstagramDrawerOpen(true);
-          }}
-          sx={{
-            color: 'text.primary',
-            '&:hover': {
-              bgcolor: 'action.hover',
-            },
-          }}
-        >
-          <Box component="span" sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
-            <Instagram sx={{ color: '#E1306C' }} />
-          </Box>
-          <ListItemText primary="Siga-nos no Instagram" />
-        </ListItem>
+
       </List>
       
       <Divider />
@@ -362,14 +344,7 @@ const PublicNavbar: React.FC = () => {
 
   return (
     <>
-      {/* Componente do Feed do Instagram */}
-      <InstagramFeed
-        open={instagramDrawerOpen}
-        onClose={() => setInstagramDrawerOpen(false)}
-        username="wllocacoes"
-        widgetId="456cd860-6522-42de-81c3-ce3d892ec785"
-      />
-      
+
       <HideOnScroll>
         <AppBar 
           position="sticky" 
@@ -437,25 +412,7 @@ const PublicNavbar: React.FC = () => {
                     </Button>
                   ))}
                   
-                  {/* Botão do Instagram */}
-                  <Button
-                    color="inherit"
-                    startIcon={<Instagram sx={{ color: '#E1306C' }} />}
-                    onClick={() => setInstagramDrawerOpen(true)}
-                    sx={{
-                      mx: 2,
-                      fontWeight: 'medium',
-                      fontSize: '1.05rem',
-                      borderRadius: 0,
-                      '&:hover': {
-                        bgcolor: 'rgba(0,0,0,0.05)',
-                        color: '#E1306C'
-                      },
-                      py: 1,
-                    }}
-                  >
-                    Siga-nos
-                  </Button>
+
                 </Box>
               )}
 

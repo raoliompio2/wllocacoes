@@ -72,8 +72,8 @@ const Footer: React.FC = () => {
     email: 'contato@wllocacoes.com.br',
     address: 'Av. Dep. Paulino Rocha, 1881 - Cajazeiras, Fortaleza - CE, 60864-311',
     whatsapp: '85 98610-1415',
-    facebook_url: 'https://www.facebook.com/wllocacoes',
-    instagram_url: 'https://www.instagram.com/wllocacoes',
+    facebook_url: 'https://www.facebook.com/p/WL-Loca%C3%A7%C3%B5es-61573966593968/?_rdr',
+    instagram_url: 'https://www.instagram.com/wl.locacao/',
     linkedin_url: null,
     youtube_url: null,
     twitter_url: null
@@ -182,8 +182,8 @@ const Footer: React.FC = () => {
     email: 'contato@wllocacoes.com.br',
     address: 'Av. Dep. Paulino Rocha, 1881 - Cajazeiras, Fortaleza – CE, CEP: 60864-311',
     logo_url: logoUrl,
-    facebook_url: 'https://www.facebook.com/wllocacoes',
-    instagram_url: 'https://www.instagram.com/wllocacoes',
+    facebook_url: 'https://www.facebook.com/p/WL-Loca%C3%A7%C3%B5es-61573966593968/?_rdr',
+    instagram_url: 'https://www.instagram.com/wl.locacao/',
     linkedin_url: null,
     youtube_url: null,
     twitter_url: null

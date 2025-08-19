@@ -18,13 +18,13 @@ const BusinessHours: React.FC<BusinessHoursProps> = ({
   color = 'inherit',
   iconColor,
   location,
-  weekdays = "Segunda a Sexta: 07:00 às 11:00, 13:00 às 17:00",
-  saturday = "Sábado: 07:00 às 11:30",
+  weekdays = "Segunda a Sexta: 07:00 às 17:00",
+  saturday = "Sábado: Fechado",
   sunday = "Domingo: Fechado"
 }) => {
   // Dados fixos para a unidade
-  const mainHours = "Segunda a Sexta: 07:00 às 11:00, 13:00 às 17:00";
-  const mainSaturday = "Sábado: 07:00 às 11:30";
+  const mainHours = "Segunda a Sexta: 07:00 às 17:00";
+  const mainSaturday = "Sábado: Fechado";
   const mainSunday = "Domingo: Fechado";
   
   const [loading, setLoading] = useState(false);
