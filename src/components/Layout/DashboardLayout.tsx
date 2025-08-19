@@ -95,7 +95,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   const colors = mode === 'light' ? themePreferences.lightColors : themePreferences.darkColors;
 
   // Usar a logo específica para dashboard
-  const dashboardLogo = getDashboardLogo();
+  const dashboardLogos = getDashboardLogo();
 
   useEffect(() => {
     const getUserRole = async () => {
@@ -350,18 +350,18 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
           color: colors.menuText,
           justifyContent: open ? 'initial' : 'center',
           '&:hover': { 
-            bgcolor: `${colors.primary}10`,
+            bgcolor: 'rgba(255, 255, 255, 0.1)',
             '& .MuiListItemIcon-root': {
-              color: colors.primary,
+              color: '#ffffff',
             }
           },
           '&.Mui-selected': {
-            bgcolor: `${colors.primary}20`,
+            bgcolor: 'rgba(255, 255, 255, 0.2)',
             '& .MuiListItemIcon-root': {
-              color: colors.primary,
+              color: '#ffffff',
             },
             '&:hover': {
-              bgcolor: `${colors.primary}30`,
+              bgcolor: 'rgba(255, 255, 255, 0.3)',
             }
           }
         }}
@@ -405,24 +405,34 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
         justifyContent: 'space-between',
         alignItems: 'center',
       }}>
-        {dashboardLogo ? (
+        {dashboardLogos ? (
           <Box 
             onClick={() => navigate('/')} 
             sx={{ 
               cursor: 'pointer',
               display: 'flex',
-              alignItems: 'center'
+              alignItems: 'center',
+              backgroundColor: 'rgba(255, 255, 255, 0.1)',  // Fundo semi-transparente para contraste
+              borderRadius: 1,
+              p: 0.5,
+              '&:hover': {
+                backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              }
             }}
           >
-            <img 
-              src={dashboardLogo} 
-              alt="Dashboard Logo"
-              style={{ 
-                height: '70px',  // aumentado em 40%
-                maxWidth: open ? '280px' : '70px',  // aumentado em 40%
-                objectFit: 'contain'
-              }}
-            />
+            <picture>
+              <source srcSet={dashboardLogos.webp} type="image/webp" />
+              <img 
+                src={dashboardLogos.fallback} 
+                alt="WL Locações - Dashboard"
+                style={{ 
+                  height: '60px',
+                  maxWidth: open ? '200px' : '60px',
+                  objectFit: 'contain',
+                  filter: 'brightness(0) invert(1)', // Forçar logo branco para contraste
+                }}
+              />
+            </picture>
           </Box>
         ) : (
           <Typography 

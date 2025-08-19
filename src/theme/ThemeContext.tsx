@@ -40,18 +40,18 @@ const defaultLightColors: ThemeColors = {
   primary: '#4a326e',     // Roxo WL Locações
   secondary: '#fe2d24',   // Vermelho WL Locações  
   background: '#ffffff',
-  surface: '#f8f9fa',
+  surface: '#4a326e',     // Roxo como fundo do sidebar
   text: '#1a1a1a',
-  menuText: '#ffffff'     // Branco para contraste no header vermelho
+  menuText: '#ffffff'     // Branco para contraste no fundo roxo
 };
 
 const defaultDarkColors: ThemeColors = {
   primary: '#6b4a9e',     // Roxo mais claro para modo escuro
   secondary: '#ff4d42',   // Vermelho mais claro para modo escuro
   background: '#121212',
-  surface: '#1e1e1e',
+  surface: '#2d2d2d',     // Fundo escuro para sidebar
   text: '#ffffff',
-  menuText: '#ffffff'
+  menuText: '#ffffff'     // Branco para contraste no fundo escuro
 };
 
 const defaultThemePreferences: ThemePreferences = {
