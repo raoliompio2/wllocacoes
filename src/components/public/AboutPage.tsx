@@ -152,8 +152,8 @@ const AboutPage: React.FC = () => {
                 >
                   <Box 
                     component="img"
-                    src="/images_optimized/Empresa/images (9).webp"
-                    alt="WL Locações - Equipamentos para construção civil em Fortaleza"
+                    src="/images_optimized/Empresa/instalacoes-wl-locacoes-1.webp"
+                    alt="WL Locações - Instalações para locação de equipamentos em Fortaleza"
                     sx={{
                       width: '100%',
                       height: '100%',
@@ -290,8 +290,8 @@ const AboutPage: React.FC = () => {
                 >
                   <Box 
                     component="img"
-                    src="/images_optimized/Empresa/images (10).webp"
-                    alt="Equipe WL Locações"
+                    src="/images_optimized/Empresa/equipe-wl-locacoes-1.webp"
+                    alt="Equipe especializada WL Locações - Profissionais em locação de equipamentos"
                     sx={{
                       width: '100%',
                       height: '100%',
@@ -368,8 +368,8 @@ const AboutPage: React.FC = () => {
                 >
                   <Box 
                     component="img"
-                    src="/images_optimized/Empresa/images (9).webp"
-                    alt="Equipamentos WL Locações em Fortaleza"
+                    src="/images_optimized/Empresa/instalacoes-wl-locacoes-2.webp"
+                    alt="Equipamentos WL Locações em Fortaleza - Instalações modernas"
                     sx={{
                       width: '100%',
                       height: '100%',
@@ -389,8 +389,8 @@ const AboutPage: React.FC = () => {
                 >
                   <Box 
                     component="img"
-                    src="/images_optimized/Empresa/images (10).webp"
-                    alt="Serviços WL Locações em Fortaleza"
+                    src="/images_optimized/Empresa/equipe-wl-locacoes-2.webp"
+                    alt="Serviços WL Locações em Fortaleza - Equipe profissional"
                     sx={{
                       width: '100%',
                       height: '100%',
