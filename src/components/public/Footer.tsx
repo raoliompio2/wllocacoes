@@ -81,8 +81,8 @@ const Footer: React.FC = () => {
   
   // Horário de funcionamento
   const businessHours = {
-    weekdays: "Segunda a Sexta: 07:00 às 11:00, 13:00 às 17:00",
-    saturday: "Sábado: 07:00 às 11:30",
+    weekdays: "Segunda a Sexta: 07:00 às 17:00",
+    saturday: "Sábado: Fechado",
     sunday: "Domingo: Fechado"
   };
   
@@ -301,10 +301,10 @@ const Footer: React.FC = () => {
                 <AccessTime sx={{ mr: 1, fontSize: 20, color: 'secondary.main', mt: 0.5 }} />
                 <Box>
                   <Typography variant="body2">
-                    Segunda a Sexta: 07:00 às 11:00, 13:00 às 17:00
+                    Segunda a Sexta: 07:00 às 17:00
                   </Typography>
                   <Typography variant="body2">
-                    Sábado: 07:00 às 11:30
+                    Sábado: Fechado
                   </Typography>
                   <Typography variant="body2">
                     Domingo: Fechado
