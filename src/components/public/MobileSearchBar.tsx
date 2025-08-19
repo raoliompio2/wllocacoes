@@ -180,9 +180,10 @@ const MobileSearchBar: React.FC = () => {
           borderRadius: 2,
           p: 1.5,
           backdropFilter: 'blur(20px)',
-          bgcolor: 'rgba(255, 255, 255, 0.95)',
+          bgcolor: 'rgba(74, 50, 110, 0.95)', // Roxo do tema WL Locações
+          color: '#ffffff', // Texto branco
           display: 'flex',
-          boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.1)',
+          boxShadow: '0 -4px 20px rgba(74, 50, 110, 0.3)',
         }}
       >
         <TextField
@@ -195,19 +196,39 @@ const MobileSearchBar: React.FC = () => {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <Search color="action" />
+                <Search sx={{ color: '#ffffff' }} />
               </InputAdornment>
             ),
+            sx: {
+              color: '#ffffff',
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderColor: 'rgba(255, 255, 255, 0.3)',
+              },
+              '&:hover .MuiOutlinedInput-notchedOutline': {
+                borderColor: 'rgba(255, 255, 255, 0.5)',
+              },
+              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                borderColor: '#fe2d24',
+              },
+            }
           }}
-          sx={{ mr: 1 }}
+          sx={{ 
+            mr: 1,
+            '& .MuiInputBase-input::placeholder': {
+              color: 'rgba(255, 255, 255, 0.7)',
+              opacity: 1,
+            },
+          }}
         />
         <Box sx={{ display: 'flex', gap: 1 }}>
           <IconButton 
-            color="primary"
             onClick={handleOpenDialog}
             sx={{ 
-              bgcolor: 'rgba(0, 0, 0, 0.05)',
-              '&:hover': { bgcolor: 'rgba(0, 0, 0, 0.1)' }
+              bgcolor: 'rgba(255, 255, 255, 0.15)',
+              color: '#ffffff',
+              '&:hover': { 
+                bgcolor: 'rgba(255, 255, 255, 0.25)'
+              }
             }}
           >
             <FilterList />
@@ -218,10 +239,12 @@ const MobileSearchBar: React.FC = () => {
             onClick={handleQuickSearch}
             sx={{
               minWidth: 'auto',
-              bgcolor: colors.secondary,
+              bgcolor: '#fe2d24', // Vermelho WL Locações
+              color: '#ffffff',
+              boxShadow: '0 4px 10px rgba(254, 45, 36, 0.3)',
               '&:hover': {
-                bgcolor: colors.secondary,
-                opacity: 0.9,
+                bgcolor: '#ff4d42',
+                boxShadow: '0 6px 15px rgba(254, 45, 36, 0.4)',
               }
             }}
           >
@@ -268,7 +291,7 @@ const MobileSearchBar: React.FC = () => {
           />
           
           <FormControl fullWidth variant="outlined" margin="normal">
-            <InputLabel>Categoria</InputLabel>
+            <InputLabel shrink>Categoria</InputLabel>
             <Select
               value={categoria}
               onChange={(e) => setCategoria(e.target.value)}
@@ -292,7 +315,7 @@ const MobileSearchBar: React.FC = () => {
           </FormControl>
           
           <FormControl fullWidth variant="outlined" margin="normal">
-            <InputLabel>Fase da Obra</InputLabel>
+            <InputLabel shrink>Fase da Obra</InputLabel>
             <Select
               value={faseObra}
               onChange={(e) => setFaseObra(e.target.value)}

@@ -35,7 +35,7 @@ const PublicLayout: React.FC<PublicLayoutProps> = ({ children }) => {
             flexGrow: 1,
             pb: 8,
             pt: isHomePage ? 0 : 3,
-            mt: isHomePage ? -3 : 'auto'
+            mt: isHomePage ? 0 : 'auto' // Removendo margem negativa para novo layout
           }}
         >
           {!isHomePage && (

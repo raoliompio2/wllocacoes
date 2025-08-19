@@ -1,6 +1,6 @@
-# 📊 Google Analytics 4 - Guia de Eventos do Lokaja
+# 📊 Google Analytics 4 - Guia de Eventos da WL Locações
 
-Este documento detalha todos os eventos de analytics configurados para o sistema Lokaja e como usá-los.
+Este documento detalha todos os eventos de analytics configurados para o sistema WL Locações e como usá-los.
 
 ## 🚀 Eventos Implementados
 
@@ -17,7 +17,7 @@ trackEquipmentView({
   category: 'Betoneiras',
   subcategory: 'Equipamentos de Concreto',
   price: 150.00,
-  brand: 'Lokaja',
+  brand: 'WL Locações',
   model: 'BET-400L'
 });
 ```
@@ -308,4 +308,4 @@ gtag('event', 'equipment_favorite', {
 
 ---
 
-**🎉 Pronto! Agora você tem um sistema completo de tracking para o Lokaja!** 
+**🎉 Pronto! Agora você tem um sistema completo de tracking para a WL Locações!** 

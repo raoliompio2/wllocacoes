@@ -1,1 +1,0 @@
-Pasta para versões otimizadas das imagens (WebP). NÃO coloque arquivos manualmente aqui, use o script optimize-images.js.

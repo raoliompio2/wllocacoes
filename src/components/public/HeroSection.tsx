@@ -28,15 +28,9 @@ const shimmer = keyframes`
 const banners = [
   {
     id: 1,
-    imagePath: '/images_optimized/Banner/Sem-Titulo-1.webp',
-    fallbackPath: '/images/Banner/Sem-Titulo-1.jpg',
-    alt: 'Banner Lokajá - Equipamentos para construção'
-  },
-  {
-    id: 2,
-    imagePath: '/images_optimized/Banner/Sem-Titulo-2.webp',
-    fallbackPath: '/images/Banner/Sem-Titulo-2.jpg',
-    alt: 'Banner Lokajá - Aluguel de equipamentos'
+    imagePath: '/images_optimized/Banner/WL-LOCACOES-Dezembro-Banner.webp',
+    fallbackPath: '/images/Banner/WL-LOCACOES-Dezembro-Banner.png',
+    alt: 'Banner WL Locações - Tudo o que você precisa para sua obra'
   }
 ];
 
@@ -78,27 +72,27 @@ const HeroSection: React.FC = () => {
       sx={{
         position: 'relative',
         width: '100%',
-        // Altura reduzida para melhor proporção do banner
-        height: { xs: '250px', sm: '300px', md: '350px', lg: '400px' },
-        minHeight: { xs: '250px', sm: '300px' },
-        overflow: 'hidden',
-        // Adicionando margem superior para afastar o banner do header
-        mt: { xs: 2, sm: 3, md: 4 }
+        // Altura proporcional baseada na resolução original do banner (1200x800 aprox.)
+        height: { xs: '300px', sm: '400px', md: '500px', lg: '600px' },
+        minHeight: { xs: '300px', sm: '400px' },
+        maxHeight: '600px',
+        overflow: 'visible', // Mudado para visible para permitir que o filtro apareça sobre a imagem
+        // Hero fica atrás do menu com z-index menor
+        zIndex: 1,
+        // Margem superior negativa para sobrepor o header
+        mt: { xs: -12, sm: -12, md: -12 }
       }}
     >
       {/* Carrossel de Banners em tela cheia */}
       <div className="hero-fullscreen-swiper-container" style={{ width: '100%', height: '100%' }}>
         <Swiper
-          modules={[Navigation, Pagination, Autoplay, EffectFade]}
+          modules={[EffectFade]}
           slidesPerView={1}
-          navigation={!isMobile}
-          pagination={{ clickable: true }}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
+          navigation={false}
+          pagination={false}
+          autoplay={false}
           effect="fade"
-          loop={true}
+          loop={false}
           className="hero-fullscreen-swiper"
         >
           {banners.map((banner) => (
@@ -108,22 +102,18 @@ const HeroSection: React.FC = () => {
                   position: 'relative',
                   width: '100%',
                   height: '100%',
-                  overflow: 'hidden',
+                  // BORDAS ARREDONDADAS VISÍVEIS NO CONTAINER
+                  borderRadius: { xs: '24px', sm: '32px', md: '40px', lg: '48px' },
+                  boxShadow: '0 20px 60px rgba(0,0,0,0.25)',
+                  border: '4px solid rgba(255,255,255,0.4)',
+                  // Background gradient para destacar as bordas
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.05) 100%)',
+                  padding: '8px', // Padding interno para criar espaço entre borda e imagem
+                  overflow: 'visible', // Permite a sombra ser visível
                 }}
               >
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    backgroundColor: 'rgba(0,0,0,0.25)',
-                    zIndex: 1,
-                    background: 'linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.4) 100%)',
-                  }}
-                />
-                <picture>
+                {/* Overlay removido para manter a imagem nítida e clara */}
+                <picture style={{ width: '100%', height: '100%', display: 'block' }}>
                   <source srcSet={banner.imagePath} type="image/webp" />
                   <img
                     src={banner.fallbackPath}
@@ -132,8 +122,10 @@ const HeroSection: React.FC = () => {
                     style={{
                       width: '100%',
                       height: '100%',
-                      objectFit: 'cover',
+                      objectFit: 'contain', // VOLTOU: mantém imagem completa sem cortar
                       objectPosition: 'center',
+                      // Bordas arredondadas na imagem também para harmonizar
+                      borderRadius: '32px',
                     }}
                   />
                 </picture>
@@ -143,19 +135,25 @@ const HeroSection: React.FC = () => {
         </Swiper>
       </div>
 
-      {/* Barra de pesquisa flutuante posicionada para ficar metade no banner e metade no conteúdo abaixo */}
+      {/* Barra de pesquisa flutuante posicionada no FINAL da imagem - metade sobre e metade fora */}
       <Container 
         maxWidth="lg"
         sx={{
           position: 'absolute',
-          // Ajustando o bottom para posicionar o filtro metade no banner e metade fora
-          bottom: { xs: -65, sm: -70, md: -75 },
+          // AJUSTANDO para REALMENTE ficar metade sobre a imagem (SearchBar tem ~140px de altura)
+          bottom: { xs: -40, sm: -45, md: -50, lg: -55 }, // Valores menores para mais sobreposição
           left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 3,
+          transform: 'translateX(-50%)', 
+          zIndex: 100, // Z-index MUITO alto para garantir que apareça SOBRE TUDO
           width: '100%',
           px: { xs: 2, sm: 3 },
-          display: { xs: 'none', sm: 'block' } // Esconde em dispositivos móveis
+          display: { xs: 'none', sm: 'block' }, // Esconde em dispositivos móveis
+          // Removendo a margin-bottom da SearchBar quando ela está flutuante
+          '& .MuiPaper-root': {
+            mb: 0, // Remove margin-bottom para posicionamento preciso
+            position: 'relative',
+            zIndex: 101, // Z-index ainda maior para o Paper da SearchBar
+          }
         }}
       >
         <SearchBar />

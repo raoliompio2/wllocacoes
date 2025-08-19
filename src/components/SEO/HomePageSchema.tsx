@@ -9,12 +9,12 @@ interface HomePageSchemaProps {
 }
 
 const HomePageSchema: React.FC<HomePageSchemaProps> = ({
-  companyName = 'Lokajá Locadora de Equipamentos Para Construção',
-  logo = '/images/Logo_fundo_claro/Logo_Locaja.png',
+  companyName = 'WL Locações de Equipamentos',
+  logo = '/images/Logo_fundo_claro/WL_fundo_claro.png',
   coverImage = '/images/Imagehero.png',
-  description = 'Locação de equipamentos para construção civil e industrial em Ponta Porã e região. Compactadores, betoneiras, andaimes, geradores e muito mais para sua obra.'
+  description = 'Locação de equipamentos para construção civil e industrial em Fortaleza e região. Compactadores, betoneiras, andaimes, geradores e muito mais para sua obra.'
 }) => {
-  const baseUrl = 'https://lokaja.com.br';
+  const baseUrl = 'https://wllocacoes.com.br';
   const fullLogoUrl = logo.startsWith('http') ? logo : `${baseUrl}${logo}`;
   const fullCoverUrl = coverImage.startsWith('http') ? coverImage : `${baseUrl}${coverImage}`;
 
@@ -22,7 +22,7 @@ const HomePageSchema: React.FC<HomePageSchemaProps> = ({
   const homePageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    'name': `${companyName} - Aluguel de Equipamentos em Ponta Porã`,
+    'name': `${companyName} - Aluguel de Equipamentos em Fortaleza`,
     'description': description,
     'url': baseUrl,
     'image': fullCoverUrl,
@@ -35,19 +35,19 @@ const HomePageSchema: React.FC<HomePageSchemaProps> = ({
       },
       'address': {
         '@type': 'PostalAddress',
-        'streetAddress': 'Av. da Flora, 374 - Jardim das Flores',
-        'addressLocality': 'Ponta Porã',
-        'addressRegion': 'MS',
-        'postalCode': '79901-128',
+        'streetAddress': 'Av. Dep. Paulino Rocha, 1881 - Cajazeiras',
+        'addressLocality': 'Fortaleza',
+        'addressRegion': 'CE',
+        'postalCode': '60864-311',
         'addressCountry': 'BR'
       },
       'geo': {
         '@type': 'GeoCoordinates',
-        'latitude': -22.5361,
-        'longitude': -55.7225
+        'latitude': -3.7275,
+        'longitude': -38.5434
       },
-      'telephone': '+556793381010',
-      'email': 'contato@lokaja.com.br',
+      'telephone': '+5585986101415',
+      'email': 'contato@wllocacoes.com.br',
       'openingHoursSpecification': [
         {
           '@type': 'OpeningHoursSpecification',
@@ -74,11 +74,11 @@ const HomePageSchema: React.FC<HomePageSchemaProps> = ({
       ],
       'priceRange': '$$',
       'areaServed': [
-        { '@type': 'City', 'name': 'Ponta Porã' },
-        { '@type': 'City', 'name': 'Dourados' },
-        { '@type': 'City', 'name': 'Maracaju' },
-        { '@type': 'City', 'name': 'Sidrolândia' },
-        { '@type': 'City', 'name': 'Rio Brilhante' }
+        { '@type': 'City', 'name': 'Fortaleza' },
+        { '@type': 'City', 'name': 'Caucaia' },
+        { '@type': 'City', 'name': 'Maracanaú' },
+        { '@type': 'City', 'name': 'Maranguape' },
+        { '@type': 'City', 'name': 'Aquiraz' }
       ]
     },
     'speakable': {
@@ -91,13 +91,13 @@ const HomePageSchema: React.FC<HomePageSchemaProps> = ({
         {
           '@type': 'ListItem',
           'position': 1,
-          'name': 'Aluguel de Equipamentos para Construção em Ponta Porã',
+          'name': 'Aluguel de Equipamentos para Construção em Fortaleza',
           'url': `${baseUrl}/equipamentos`
         },
         {
           '@type': 'ListItem',
           'position': 2,
-          'name': 'Sobre a Lokajá',
+          'name': 'Sobre a WL Locações',
           'url': `${baseUrl}/empresa`
         },
         {

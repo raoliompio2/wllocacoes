@@ -8,7 +8,7 @@ const NotFoundPage: React.FC = () => {
   return (
     <>
       <SEOHead 
-        title="Página Não Encontrada | Lokajá"
+        title="Página Não Encontrada | WL Locações"
         description="A página que você está procurando não foi encontrada. Volte para a página inicial ou explore nossos equipamentos disponíveis para locação."
       />
       

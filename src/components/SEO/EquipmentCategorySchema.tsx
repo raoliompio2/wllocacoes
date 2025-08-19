@@ -21,10 +21,10 @@ const EquipmentCategorySchema: React.FC<EquipmentCategorySchemaProps> = ({
   categoryId,
   categoryDescription,
   categoryImage,
-  companyName = 'Lokajá Locadora de Equipamentos',
-  companyLogo = 'https://lokaja.com.br/images_optimized/Logo_fundo_claro/Logo_Locaja.webp',
+  companyName = 'WL Locações de Equipamentos',
+  companyLogo = 'https://wllocacoes.com.br/images_optimized/Logo_fundo_claro/WL_fundo_claro.webp',
   equipmentCount = 0,
-  parentUrl = 'https://lokaja.com.br/equipamentos'
+  parentUrl = 'https://wllocacoes.com.br/equipamentos'
 }) => {
   // Cria um slug a partir do nome da categoria
   const createSlug = (name: string) => {
@@ -40,7 +40,7 @@ const EquipmentCategorySchema: React.FC<EquipmentCategorySchemaProps> = ({
 
   const categorySlug = createSlug(categoryName);
   const categoryUrl = `${parentUrl}/categoria/${categorySlug}`;
-  const defaultDescription = `Aluguel de ${categoryName.toLowerCase()} em Ponta Porã e região. Equipamentos de qualidade com os melhores preços do mercado.`;
+  const defaultDescription = `Aluguel de ${categoryName.toLowerCase()} em Fortaleza e região. Equipamentos de qualidade com os melhores preços do mercado.`;
   
   // Schema para Categoria de Produto (CollectionPage)
   const categorySchema = {
@@ -52,17 +52,17 @@ const EquipmentCategorySchema: React.FC<EquipmentCategorySchemaProps> = ({
     'url': categoryUrl,
     'isPartOf': {
       '@type': 'WebSite',
-      '@id': 'https://lokaja.com.br/#website',
-      'url': 'https://lokaja.com.br',
+      '@id': 'https://wllocacoes.com.br/#website',
+      'url': 'https://wllocacoes.com.br',
       'name': companyName,
       'description': 'Locação de equipamentos para construção civil e industrial',
       'publisher': {
         '@type': 'Organization',
-        '@id': 'https://lokaja.com.br/#organization',
+        '@id': 'https://wllocacoes.com.br/#organization',
         'name': companyName,
         'logo': {
           '@type': 'ImageObject',
-          '@id': 'https://lokaja.com.br/#logo',
+          '@id': 'https://wllocacoes.com.br/#logo',
           'url': companyLogo,
           'contentUrl': companyLogo,
           'width': 600,
@@ -70,7 +70,7 @@ const EquipmentCategorySchema: React.FC<EquipmentCategorySchemaProps> = ({
           'caption': companyName
         },
         'image': {
-          '@id': 'https://lokaja.com.br/#logo'
+          '@id': 'https://wllocacoes.com.br/#logo'
         }
       }
     },
@@ -90,13 +90,13 @@ const EquipmentCategorySchema: React.FC<EquipmentCategorySchemaProps> = ({
         '@type': 'ListItem',
         'position': 1,
         'name': 'Início',
-        'item': 'https://lokaja.com.br/'
+        'item': 'https://wllocacoes.com.br/'
       },
       {
         '@type': 'ListItem',
         'position': 2,
         'name': 'Equipamentos',
-        'item': 'https://lokaja.com.br/equipamentos'
+        'item': 'https://wllocacoes.com.br/equipamentos'
       },
       {
         '@type': 'ListItem',
@@ -117,7 +117,7 @@ const EquipmentCategorySchema: React.FC<EquipmentCategorySchemaProps> = ({
         'name': `Como funciona o aluguel de ${categoryName.toLowerCase()}?`,
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': `Para alugar ${categoryName.toLowerCase()}, basta escolher o equipamento desejado, solicitar um orçamento através do site e aguardar nosso contato para confirmação de disponibilidade e valores. Oferecemos entrega em toda Ponta Porã e região.`
+          'text': `Para alugar ${categoryName.toLowerCase()}, basta escolher o equipamento desejado, solicitar um orçamento através do site e aguardar nosso contato para confirmação de disponibilidade e valores. Oferecemos entrega em toda Fortaleza e região.`
         }
       },
       {
@@ -130,10 +130,10 @@ const EquipmentCategorySchema: React.FC<EquipmentCategorySchemaProps> = ({
       },
       {
         '@type': 'Question',
-        'name': `A Lokajá oferece entrega de ${categoryName.toLowerCase()}?`,
+        'name': `A WL Locações oferece entrega de ${categoryName.toLowerCase()}?`,
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': `Sim, oferecemos serviço de entrega e retirada para ${categoryName.toLowerCase()} em Ponta Porã e cidades vizinhas. O valor do frete pode variar conforme a distância e o tipo de equipamento.`
+          'text': `Sim, oferecemos serviço de entrega e retirada para ${categoryName.toLowerCase()} em Fortaleza e cidades vizinhas. O valor do frete pode variar conforme a distância e o tipo de equipamento.`
         }
       }
     ]

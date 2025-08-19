@@ -472,7 +472,7 @@ const OwnerDashboard: React.FC = () => {
               Links Úteis
             </Typography>
             <Box sx={{ mt: 2 }}>
-              <Link href="/api/product-feed?token=lokaja-feed-token&format=xml" target="_blank" sx={{ display: 'block', mb: 1 }}>
+              <Link href="/api/product-feed?token=wllocacoes-feed-token&format=xml" target="_blank" sx={{ display: 'block', mb: 1 }}>
                 Feed de Produtos (XML)
               </Link>
               <Link href="/instrucoes-anuncios-dinamicos.html" target="_blank" sx={{ display: 'block', mb: 1 }}>

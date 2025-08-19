@@ -17,7 +17,7 @@ const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY ||
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // URLs base
-const SITE_URL = 'https://lokaja.com.br';
+const SITE_URL = 'https://wllocacoes.com.br';
 const IMAGES_URL = `${SITE_URL}/images_optimized`;
 
 /**

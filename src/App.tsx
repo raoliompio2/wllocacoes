@@ -216,6 +216,13 @@ function App() {
                 </PublicLayout>
               } />
               
+              {/* Rota adicional para sitemap em inglês */}
+              <Route path="/sitemap" element={
+                <PublicLayout>
+                  <SitemapPage />
+                </PublicLayout>
+              } />
+              
               {/* Rotas de Autenticação */}
               <Route path="/login" element={
                 <PublicLayout>

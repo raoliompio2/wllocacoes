@@ -109,9 +109,9 @@ const SitemapPage: React.FC = () => {
   return (
     <Container maxWidth="lg" sx={{ py: 5 }}>
       <Helmet>
-        <title>Mapa do Site - Lokajá</title>
-        <meta name="description" content="Mapa do site completo da Lokajá, locadora de máquinas e equipamentos para construção em Ponta Porã e região." />
-        <link rel="canonical" href="https://lokaja.com.br/mapa-do-site" />
+        <title>Mapa do Site - WL Locações</title>
+        <meta name="description" content="Mapa do site completo da WL Locações, locadora de máquinas e equipamentos para construção em Ponta Porã e região." />
+        <link rel="canonical" href="https://wllocacoes.com.br/mapa-do-site" />
       </Helmet>
       
       <Box sx={{ mb: 4 }}>

@@ -53,38 +53,38 @@ const AboutPage: React.FC = () => {
     {
       icon: <LocalShipping color="primary" />,
       title: 'Logística',
-      description: 'Entrega e retirada em toda região de Ponta Porã e cidades vizinhas'
+      description: 'Entrega e retirada em toda região de Fortaleza e cidades vizinhas'
     }
   ];
 
   return (
     <>
       <Helmet>
-        <title>Sobre a Lokajá | Locação de Equipamentos Para Construção em Ponta Porã</title>
-        <meta name="description" content="Conheça a Lokajá, especializada em locação de equipamentos para construção civil e industrial em Ponta Porã e região. Atendemos desde pequenas obras até grandes construções com eficiência e qualidade." />
-        <meta name="keywords" content="sobre lokajá, história lokajá, empresa de locação de equipamentos, locadora de equipamentos Ponta Porã, quem somos lokajá, aluguel de equipamentos MS, locação de betoneiras, andaimes para aluguel Mato Grosso do Sul" />
-        <link rel="canonical" href="https://lokaja.com.br/empresa" />
+        <title>Sobre a WL Locações | Locação de Equipamentos Para Construção em Fortaleza</title>
+        <meta name="description" content="Conheça a WL Locações, especializada em locação de equipamentos para construção civil e industrial em Fortaleza e região. Atendemos desde pequenas obras até grandes construções com eficiência e qualidade." />
+        <meta name="keywords" content="sobre WL Locações, história WL Locações, empresa de locação de equipamentos, locadora de equipamentos Fortaleza, quem somos WL Locações, aluguel de equipamentos Ceará, locação de betoneiras, andaimes para aluguel Fortaleza" />
+        <link rel="canonical" href="https://wllocacoes.com.br/empresa" />
         
         {/* Meta tags para redes sociais */}
-        <meta property="og:title" content="Sobre a Lokajá | Locação de Equipamentos Para Construção em Ponta Porã" />
-        <meta property="og:description" content="Conheça a história da Lokajá, especializada em aluguel de equipamentos para construção civil e industrial em Ponta Porã e região." />
-        <meta property="og:url" content="https://lokaja.com.br/empresa" />
+        <meta property="og:title" content="Sobre a WL Locações | Locação de Equipamentos Para Construção em Fortaleza" />
+        <meta property="og:description" content="Conheça a história da WL Locações, especializada em aluguel de equipamentos para construção civil e industrial em Fortaleza e região." />
+        <meta property="og:url" content="https://wllocacoes.com.br/empresa" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://lokaja.com.br/images/Logo_fundo_claro/Logo_Locaja.png" />
+        <meta property="og:image" content="https://wllocacoes.com.br/images/Logo_fundo_claro/Logo_WL.png" />
         
         {/* Meta tags Twitter */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Sobre a Lokajá | Locação de Equipamentos Para Construção em Ponta Porã" />
-        <meta name="twitter:description" content="Conheça a história da Lokajá, especializada em aluguel de equipamentos para construção civil e industrial em Ponta Porã e região." />
-        <meta name="twitter:image" content="https://lokaja.com.br/images/Logo_fundo_claro/Logo_Locaja.png" />
+        <meta name="twitter:title" content="Sobre a WL Locações | Locação de Equipamentos Para Construção em Fortaleza" />
+        <meta name="twitter:description" content="Conheça a história da WL Locações, especializada em aluguel de equipamentos para construção civil e industrial em Fortaleza e região." />
+        <meta name="twitter:image" content="https://wllocacoes.com.br/images/Logo_fundo_claro/WL_fundo_claro.png" />
       </Helmet>
 
       {/* Adiciona Schema.org para About Page */}
       <AboutPageSchema 
-        companyName="Lokajá"
+        companyName="WL Locações"
         foundingDate="2020-01-01" 
-        description="Especializada em aluguel de equipamentos para construção civil e industrial, a Lokajá atende com excelência empresas e pessoas físicas em Ponta Porã e região, oferecendo os melhores equipamentos com preços justos."
-        imageUrl="/images/Logo_fundo_claro/Logo_Locaja.png"
+        description="Especializada em aluguel de equipamentos para construção civil e industrial, a WL Locações atende com excelência empresas e pessoas físicas em Fortaleza e região, oferecendo os melhores equipamentos com preços justos."
+        imageUrl="/images/Logo_fundo_claro/WL_fundo_claro.png"
       />
       
       <main>
@@ -100,10 +100,10 @@ const AboutPage: React.FC = () => {
         >
           <Container maxWidth="xl">
             <Typography variant="h3" component="h1" fontWeight="bold" gutterBottom>
-              Sobre a Lokajá
+              Sobre a WL Locações
             </Typography>
             <Typography variant="h6" sx={{ maxWidth: 800 }}>
-              Especialistas em locação de equipamentos para construção civil em Ponta Porã e região
+              Especialistas em locação de equipamentos para construção civil em Fortaleza e região
             </Typography>
           </Container>
         </Box>
@@ -133,10 +133,10 @@ const AboutPage: React.FC = () => {
               <Grid item xs={12} md={6}>
                 <Box>
                   <Typography variant="body1" paragraph>
-                    A Lokajá é uma empresa sul-mato-grossense especializada no setor de locação de equipamentos para construção civil, atendendo Ponta Porã e toda a região fronteiriça com o Paraguai. Nosso foco é proporcionar soluções completas que tornam os projetos de nossos clientes mais eficientes e econômicos.
+                    A WL Locações é uma empresa cearense especializada no setor de locação de equipamentos para construção civil, atendendo Fortaleza e toda a região metropolitana. Nosso foco é proporcionar soluções completas que tornam os projetos de nossos clientes mais eficientes e econômicos.
                   </Typography>
                   <Typography variant="body1" paragraph>
-                    Com um estoque variado de equipamentos de alta qualidade e manutenção rigorosa, a Lokajá se destaca pelo atendimento personalizado, entrega pontual e assistência técnica durante todo o período de locação, garantindo que sua obra seja concluída dentro do prazo e com a qualidade esperada.
+                    Com um estoque variado de equipamentos de alta qualidade e manutenção rigorosa, a WL Locações se destaca pelo atendimento personalizado, entrega pontual e assistência técnica durante todo o período de locação, garantindo que sua obra seja concluída dentro do prazo e com a qualidade esperada.
                   </Typography>
                 </Box>
               </Grid>
@@ -152,8 +152,8 @@ const AboutPage: React.FC = () => {
                 >
                   <Box 
                     component="img"
-                    src="/images/Empresa/2023-11-21.webp"
-                    alt="Lokajá - Equipamentos para construção civil em Ponta Porã"
+                    src="/images_optimized/Empresa/images (9).webp"
+                    alt="WL Locações - Equipamentos para construção civil em Fortaleza"
                     sx={{
                       width: '100%',
                       height: '100%',
@@ -224,7 +224,7 @@ const AboutPage: React.FC = () => {
                       Visão
                     </Typography>
                     <Typography variant="body1">
-                      Ser reconhecida como a melhor empresa de locação de equipamentos para construção do estado de Mato Grosso do Sul, referência em qualidade de serviços e satisfação dos clientes.
+                      Ser reconhecida como a melhor empresa de locação de equipamentos para construção do estado do Ceará, referência em qualidade de serviços e satisfação dos clientes.
                     </Typography>
                   </CardContent>
                 </Card>
@@ -290,8 +290,8 @@ const AboutPage: React.FC = () => {
                 >
                   <Box 
                     component="img"
-                    src="/images/Empresa/2023-11-21 (1).webp"
-                    alt="Equipe Lokajá"
+                    src="/images_optimized/Empresa/images (10).webp"
+                    alt="Equipe WL Locações"
                     sx={{
                       width: '100%',
                       height: '100%',
@@ -329,7 +329,7 @@ const AboutPage: React.FC = () => {
                 
                 <Box sx={{ mt: 4 }}>
                   <Typography variant="body1" paragraph>
-                    Nossa equipe é altamente qualificada e treinada para oferecer as melhores soluções em equipamentos para sua obra. Trabalhamos com as melhores marcas do mercado e realizamos manutenção preventiva constante, garantindo segurança e eficiência para todos os nossos clientes em Ponta Porã, Dourados, Maracaju e toda região sul do Mato Grosso do Sul.
+                    Nossa equipe é altamente qualificada e treinada para oferecer as melhores soluções em equipamentos para sua obra. Trabalhamos com as melhores marcas do mercado e realizamos manutenção preventiva constante, garantindo segurança e eficiência para todos os nossos clientes em Fortaleza, Caucaia, Maracanaú e toda região metropolitana de Fortaleza.
                   </Typography>
                 </Box>
               </Grid>
@@ -368,8 +368,8 @@ const AboutPage: React.FC = () => {
                 >
                   <Box 
                     component="img"
-                    src="/images/Empresa/unnamed.webp"
-                    alt="Equipamentos Lokajá em Ponta Porã"
+                    src="/images_optimized/Empresa/images (9).webp"
+                    alt="Equipamentos WL Locações em Fortaleza"
                     sx={{
                       width: '100%',
                       height: '100%',
@@ -389,8 +389,8 @@ const AboutPage: React.FC = () => {
                 >
                   <Box 
                     component="img"
-                    src="/images/Empresa/2023-11-21 (1).webp"
-                    alt="Serviços Lokajá em Mato Grosso do Sul"
+                    src="/images_optimized/Empresa/images (10).webp"
+                    alt="Serviços WL Locações em Fortaleza"
                     sx={{
                       width: '100%',
                       height: '100%',
@@ -417,7 +417,7 @@ const AboutPage: React.FC = () => {
               Pronto para iniciar seu projeto?
             </Typography>
             <Typography variant="body1" paragraph sx={{ maxWidth: 800, mx: 'auto', mb: 4 }}>
-              A Lokajá está à disposição para fornecer todos os equipamentos necessários para sua obra em Ponta Porã e região. Entre em contato conosco e solicite um orçamento personalizado!
+              A WL Locações está à disposição para fornecer todos os equipamentos necessários para sua obra em Fortaleza e região. Entre em contato conosco e solicite um orçamento personalizado!
             </Typography>
             <Link to="/contato" style={{ textDecoration: 'none' }}>
               <Button

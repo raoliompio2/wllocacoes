@@ -1,11 +1,11 @@
 {
-  "name": "Lokajá",
-  "short_name": "Lokajá",
+  "name": "WL Locações",
+  "short_name": "WL Locações",
   "description": "Aluguel de equipamentos para construção civil e industrial",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f8f8f8",
-  "theme_color": "#1976d2",
+  "theme_color": "#4a326e",
   "orientation": "portrait",
   "categories": ["business", "shopping", "utilities"],
   "lang": "pt-BR",
@@ -24,7 +24,7 @@
     {
       "name": "Contato",
       "short_name": "Contato",
-      "description": "Entre em contato com a Lokajá",
+      "description": "Entre em contato com a WL Locações",
       "url": "/contato",
       "icons": [{ "src": "images/favicon.png", "sizes": "192x192" }]
     }

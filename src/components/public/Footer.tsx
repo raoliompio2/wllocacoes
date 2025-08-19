@@ -66,14 +66,14 @@ const Footer: React.FC = () => {
   
   // Estado para armazenar informações da empresa
   const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
-    name: 'Lokajá Locadora de Equipamentos Para Construção',
+    name: 'WL Locações de Equipamentos',
     logo_url: logoUrl,
-    phone: '(67) 99338-1010',
-    email: 'contato@lokaja.com.br',
-    address: 'Av. da Flora, 374 - Jardim das Flores, Ponta Porã - MS, 79901-128',
-    whatsapp: '67 99338-1010',
-    facebook_url: 'https://www.facebook.com/lokaja',
-    instagram_url: 'https://www.instagram.com/lokaja',
+    phone: '(85) 98610-1415',
+    email: 'contato@wllocacoes.com.br',
+    address: 'Av. Dep. Paulino Rocha, 1881 - Cajazeiras, Fortaleza - CE, 60864-311',
+    whatsapp: '85 98610-1415',
+    facebook_url: 'https://www.facebook.com/wllocacoes',
+    instagram_url: 'https://www.instagram.com/wllocacoes',
     linkedin_url: null,
     youtube_url: null,
     twitter_url: null
@@ -176,14 +176,14 @@ const Footer: React.FC = () => {
 
   // Dados estáticos caso não consiga carregar do banco
   const fallbackCompanyData: CompanyInfo = {
-    name: 'Lokajá',
-    phone: '(67) 99338-1010',
-    whatsapp: '67 99338-1010',
-    email: 'contato@lokaja.com.br',
-    address: 'Av. da Flora, 374 - Jardim das Flores, Ponta Porã – MS, CEP: 79901-128',
+    name: 'WL Locações',
+    phone: '(85) 98610-1415',
+    whatsapp: '85 98610-1415',
+    email: 'contato@wllocacoes.com.br',
+    address: 'Av. Dep. Paulino Rocha, 1881 - Cajazeiras, Fortaleza – CE, CEP: 60864-311',
     logo_url: logoUrl,
-    facebook_url: 'https://www.facebook.com/lokaja',
-    instagram_url: 'https://www.instagram.com/lokaja',
+    facebook_url: 'https://www.facebook.com/wllocacoes',
+    instagram_url: 'https://www.instagram.com/wllocacoes',
     linkedin_url: null,
     youtube_url: null,
     twitter_url: null
@@ -208,15 +208,15 @@ const Footer: React.FC = () => {
       itemType="http://schema.org/LocalBusiness"
     >
       {/* Metadados ocultos para SEO */}
-      <meta itemProp="name" content="Lokajá Locadora de Equipamentos Para Construção" />
-      <meta itemProp="description" content="A Lokajá oferece serviços de aluguel de equipamentos para construção civil e industrial em Ponta Porã e região." />
-      <meta itemProp="telephone" content="(67) 99338-1010" />
-      <meta itemProp="email" content="contato@lokaja.com.br" />
+      <meta itemProp="name" content="WL Locações de Equipamentos" />
+      <meta itemProp="description" content="A WL Locações oferece serviços de aluguel de equipamentos para construção civil e industrial em Fortaleza e região." />
+      <meta itemProp="telephone" content="(85) 98610-1415" />
+      <meta itemProp="email" content="contato@wllocacoes.com.br" />
       <div itemProp="address" itemScope itemType="http://schema.org/PostalAddress">
-        <meta itemProp="streetAddress" content="Av. da Flora, 374" />
-        <meta itemProp="addressLocality" content="Ponta Porã" />
-        <meta itemProp="addressRegion" content="MS" />
-        <meta itemProp="postalCode" content="79901-128" />
+        <meta itemProp="streetAddress" content="Av. Dep. Paulino Rocha, 1881" />
+        <meta itemProp="addressLocality" content="Fortaleza" />
+        <meta itemProp="addressRegion" content="CE" />
+        <meta itemProp="postalCode" content="60864-311" />
         <meta itemProp="addressCountry" content="BR" />
       </div>
       <meta itemProp="openingHours" content="Mo-Fr 07:00-11:00, 13:00-17:00" />
@@ -232,7 +232,7 @@ const Footer: React.FC = () => {
                                   <Box
                     component="img"
                     src={companyInfo.logo_url}
-                    alt="Lokajá - Aluguel de Equipamentos para Construção"
+                    alt="WL Locações - Aluguel de Equipamentos para Construção"
                   sx={{
                     height: 127,
                     maxWidth: 510,
@@ -254,7 +254,7 @@ const Footer: React.FC = () => {
                     <source srcSet={`${companyInfo.logo_url.webp} 510w`} type="image/webp" />
                     <img
                       src={companyInfo.logo_url.fallback}
-                      alt="Lokajá - Aluguel de Equipamentos para Construção"
+                      alt="WL Locações - Aluguel de Equipamentos para Construção"
                       style={{
                         height: '100%',
                         maxWidth: '100%',
@@ -267,8 +267,8 @@ const Footer: React.FC = () => {
               )}
               
               <Typography variant="body2" sx={{ opacity: 0.8, mb: 3 }}>
-                A Lokajá é especializada no aluguel de equipamentos para construção civil e industrial, 
-                atendendo Ponta Porã e região com excelência e qualidade.
+                A WL Locações é especializada no aluguel de equipamentos para construção civil e industrial, 
+                atendendo Fortaleza e região com excelência e qualidade.
               </Typography>
             </Box>
             
@@ -279,21 +279,21 @@ const Footer: React.FC = () => {
               <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
                 <LocationOn sx={{ mr: 1, fontSize: 20, color: 'secondary.main', mt: 0.5 }} />
                 <Typography variant="body2">
-                  Av. da Flora, 374 - Jardim das Flores, Ponta Porã - MS, 79901-128
+                  Av. Dep. Paulino Rocha, 1881 - Cajazeiras, Fortaleza - CE, 60864-311
                 </Typography>
               </Box>
               
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Phone sx={{ mr: 1, fontSize: 20, color: 'secondary.main' }} />
                 <Typography variant="body2">
-                  (67) 99338-1010
+                  (85) 98610-1415
                 </Typography>
               </Box>
               
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Email sx={{ mr: 1, fontSize: 20, color: 'secondary.main' }} />
                 <Typography variant="body2">
-                  contato@lokaja.com.br
+                  contato@wllocacoes.com.br
                 </Typography>
               </Box>
               
@@ -421,7 +421,7 @@ const Footer: React.FC = () => {
                   href={companyInfo.facebook_url} 
                   target="_blank"
                   rel="noopener noreferrer"
-                                            aria-label="Facebook da Lokajá"
+                                            aria-label="Facebook da WL Locações"
                   sx={{ 
                     color: 'white',
                     bgcolor: 'rgba(255,255,255,0.05)',
@@ -438,7 +438,7 @@ const Footer: React.FC = () => {
                   href={companyInfo.instagram_url} 
                   target="_blank"
                   rel="noopener noreferrer"
-                                            aria-label="Instagram da Lokajá"
+                                            aria-label="Instagram da WL Locações"
                   sx={{ 
                     color: 'white',
                     bgcolor: 'rgba(255,255,255,0.05)',
@@ -455,7 +455,7 @@ const Footer: React.FC = () => {
                   href={companyInfo.linkedin_url} 
                   target="_blank"
                   rel="noopener noreferrer"
-                                            aria-label="LinkedIn da Lokajá"
+                                            aria-label="LinkedIn da WL Locações"
                   sx={{ 
                     color: 'white',
                     bgcolor: 'rgba(255,255,255,0.05)',
@@ -472,7 +472,7 @@ const Footer: React.FC = () => {
                   href={companyInfo.youtube_url} 
                   target="_blank"
                   rel="noopener noreferrer"
-                                            aria-label="Canal do YouTube da Lokajá"
+                                            aria-label="Canal do YouTube da WL Locações"
                   sx={{ 
                     color: 'white',
                     bgcolor: 'rgba(255,255,255,0.05)',
@@ -489,7 +489,7 @@ const Footer: React.FC = () => {
                   href={`https://wa.me/55${companyInfo.whatsapp.replace(/\D/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                                            aria-label="WhatsApp da Lokajá"
+                                            aria-label="WhatsApp da WL Locações"
                   sx={{ 
                     color: 'white',
                     bgcolor: 'rgba(255,255,255,0.05)',
@@ -510,7 +510,7 @@ const Footer: React.FC = () => {
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} md={4}>
             <Typography variant="body2" color="white" align={isMobile ? 'center' : 'left'}>
-              © {new Date().getFullYear()} Lokajá. Todos os direitos reservados.
+              © {new Date().getFullYear()} WL Locações. Todos os direitos reservados.
             </Typography>
           </Grid>
           

@@ -566,16 +566,16 @@ const EquipmentPage: React.FC = () => {
   const generatePageTitle = () => {
     if (selectedCategory) {
       const categoryName = getCategoryName(selectedCategory);
-      return `Aluguel de ${categoryName} | Lokajá`;
+      return `Aluguel de ${categoryName} | WL Locações`;
     }
-    return 'Equipamentos para Locação | Aluguel de Equipamentos | Lokajá';
+    return 'Equipamentos para Locação | Aluguel de Equipamentos | WL Locações';
   };
 
   // Função para gerar descrição da página baseado nos filtros
   const generatePageDescription = () => {
     if (selectedCategory) {
       const categoryName = getCategoryName(selectedCategory);
-      return `Locação de ${categoryName} para sua obra ou evento em Ponta Porã e região. A Lokajá oferece os melhores ${categoryName} com preços justos e equipamentos de qualidade.`;
+      return `Locação de ${categoryName} para sua obra ou evento em Ponta Porã e região. A WL Locações oferece os melhores ${categoryName} com preços justos e equipamentos de qualidade.`;
     }
     return 'Aluguel de equipamentos para construção civil e industrial em Ponta Porã e região. Compactadores, betoneiras, andaimes, geradores e muito mais com os melhores preços e qualidade.';
   };

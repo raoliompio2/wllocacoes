@@ -1,4 +1,4 @@
-# Lokajá
+# WL Locações
 
 Site de locação de equipamentos para construção civil com sistema de gerenciamento.
 

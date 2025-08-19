@@ -72,27 +72,17 @@ export const getLuminance = (color: string): number => {
 };
 
 // Caminhos para as logos
-// Usando WebP para navegadores modernos com fallback para PNG
-const MAIN_LOGO: LogoUrls = {
-  webp: '/images_optimized/Logo_fundo_claro/Logo_Locaja.webp',
-  fallback: '/images/Logo_fundo_claro/Logo_Locaja.png'
+// Usando APENAS o logo de fundo claro em TODOS os lugares
+const LOGO_WL_UNICO: LogoUrls = {
+  webp: '/images_optimized/Logo_fundo_claro/WL_fundo_claro.webp',
+  fallback: '/images/Logo_fundo_claro/WL_fundo_claro.png'
 };
-const FOOTER_LOGO: LogoUrls = {
-  webp: '/images_optimized/Logo_fundo_claro/Logo_Locaja.webp',
-  fallback: '/images/Logo_fundo_claro/Logo_Locaja.png'
-};
-const SIDEBAR_LOGO: LogoUrls = {
-  webp: '/images_optimized/Logo_fundo_escuro/Logo_Locaja (1).webp',
-  fallback: '/images/Logo_fundo_escuro/Logo_Locaja (1).png'
-};
-const LOGO_FUNDO_CLARO: LogoUrls = {
-  webp: '/images_optimized/Logo_fundo_claro/Logo_Locaja.webp',
-  fallback: '/images/Logo_fundo_claro/Logo_Locaja.png'
-};
-const LOGO_FUNDO_ESCURO: LogoUrls = {
-  webp: '/images_optimized/Logo_fundo_escuro/Logo_Locaja (1).webp',
-  fallback: '/images/Logo_fundo_escuro/Logo_Locaja (1).png'
-};
+
+const MAIN_LOGO: LogoUrls = LOGO_WL_UNICO;
+const FOOTER_LOGO: LogoUrls = LOGO_WL_UNICO;
+const SIDEBAR_LOGO: LogoUrls = LOGO_WL_UNICO;
+const LOGO_FUNDO_CLARO: LogoUrls = LOGO_WL_UNICO;
+const LOGO_FUNDO_ESCURO: LogoUrls = LOGO_WL_UNICO; // Usando fundo claro mesmo no escuro
 const LOGO_PAGINAS_SECUNDARIAS = MAIN_LOGO;
 
 /**

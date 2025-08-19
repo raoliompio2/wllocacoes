@@ -10,7 +10,7 @@ export const lcpSelectors = [
   '.hero-image',
   '.logo-container img',
   'img[alt="NOME DA EMPRESA"]',
-  'img[src*="Logo_fundo_escuro"]',
+  'img[src*="WL_fundo_claro"]',
   'picture img', // Imagens dentro de tags picture
   'main img' // Imagens principais
 ];
@@ -21,7 +21,7 @@ export const lcpElementsByPage = {
   '/': [
     'h1.MuiTypography-h2', // Título do hero
     'img[alt="NOME DA EMPRESA"]',
-    'img[src*="Logo_fundo_escuro"]'
+    'img[src*="WL_fundo_claro"]'
   ],
   
   // Página de equipamentos
@@ -51,8 +51,8 @@ export const lcpOptimizationConfig = {
   
   // Prioridade de carregamento para elementos LCP
   priorityImages: [
-    '/images/Logo_fundo_escuro/Aluguel-de-Maquinas-8-768x307 (1).webp',
-    '/images/Design sem nome (92).webp'
+    '/images_optimized/Banner/WL-LOCACOES-Dezembro-Banner.webp',
+    '/images/Logo_fundo_claro/WL_fundo_claro.webp'
   ],
   
   // Scripts que devem ser carregados de forma diferida

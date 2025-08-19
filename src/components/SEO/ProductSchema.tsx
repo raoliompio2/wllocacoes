@@ -23,12 +23,12 @@ const ProductSchema: React.FC<ProductSchemaProps> = ({
   price,
   availability = 'InStock',
   sku,
-  brand = 'Lokajá',
+  brand = 'WL Locações',
   productId,
   ratingValue,
   reviewCount
 }) => {
-  const baseUrl = 'https://lokaja.com.br';
+  const baseUrl = 'https://wllocacoes.com.br';
   const fullImageUrl = imageUrl ? (imageUrl.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`) : undefined;
 
   // Construir o objeto Schema.org para produto
@@ -61,9 +61,9 @@ const ProductSchema: React.FC<ProductSchemaProps> = ({
         ],
         seller: {
           '@type': 'LocalBusiness',
-          name: 'Lokajá',
-          telephone: '(67) 99338-1010',
-          email: 'contato@lokaja.com.br'
+          name: 'WL Locações',
+          telephone: '(85) 98610-1415',
+          email: 'contato@wllocacoes.com.br'
         }
       }
     }

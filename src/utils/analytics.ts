@@ -1,5 +1,5 @@
 // Utilitário para eventos do Google Analytics 4
-// Específico para o sistema Lokaja de locação de equipamentos
+// Específico para o sistema WL Locações de equipamentos
 
 declare global {
   interface Window {
@@ -61,7 +61,7 @@ export const trackEquipmentView = (equipment: Equipment) => {
       item_name: equipment.name,
       item_category: equipment.category,
       item_category2: equipment.subcategory,
-      item_brand: equipment.brand || 'Lokaja',
+      item_brand: equipment.brand || 'WL Locações',
       item_variant: equipment.model,
       price: equipment.price,
       quantity: 1
@@ -148,7 +148,7 @@ export const trackBookingComplete = (budgetRequest: BudgetRequest) => {
       item_id: budgetRequest.equipment.id,
       item_name: budgetRequest.equipment.name,
       item_category: budgetRequest.equipment.category,
-      item_brand: budgetRequest.equipment.brand || 'Lokaja',
+      item_brand: budgetRequest.equipment.brand || 'WL Locações',
       price: budgetRequest.equipment.price,
       quantity: 1
     }]

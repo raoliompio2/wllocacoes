@@ -1,1 +1,0 @@
-Coloque aqui as variações do logo para uso em fundos escuros.

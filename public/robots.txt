@@ -1,5 +1,5 @@
-# Lokajá Locadora de Equipamentos Para Construção - Arquivo Robots.txt
-# https://lokaja.com.br
+# WL Locações de Equipamentos - Arquivo Robots.txt
+# https://wllocacoes.com.br
 
 # Allow all web crawlers
 User-agent: *
@@ -74,7 +74,7 @@ Allow: /images/
 Allow: /images_optimized/
 
 # Sitemap
-Sitemap: https://lokaja.com.br/sitemap.xml
+Sitemap: https://wllocacoes.com.br/sitemap.xml
 
 # Crawl delay para não sobrecarregar o servidor - outros bots
 User-agent: *

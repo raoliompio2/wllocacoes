@@ -8,6 +8,24 @@
 /* Importar estilos para o fundo global */
 @import './styles/global-background.css';
 
+/* ====== IDENTIDADE VISUAL WL LOCAÇÕES ====== */
+:root {
+  --wl-primary: #4a326e;
+  --wl-secondary: #fe2d24;
+  --wl-gradient: linear-gradient(135deg, #fe2d24 0%, #4a326e 100%);
+  --wl-gradient-hover: linear-gradient(135deg, #ff4d42 0%, #6b4a9e 100%);
+}
+
+/* ====== OTIMIZAÇÃO DE IMAGEM DO BANNER ====== */
+.hero-fullscreen-swiper img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: high-quality;
+  -ms-interpolation-mode: bicubic;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  filter: none; /* Removendo filtros que podem causar blur */
+}
+
 /* Estilos para Swiper */
 .hero-text-swiper {
   width: 100%;
@@ -108,4 +126,39 @@
     width: 8px !important;
     height: 8px !important;
   }
+}
+
+/* ====== CLASSES UTILITÁRIAS WL LOCAÇÕES ====== */
+.wl-gradient-bg {
+  background: var(--wl-gradient);
+}
+
+.wl-gradient-hover:hover {
+  background: var(--wl-gradient-hover);
+  transition: all 0.3s ease;
+}
+
+.wl-primary-text {
+  color: var(--wl-primary);
+}
+
+.wl-secondary-text {
+  color: var(--wl-secondary);
+}
+
+.wl-primary-bg {
+  background-color: var(--wl-primary);
+}
+
+.wl-secondary-bg {
+  background-color: var(--wl-secondary);
+}
+
+/* Glassmorphism para navbar com cores WL */
+.navbar-glassmorphism {
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  background: rgba(254, 45, 36, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
 }

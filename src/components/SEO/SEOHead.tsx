@@ -26,18 +26,18 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   keywords,
   alternateLanguages,
 }) => {
-  const baseUrl = 'https://lokaja.com.br';
+  const baseUrl = 'https://wllocacoes.com.br';
   const fullCanonicalUrl = canonicalUrl ? `${baseUrl}${canonicalUrl}` : undefined;
   const fullOgUrl = ogUrl ? `${baseUrl}${ogUrl}` : fullCanonicalUrl;
   const fullOgImage = ogImage ? (ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`) : `${baseUrl}/images/logo.png`;
   
-  // Cidades da região para SEO local
+  // Cidades da região metropolitana de Fortaleza para SEO local
   const cities = [
-    'Ponta Porã', 'Dourados', 'Maracaju', 'Sidrolândia', 'Itaporã', 
-    'Amambai', 'Caarapó', 'Itaquiraí', 'Rio Brilhante', 'Paranhos', 
-    'Laguna Carapã', 'Antonio João', 'Aral Moreira', 'Naviraí',
-    'Coronel Sapucaia', 'Mundo Novo', 'Tacuru', 'Sete Quedas',
-    'Bela Vista', 'Jardim'
+    'Fortaleza', 'Caucaia', 'Maracanaú', 'Maranguape', 'Aquiraz', 
+    'Pacajus', 'Guaiúba', 'Itaitinga', 'Eusébio', 'Horizonte', 
+    'Pacatuba', 'Chorozinho', 'São Gonçalo do Amarante', 'Cascavel',
+    'Pindoretama', 'Beberibe', 'Aracati', 'Paracuru', 'Paraipaba',
+    'Trairi', 'Pentecoste', 'São Luís do Curu', 'Tejuçuoca'
   ];
   
   // Adiciona localização nas keywords
@@ -59,26 +59,26 @@ const SEOHead: React.FC<SEOHeadProps> = ({
   const defaultSchema = {
     "@context": "https://schema.org",
     "@type": "ConstructionEquipmentRental",
-    "name": "Lokajá Locadora de Equipamentos Para Construção",
-    "description": "Aluguel e locação de equipamentos para construção civil e industrial em Ponta Porã e região.",
+    "name": "WL Locações de Equipamentos",
+    "description": "Aluguel e locação de equipamentos para construção civil e industrial em Fortaleza e região.",
     "url": baseUrl,
     "logo": `${baseUrl}/images/logo.png`,
     "image": `${baseUrl}/images/logo.png`,
-    "telephone": "(67) 99338-1010",
-    "email": "contato@lokaja.com.br",
+    "telephone": "(85) 98610-1415",
+    "email": "contato@wllocacoes.com.br",
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Av. da Flora, 374",
-      "addressLocality": "Ponta Porã",
-      "addressRegion": "MS",
-      "postalCode": "79901-128",
+      "streetAddress": "Av. Dep. Paulino Rocha, 1881",
+      "addressLocality": "Fortaleza",
+      "addressRegion": "CE",
+      "postalCode": "60864-311",
       "addressCountry": "BR"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": -22.5361,
-      "longitude": -55.7225
+      "latitude": -3.7275,
+      "longitude": -38.5434
     },
     "openingHoursSpecification": [
       {
@@ -99,7 +99,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       "name": city,
       "containedInPlace": {
         "@type": "State",
-        "name": "Mato Grosso do Sul"
+        "name": "Ceará"
       }
     }))
   };
@@ -113,7 +113,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <meta name="author" content="Lokajá Locadora de Equipamentos" />
+      <meta name="author" content="WL Locações de Equipamentos" />
       
       <meta name="keywords" content={enhancedKeywords} />
       {fullCanonicalUrl && <link rel="canonical" href={fullCanonicalUrl} />}
@@ -122,7 +122,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       <meta property="og:type" content={ogType} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:site_name" content="Lokajá Locadora de Equipamentos" />
+      <meta property="og:site_name" content="WL Locações de Equipamentos" />
       {fullOgUrl && <meta property="og:url" content={fullOgUrl} />}
       {fullOgImage && <meta property="og:image" content={fullOgImage} />}
       <meta property="og:locale" content="pt_BR" />
@@ -134,10 +134,10 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       {fullOgImage && <meta name="twitter:image" content={fullOgImage} />}
       
       {/* Geo Tags para Cidade */}
-      <meta name="geo.region" content="BR-MS" />
-      <meta name="geo.placename" content="Ponta Porã" />
-      <meta name="geo.position" content="-22.5361;-55.7225" />
-      <meta name="ICBM" content="-22.5361, -55.7225" />
+      <meta name="geo.region" content="BR-CE" />
+      <meta name="geo.placename" content="Fortaleza" />
+      <meta name="geo.position" content="-3.7275;-38.5434" />
+      <meta name="ICBM" content="-3.7275, -38.5434" />
       
       {/* Alternate Languages */}
       {alternateLanguages?.map((lang) => (
@@ -156,7 +156,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({
       
       {/* Meta tags para dispositivos móveis */}
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-      <meta name="theme-color" content="#001745" />
+      <meta name="theme-color" content="#4a326e" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black" />
       

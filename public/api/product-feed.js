@@ -44,7 +44,7 @@ function escapeXml(unsafe) {
 export default async function handler(req, res) {
   // Verificar se há um token de acesso (segurança básica)
   const { token, format = 'xml' } = req.query;
-  const validToken = process.env.PRODUCT_FEED_TOKEN || 'lokaja-feed-token';
+  const validToken = process.env.PRODUCT_FEED_TOKEN || 'wllocacoes-feed-token';
   
   if (token !== validToken) {
     return res.status(401).send('Acesso não autorizado');
@@ -80,7 +80,7 @@ export default async function handler(req, res) {
     }
     
     // 3. Gerar o feed no formato solicitado
-    const baseUrl = 'https://lokaja.com.br';
+    const baseUrl = 'https://wllocacoes.com.br';
     
     if (format === 'xml' || format === 'rss') {
       // Configurar cabeçalhos para XML
@@ -90,7 +90,7 @@ export default async function handler(req, res) {
       let feed = `<?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
 <channel>
-  <title>Lokajá Equipamentos para Locação</title>
+  <title>WL Locações Equipamentos para Locação</title>
   <link>${baseUrl}</link>
   <description>Aluguel de equipamentos para construção civil em Ponta Porã e região</description>
 `;
@@ -114,7 +114,7 @@ export default async function handler(req, res) {
     <g:price>${price} BRL</g:price>
     <g:google_product_category>5181</g:google_product_category>
     <g:product_type>${escapeXml(categoryName)}</g:product_type>
-    <g:brand>Lokajá</g:brand>
+    <g:brand>WL Locações</g:brand>
     <g:condition>used</g:condition>
     <g:custom_label_0>${escapeXml(categoryName)}</g:custom_label_0>
   </item>
@@ -129,7 +129,7 @@ export default async function handler(req, res) {
     } else if (format === 'csv') {
       // Configurar cabeçalhos para CSV
       res.setHeader('Content-Type', 'text/csv; charset=utf-8');
-      res.setHeader('Content-Disposition', 'attachment; filename=lokaja-product-feed.csv');
+      res.setHeader('Content-Disposition', 'attachment; filename=wllocacoes-product-feed.csv');
       
       // Cabeçalho CSV
       let feed = 'id,title,description,link,image_link,availability,price,google_product_category,product_type,brand,condition,custom_label_0\n';
@@ -143,7 +143,7 @@ export default async function handler(req, res) {
         const price = item.daily_rate || '0';
         const description = (item.description || `Aluguel de ${item.name} em Ponta Porã e região`).replace(/"/g, '""');
         
-        feed += `"${item.id}","${item.name.replace(/"/g, '""')}","${description}","${productUrl}","${imageUrl}","${item.available ? 'in stock' : 'out of stock'}","${price} BRL","5181","${categoryName.replace(/"/g, '""')}","Lokajá","used","${categoryName.replace(/"/g, '""')}"\n`;
+        feed += `"${item.id}","${item.name.replace(/"/g, '""')}","${description}","${productUrl}","${imageUrl}","${item.available ? 'in stock' : 'out of stock'}","${price} BRL","5181","${categoryName.replace(/"/g, '""')}","WL Locações","used","${categoryName.replace(/"/g, '""')}"\n`;
       });
       
       // Enviar o feed
@@ -171,7 +171,7 @@ export default async function handler(req, res) {
           price: `${price} BRL`,
           google_product_category: '5181',
           product_type: categoryName,
-          brand: 'Lokajá',
+          brand: 'WL Locações',
           condition: 'used',
           custom_label_0: categoryName
         };

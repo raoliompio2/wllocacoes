@@ -72,8 +72,8 @@ const FloatingCta: React.FC = () => {
   };
 
       const handleWhatsAppClick = () => {
-    // Número do WhatsApp da Lokajá
-    const whatsappNumber = '67993381010';
+    // Número do WhatsApp da WL Locações
+    const whatsappNumber = '8598610-1415';
     const currentPage = window.location.href;
     const pageName = document.title;
     

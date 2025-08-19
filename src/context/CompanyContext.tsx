@@ -19,12 +19,12 @@ interface CompanyContextType {
 
 // Valores padrão para informações da empresa
 const defaultCompanyInfo: CompanyInfo = {
-  name: 'Lokajá Locadora de Equipamentos Para Construção',
-  logo_url: '/images/Logo_fundo_claro/Logo_Locaja.png',
-  phone: '(67) 99338-1010',
-  whatsapp: '67993381010',
-  email: 'contato@lokaja.com.br',
-  address: 'Av. da Flora, 374 - Jardim das Flores, Ponta Porã - MS, 79901-128',
+  name: 'WL Locações de Equipamentos',
+  logo_url: '/images/Logo_fundo_claro/WL_fundo_claro.png',
+  phone: '(85) 98610-1415',
+  whatsapp: '8598610-1415',
+  email: 'contato@wllocacoes.com.br',
+  address: 'Av. Dep. Paulino Rocha, 1881 - Cajazeiras, Fortaleza - CE, 60864-311',
 };
 
 const CompanyContext = createContext<CompanyContextType>({

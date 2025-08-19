@@ -10,10 +10,10 @@ interface AboutPageSchemaProps {
 }
 
 const AboutPageSchema: React.FC<AboutPageSchemaProps> = ({
-  companyName = 'Lokajá',
+  companyName = 'WL Locações',
   foundingDate = '2020-01-01',
-  description = 'Especializada em aluguel de equipamentos para construção civil e industrial, a Lokajá atende com excelência empresas e pessoas físicas em Ponta Porã e região, oferecendo os melhores equipamentos com preços justos.',
-  imageUrl = '/images/Logo_fundo_claro/Logo_Locaja.png'
+  description = 'Especializada em aluguel de equipamentos para construção civil e industrial, a WL Locações atende com excelência empresas e pessoas físicas em Ponta Porã e região, oferecendo os melhores equipamentos com preços justos.',
+  imageUrl = '/images/Logo_fundo_claro/WL_fundo_claro.png'
 }) => {
   const { companyInfo } = useCompany();
   
@@ -23,14 +23,14 @@ const AboutPageSchema: React.FC<AboutPageSchemaProps> = ({
     'mainEntity': {
       '@type': 'Organization',
       'name': companyName,
-      'url': 'https://lokaja.com.br',
+      'url': 'https://wllocacoes.com.br',
       'logo': {
         '@type': 'ImageObject',
-        'url': `https://lokaja.com.br${imageUrl}`
+        'url': `https://wllocacoes.com.br${imageUrl}`
       },
       'image': {
         '@type': 'ImageObject',
-        'url': `https://lokaja.com.br${imageUrl}`
+        'url': `https://wllocacoes.com.br${imageUrl}`
       },
       'description': description,
       'address': {
@@ -38,7 +38,7 @@ const AboutPageSchema: React.FC<AboutPageSchemaProps> = ({
         'streetAddress': companyInfo.address.split(',')[0],
         'addressLocality': 'Ponta Porã',
         'addressRegion': 'MS',
-        'postalCode': '79901-128',
+        'postalCode': '60864-311',
         'addressCountry': 'BR'
       },
       'telephone': companyInfo.phone,
@@ -54,8 +54,8 @@ const AboutPageSchema: React.FC<AboutPageSchemaProps> = ({
         }
       },
       'sameAs': [
-        'https://www.facebook.com/lokaja',
-        'https://www.instagram.com/lokaja'
+        'https://www.facebook.com/wllocacoes',
+        'https://www.instagram.com/wllocacoes'
       ]
     }
   };

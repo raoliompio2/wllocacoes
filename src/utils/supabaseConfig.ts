@@ -1,9 +1,9 @@
 import { createClient, Session } from '@supabase/supabase-js';
 import { Database } from './database.types';
 
-// Configurações do Supabase com valores explícitos
-export const supabaseUrl = 'https://wsfrxepazeetaavditbm.supabase.co';
-export const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndzZnJ4ZXBhemVldGFhdmRpdGJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIxNjU1MDAsImV4cCI6MjA2Nzc0MTUwMH0.ntguiPGC7k4yH1fj0TabHTeaedG38HOnbM4kBJOGdt4';
+// Configurações do Supabase - Credenciais atualizadas
+export const supabaseUrl = 'https://yjdrejifhfdasaxivsew.supabase.co';
+export const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlqZHJlamlmaGZkYXNheGl2c2V3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY4MDYxMjgsImV4cCI6MjA2MjM4MjEyOH0._Cd9McHCodDcioXqDqBhK2CYompChlMgIsf0TtBvoqY';
 
 // Inicializar o cliente Supabase com as credenciais fixas
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);

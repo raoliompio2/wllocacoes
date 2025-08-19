@@ -89,7 +89,7 @@ const ProductFeedGenerator: React.FC = () => {
         let feed = `<?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
 <channel>
-  <title>Lokajá Equipamentos para Locação</title>
+  <title>WL Locações Equipamentos para Locação</title>
   <link>${baseUrl}</link>
   <description>Aluguel de equipamentos para construção civil</description>
 `;
@@ -113,7 +113,7 @@ const ProductFeedGenerator: React.FC = () => {
     <g:price>${price} BRL</g:price>
     <g:google_product_category>5181</g:google_product_category>
     <g:product_type>${escapeXml(categoryName)}</g:product_type>
-    <g:brand>Lokajá</g:brand>
+    <g:brand>WL Locações</g:brand>
     <g:condition>used</g:condition>
     <g:custom_label_0>${escapeXml(categoryName)}</g:custom_label_0>
   </item>
@@ -136,7 +136,7 @@ const ProductFeedGenerator: React.FC = () => {
           const price = item.daily_rate || '0';
           const description = (item.description || `Aluguel de ${item.name}`).replace(/"/g, '""');
           
-          feed += `"${item.id}","${item.name.replace(/"/g, '""')}","${description}","${productUrl}","${imageUrl}","${item.available ? 'in stock' : 'out of stock'}","${price} BRL","5181","${categoryName.replace(/"/g, '""')}","Lokajá","used","${categoryName.replace(/"/g, '""')}"\n`;
+          feed += `"${item.id}","${item.name.replace(/"/g, '""')}","${description}","${productUrl}","${imageUrl}","${item.available ? 'in stock' : 'out of stock'}","${price} BRL","5181","${categoryName.replace(/"/g, '""')}","WL Locações","used","${categoryName.replace(/"/g, '""')}"\n`;
         });
         
         setFeedContent(feed);
@@ -160,7 +160,7 @@ const ProductFeedGenerator: React.FC = () => {
             price: `${price} BRL`,
             google_product_category: '5181',
             product_type: categoryName,
-            brand: 'Lokajá',
+            brand: 'WL Locações',
             condition: 'used',
             custom_label_0: categoryName
           };
@@ -170,7 +170,7 @@ const ProductFeedGenerator: React.FC = () => {
       }
       
       // Gerar URL do feed (para mostrar ao usuário, não é uma URL funcional)
-      const feedToken = 'lokaja-feed-token'; // Token fixo para este exemplo
+      const feedToken = 'wllocacoes-feed-token'; // Token fixo para este exemplo
       setFeedUrl(`${baseUrl}/api/product-feed?token=${feedToken}&format=${format}`);
       
     } catch (error: any) {
@@ -184,7 +184,7 @@ const ProductFeedGenerator: React.FC = () => {
   const downloadFeed = () => {
     if (!feedContent) return;
     
-    const filename = `lokaja-product-feed-${new Date().toISOString().slice(0,10)}.${format}`;
+    const filename = `wllocacoes-product-feed-${new Date().toISOString().slice(0,10)}.${format}`;
     const mimeTypes = {
       xml: 'application/rss+xml',
       csv: 'text/csv',

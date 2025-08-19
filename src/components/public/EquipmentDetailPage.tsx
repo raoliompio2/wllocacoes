@@ -72,8 +72,8 @@ import { sendBudgetRequestEmail } from '../../utils/emailService';
 import AccessorySkeleton from '../Accessories/AccessorySkeleton';
 import { Helmet } from 'react-helmet-async';
 
-// Número do WhatsApp da Lokajá para redirecionamento
-const WHATSAPP_NUMBER = '5567993381010';
+// Número do WhatsApp da WL Locações para redirecionamento
+const WHATSAPP_NUMBER = '5585986101415';
 
 // Interfaces
 interface Equipment {
@@ -627,7 +627,7 @@ const EquipmentDetailPage: React.FC = () => {
     return (
       <ProductSchema
         name={equipment.name}
-        description={equipment.description || `Aluguel de ${equipment.name}. Entre em contato com a Lokajá para melhores condições.`}
+        description={equipment.description || `Aluguel de ${equipment.name}. Entre em contato com a WL Locações para melhores condições.`}
         imageUrl={equipment.image || ''}
         category={category?.name || ''}
         price={equipment.daily_rate ? parseFloat(equipment.daily_rate.replace(/[^\d.,]/g, '').replace(',', '.')) : undefined}
@@ -644,22 +644,22 @@ const EquipmentDetailPage: React.FC = () => {
     return {
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
-      'name': 'Lokajá Locadora de Equipamentos Para Construção',
-      'image': 'https://lokaja.com.br/images/Logo_fundo_claro/Logo_Locaja.png',
-      'url': 'https://lokaja.com.br',
+      'name': 'WL Locações Locadora de Equipamentos Para Construção',
+      'image': 'https://wllocacoes.com.br/images/Logo_fundo_claro/WL_fundo_claro.png',
+      'url': 'https://wllocacoes.com.br',
       'telephone': '+556793381010',
       'address': {
         '@type': 'PostalAddress',
-        'streetAddress': 'Av. da Flora, 374 - Jardim das Flores',
+        'streetAddress': 'Av. Dep. Paulino Rocha, 1881 - Cajazeiras',
         'addressLocality': 'Ponta Porã',
         'addressRegion': 'MS',
-        'postalCode': '79901-128',
+        'postalCode': '60864-311',
         'addressCountry': 'BR'
       },
       'geo': {
         '@type': 'GeoCoordinates',
-        'latitude': -22.5361,
-        'longitude': -55.7225
+        'latitude': -3.7275,
+        'longitude': -38.5434
       },
       'openingHoursSpecification': [
         {
@@ -750,23 +750,23 @@ const EquipmentDetailPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>{`${equipment.name} - Aluguel | Lokajá`}</title>
+        <title>{`${equipment.name} - Aluguel | WL Locações`}</title>
         <meta name="description" content={`Alugue ${equipment.name}. ${equipment.description?.substring(0, 120)}... Solicite um orçamento sem compromisso.`} />
         <meta name="keywords" content={`aluguel ${equipment.name}, locação ${equipment.name}, ${equipment.name} para alugar, ${category?.name}, equipamento construção`} />
-        <link rel="canonical" href={`https://lokaja.com.br/equipamento/${equipment.id}/${createSlug(equipment.name)}`} />
+        <link rel="canonical" href={`https://wllocacoes.com.br/equipamento/${equipment.id}/${createSlug(equipment.name)}`} />
         
         {/* Meta tags Open Graph para compartilhamento em redes sociais */}
-        <meta property="og:title" content={`${equipment.name} - Aluguel de Equipamentos | Lokajá`} />
+        <meta property="og:title" content={`${equipment.name} - Aluguel de Equipamentos | WL Locações`} />
         <meta property="og:description" content={`Alugue ${equipment.name}. Solicite um orçamento sem compromisso.`} />
-        <meta property="og:image" content={equipment.image ? `https://lokaja.com.br${equipment.image}` : 'https://lokaja.com.br/images/Logo_fundo_claro/Logo_Locaja.png'} />
+        <meta property="og:image" content={equipment.image ? `https://wllocacoes.com.br${equipment.image}` : 'https://wllocacoes.com.br/images/Logo_fundo_claro/WL_fundo_claro.png'} />
         <meta property="og:type" content="product" />
-        <meta property="og:url" content={`https://lokaja.com.br/equipamento/${equipment.id}/${createSlug(equipment.name)}`} />
+        <meta property="og:url" content={`https://wllocacoes.com.br/equipamento/${equipment.id}/${createSlug(equipment.name)}`} />
         
         {/* Meta tags Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${equipment.name} - Aluguel de Equipamentos | Lokajá`} />
+        <meta name="twitter:title" content={`${equipment.name} - Aluguel de Equipamentos | WL Locações`} />
         <meta name="twitter:description" content={`Alugue ${equipment.name}.`} />
-        <meta name="twitter:image" content={equipment.image ? `https://lokaja.com.br${equipment.image}` : 'https://lokaja.com.br/images/Logo_fundo_claro/Logo_Locaja.png'} />
+        <meta name="twitter:image" content={equipment.image ? `https://wllocacoes.com.br${equipment.image}` : 'https://wllocacoes.com.br/images/Logo_fundo_claro/WL_fundo_claro.png'} />
       </Helmet>
 
       {/* Schema.org para produto */}

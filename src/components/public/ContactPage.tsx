@@ -77,11 +77,11 @@ const ContactPage: React.FC = () => {
   
   // Dados da empresa
   const [companyInfo, setCompanyInfo] = useState<CompanyInfo>({
-    name: 'Lokajá Locadora de Equipamentos Para Construção',
-    address: 'Av. da Flora, 374 - Jardim das Flores, Ponta Porã - MS, 79901-128',
-    phone: '(67) 99338-1010',
-    whatsapp: '(67) 99338-1010',
-    email: 'contato@lokaja.com.br'
+    name: 'WL Locações Locadora de Equipamentos Para Construção',
+    address: 'Av. Dep. Paulino Rocha, 1881 - Cajazeiras, Fortaleza - CE, 60864-311',
+    phone: '(85) 98610-1415',
+    whatsapp: '(85) 98610-1415',
+    email: 'contato@wllocacoes.com.br'
   });
   
   const [loading, setLoading] = useState(true);
@@ -278,15 +278,15 @@ const ContactPage: React.FC = () => {
   const contactPageSchema = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    "name": "Entre em Contato - Lokajá",
-    "description": "Entre em contato com a Lokajá para aluguel de equipamentos para construção civil e industrial. Atendemos Ponta Porã e toda região com equipamentos de qualidade.",
-    "url": "https://lokaja.com.br/contato",
+    "name": "Entre em Contato - WL Locações",
+    "description": "Entre em contato com a WL Locações para aluguel de equipamentos para construção civil e industrial. Atendemos Fortaleza e toda região com equipamentos de qualidade.",
+    "url": "https://wllocacoes.com.br/contato",
     "mainEntity": {
       "@type": "LocalBusiness",
-      "name": "Lokajá",
-      "description": "Aluguel de equipamentos para construção civil e industrial em Ponta Porã e região.",
-      "telephone": "(67) 99338-1010",
-      "email": "contato@lokaja.com.br",
+      "name": "WL Locações",
+      "description": "Aluguel de equipamentos para construção civil e industrial em Fortaleza e região.",
+      "telephone": "(85) 98610-1415",
+      "email": "contato@wllocacoes.com.br",
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
@@ -314,11 +314,11 @@ const ContactPage: React.FC = () => {
   return (
     <>
       <SEOHead 
-        title="Entre em Contato | Lokajá | Aluguel de Equipamentos em Ponta Porã"
-        description="Entre em contato com a Lokajá Locadora para aluguel de equipamentos para construção civil e industrial. Atendemos Ponta Porã, Dourados e região com equipamentos de qualidade para sua obra ou evento."
+        title="Entre em Contato | WL Locações | Aluguel de Equipamentos em Fortaleza"
+        description="Entre em contato com a WL Locações Locadora para aluguel de equipamentos para construção civil e industrial. Atendemos Fortaleza, Dourados e região com equipamentos de qualidade para sua obra ou evento."
         canonicalUrl="/contato"
         schema={contactPageSchema}
-        keywords="contato Lokajá, aluguel equipamentos Ponta Porã, locação equipamentos construção MS, andaimes Ponta Porã, betoneira aluguel Dourados, compactadores MS, martelete Ponta Porã, locadora equipamentos Mato Grosso do Sul"
+        keywords="contato WL Locações, aluguel equipamentos Fortaleza, locação equipamentos construção MS, andaimes Fortaleza, betoneira aluguel Dourados, compactadores MS, martelete Fortaleza, locadora equipamentos Mato Grosso do Sul"
       />
       
       <Box 
@@ -330,15 +330,15 @@ const ContactPage: React.FC = () => {
         itemType="http://schema.org/LocalBusiness"
       >
         {/* Metadados ocultos para SEO */}
-        <meta itemProp="name" content="Lokajá Locadora de Equipamentos Para Construção" />
-        <meta itemProp="description" content="Entre em contato com a Lokajá para aluguel de equipamentos para construção civil e industrial em Ponta Porã e região." />
-        <meta itemProp="telephone" content="(67) 99338-1010" />
-        <meta itemProp="email" content="contato@lokaja.com.br" />
+        <meta itemProp="name" content="WL Locações Locadora de Equipamentos Para Construção" />
+        <meta itemProp="description" content="Entre em contato com a WL Locações para aluguel de equipamentos para construção civil e industrial em Fortaleza e região." />
+        <meta itemProp="telephone" content="(85) 98610-1415" />
+        <meta itemProp="email" content="contato@wllocacoes.com.br" />
         <div itemProp="address" itemScope itemType="http://schema.org/PostalAddress">
-          <meta itemProp="streetAddress" content="Av. da Flora, 374 - Jardim das Flores" />
-          <meta itemProp="addressLocality" content="Ponta Porã" />
+          <meta itemProp="streetAddress" content="Av. Dep. Paulino Rocha, 1881 - Cajazeiras" />
+          <meta itemProp="addressLocality" content="Fortaleza" />
           <meta itemProp="addressRegion" content="MS" />
-          <meta itemProp="postalCode" content="79901-128" />
+          <meta itemProp="postalCode" content="60864-311" />
           <meta itemProp="addressCountry" content="BR" />
         </div>
         <meta itemProp="openingHours" content="Mo-Fr 07:00-11:00,13:00-17:00" />
@@ -412,10 +412,10 @@ const ContactPage: React.FC = () => {
                         Endereço
                       </Typography>
                       <Typography variant="body2" color="text.secondary" sx={{ whiteSpace: 'pre-line' }}>
-                        Av. da Flora, 374<br />
-                        Jardim das Flores<br />
-                        Ponta Porã – MS<br />
-                        CEP: 79901-128
+                        Av. Dep. Paulino Rocha, 1881<br />
+                        Cajazeiras<br />
+                        Fortaleza – CE<br />
+                        CEP: 60864-311
                       </Typography>
                       
                       <Button 
@@ -423,7 +423,7 @@ const ContactPage: React.FC = () => {
                         size="small" 
                         color="primary" 
                         sx={{ mt: 1 }}
-                        href="https://maps.google.com/?q=-22.5361,-55.7225"
+                        href="https://maps.google.com/?q=-3.7275,-38.5434"
                         target="_blank"
                         rel="noopener noreferrer"
                       >

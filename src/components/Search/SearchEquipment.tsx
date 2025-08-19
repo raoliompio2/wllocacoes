@@ -109,8 +109,8 @@ const SearchEquipment: React.FC = () => {
   }, [searchTerm, selectedCategory, priceRange, sortBy]);
 
   const getWhatsAppLink = (whatsapp: string | null, equipmentName: string) => {
-    // Usar o número da Lokajá
-    const whatsappNumber = '67993381010';
+    // Usar o número da WL Locações
+    const whatsappNumber = '8598610-1415';
     
     const message = encodeURIComponent(
       `Olá! Gostaria de mais informações sobre o equipamento ${equipmentName}`

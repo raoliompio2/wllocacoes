@@ -19,11 +19,11 @@ interface EquipmentListSchemaProps {
 
 const EquipmentListSchema: React.FC<EquipmentListSchemaProps> = ({
   equipmentList,
-  title = 'Equipamentos para Locação - Lokajá',
-  description = 'Locação de equipamentos para construção civil e industrial em Ponta Porã e região. Betoneiras, andaimes, compactadores, geradores e muito mais com preços justos.',
+  title = 'Equipamentos para Locação - WL Locações',
+  description = 'Locação de equipamentos para construção civil e industrial em Fortaleza e região metropolitana. Betoneiras, andaimes, compactadores, geradores e muito mais com preços justos.',
   currentCategory
 }) => {
-  const baseUrl = 'https://lokaja.com.br';
+  const baseUrl = 'https://wllocacoes.com.br';
   
   // Schema da página de listagem de equipamentos
   const equipmentListSchema = {
@@ -59,9 +59,9 @@ const EquipmentListSchema: React.FC<EquipmentListSchemaProps> = ({
           ],
           'seller': {
             '@type': 'LocalBusiness',
-            'name': 'Lokajá',
-            'telephone': '(67) 99338-1010',
-            'email': 'contato@lokaja.com.br',
+            'name': 'WL Locações',
+            'telephone': '(85) 98610-1415',
+            'email': 'contato@wllocacoes.com.br',
             'address': {
               '@type': 'PostalAddress',
               'streetAddress': 'Endereço da Empresa',
@@ -81,8 +81,8 @@ const EquipmentListSchema: React.FC<EquipmentListSchemaProps> = ({
     const categorySchema = {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      'name': `${currentCategory} - Equipamentos para Locação - Lokajá`,
-      'description': `Aluguel de ${currentCategory} em Ponta Porã e região. A Lokajá oferece os melhores ${currentCategory} para sua obra ou evento.`,
+      'name': `${currentCategory} - Equipamentos para Locação - WL Locações`,
+      'description': `Aluguel de ${currentCategory} em Ponta Porã e região. A WL Locações oferece os melhores ${currentCategory} para sua obra ou evento.`,
       'url': `${baseUrl}/equipamentos/${currentCategory}`,
       'mainEntity': equipmentListSchema
     };

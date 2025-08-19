@@ -109,31 +109,31 @@ const HomePage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Lokajá - Aluguel de Equipamentos para Construção em Ponta Porã</title>
-        <meta name="description" content="Aluguel de equipamentos para construção civil e industrial em Ponta Porã e região. Compactadores, betoneiras, andaimes, geradores e muito mais com entrega em toda região." />
-        <meta name="keywords" content="aluguel de equipamentos Ponta Porã, locação de máquinas MS, construção civil, equipamentos para construção Mato Grosso do Sul, betoneira Ponta Porã, compactador aluguel, gerador Dourados" />
-        <link rel="canonical" href="https://lokaja.com.br/" />
+        <title>WL Locações - Aluguel de Equipamentos para Construção em Fortaleza</title>
+        <meta name="description" content="Aluguel de equipamentos para construção civil e industrial em Fortaleza e região. Compactadores, betoneiras, andaimes, geradores e muito mais com entrega em toda região." />
+        <meta name="keywords" content="aluguel de equipamentos Fortaleza, locação de máquinas CE, construção civil, equipamentos para construção Ceará, betoneira Fortaleza, compactador aluguel, gerador Cajazeiras" />
+        <link rel="canonical" href="https://wllocacoes.com.br/" />
         
         {/* Meta tags para compartilhamento em redes sociais */}
-        <meta property="og:title" content="Lokajá - Aluguel de Equipamentos para Construção em Ponta Porã" />
-        <meta property="og:description" content="Aluguel de equipamentos para construção civil e industrial em Ponta Porã e região do MS. Os melhores equipamentos com os melhores preços." />
-        <meta property="og:image" content="https://lokaja.com.br/images/Logo_fundo_claro/Logo_Locaja.png" />
-        <meta property="og:url" content="https://lokaja.com.br/" />
+        <meta property="og:title" content="WL Locações - Aluguel de Equipamentos para Construção em Fortaleza" />
+        <meta property="og:description" content="Aluguel de equipamentos para construção civil e industrial em Fortaleza e região do CE. Os melhores equipamentos com os melhores preços." />
+        <meta property="og:image" content="https://wllocacoes.com.br/images/Logo_fundo_claro/WL_fundo_claro.png" />
+        <meta property="og:url" content="https://wllocacoes.com.br/" />
         <meta property="og:type" content="website" />
         
         {/* Meta tags específicas para Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Lokajá - Aluguel de Equipamentos para Construção em Ponta Porã" />
-        <meta name="twitter:description" content="Aluguel de equipamentos para construção civil e industrial em Ponta Porã e região do MS." />
-        <meta name="twitter:image" content="https://lokaja.com.br/images/Logo_fundo_claro/Logo_Locaja.png" />
+        <meta name="twitter:title" content="WL Locações - Aluguel de Equipamentos para Construção em Fortaleza" />
+        <meta name="twitter:description" content="Aluguel de equipamentos para construção civil e industrial em Fortaleza e região do CE." />
+        <meta name="twitter:image" content="https://wllocacoes.com.br/images/Logo_fundo_claro/WL_fundo_claro.png" />
       </Helmet>
       
       {/* Adiciona o Schema.org para a página inicial */}
       <HomePageSchema 
-        companyName="Lokajá Locadora de Equipamentos Para Construção"
-        logo="/images/Logo_fundo_claro/Logo_Locaja.png"
+        companyName="WL Locações de Equipamentos"
+        logo="/images/Logo_fundo_claro/WL_fundo_claro.png"
         coverImage="/images/Imagehero.png"
-        description="Locação de equipamentos para construção civil e industrial em Ponta Porã e região. Compactadores, betoneiras, andaimes, geradores e muito mais com preços justos e entrega em toda região."
+        description="Locação de equipamentos para construção civil e industrial em Fortaleza e região. Compactadores, betoneiras, andaimes, geradores e muito mais com preços justos e entrega em toda região."
       />
       
       <main>
@@ -144,8 +144,8 @@ const HomePage: React.FC = () => {
         <section aria-labelledby="featured-equipment-title">
           <Box sx={{ 
             bgcolor: 'background.default', 
-            // Adicionando padding-top maior para acomodar o filtro flutuante
-            pt: { xs: 10, sm: 12, md: 14 },
+            // Padding-top reduzido pois o filtro agora está MAIS sobre a imagem
+            pt: { xs: 8, sm: 10, md: 12, lg: 14 },
             pb: { xs: 6, md: 8 }
           }}>
             <Container maxWidth="xl">

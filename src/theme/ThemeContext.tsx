@@ -37,17 +37,17 @@ interface ThemeContextType {
 }
 
 const defaultLightColors: ThemeColors = {
-  primary: '#001745',
-  secondary: '#cf2026',
+  primary: '#4a326e',     // Roxo WL Locações
+  secondary: '#fe2d24',   // Vermelho WL Locações  
   background: '#ffffff',
-  surface: '#f5f5f5',
+  surface: '#f8f9fa',
   text: '#1a1a1a',
-  menuText: '#1a1a1a'
+  menuText: '#ffffff'     // Branco para contraste no header vermelho
 };
 
 const defaultDarkColors: ThemeColors = {
-  primary: '#001745',
-  secondary: '#cf2026',
+  primary: '#6b4a9e',     // Roxo mais claro para modo escuro
+  secondary: '#ff4d42',   // Vermelho mais claro para modo escuro
   background: '#121212',
   surface: '#1e1e1e',
   text: '#ffffff',

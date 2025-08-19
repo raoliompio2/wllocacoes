@@ -150,16 +150,18 @@ export const SearchBar = () => {
         borderRadius: '12px',
         p: { xs: 2, sm: 2.5 }, // Padding aumentado
         backdropFilter: 'blur(20px)',
-        bgcolor: 'rgba(255, 255, 255, 0.98)', // Branco mais sólido
+        bgcolor: 'rgba(74, 50, 110, 0.95)', // Roxo do tema WL Locações
+        color: '#ffffff', // Texto branco para contraste
         maxWidth: '100%',
         overflow: 'hidden',
         mb: { xs: 4, sm: 6, md: 8 },
-        boxShadow: '0 12px 35px rgba(0, 0, 0, 0.18), 0 2px 5px rgba(0,0,0,0.08)', // Sombra melhorada
-        border: '1px solid rgba(255,255,255,0.8)', // Borda sutil
+        boxShadow: '0 12px 35px rgba(74, 50, 110, 0.3), 0 2px 5px rgba(0,0,0,0.08)', // Sombra roxa
+        border: '1px solid rgba(74, 50, 110, 0.6)', // Borda roxa
         transition: 'all 0.3s ease',
         '&:hover': {
-          boxShadow: '0 18px 45px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0,0,0,0.12)', // Efeito hover
-          transform: 'translateY(-3px)'
+          boxShadow: '0 18px 45px rgba(74, 50, 110, 0.4), 0 2px 6px rgba(0,0,0,0.12)', // Efeito hover roxo
+          transform: 'translateY(-3px)',
+          bgcolor: 'rgba(74, 50, 110, 1)' // Mais sólido no hover
         }
       }}
     >
@@ -203,22 +205,33 @@ export const SearchBar = () => {
                 }),
                 sx: {
                   borderRadius: '8px',
+                  bgcolor: 'rgba(255, 255, 255, 0.15)',
+                  color: '#ffffff',
                   '& .MuiOutlinedInput-notchedOutline': {
-                    borderColor: 'rgba(0, 0, 0, 0.1)',
+                    borderColor: 'rgba(255, 255, 255, 0.3)',
                   },
                   '&:hover .MuiOutlinedInput-notchedOutline': {
-                    borderColor: colors.primary,
+                    borderColor: 'rgba(255, 255, 255, 0.6)',
+                  },
+                  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#fe2d24',
                   }
                 }
               }}
               size={isMobile ? "small" : "medium"}
+              sx={{
+                '& .MuiInputBase-input::placeholder': {
+                  color: 'rgba(255, 255, 255, 0.7)',
+                  opacity: 1,
+                },
+              }}
             />
           </Tooltip>
         </Grid>
         
         <Grid item xs={12} sm={3}>
           <FormControl fullWidth variant="outlined" size={isMobile ? "small" : "medium"}>
-            <InputLabel>Categoria</InputLabel>
+            <InputLabel shrink sx={{ color: 'rgba(255, 255, 255, 0.8)' }}>Categoria</InputLabel>
             <Select
               value={categoria}
               onChange={(e) => setCategoria(e.target.value)}
@@ -233,12 +246,40 @@ export const SearchBar = () => {
               }
               sx={{
                 borderRadius: '8px',
+                bgcolor: 'rgba(255, 255, 255, 0.15)',
+                color: '#ffffff',
                 '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'rgba(0, 0, 0, 0.1)',
+                  borderColor: 'rgba(255, 255, 255, 0.3)',
                 },
                 '&:hover .MuiOutlinedInput-notchedOutline': {
-                  borderColor: colors.primary,
+                  borderColor: 'rgba(255, 255, 255, 0.6)',
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#fe2d24',
+                },
+                '& .MuiSelect-icon': {
+                  color: 'rgba(255, 255, 255, 0.8)',
                 }
+              }}
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    bgcolor: 'rgba(74, 50, 110, 0.95)',
+                    color: '#ffffff',
+                    '& .MuiMenuItem-root': {
+                      color: '#ffffff',
+                      '&:hover': {
+                        bgcolor: 'rgba(254, 45, 36, 0.1)',
+                      },
+                      '&.Mui-selected': {
+                        bgcolor: 'rgba(254, 45, 36, 0.2)',
+                        '&:hover': {
+                          bgcolor: 'rgba(254, 45, 36, 0.3)',
+                        },
+                      },
+                    },
+                  },
+                },
               }}
             >
               <MenuItem value="">Todas as categorias</MenuItem>
@@ -253,7 +294,7 @@ export const SearchBar = () => {
         
         <Grid item xs={12} sm={3}>
           <FormControl fullWidth variant="outlined" size={isMobile ? "small" : "medium"}>
-            <InputLabel>Fase da Obra</InputLabel>
+            <InputLabel shrink sx={{ color: 'rgba(255, 255, 255, 0.8)' }}>Fase da Obra</InputLabel>
             <Select
               value={faseObra}
               onChange={(e) => setFaseObra(e.target.value)}
@@ -268,12 +309,40 @@ export const SearchBar = () => {
               }
               sx={{
                 borderRadius: '8px',
+                bgcolor: 'rgba(255, 255, 255, 0.15)',
+                color: '#ffffff',
                 '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'rgba(0, 0, 0, 0.1)',
+                  borderColor: 'rgba(255, 255, 255, 0.3)',
                 },
                 '&:hover .MuiOutlinedInput-notchedOutline': {
-                  borderColor: colors.primary,
+                  borderColor: 'rgba(255, 255, 255, 0.6)',
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#fe2d24',
+                },
+                '& .MuiSelect-icon': {
+                  color: 'rgba(255, 255, 255, 0.8)',
                 }
+              }}
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    bgcolor: 'rgba(74, 50, 110, 0.95)',
+                    color: '#ffffff',
+                    '& .MuiMenuItem-root': {
+                      color: '#ffffff',
+                      '&:hover': {
+                        bgcolor: 'rgba(254, 45, 36, 0.1)',
+                      },
+                      '&.Mui-selected': {
+                        bgcolor: 'rgba(254, 45, 36, 0.2)',
+                        '&:hover': {
+                          bgcolor: 'rgba(254, 45, 36, 0.3)',
+                        },
+                      },
+                    },
+                  },
+                },
               }}
             >
               <MenuItem value="">Todas as fases</MenuItem>
@@ -303,9 +372,12 @@ export const SearchBar = () => {
               textTransform: 'none',
               fontWeight: 'bold',
               fontSize: '1rem',
-              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+              bgcolor: '#fe2d24', // Vermelho WL Locações
+              color: '#ffffff',
+              boxShadow: '0 4px 10px rgba(254, 45, 36, 0.3)',
               '&:hover': {
-                boxShadow: '0 6px 15px rgba(0, 0, 0, 0.2)',
+                bgcolor: '#ff4d42',
+                boxShadow: '0 6px 15px rgba(254, 45, 36, 0.4)',
                 transform: 'translateY(-2px)'
               },
               transition: 'all 0.3s ease'

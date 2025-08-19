@@ -68,7 +68,7 @@ const PublicNavbar: React.FC = () => {
   const [companyInfo, setCompanyInfo] = useState<CompanyInfo | null>(null);
   const [loading, setLoading] = useState(true);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [hasScrolled, setHasScrolled] = useState(false);
+
   const [instagramDrawerOpen, setInstagramDrawerOpen] = useState(false);
   
   // Verificar se estamos na página inicial
@@ -77,8 +77,8 @@ const PublicNavbar: React.FC = () => {
   // Obtendo as cores do tema atual
   const colors = mode === 'light' ? themePreferences.lightColors : themePreferences.darkColors;
 
-  // Logo da empresa com suporte a WebP
-  const logoUrl = getHeaderFooterLogo();
+  // Logo da empresa com suporte a WebP (usar logo para fundo escuro já que o header é vermelho)
+  const logoUrl = getLogoByBackground('#fe2d24');
   
   const companyInfoMemo = useMemo(() => {
     return {
@@ -90,22 +90,7 @@ const PublicNavbar: React.FC = () => {
   // Avatar padrão caso o usuário não tenha um
   const defaultAvatar = 'https://yjdrejifhfdasaxivsew.supabase.co/storage/v1/object/public/avatars/default-avatar.png';
 
-  // Detectar scroll para aplicar efeito de vidro
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setHasScrolled(scrollPosition > 20);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    
-    // Verifica imediatamente ao montar o componente
-    handleScroll();
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+
 
   // Função para determinar a saudação baseada no horário
   const getSaudacao = () => {
@@ -381,7 +366,7 @@ const PublicNavbar: React.FC = () => {
       <InstagramFeed
         open={instagramDrawerOpen}
         onClose={() => setInstagramDrawerOpen(false)}
-        username="lokajaloc"
+        username="wllocacoes"
         widgetId="456cd860-6522-42de-81c3-ce3d892ec785"
       />
       
@@ -389,24 +374,17 @@ const PublicNavbar: React.FC = () => {
         <AppBar 
           position="sticky" 
           elevation={0}
-          className={hasScrolled ? 'navbar-glassmorphism' : ''}
           sx={{ 
-            bgcolor: hasScrolled ? 'rgba(255, 255, 255, 0.7)' : '#ffffff',
-            color: '#171717',
+            background: 'linear-gradient(135deg, #fe2d24 0%, #4a326e 100%)',
+            color: '#ffffff',
             borderBottomLeftRadius: themePreferences.borderRadius * 4,
             borderBottomRightRadius: themePreferences.borderRadius * 4,
-            boxShadow: hasScrolled 
-              ? '0 4px 30px rgba(0, 0, 0, 0.1)'
-              : '0 2px 10px rgba(0,0,0,0.1)',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
             mb: isHomePage ? -1 : 0, // Margem bottom negativa para página inicial
             mt: 0,
             zIndex: 1090, // Reduzido para ficar melhor integrado com o hero
             overflow: 'visible',
-            clipPath: 'inset(0px -40px -40px -40px)', // Isso impede que as bordas arredondadas criem espaços vazios
-            backdropFilter: hasScrolled ? 'blur(10px)' : 'none',
-            WebkitBackdropFilter: hasScrolled ? 'blur(10px)' : 'none', // Para Safari
-            border: hasScrolled ? '1px solid rgba(255, 255, 255, 0.3)' : 'none',
-            transition: 'all 0.3s ease'
+            clipPath: 'inset(0px -40px -40px -40px)' // Isso impede que as bordas arredondadas criem espaços vazios
           }}
         >
           <Container maxWidth="xl">
@@ -443,15 +421,15 @@ const PublicNavbar: React.FC = () => {
                         fontWeight: 'medium',
                         fontSize: '1.05rem',
                         borderBottom: isActive(link.path) ? 3 : 0,
-                        borderColor: isActive(link.path) ? colors.secondary : 'transparent',
+                        borderColor: isActive(link.path) ? '#ffffff' : 'transparent',
                         borderRadius: 0,
                         '&:hover': {
-                          bgcolor: 'rgba(0,0,0,0.05)',
-                          color: colors.secondary
+                          bgcolor: 'rgba(255,255,255,0.1)',
+                          color: '#ffffff'
                         },
                         color: isActive(link.path) 
-                          ? colors.secondary
-                          : 'inherit',
+                          ? '#ffffff'
+                          : 'rgba(255,255,255,0.9)',
                         py: 1,
                       }}
                     >
@@ -551,9 +529,16 @@ const PublicNavbar: React.FC = () => {
                         variant="outlined" 
                         component={Link} 
                         to="/signup"
-                        color="primary"
                         startIcon={<Person />}
-                        sx={{ fontWeight: 'medium' }}
+                        sx={{ 
+                          fontWeight: 'medium',
+                          color: '#ffffff',
+                          borderColor: '#ffffff',
+                          '&:hover': {
+                            borderColor: '#ffffff',
+                            backgroundColor: 'rgba(255, 255, 255, 0.1)'
+                          }
+                        }}
                       >
                         Cadastrar
                       </Button>
