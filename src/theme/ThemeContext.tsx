@@ -40,9 +40,9 @@ const defaultLightColors: ThemeColors = {
   primary: '#4a326e',     // Roxo WL Locações
   secondary: '#fe2d24',   // Vermelho WL Locações  
   background: '#ffffff',
-  surface: '#4a326e',     // Roxo como fundo do sidebar
+  surface: '#ffffff',     // Fundo branco limpo para sidebar
   text: '#1a1a1a',
-  menuText: '#ffffff'     // Branco para contraste no fundo roxo
+  menuText: '#4a326e'     // Roxo para contraste no fundo branco
 };
 
 const defaultDarkColors: ThemeColors = {

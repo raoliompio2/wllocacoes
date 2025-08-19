@@ -350,18 +350,19 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
           color: colors.menuText,
           justifyContent: open ? 'initial' : 'center',
           '&:hover': { 
-            bgcolor: 'rgba(255, 255, 255, 0.1)',
+            bgcolor: 'rgba(74, 50, 110, 0.1)',
             '& .MuiListItemIcon-root': {
-              color: '#ffffff',
+              color: colors.primary,
             }
           },
           '&.Mui-selected': {
-            bgcolor: 'rgba(255, 255, 255, 0.2)',
+            bgcolor: 'rgba(74, 50, 110, 0.1)',
+            borderRight: `3px solid ${colors.primary}`,
             '& .MuiListItemIcon-root': {
-              color: '#ffffff',
+              color: colors.primary,
             },
             '&:hover': {
-              bgcolor: 'rgba(255, 255, 255, 0.3)',
+              bgcolor: 'rgba(74, 50, 110, 0.15)',
             }
           }
         }}
@@ -396,6 +397,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
       bgcolor: colors.surface,
       color: colors.menuText,
       overflowX: 'hidden',
+      boxShadow: '2px 0 10px rgba(0,0,0,0.1)',
+      borderRight: '1px solid rgba(0,0,0,0.05)',
     }}>
       <Toolbar sx={{ 
         px: 2, 
@@ -412,11 +415,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              backgroundColor: 'rgba(255, 255, 255, 0.1)',  // Fundo semi-transparente para contraste
-              borderRadius: 1,
-              p: 0.5,
               '&:hover': {
-                backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                backgroundColor: 'rgba(74, 50, 110, 0.1)',
               }
             }}
           >
@@ -429,7 +429,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
                   height: '60px',
                   maxWidth: open ? '200px' : '60px',
                   objectFit: 'contain',
-                  filter: 'brightness(0) invert(1)', // Forçar logo branco para contraste
+                  // Logo normal, sem filtros
                 }}
               />
             </picture>
